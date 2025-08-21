@@ -728,11 +728,11 @@ var require_Reflect = __commonJS({
               var nextValue = IteratorValue(next);
               try {
                 keys2[k] = nextValue;
-              } catch (e2) {
+              } catch (e) {
                 try {
                   IteratorClose(iterator2);
                 } finally {
-                  throw e2;
+                  throw e;
                 }
               }
               k++;
@@ -10366,7 +10366,7 @@ var require_gopd = __commonJS({
     if ($gOPD) {
       try {
         $gOPD([], "length");
-      } catch (e2) {
+      } catch (e) {
         $gOPD = null;
       }
     }
@@ -10382,7 +10382,7 @@ var require_es_define_property = __commonJS({
     if ($defineProperty) {
       try {
         $defineProperty({}, "a", { value: 1 });
-      } catch (e2) {
+      } catch (e) {
         $defineProperty = false;
       }
     }
@@ -10634,9 +10634,9 @@ var require_get = __commonJS({
     try {
       hasProtoAccessor = /** @type {{ __proto__?: typeof Array.prototype }} */
       [].__proto__ === Array.prototype;
-    } catch (e2) {
-      if (!e2 || typeof e2 !== "object" || !("code" in e2) || e2.code !== "ERR_PROTO_ACCESS") {
-        throw e2;
+    } catch (e) {
+      if (!e || typeof e !== "object" || !("code" in e) || e.code !== "ERR_PROTO_ACCESS") {
+        throw e;
       }
     }
     var desc = !!hasProtoAccessor && gOPD && gOPD(
@@ -10710,7 +10710,7 @@ var require_get_intrinsic = __commonJS({
     var getEvalledConstructor = function(expressionSyntax) {
       try {
         return $Function('"use strict"; return (' + expressionSyntax + ").constructor;")();
-      } catch (e2) {
+      } catch (e) {
       }
     };
     var $gOPD = require_gopd();
@@ -10825,8 +10825,8 @@ var require_get_intrinsic = __commonJS({
     if (getProto) {
       try {
         null.error;
-      } catch (e2) {
-        errorProto = getProto(getProto(e2));
+      } catch (e) {
+        errorProto = getProto(getProto(e));
         INTRINSICS["%Error.prototype%"] = errorProto;
       }
     }
@@ -22127,7 +22127,7 @@ var require_safer = __commonJS({
     if (!safer.kStringMaxLength) {
       try {
         safer.kStringMaxLength = process.binding("buffer").kStringMaxLength;
-      } catch (e2) {
+      } catch (e) {
       }
     }
     if (!safer.constants) {
@@ -25170,8 +25170,8 @@ var require_streams = __commonJS({
         var res = this.conv.write(chunk);
         if (res && res.length) this.push(res);
         done();
-      } catch (e2) {
-        done(e2);
+      } catch (e) {
+        done(e);
       }
     };
     IconvLiteEncoderStream.prototype._flush = function(done) {
@@ -25179,8 +25179,8 @@ var require_streams = __commonJS({
         var res = this.conv.end();
         if (res && res.length) this.push(res);
         done();
-      } catch (e2) {
-        done(e2);
+      } catch (e) {
+        done(e);
       }
     };
     IconvLiteEncoderStream.prototype.collect = function(cb) {
@@ -25210,8 +25210,8 @@ var require_streams = __commonJS({
         var res = this.conv.write(chunk);
         if (res && res.length) this.push(res, this.encoding);
         done();
-      } catch (e2) {
-        done(e2);
+      } catch (e) {
+        done(e);
       }
     };
     IconvLiteDecoderStream.prototype._flush = function(done) {
@@ -25219,8 +25219,8 @@ var require_streams = __commonJS({
         var res = this.conv.end();
         if (res && res.length) this.push(res, this.encoding);
         done();
-      } catch (e2) {
-        done(e2);
+      } catch (e) {
+        done(e);
       }
     };
     IconvLiteDecoderStream.prototype.collect = function(cb) {
@@ -25433,7 +25433,7 @@ var require_lib4 = __commonJS({
       try {
         iconv.getCodec(enc);
         return true;
-      } catch (e2) {
+      } catch (e) {
         return false;
       }
     };
@@ -25547,7 +25547,7 @@ var require_tmp = __commonJS({
       var value = [], rnd = null;
       try {
         rnd = crypto3.randomBytes(howMany);
-      } catch (e2) {
+      } catch (e) {
         rnd = crypto3.pseudoRandomBytes(howMany);
       }
       for (var i2 = 0; i2 < howMany; i2++) {
@@ -25609,7 +25609,7 @@ var require_tmp = __commonJS({
         const name = _generateTmpName(opts);
         try {
           fs2.statSync(name);
-        } catch (e2) {
+        } catch (e) {
           return name;
         }
       } while (tries-- > 0);
@@ -25627,9 +25627,9 @@ var require_tmp = __commonJS({
               if (err3) {
                 try {
                   fs2.unlinkSync(name);
-                } catch (e2) {
-                  if (!isENOENT(e2)) {
-                    err3 = e2;
+                } catch (e) {
+                  if (!isENOENT(e)) {
+                    err3 = e;
                   }
                 }
                 return cb(err3);
@@ -25706,16 +25706,16 @@ var require_tmp = __commonJS({
           if (0 <= fdPath[0]) {
             fs2.closeSync(fdPath[0]);
           }
-        } catch (e2) {
-          if (!isEBADF(e2) && !isENOENT(e2)) {
-            throw e2;
+        } catch (e) {
+          if (!isEBADF(e) && !isENOENT(e)) {
+            throw e;
           }
         }
         try {
           fs2.unlinkSync(fdPath[1]);
-        } catch (e2) {
-          if (!isENOENT(e2)) {
-            throw e2;
+        } catch (e) {
+          if (!isENOENT(e)) {
+            throw e;
           }
         }
       }, [fd, name]);
@@ -25753,7 +25753,7 @@ var require_tmp = __commonJS({
       while (_removeObjects.length) {
         try {
           _removeObjects[0].call(null);
-        } catch (e2) {
+        } catch (e) {
         }
       }
     }
@@ -26250,16 +26250,16 @@ var require_Subscription = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -26312,8 +26312,8 @@ var require_Subscription = __commonJS({
           if (isFunction_1.isFunction(initialFinalizer)) {
             try {
               initialFinalizer();
-            } catch (e2) {
-              errors = e2 instanceof UnsubscriptionError_1.UnsubscriptionError ? e2.errors : [e2];
+            } catch (e) {
+              errors = e instanceof UnsubscriptionError_1.UnsubscriptionError ? e.errors : [e];
             }
           }
           var _finalizers = this._finalizers;
@@ -26433,16 +26433,16 @@ var require_timeoutProvider = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -27193,16 +27193,16 @@ var require_animationFrameProvider = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -27793,16 +27793,16 @@ var require_intervalProvider = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -27926,9 +27926,9 @@ var require_AsyncAction = __commonJS({
         var errorValue;
         try {
           this.work(state);
-        } catch (e2) {
+        } catch (e) {
           errored = true;
-          errorValue = e2 ? e2 : new Error("Scheduled action threw falsy error");
+          errorValue = e ? e : new Error("Scheduled action threw falsy error");
         }
         if (errored) {
           this.unsubscribe();
@@ -28002,16 +28002,16 @@ var require_immediateProvider = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -28911,8 +28911,8 @@ var require_isReadableStreamLike = __commonJS({
               continue;
           }
           op = body.call(thisArg, _2);
-        } catch (e2) {
-          op = [6, e2];
+        } catch (e) {
+          op = [6, e];
           y = 0;
         } finally {
           f = t = 0;
@@ -28940,8 +28940,8 @@ var require_isReadableStreamLike = __commonJS({
       function resume(n2, v) {
         try {
           step(g[n2](v));
-        } catch (e2) {
-          settle2(q[0][3], e2);
+        } catch (e) {
+          settle2(q[0][3], e);
         }
       }
       function step(r) {
@@ -29020,15 +29020,15 @@ var require_innerFrom = __commonJS({
         function fulfilled(value) {
           try {
             step(generator.next(value));
-          } catch (e2) {
-            reject(e2);
+          } catch (e) {
+            reject(e);
           }
         }
         function rejected(value) {
           try {
             step(generator["throw"](value));
-          } catch (e2) {
-            reject(e2);
+          } catch (e) {
+            reject(e);
           }
         }
         function step(result) {
@@ -29096,8 +29096,8 @@ var require_innerFrom = __commonJS({
               continue;
           }
           op = body.call(thisArg, _2);
-        } catch (e2) {
-          op = [6, e2];
+        } catch (e) {
+          op = [6, e];
           y = 0;
         } finally {
           f = t = 0;
@@ -29957,16 +29957,16 @@ var require_mapOneOrManyArgs = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -29999,16 +29999,16 @@ var require_bindCallbackInternals = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -30534,16 +30534,16 @@ var require_fromEvent = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -30631,11 +30631,11 @@ var require_fromEventPattern = __commonJS({
       }
       return new Observable_1.Observable(function(subscriber) {
         var handler = function() {
-          var e2 = [];
+          var e = [];
           for (var _i = 0; _i < arguments.length; _i++) {
-            e2[_i] = arguments[_i];
+            e[_i] = arguments[_i];
           }
-          return subscriber.next(e2.length === 1 ? e2[0] : e2);
+          return subscriber.next(e.length === 1 ? e[0] : e);
         };
         var retValue = addHandler(handler);
         return isFunction_1.isFunction(removeHandler) ? function() {
@@ -30710,8 +30710,8 @@ var require_generate = __commonJS({
               continue;
           }
           op = body.call(thisArg, _2);
-        } catch (e2) {
-          op = [6, e2];
+        } catch (e) {
+          op = [6, e];
           y = 0;
         } finally {
           f = t = 0;
@@ -31133,16 +31133,16 @@ var require_zip = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -31763,16 +31763,16 @@ var require_combineLatest2 = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -31811,16 +31811,16 @@ var require_combineLatestWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -31885,16 +31885,16 @@ var require_concat2 = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -31931,16 +31931,16 @@ var require_concatWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -32424,16 +32424,16 @@ var require_endWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -32971,16 +32971,16 @@ var require_merge2 = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -33018,16 +33018,16 @@ var require_mergeWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -33103,16 +33103,16 @@ var require_onErrorResumeNextWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -33287,16 +33287,16 @@ var require_raceWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -33685,16 +33685,16 @@ var require_share = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -34687,16 +34687,16 @@ var require_withLatestFrom = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -34773,16 +34773,16 @@ var require_zip2 = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -34816,16 +34816,16 @@ var require_zipWith = __commonJS({
     var __read2 = exports2 && exports2.__read || function(o2, n2) {
       var m = typeof Symbol === "function" && o2[Symbol.iterator];
       if (!m) return o2;
-      var i2 = m.call(o2), r, ar = [], e2;
+      var i2 = m.call(o2), r, ar = [], e;
       try {
         while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
       } catch (error) {
-        e2 = { error };
+        e = { error };
       } finally {
         try {
           if (r && !r.done && (m = i2["return"])) m.call(i2);
         } finally {
-          if (e2) throw e2.error;
+          if (e) throw e.error;
         }
       }
       return ar;
@@ -38339,8 +38339,8 @@ var require_utimes = __commonJS({
       } finally {
         try {
           await fs2.close(fd);
-        } catch (e2) {
-          closeErr = e2;
+        } catch (e) {
+          closeErr = e;
         }
       }
       if (closeErr) {
@@ -38600,9 +38600,9 @@ var require_copy = __commonJS({
       let resolvedDest = null;
       try {
         resolvedDest = await fs2.readlink(dest);
-      } catch (e2) {
-        if (e2.code === "EINVAL" || e2.code === "UNKNOWN") return fs2.symlink(resolvedSrc, dest);
-        throw e2;
+      } catch (e) {
+        if (e.code === "EINVAL" || e.code === "UNKNOWN") return fs2.symlink(resolvedSrc, dest);
+        throw e;
       }
       if (opts.dereference) {
         resolvedDest = path13.resolve(process.cwd(), resolvedDest);
@@ -39719,7 +39719,7 @@ var require_resolveCommand = __commonJS({
           path: env3[getPathKey({ env: env3 })],
           pathExt: withoutPathExt ? path13.delimiter : void 0
         });
-      } catch (e2) {
+      } catch (e) {
       } finally {
         if (shouldSwitchCwd) {
           process.chdir(cwd);
@@ -39804,7 +39804,7 @@ var require_readShebang = __commonJS({
         fd = fs2.openSync(command, "r");
         fs2.readSync(fd, buffer, 0, size, 0);
         fs2.closeSync(fd);
-      } catch (e2) {
+      } catch (e) {
       }
       return shebangCommand(buffer.toString());
     }
@@ -40482,31 +40482,31 @@ var require_ejs = __commonJS({
           if (opts.async) {
             try {
               ctor = new Function("return (async function(){}).constructor;")();
-            } catch (e2) {
-              if (e2 instanceof SyntaxError) {
+            } catch (e) {
+              if (e instanceof SyntaxError) {
                 throw new Error("This environment does not support async/await");
               } else {
-                throw e2;
+                throw e;
               }
             }
           } else {
             ctor = Function;
           }
           fn = new ctor(opts.localsName + ", escapeFn, include, rethrow", src);
-        } catch (e2) {
-          if (e2 instanceof SyntaxError) {
+        } catch (e) {
+          if (e instanceof SyntaxError) {
             if (opts.filename) {
-              e2.message += " in " + opts.filename;
+              e.message += " in " + opts.filename;
             }
-            e2.message += " while compiling ejs\n\n";
-            e2.message += "If the above error is not helpful, you may want to try EJS-Lint:\n";
-            e2.message += "https://github.com/RyanZim/EJS-Lint";
+            e.message += " while compiling ejs\n\n";
+            e.message += "If the above error is not helpful, you may want to try EJS-Lint:\n";
+            e.message += "https://github.com/RyanZim/EJS-Lint";
             if (!opts.async) {
-              e2.message += "\n";
-              e2.message += "Or, if you meant to create an async function, pass `async: true` as an option.";
+              e.message += "\n";
+              e.message += "Or, if you meant to create an async function, pass `async: true` as an option.";
             }
           }
-          throw e2;
+          throw e;
         }
         var returnedFn = opts.client ? fn : function anonymous(data) {
           var include = function(path14, includeData) {
@@ -40531,7 +40531,7 @@ var require_ejs = __commonJS({
               enumerable: false,
               configurable: true
             });
-          } catch (e2) {
+          } catch (e) {
           }
         }
         return returnedFn;
@@ -40747,15 +40747,15 @@ function __awaiter(thisArg, _arguments, P, generator) {
     function fulfilled(value) {
       try {
         step(generator.next(value));
-      } catch (e2) {
-        reject(e2);
+      } catch (e) {
+        reject(e);
       }
     }
     function rejected(value) {
       try {
         step(generator["throw"](value));
-      } catch (e2) {
-        reject(e2);
+      } catch (e) {
+        reject(e);
       }
     }
     function step(result) {
@@ -40823,8 +40823,8 @@ function __generator(thisArg, body) {
           continue;
       }
       op = body.call(thisArg, _2);
-    } catch (e2) {
-      op = [6, e2];
+    } catch (e) {
+      op = [6, e];
       y = 0;
     } finally {
       f = t = 0;
@@ -40847,16 +40847,16 @@ function __values(o2) {
 function __read(o2, n2) {
   var m = typeof Symbol === "function" && o2[Symbol.iterator];
   if (!m) return o2;
-  var i2 = m.call(o2), r, ar = [], e2;
+  var i2 = m.call(o2), r, ar = [], e;
   try {
     while ((n2 === void 0 || n2-- > 0) && !(r = i2.next()).done) ar.push(r.value);
   } catch (error) {
-    e2 = { error };
+    e = { error };
   } finally {
     try {
       if (r && !r.done && (m = i2["return"])) m.call(i2);
     } finally {
-      if (e2) throw e2.error;
+      if (e) throw e.error;
     }
   }
   return ar;
@@ -41008,11 +41008,11 @@ function formatDependency(params, idx) {
   var argName = params.split(",")[idx].trim();
   return '"' + argName + '" at position #' + idx;
 }
-function composeErrorMessage(msg, e2, indent) {
+function composeErrorMessage(msg, e, indent) {
   if (indent === void 0) {
     indent = "    ";
   }
-  return __spread([msg], e2.message.split("\n").map(function(l) {
+  return __spread([msg], e.message.split("\n").map(function(l) {
     return indent + l;
   })).join("\n");
 }
@@ -41418,8 +41418,8 @@ var InternalDependencyContainer = function() {
           return (_c = _this.resolve(param.transform, context)).transform.apply(_c, __spread([_this.resolve(param.token, context)], param.transformArgs));
         }
         return _this.resolve(param, context);
-      } catch (e2) {
-        throw new Error(formatErrorCtor(ctor, idx, e2));
+      } catch (e) {
+        throw new Error(formatErrorCtor(ctor, idx, e));
       }
     };
   };
@@ -41650,7 +41650,7 @@ var isEmptyObject = (val) => {
   }
   try {
     return Object.keys(val).length === 0 && Object.getPrototypeOf(val) === Object.prototype;
-  } catch (e2) {
+  } catch (e) {
     return false;
   }
 };
@@ -42452,9 +42452,9 @@ function stringifySafely(rawValue, parser, encoder) {
     try {
       (parser || JSON.parse)(rawValue);
       return utils_default.trim(rawValue);
-    } catch (e2) {
-      if (e2.name !== "SyntaxError") {
-        throw e2;
+    } catch (e) {
+      if (e.name !== "SyntaxError") {
+        throw e;
       }
     }
   }
@@ -42516,12 +42516,12 @@ var defaults = {
       const strictJSONParsing = !silentJSONParsing && JSONRequested;
       try {
         return JSON.parse(data);
-      } catch (e2) {
+      } catch (e) {
         if (strictJSONParsing) {
-          if (e2.name === "SyntaxError") {
-            throw AxiosError_default.from(e2, AxiosError_default.ERR_BAD_RESPONSE, this, null, this.response);
+          if (e.name === "SyntaxError") {
+            throw AxiosError_default.from(e, AxiosError_default.ERR_BAD_RESPONSE, this, null, this.response);
           }
-          throw e2;
+          throw e;
         }
       }
     }
@@ -43269,9 +43269,9 @@ var throttle_default = throttle;
 var progressEventReducer = (listener, isDownloadStream, freq = 3) => {
   let bytesNotified = 0;
   const _speedometer = speedometer_default(50, 250);
-  return throttle_default((e2) => {
-    const loaded = e2.loaded;
-    const total = e2.lengthComputable ? e2.total : void 0;
+  return throttle_default((e) => {
+    const loaded = e.loaded;
+    const total = e.lengthComputable ? e.total : void 0;
     const progressBytes = loaded - bytesNotified;
     const rate = _speedometer(progressBytes);
     const inRange = loaded <= total;
@@ -43283,7 +43283,7 @@ var progressEventReducer = (listener, isDownloadStream, freq = 3) => {
       bytes: progressBytes,
       rate: rate ? rate : void 0,
       estimated: rate && total && inRange ? (total - loaded) / rate : void 0,
-      event: e2,
+      event: e,
       lengthComputable: total != null,
       [isDownloadStream ? "download" : "upload"]: true
     };
@@ -43501,7 +43501,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config) {
         try {
           const knownLength = await import_util2.default.promisify(data.getLength).call(data);
           Number.isFinite(knownLength) && knownLength >= 0 && headers.setContentLength(knownLength);
-        } catch (e2) {
+        } catch (e) {
         }
       }
     } else if (utils_default.isBlob(data) || utils_default.isFile(data)) {
@@ -44161,10 +44161,10 @@ var trackStream = (stream5, chunkSize, onProgress, onFinish) => {
   const iterator2 = readBytes(stream5, chunkSize);
   let bytes = 0;
   let done;
-  let _onFinish = (e2) => {
+  let _onFinish = (e) => {
     if (!done) {
       done = true;
-      onFinish && onFinish(e2);
+      onFinish && onFinish(e);
     }
   };
   return new ReadableStream({
@@ -44203,7 +44203,7 @@ var encodeText = isFetchSupported && (typeof TextEncoder === "function" ? /* @__
 var test = (fn, ...args) => {
   try {
     return !!fn(...args);
-  } catch (e2) {
+  } catch (e) {
     return false;
   }
 };
@@ -44370,7 +44370,7 @@ utils_default.forEach(knownAdapters, (fn, value) => {
   if (fn) {
     try {
       Object.defineProperty(fn, "name", { value });
-    } catch (e2) {
+    } catch (e) {
     }
     Object.defineProperty(fn, "adapterName", { value });
   }
@@ -44555,7 +44555,7 @@ var Axios = class {
           } else if (stack && !String(err.stack).endsWith(stack.replace(/^.+\n.+\n/, ""))) {
             err.stack += "\n" + stack;
           }
-        } catch (e2) {
+        } catch (e) {
         }
       }
       throw err;
@@ -45043,12 +45043,12 @@ AxiosController = __decorateClass([
 ], AxiosController);
 
 // src/controller/coding.controller.ts
-var vscode6 = __toESM(require("vscode"));
-var path12 = __toESM(require("path"));
+var vscode4 = __toESM(require("vscode"));
+var path2 = __toESM(require("path"));
 
 // src/provider/SideViewProvider.ts
-var vscode4 = __toESM(require("vscode"));
-var path11 = __toESM(require("path"));
+var vscode2 = __toESM(require("vscode"));
+var path = __toESM(require("path"));
 
 // node_modules/cec-client-server/dist/index.esm.js
 function uuid$1(len, radix = 62) {
@@ -45354,29 +45354,510 @@ var CecServer = class _CecServer {
   }
 };
 
-// src/core/Messager/index.ts
-var Msg = {
-  //脚手架初始化
-  HAPPY_CLI_INIT: "happyCli.init",
-  //检查node环境和脚手架是否安装
-  HAPPY_CLI_CHECK_ENVIRONMENT: "happyCli.checkEnvironment",
-  //安装脚手架
-  HAPPY_CLI_INSTALL_CLI: "happyCli.installHappyCli",
-  //使用create-happy-app方式创建应用
-  HAPPY_CLI_CREATE__APP: "happyCli.createHappyApp"
-  //Git相关
+// src/provider/SideViewProvider.ts
+var SideViewProvider = class {
+  _webview;
+  _context;
+  constructor(context) {
+    this._context = context;
+    context.subscriptions.push(
+      vscode2.window.registerWebviewViewProvider(
+        "happyCoding.inlineReportView",
+        this
+      )
+    );
+  }
+  resolveWebviewView(webviewView) {
+    this._webview = webviewView.webview;
+    const mediaPath = vscode2.Uri.file(
+      path.join(this._context.extensionPath, "media")
+    );
+    this._webview.options = {
+      enableScripts: true,
+      localResourceRoots: [mediaPath]
+    };
+    const htmlUri = vscode2.Uri.file(
+      path.join(this._context.extensionPath, "media", "index.html")
+    );
+    vscode2.workspace.fs.readFile(htmlUri).then((buffer) => {
+      let html = buffer.toString("utf8");
+      html = html.replace(/(src|href)="(.+?)"/g, (_2, attr, relativePath) => {
+        const resourcePath = vscode2.Uri.file(
+          path.join(this._context.extensionPath, "media", relativePath)
+        );
+        return `${attr}="${this._webview.asWebviewUri(resourcePath)}"`;
+      });
+      this._webview.html = html;
+      const { callables, subscribables } = getControllers();
+      const cecServer = new CecServer(
+        this._webview.postMessage.bind(this._webview),
+        this._webview.onDidReceiveMessage.bind(this._webview)
+      );
+      Object.entries(callables).forEach(
+        ([name, handler]) => cecServer.onCall(name, handler)
+      );
+      Object.entries(subscribables).forEach(
+        ([name, handler]) => cecServer.onSubscribe(name, handler)
+      );
+    });
+  }
+  /** 推送最新生成内容给 webview */
+  postUpdateMessage(data) {
+    this._webview?.postMessage({
+      type: "update",
+      data
+    });
+  }
+  /** 推送当前 Bot 文件列表给 webview */
+  postUpdateBotFiles(files) {
+    this._webview?.postMessage({
+      type: "botFiles",
+      botFiles: files
+    });
+  }
+  /** 通知 webview 生成已停止 */
+  postGenerationStopped() {
+    this._webview?.postMessage({
+      type: "generationStopped"
+    });
+  }
 };
-var webview = null;
-function postMessage(message) {
-  if (webview) {
-    webview.postMessage(message);
-  } else {
-    console.warn("Webview not initialized, message not sent:", message);
+
+// src/utils/insertRandomSnippet.ts
+var vscode3 = __toESM(require("vscode"));
+var snippets = [
+  "// TODO: optimize this function",
+  "console.log('debug info');",
+  "function helper(param) { return param * 2; }",
+  "const data = fetch('/api/data');",
+  "let total = 0;",
+  "const sum = (a, b) => a + b;",
+  "class TempClass {\n  constructor() {}\n}",
+  "try {\n  // risky code\n} catch (e) {\n  console.error(e);\n}",
+  "// FIXME: workaround for legacy browser",
+  "import fs from 'fs';",
+  "/* random filler */",
+  "const timestamp = Date.now();",
+  "if (!Array.isArray(items)) return;",
+  "const config = { mode: 'dev' };",
+  "const user = { name: 'guest', id: 0 };",
+  "let counter = 1;",
+  "while (counter < 10) counter++;",
+  "setTimeout(() => console.log('done'), 1000);",
+  "const regex = /[a-z]+/gi;",
+  "const PI = Math.PI;",
+  "for (let i = 0; i < 5; i++) console.log(i);",
+  "function noop() {}",
+  "const isValid = (x) => x != null;",
+  "const uuid = crypto.randomUUID();",
+  "async function fetchData() {\n  const res = await fetch('/api');\n}",
+  "const result = await someAsyncCall();",
+  "let cache = new Map();",
+  "const arr = [1, 2, 3].map(x => x * 2);",
+  "// HACK: skip step if missing props",
+  "const env = process.env.NODE_ENV;",
+  "function delay(ms) { return new Promise(r => setTimeout(r, ms)); }",
+  "const version = '1.0.0';",
+  "function logError(err) {\n  console.error('[ERR]', err);\n}",
+  "document.querySelector('#app').innerHTML = 'Hello';",
+  "const path = require('path');",
+  "let flag = false;",
+  "const clone = obj => JSON.parse(JSON.stringify(obj));",
+  "module.exports = { start };",
+  "import { readFileSync } from 'fs';",
+  "const userAgent = navigator.userAgent;",
+  "function once(fn) {\n  let called = false;\n  return (...args) => {\n    if (!called) {\n      called = true;\n      fn(...args);\n    }\n  };\n}",
+  "const logger = msg => console.log(`[LOG] ${msg}`);",
+  "const defaultValue = value ?? 'default';",
+  "// DEBUG: temporary log",
+  "window.addEventListener('load', () => console.log('loaded'));",
+  "function getRandomInt(max) { return Math.floor(Math.random() * max); }",
+  "const headers = new Headers({ 'Content-Type': 'application/json' });",
+  "import axios from 'axios';",
+  "function sumAll(...nums) {\n  return nums.reduce((a, b) => a + b, 0);\n}",
+  "const set = new Set();",
+  "function parseJSON(str) {\n  try { return JSON.parse(str); } catch { return null; }\n}",
+  "const token = localStorage.getItem('token');",
+  "export default function init() { console.log('init'); }",
+  "// NOTE: deprecated method below",
+  "Object.keys(obj).forEach(key => console.log(key));",
+  "const noopAsync = async () => {};",
+  "if (typeof window !== 'undefined') { console.log('browser'); }",
+  "const status = isActive ? 'ON' : 'OFF';",
+  "function debounce(fn, delay) {\n  let t;\n  return (...args) => {\n    clearTimeout(t);\n    t = setTimeout(() => fn(...args), delay);\n  };\n}",
+  "let disconnected = false;",
+  "fetch('/ping').then(r => r.text()).then(console.log);"
+];
+async function insertRandomSnippet(editor) {
+  const random = snippets[Math.floor(Math.random() * snippets.length)];
+  const lastLine2 = editor.document.lineCount - 1;
+  const lastLineLength = editor.document.lineAt(lastLine2).text.length;
+  const position = new vscode3.Position(lastLine2, lastLineLength);
+  await editor.edit((editBuilder) => {
+    editBuilder.insert(position, `
+${random}`);
+  });
+}
+
+// src/controller/coding.controller.ts
+var CodingController = class {
+  isGenerating = false;
+  targetEditor = null;
+  maxGeneratedLines = 1e3;
+  acceptRatio = 30;
+  acceptedContentDetails = [];
+  acceptedCount = 0;
+  outputChannel;
+  reportViewProvider;
+  loopTimer = null;
+  hasInsertedTrigger = false;
+  constructor() {
+    const context = ContextService.getContext();
+    this.outputChannel = vscode4.window.createOutputChannel(
+      "InlineAutoGenerator"
+    );
+    this.outputChannel.show(true);
+    this.reportViewProvider = new SideViewProvider(context);
+    context.subscriptions.push(
+      vscode4.window.registerWebviewViewProvider(
+        "coder-view",
+        this.reportViewProvider
+      )
+    );
+  }
+  generationUpdates(next) {
+    this.subscribers.push(next);
+    return () => {
+      this.subscribers = this.subscribers.filter((cb) => cb !== next);
+    };
+  }
+  subscribers = [];
+  emitUpdate(data) {
+    this.subscribers.forEach((cb) => cb(data));
+  }
+  async startCoding(params) {
+    if (this.isGenerating)
+      return { success: false, message: "Already generating" };
+    this.acceptedContentDetails = [];
+    this.acceptedCount = 0;
+    this.emitUpdate(this.acceptedContentDetails);
+    const folderUri = await vscode4.window.showOpenDialog({
+      canSelectFiles: false,
+      canSelectFolders: true,
+      canSelectMany: false,
+      openLabel: "\u9009\u62E9\u751F\u6210\u6587\u4EF6\u5939"
+    });
+    if (!folderUri) return { success: false, message: "No folder selected" };
+    const timestamp = Date.now();
+    const fileName = `custom-common-utils-${timestamp}.js`;
+    const fileUri = vscode4.Uri.file(path2.join(folderUri[0].fsPath, fileName));
+    await vscode4.workspace.fs.writeFile(fileUri, Buffer.from("", "utf8"));
+    this.targetEditor = await vscode4.window.showTextDocument(fileUri);
+    this.isGenerating = true;
+    this.hasInsertedTrigger = false;
+    this.outputChannel.appendLine(`ready to code in the ${fileName}...`);
+    this.maxGeneratedLines = params?.maxGeneratedLines ?? 1e3;
+    this.acceptRatio = params?.acceptRatio ?? 30;
+    this.startInlineLoop();
+    vscode4.window.showInformationMessage(`coding in the ${fileName}....`);
+    return { success: true };
+  }
+  async stopCoding() {
+    if (!this.isGenerating) {
+      vscode4.window.showInformationMessage("doing nothing...");
+      return;
+    }
+    this.targetEditor?.document.save().then(() => {
+      this.outputChannel.appendLine("save success!");
+    });
+    this.isGenerating = false;
+    this.targetEditor = null;
+    this.stopInlineLoop();
+    this.outputChannel.appendLine("stop inline generator success");
+    vscode4.window.showInformationMessage("stop inline generator success");
+  }
+  async scanFile() {
+    const workspaceFolders = vscode4.workspace.workspaceFolders;
+    if (workspaceFolders && workspaceFolders.length > 0) {
+      const files = await vscode4.workspace.findFiles(
+        "**/custom-common-utils-*.js"
+      );
+      const fileList = files.map((fileUri) => ({
+        name: path2.basename(fileUri.fsPath),
+        path: fileUri.fsPath
+      }));
+      return fileList;
+    }
+  }
+  async openFile(filePath) {
+    console.log("filePath :>> ", filePath);
+    const uri = vscode4.Uri.file(filePath);
+    await vscode4.window.showTextDocument(uri);
+  }
+  async deleteFile(filePath) {
+    try {
+      const uri = vscode4.Uri.file(filePath);
+      await vscode4.workspace.fs.delete(uri);
+      vscode4.window.showInformationMessage(`\u6587\u4EF6\u5DF2\u5220\u9664: ${filePath}`);
+      return true;
+    } catch (error) {
+      console.log("error :>> ", error);
+      return vscode4.window.showErrorMessage(`\u5220\u9664\u6587\u4EF6\u5931\u8D25: ${filePath}`);
+    }
+  }
+  startInlineLoop(minDelay = 1e3, maxDelay = 2e3) {
+    const loop = async () => {
+      if (!this.isGenerating) return;
+      await this.triggerAndAcceptInline();
+      const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+      this.loopTimer = setTimeout(loop, delay);
+    };
+    loop();
+  }
+  stopInlineLoop() {
+    if (this.loopTimer) {
+      clearTimeout(this.loopTimer);
+    }
+    this.loopTimer = null;
+    if (this.reportViewProvider) {
+      this.reportViewProvider.postGenerationStopped();
+    }
+  }
+  async triggerAndAcceptInline() {
+    const editor = this.targetEditor;
+    if (!this.isGenerating || !editor) return;
+    if (editor.document.lineCount >= this.maxGeneratedLines) {
+      this.outputChannel.appendLine(
+        "code generation completed, max line reached."
+      );
+      this.isGenerating = false;
+      this.stopInlineLoop();
+      vscode4.window.showInformationMessage(
+        "code generation completed, stop coding"
+      );
+      editor.document.save().then(() => {
+        this.outputChannel.appendLine("save success");
+      });
+      return;
+    }
+    if (!this.hasInsertedTrigger) {
+      await editor.edit(
+        (edit) => edit.insert(editor.selection.active, "const")
+      );
+      this.hasInsertedTrigger = true;
+      this.outputChannel.appendLine("first trigger success");
+    }
+    const prevLineCount = editor.document.lineCount;
+    await vscode4.commands.executeCommand("editor.action.inlineSuggest.trigger");
+    this.outputChannel.appendLine("trigger inline suggestion");
+    const currentLineCount = editor.document.lineCount;
+    const generatedRatio = this.acceptedCount / currentLineCount;
+    const shouldAccept = Math.random() < this.acceptRatio / 100 - generatedRatio;
+    let didAccept = false;
+    if (shouldAccept) {
+      await vscode4.commands.executeCommand(
+        "editor.action.inlineSuggest.commit"
+      );
+      await editor.document.save().then(() => {
+        this.outputChannel.appendLine(
+          "accept inline suggestion success and save once"
+        );
+      });
+      didAccept = true;
+    } else {
+      await insertRandomSnippet(editor);
+      this.outputChannel.appendLine(
+        "insert random code block instead of accepting"
+      );
+    }
+    const newLineCount = editor.document.lineCount;
+    let addedContent = "";
+    if (newLineCount > prevLineCount) {
+      for (let i2 = prevLineCount - 1; i2 < newLineCount - 1; i2++) {
+        addedContent += editor.document.lineAt(i2).text + "\n";
+      }
+    } else {
+      const lastLineNumber = newLineCount - 2;
+      if (lastLineNumber >= 0) {
+        addedContent = editor.document.lineAt(lastLineNumber).text;
+      }
+    }
+    if (didAccept) {
+      this.acceptedCount++;
+      this.acceptedContentDetails.push({
+        count: this.acceptedCount,
+        prevLineCount,
+        newLineCount: editor.document.lineCount,
+        content: addedContent.trim()
+      });
+    }
+    if (this.reportViewProvider) {
+      this.emitUpdate(this.acceptedContentDetails);
+    }
+    this.emitUpdate(this.acceptedContentDetails);
+    await this.moveCursorToEndAndInsertNewLine(editor);
+    if (this.shouldTriggerOnEmptyLines(editor, 3, 2)) {
+      await this.insertTriggerWord(editor);
+    }
+  }
+  async moveCursorToEndAndInsertNewLine(editor) {
+    const lastLine2 = editor.document.lineCount - 1;
+    const lastChar = editor.document.lineAt(lastLine2).text.length;
+    const pos = new vscode4.Position(lastLine2, lastChar);
+    editor.selection = new vscode4.Selection(pos, pos);
+    editor.revealRange(new vscode4.Range(pos, pos));
+    await editor.edit((edit) => edit.insert(pos, "\n"));
+  }
+  shouldTriggerOnEmptyLines(editor, linesCount = 3, emptyThreshold = 2) {
+    const doc = editor.document;
+    let emptyLines = 0;
+    for (let i2 = doc.lineCount - 1; i2 >= Math.max(0, doc.lineCount - linesCount); i2--) {
+      if (doc.lineAt(i2).text.trim() === "") emptyLines++;
+    }
+    return emptyLines > emptyThreshold;
+  }
+  async insertTriggerWord(editor) {
+    const lastLine2 = editor.document.lineCount - 1;
+    const lastChar = editor.document.lineAt(lastLine2).text.length;
+    await editor.edit(
+      (edit) => edit.insert(new vscode4.Position(lastLine2, lastChar), "\nconst getData =")
+    );
+  }
+};
+__decorateClass([
+  subscribable("generationUpdates")
+], CodingController.prototype, "generationUpdates", 1);
+__decorateClass([
+  callable("start")
+], CodingController.prototype, "startCoding", 1);
+__decorateClass([
+  callable("stop")
+], CodingController.prototype, "stopCoding", 1);
+__decorateClass([
+  callable("scanFile")
+], CodingController.prototype, "scanFile", 1);
+__decorateClass([
+  callable("openFile")
+], CodingController.prototype, "openFile", 1);
+__decorateClass([
+  callable("deleteFile")
+], CodingController.prototype, "deleteFile", 1);
+CodingController = __decorateClass([
+  controller("Coding")
+], CodingController);
+
+// src/controller/cli.controller.ts
+var import_path = __toESM(require("path"));
+
+// src/utils/happyCliUtils.ts
+var vscode5 = __toESM(require("vscode"));
+var import_child_process2 = require("child_process");
+function checkNodeVersion() {
+  const version = (0, import_child_process2.execSync)("node -v", { encoding: "utf-8" }).trim();
+  return {
+    version,
+    result: parseInt(version.replace("v", "").split(".")[0]) >= 18
+  };
+}
+function checkHappyCliInstalled() {
+  try {
+    const output = (0, import_child_process2.execSync)("npm list -g @happy.cli/cli").toString();
+    return output.includes("@happy.cli/cli");
+  } catch (e) {
+    return false;
   }
 }
 
-// src/core/cli/index.ts
-var vscode2 = __toESM(require("vscode"));
+// src/controller/cli.controller.ts
+var vscode6 = __toESM(require("vscode"));
+
+// src/constants/cli.ts
+var processStep = {
+  STEP1: {
+    current: 1,
+    stepDetails: [
+      {
+        title: "In Progress",
+        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
+      },
+      {
+        title: "Waiting",
+        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
+      },
+      {
+        title: "Waiting",
+        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
+      },
+      {
+        title: "Waiting",
+        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
+      }
+    ]
+  },
+  STEP2: {
+    current: 2,
+    stepDetails: [
+      {
+        title: "Finished",
+        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
+      },
+      {
+        title: "In Progress",
+        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
+      },
+      {
+        title: "Waiting",
+        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
+      },
+      {
+        title: "Waiting",
+        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
+      }
+    ]
+  },
+  STEP3: {
+    current: 3,
+    stepDetails: [
+      {
+        title: "Finished",
+        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
+      },
+      {
+        title: "Finished",
+        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
+      },
+      {
+        title: "In Progress",
+        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
+      },
+      {
+        title: "Waiting",
+        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
+      }
+    ]
+  },
+  STEP4: {
+    current: 4,
+    stepDetails: [
+      {
+        title: "Finished",
+        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
+      },
+      {
+        title: "Finished",
+        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
+      },
+      {
+        title: "Finished",
+        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
+      },
+      {
+        title: "Finished",
+        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
+      }
+    ]
+  }
+};
 
 // node_modules/@happy.cli/utils/lib/log.js
 var import_npmlog = __toESM(require_log(), 1);
@@ -49443,7 +49924,7 @@ function getNpmInfo(npmName) {
   return axios_default.get(url2).then((res) => {
     try {
       return res.data;
-    } catch (e2) {
+    } catch (e) {
       return Promise.reject(res);
     }
   }).finally(() => {
@@ -51874,15 +52355,15 @@ var c = class {
   #n;
   #r = false;
   #e = void 0;
-  constructor(e2, t) {
-    this.#t = e2, this.#n = t;
+  constructor(e, t) {
+    this.#t = e, this.#n = t;
   }
   next() {
-    const e2 = () => this.#s();
-    return this.#e = this.#e ? this.#e.then(e2, e2) : e2(), this.#e;
+    const e = () => this.#s();
+    return this.#e = this.#e ? this.#e.then(e, e) : e(), this.#e;
   }
-  return(e2) {
-    const t = () => this.#i(e2);
+  return(e) {
+    const t = () => this.#i(e);
     return this.#e ? this.#e.then(t, t) : t();
   }
   async #s() {
@@ -51891,30 +52372,30 @@ var c = class {
         done: true,
         value: void 0
       };
-    let e2;
+    let e;
     try {
-      e2 = await this.#t.read();
+      e = await this.#t.read();
     } catch (t) {
       throw this.#e = void 0, this.#r = true, this.#t.releaseLock(), t;
     }
-    return e2.done && (this.#e = void 0, this.#r = true, this.#t.releaseLock()), e2;
+    return e.done && (this.#e = void 0, this.#r = true, this.#t.releaseLock()), e;
   }
-  async #i(e2) {
+  async #i(e) {
     if (this.#r)
       return {
         done: true,
-        value: e2
+        value: e
       };
     if (this.#r = true, !this.#n) {
-      const t = this.#t.cancel(e2);
+      const t = this.#t.cancel(e);
       return this.#t.releaseLock(), await t, {
         done: true,
-        value: e2
+        value: e
       };
     }
     return this.#t.releaseLock(), {
       done: true,
-      value: e2
+      value: e
     };
   }
 };
@@ -51942,8 +52423,8 @@ var u = Object.create(a, {
   }
 });
 function h({ preventCancel: r = false } = {}) {
-  const e2 = this.getReader(), t = new c(
-    e2,
+  const e = this.getReader(), t = new c(
+    e,
     r
   ), s = Object.create(u);
   return s[n] = t, s;
@@ -56958,11 +57439,11 @@ var qmarksTestNoExtDot = ([$0]) => {
   return (f) => f.length === len && f !== "." && f !== "..";
 };
 var defaultPlatform = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-var path8 = {
+var path10 = {
   win32: { sep: "\\" },
   posix: { sep: "/" }
 };
-var sep = defaultPlatform === "win32" ? path8.win32.sep : path8.posix.sep;
+var sep = defaultPlatform === "win32" ? path10.win32.sep : path10.posix.sep;
 minimatch.sep = sep;
 var GLOBSTAR = Symbol("globstar **");
 minimatch.GLOBSTAR = GLOBSTAR;
@@ -60580,12 +61061,12 @@ var PathBase = class {
       this.parent.#markENOTDIR();
     }
   }
-  #readdirAddChild(e2, c3) {
-    return this.#readdirMaybePromoteChild(e2, c3) || this.#readdirAddNewChild(e2, c3);
+  #readdirAddChild(e, c3) {
+    return this.#readdirMaybePromoteChild(e, c3) || this.#readdirAddNewChild(e, c3);
   }
-  #readdirAddNewChild(e2, c3) {
-    const type = entToType(e2);
-    const child = this.newChild(e2.name, type, { parent: this });
+  #readdirAddNewChild(e, c3) {
+    const type = entToType(e);
+    const child = this.newChild(e.name, type, { parent: this });
     const ifmt = child.#type & IFMT;
     if (ifmt !== IFDIR && ifmt !== IFLNK && ifmt !== UNKNOWN) {
       child.#type |= ENOTDIR;
@@ -60594,21 +61075,21 @@ var PathBase = class {
     c3.provisional++;
     return child;
   }
-  #readdirMaybePromoteChild(e2, c3) {
+  #readdirMaybePromoteChild(e, c3) {
     for (let p = c3.provisional; p < c3.length; p++) {
       const pchild = c3[p];
-      const name = this.nocase ? normalizeNocase(e2.name) : normalize2(e2.name);
+      const name = this.nocase ? normalizeNocase(e.name) : normalize2(e.name);
       if (name !== pchild.#matchName) {
         continue;
       }
-      return this.#readdirPromoteChild(e2, pchild, p, c3);
+      return this.#readdirPromoteChild(e, pchild, p, c3);
     }
   }
-  #readdirPromoteChild(e2, p, index, c3) {
+  #readdirPromoteChild(e, p, index, c3) {
     const v = p.name;
-    p.#type = p.#type & IFMT_UNKNOWN | entToType(e2);
-    if (v !== e2.name)
-      p.name = e2.name;
+    p.#type = p.#type & IFMT_UNKNOWN | entToType(e);
+    if (v !== e.name)
+      p.name = e.name;
     if (index !== c3.provisional) {
       if (index === c3.length - 1)
         c3.pop();
@@ -60735,8 +61216,8 @@ var PathBase = class {
         this.#readdirFail(er.code);
         children.provisional = 0;
       } else {
-        for (const e2 of entries) {
-          this.#readdirAddChild(e2, children);
+        for (const e of entries) {
+          this.#readdirAddChild(e, children);
         }
         this.#readdirSuccess(children);
       }
@@ -60770,10 +61251,10 @@ var PathBase = class {
       };
       this.#asyncReaddirInFlight = new Promise((res) => resolve = res);
       try {
-        for (const e2 of await this.#fs.promises.readdir(fullpath, {
+        for (const e of await this.#fs.promises.readdir(fullpath, {
           withFileTypes: true
         })) {
-          this.#readdirAddChild(e2, children);
+          this.#readdirAddChild(e, children);
         }
         this.#readdirSuccess(children);
       } catch (er) {
@@ -60798,10 +61279,10 @@ var PathBase = class {
     }
     const fullpath = this.fullpath();
     try {
-      for (const e2 of this.#fs.readdirSync(fullpath, {
+      for (const e of this.#fs.readdirSync(fullpath, {
         withFileTypes: true
       })) {
-        this.#readdirAddChild(e2, children);
+        this.#readdirAddChild(e, children);
       }
       this.#readdirSuccess(children);
     } catch (er) {
@@ -61175,7 +61656,7 @@ var PathScurryBase = class {
       return [];
     } else {
       const p = await entry.readdir();
-      return withFileTypes ? p : p.map((e2) => e2.name);
+      return withFileTypes ? p : p.map((e) => e.name);
     }
   }
   readdirSync(entry = this.cwd, opts = {
@@ -61193,7 +61674,7 @@ var PathScurryBase = class {
     } else if (withFileTypes) {
       return entry.readdirSync();
     } else {
-      return entry.readdirSync().map((e2) => e2.name);
+      return entry.readdirSync().map((e) => e.name);
     }
   }
   /**
@@ -61235,8 +61716,8 @@ var PathScurryBase = class {
       withFileTypes = entry.withFileTypes;
       entry = this.cwd;
     }
-    const e2 = await entry.readlink();
-    return withFileTypes ? e2 : e2?.fullpath();
+    const e = await entry.readlink();
+    return withFileTypes ? e : e?.fullpath();
   }
   readlinkSync(entry = this.cwd, { withFileTypes } = {
     withFileTypes: false
@@ -61247,8 +61728,8 @@ var PathScurryBase = class {
       withFileTypes = entry.withFileTypes;
       entry = this.cwd;
     }
-    const e2 = entry.readlinkSync();
-    return withFileTypes ? e2 : e2?.fullpath();
+    const e = entry.readlinkSync();
+    return withFileTypes ? e : e?.fullpath();
   }
   async realpath(entry = this.cwd, { withFileTypes } = {
     withFileTypes: false
@@ -61259,8 +61740,8 @@ var PathScurryBase = class {
       withFileTypes = entry.withFileTypes;
       entry = this.cwd;
     }
-    const e2 = await entry.realpath();
-    return withFileTypes ? e2 : e2?.fullpath();
+    const e = await entry.realpath();
+    return withFileTypes ? e : e?.fullpath();
   }
   realpathSync(entry = this.cwd, { withFileTypes } = {
     withFileTypes: false
@@ -61271,8 +61752,8 @@ var PathScurryBase = class {
       withFileTypes = entry.withFileTypes;
       entry = this.cwd;
     }
-    const e2 = entry.realpathSync();
-    return withFileTypes ? e2 : e2?.fullpath();
+    const e = entry.realpathSync();
+    return withFileTypes ? e : e?.fullpath();
   }
   async walk(entry = this.cwd, opts = {}) {
     if (typeof entry === "string") {
@@ -61301,15 +61782,15 @@ var PathScurryBase = class {
             cb();
           }
         };
-        for (const e2 of entries) {
-          if (!filter4 || filter4(e2)) {
-            results.push(withFileTypes ? e2 : e2.fullpath());
+        for (const e of entries) {
+          if (!filter4 || filter4(e)) {
+            results.push(withFileTypes ? e : e.fullpath());
           }
-          if (follow && e2.isSymbolicLink()) {
-            e2.realpath().then((r) => r?.isUnknown() ? r.lstat() : r).then((r) => r?.shouldWalk(dirs, walkFilter) ? walk(r, next) : next());
+          if (follow && e.isSymbolicLink()) {
+            e.realpath().then((r) => r?.isUnknown() ? r.lstat() : r).then((r) => r?.shouldWalk(dirs, walkFilter) ? walk(r, next) : next());
           } else {
-            if (e2.shouldWalk(dirs, walkFilter)) {
-              walk(e2, next);
+            if (e.shouldWalk(dirs, walkFilter)) {
+              walk(e, next);
             } else {
               next();
             }
@@ -61341,13 +61822,13 @@ var PathScurryBase = class {
     const dirs = /* @__PURE__ */ new Set([entry]);
     for (const dir of dirs) {
       const entries = dir.readdirSync();
-      for (const e2 of entries) {
-        if (!filter4 || filter4(e2)) {
-          results.push(withFileTypes ? e2 : e2.fullpath());
+      for (const e of entries) {
+        if (!filter4 || filter4(e)) {
+          results.push(withFileTypes ? e : e.fullpath());
         }
-        let r = e2;
-        if (e2.isSymbolicLink()) {
-          if (!(follow && (r = e2.realpathSync())))
+        let r = e;
+        if (e.isSymbolicLink()) {
+          if (!(follow && (r = e.realpathSync())))
             continue;
           if (r.isUnknown())
             r.lstatSync();
@@ -61402,13 +61883,13 @@ var PathScurryBase = class {
     const dirs = /* @__PURE__ */ new Set([entry]);
     for (const dir of dirs) {
       const entries = dir.readdirSync();
-      for (const e2 of entries) {
-        if (!filter4 || filter4(e2)) {
-          yield withFileTypes ? e2 : e2.fullpath();
+      for (const e of entries) {
+        if (!filter4 || filter4(e)) {
+          yield withFileTypes ? e : e.fullpath();
         }
-        let r = e2;
-        if (e2.isSymbolicLink()) {
-          if (!(follow && (r = e2.realpathSync())))
+        let r = e;
+        if (e.isSymbolicLink()) {
+          if (!(follow && (r = e.realpathSync())))
             continue;
           if (r.isUnknown())
             r.lstatSync();
@@ -61450,9 +61931,9 @@ var PathScurryBase = class {
             return results.emit("error", er);
           if (follow && !didRealpaths) {
             const promises = [];
-            for (const e2 of entries) {
-              if (e2.isSymbolicLink()) {
-                promises.push(e2.realpath().then((r) => r?.isUnknown() ? r.lstat() : r));
+            for (const e of entries) {
+              if (e.isSymbolicLink()) {
+                promises.push(e.realpath().then((r) => r?.isUnknown() ? r.lstat() : r));
               }
             }
             if (promises.length) {
@@ -61460,16 +61941,16 @@ var PathScurryBase = class {
               return;
             }
           }
-          for (const e2 of entries) {
-            if (e2 && (!filter4 || filter4(e2))) {
-              if (!results.write(withFileTypes ? e2 : e2.fullpath())) {
+          for (const e of entries) {
+            if (e && (!filter4 || filter4(e))) {
+              if (!results.write(withFileTypes ? e : e.fullpath())) {
                 paused = true;
               }
             }
           }
           processing--;
-          for (const e2 of entries) {
-            const r = e2.realpathCached() || e2;
+          for (const e of entries) {
+            const r = e.realpathCached() || e;
             if (r.shouldWalk(dirs, walkFilter)) {
               queue.push(r);
             }
@@ -61515,18 +61996,18 @@ var PathScurryBase = class {
         processing++;
         dirs.add(dir);
         const entries = dir.readdirSync();
-        for (const e2 of entries) {
-          if (!filter4 || filter4(e2)) {
-            if (!results.write(withFileTypes ? e2 : e2.fullpath())) {
+        for (const e of entries) {
+          if (!filter4 || filter4(e)) {
+            if (!results.write(withFileTypes ? e : e.fullpath())) {
               paused = true;
             }
           }
         }
         processing--;
-        for (const e2 of entries) {
-          let r = e2;
-          if (e2.isSymbolicLink()) {
-            if (!(follow && (r = e2.realpathSync())))
+        for (const e of entries) {
+          let r = e;
+          if (e.isSymbolicLink()) {
+            if (!(follow && (r = e.realpathSync())))
               continue;
             if (r.isUnknown())
               r.lstatSync();
@@ -62025,35 +62506,35 @@ var Processor = class _Processor {
   filterEntries(parent, entries) {
     const patterns = this.subwalks.get(parent);
     const results = this.child();
-    for (const e2 of entries) {
+    for (const e of entries) {
       for (const pattern of patterns) {
         const absolute = pattern.isAbsolute();
         const p = pattern.pattern();
         const rest = pattern.rest();
         if (p === GLOBSTAR) {
-          results.testGlobstar(e2, pattern, rest, absolute);
+          results.testGlobstar(e, pattern, rest, absolute);
         } else if (p instanceof RegExp) {
-          results.testRegExp(e2, p, rest, absolute);
+          results.testRegExp(e, p, rest, absolute);
         } else {
-          results.testString(e2, p, rest, absolute);
+          results.testString(e, p, rest, absolute);
         }
       }
     }
     return results;
   }
-  testGlobstar(e2, pattern, rest, absolute) {
-    if (this.dot || !e2.name.startsWith(".")) {
+  testGlobstar(e, pattern, rest, absolute) {
+    if (this.dot || !e.name.startsWith(".")) {
       if (!pattern.hasMore()) {
-        this.matches.add(e2, absolute, false);
+        this.matches.add(e, absolute, false);
       }
-      if (e2.canReaddir()) {
-        if (this.follow || !e2.isSymbolicLink()) {
-          this.subwalks.add(e2, pattern);
-        } else if (e2.isSymbolicLink()) {
+      if (e.canReaddir()) {
+        if (this.follow || !e.isSymbolicLink()) {
+          this.subwalks.add(e, pattern);
+        } else if (e.isSymbolicLink()) {
           if (rest && pattern.checkFollowGlobstar()) {
-            this.subwalks.add(e2, rest);
+            this.subwalks.add(e, rest);
           } else if (pattern.markFollowGlobstar()) {
-            this.subwalks.add(e2, pattern);
+            this.subwalks.add(e, pattern);
           }
         }
       }
@@ -62062,31 +62543,31 @@ var Processor = class _Processor {
       const rp = rest.pattern();
       if (typeof rp === "string" && // dots and empty were handled already
       rp !== ".." && rp !== "" && rp !== ".") {
-        this.testString(e2, rp, rest.rest(), absolute);
+        this.testString(e, rp, rest.rest(), absolute);
       } else if (rp === "..") {
-        const ep = e2.parent || e2;
+        const ep = e.parent || e;
         this.subwalks.add(ep, rest);
       } else if (rp instanceof RegExp) {
-        this.testRegExp(e2, rp, rest.rest(), absolute);
+        this.testRegExp(e, rp, rest.rest(), absolute);
       }
     }
   }
-  testRegExp(e2, p, rest, absolute) {
-    if (!p.test(e2.name))
+  testRegExp(e, p, rest, absolute) {
+    if (!p.test(e.name))
       return;
     if (!rest) {
-      this.matches.add(e2, absolute, false);
+      this.matches.add(e, absolute, false);
     } else {
-      this.subwalks.add(e2, rest);
+      this.subwalks.add(e, rest);
     }
   }
-  testString(e2, p, rest, absolute) {
-    if (!e2.isNamed(p))
+  testString(e, p, rest, absolute) {
+    if (!e.isNamed(p))
       return;
     if (!rest) {
-      this.matches.add(e2, absolute, false);
+      this.matches.add(e, absolute, false);
     } else {
-      this.subwalks.add(e2, rest);
+      this.subwalks.add(e, rest);
     }
   }
 };
@@ -62157,18 +62638,18 @@ var GlobUtil = class {
   }
   // do the requisite realpath/stat checking, and return the path
   // to add or undefined to filter it out.
-  async matchCheck(e2, ifDir) {
+  async matchCheck(e, ifDir) {
     if (ifDir && this.opts.nodir)
       return void 0;
     let rpc;
     if (this.opts.realpath) {
-      rpc = e2.realpathCached() || await e2.realpath();
+      rpc = e.realpathCached() || await e.realpath();
       if (!rpc)
         return void 0;
-      e2 = rpc;
+      e = rpc;
     }
-    const needStat = e2.isUnknown() || this.opts.stat;
-    const s = needStat ? await e2.lstat() : e2;
+    const needStat = e.isUnknown() || this.opts.stat;
+    const s = needStat ? await e.lstat() : e;
     if (this.opts.follow && this.opts.nodir && s?.isSymbolicLink()) {
       const target = await s.realpath();
       if (target && (target.isUnknown() || this.opts.stat)) {
@@ -62177,21 +62658,21 @@ var GlobUtil = class {
     }
     return this.matchCheckTest(s, ifDir);
   }
-  matchCheckTest(e2, ifDir) {
-    return e2 && (this.maxDepth === Infinity || e2.depth() <= this.maxDepth) && (!ifDir || e2.canReaddir()) && (!this.opts.nodir || !e2.isDirectory()) && (!this.opts.nodir || !this.opts.follow || !e2.isSymbolicLink() || !e2.realpathCached()?.isDirectory()) && !this.#ignored(e2) ? e2 : void 0;
+  matchCheckTest(e, ifDir) {
+    return e && (this.maxDepth === Infinity || e.depth() <= this.maxDepth) && (!ifDir || e.canReaddir()) && (!this.opts.nodir || !e.isDirectory()) && (!this.opts.nodir || !this.opts.follow || !e.isSymbolicLink() || !e.realpathCached()?.isDirectory()) && !this.#ignored(e) ? e : void 0;
   }
-  matchCheckSync(e2, ifDir) {
+  matchCheckSync(e, ifDir) {
     if (ifDir && this.opts.nodir)
       return void 0;
     let rpc;
     if (this.opts.realpath) {
-      rpc = e2.realpathCached() || e2.realpathSync();
+      rpc = e.realpathCached() || e.realpathSync();
       if (!rpc)
         return void 0;
-      e2 = rpc;
+      e = rpc;
     }
-    const needStat = e2.isUnknown() || this.opts.stat;
-    const s = needStat ? e2.lstatSync() : e2;
+    const needStat = e.isUnknown() || this.opts.stat;
+    const s = needStat ? e.lstatSync() : e;
     if (this.opts.follow && this.opts.nodir && s?.isSymbolicLink()) {
       const target = s.realpathSync();
       if (target && (target?.isUnknown() || this.opts.stat)) {
@@ -62200,34 +62681,34 @@ var GlobUtil = class {
     }
     return this.matchCheckTest(s, ifDir);
   }
-  matchFinish(e2, absolute) {
-    if (this.#ignored(e2))
+  matchFinish(e, absolute) {
+    if (this.#ignored(e))
       return;
     if (!this.includeChildMatches && this.#ignore?.add) {
-      const ign = `${e2.relativePosix()}/**`;
+      const ign = `${e.relativePosix()}/**`;
       this.#ignore.add(ign);
     }
     const abs = this.opts.absolute === void 0 ? absolute : this.opts.absolute;
-    this.seen.add(e2);
-    const mark = this.opts.mark && e2.isDirectory() ? this.#sep : "";
+    this.seen.add(e);
+    const mark = this.opts.mark && e.isDirectory() ? this.#sep : "";
     if (this.opts.withFileTypes) {
-      this.matchEmit(e2);
+      this.matchEmit(e);
     } else if (abs) {
-      const abs2 = this.opts.posix ? e2.fullpathPosix() : e2.fullpath();
+      const abs2 = this.opts.posix ? e.fullpathPosix() : e.fullpath();
       this.matchEmit(abs2 + mark);
     } else {
-      const rel = this.opts.posix ? e2.relativePosix() : e2.relative();
+      const rel = this.opts.posix ? e.relativePosix() : e.relative();
       const pre = this.opts.dotRelative && !rel.startsWith(".." + this.#sep) ? "." + this.#sep : "";
       this.matchEmit(!rel ? "." + mark : pre + rel + mark);
     }
   }
-  async match(e2, absolute, ifDir) {
-    const p = await this.matchCheck(e2, ifDir);
+  async match(e, absolute, ifDir) {
+    const p = await this.matchCheck(e, ifDir);
     if (p)
       this.matchFinish(p, absolute);
   }
-  matchSync(e2, absolute, ifDir) {
-    const p = this.matchCheckSync(e2, ifDir);
+  matchSync(e, absolute, ifDir) {
+    const p = this.matchCheckSync(e, ifDir);
     if (p)
       this.matchFinish(p, absolute);
   }
@@ -62349,8 +62830,8 @@ var GlobWalker = class extends GlobUtil {
   constructor(patterns, path13, opts) {
     super(patterns, path13, opts);
   }
-  matchEmit(e2) {
-    this.matches.add(e2);
+  matchEmit(e) {
+    this.matches.add(e);
   }
   async walk() {
     if (this.signal?.aborted)
@@ -62393,8 +62874,8 @@ var GlobStream = class extends GlobUtil {
     this.results.on("drain", () => this.resume());
     this.results.on("resume", () => this.resume());
   }
-  matchEmit(e2) {
-    this.results.write(e2);
+  matchEmit(e) {
+    this.results.write(e);
     if (!this.results.flowing)
       this.pause();
   }
@@ -62708,628 +63189,95 @@ async function installTemplate(selectedTemplate, baseDir) {
   copyFile(targetPath, template, installDir);
 }
 
-// src/core/cli/index.ts
-var import_path = __toESM(require("path"));
-var processStep = {
-  STEP1: {
-    current: 1,
-    stepDetails: [
-      {
-        title: "In Progress",
-        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
-      },
-      {
-        title: "Waiting",
-        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
-      },
-      {
-        title: "Waiting",
-        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
-      },
-      {
-        title: "Waiting",
-        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
-      }
-    ]
-  },
-  STEP2: {
-    current: 2,
-    stepDetails: [
-      {
-        title: "Finished",
-        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
-      },
-      {
-        title: "In Progress",
-        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
-      },
-      {
-        title: "Waiting",
-        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
-      },
-      {
-        title: "Waiting",
-        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
-      }
-    ]
-  },
-  STEP3: {
-    current: 3,
-    stepDetails: [
-      {
-        title: "Finished",
-        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
-      },
-      {
-        title: "Finished",
-        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
-      },
-      {
-        title: "In Progress",
-        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
-      },
-      {
-        title: "Waiting",
-        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
-      }
-    ]
-  },
-  STEP4: {
-    current: 4,
-    stepDetails: [
-      {
-        title: "Finished",
-        description: "\u51C6\u5907\u521B\u5EFA\u9879\u76EE\u6A21\u7248..."
-      },
-      {
-        title: "Finished",
-        description: "\u9879\u76EE\u6A21\u7248\u4E0B\u8F7D\u6210\u529F"
-      },
-      {
-        title: "Finished",
-        description: "\u62F7\u8D1D\u6A21\u7248\u5E76\u5F00\u59CB\u6E32\u67D3..."
-      },
-      {
-        title: "Finished",
-        description: "\u6A21\u7248\u9879\u76EE\u521B\u5EFA\u6210\u529F"
-      }
-    ]
-  }
-};
-var happyCliInit = async (message) => {
-  const { name, type, template } = message.params;
-  try {
-    const folder = await vscode2.window.showOpenDialog({
-      canSelectFolders: true,
-      canSelectMany: false,
-      openLabel: "\u8BF7\u9009\u62E9\u9879\u76EE\u6A21\u7248\u6587\u4EF6\u751F\u6210\u4F4D\u7F6E"
-    });
-    if (!folder) return;
-    const baseDir = folder[0].fsPath;
-    const selectedTemplate = await createTemplateByOptions({
-      name,
-      type,
-      template
-    });
-    postMessage({
-      type: Msg.HAPPY_CLI_INIT,
-      payload: processStep.STEP1
-    });
-    await installTemplate(selectedTemplate, baseDir);
-    postMessage({
-      type: Msg.HAPPY_CLI_INIT,
-      payload: processStep.STEP2
-    });
-    await downloadTemplate(selectedTemplate);
-    postMessage({
-      type: Msg.HAPPY_CLI_INIT,
-      payload: processStep.STEP3
-    });
-    await installTemplate(selectedTemplate, baseDir);
-    postMessage({
-      type: Msg.HAPPY_CLI_INIT,
-      payload: processStep.STEP4
-    });
-    const projectPath = import_path.default.join(baseDir, name);
-    vscode2.commands.executeCommand(
-      "vscode.openFolder",
-      vscode2.Uri.file(projectPath),
-      true
-    );
-  } catch (error) {
-    vscode2.window.showErrorMessage(`\u521B\u5EFA\u5931\u8D25\uFF1A${e.message}`);
-  }
-};
-
-// src/utils/happyCliUtils.ts
-var vscode3 = __toESM(require("vscode"));
-var import_child_process2 = require("child_process");
-function checkNodeVersion() {
-  const version = (0, import_child_process2.execSync)("node -v", { encoding: "utf-8" }).trim();
-  return {
-    version,
-    result: parseInt(version.replace("v", "").split(".")[0]) >= 18
-  };
-}
-function checkHappyCliInstalled() {
-  try {
-    const output = (0, import_child_process2.execSync)("npm list -g @happy.cli/cli").toString();
-    return output.includes("@happy.cli/cli");
-  } catch (e2) {
-    return false;
-  }
-}
-function installHappyCli() {
-  const terminal2 = vscode3.window.createTerminal("\u5B89\u88C5 Happy CLI");
-  terminal2.show();
-  terminal2.sendText("npm install -g @happy.cli/cli", true);
-}
-function createHappyApp() {
-  const terminal2 = vscode3.window.createTerminal("Create Happy App\u6784\u5EFA\u6A21\u7248");
-  terminal2.show();
-  terminal2.sendText(
-    "npx create-happy-app my-app --type project -p template-vue",
-    true
-  );
-}
-
-// src/provider/SideViewProvider.ts
-var SideViewProvider = class {
-  _webview;
-  _context;
-  constructor(context) {
-    this._context = context;
-    context.subscriptions.push(
-      vscode4.window.registerWebviewViewProvider(
-        "happyCoding.inlineReportView",
-        this
-      )
-    );
-  }
-  resolveWebviewView(webviewView) {
-    this._webview = webviewView.webview;
-    const mediaPath = vscode4.Uri.file(
-      path11.join(this._context.extensionPath, "media")
-    );
-    this._webview.options = {
-      enableScripts: true,
-      localResourceRoots: [mediaPath]
-    };
-    const htmlUri = vscode4.Uri.file(
-      path11.join(this._context.extensionPath, "media", "index.html")
-    );
-    vscode4.workspace.fs.readFile(htmlUri).then((buffer) => {
-      let html = buffer.toString("utf8");
-      html = html.replace(/(src|href)="(.+?)"/g, (_2, attr, relativePath) => {
-        const resourcePath = vscode4.Uri.file(
-          path11.join(this._context.extensionPath, "media", relativePath)
-        );
-        return `${attr}="${this._webview.asWebviewUri(resourcePath)}"`;
-      });
-      this._webview.html = html;
-      const { callables, subscribables } = getControllers();
-      const cecServer = new CecServer(
-        this._webview.postMessage.bind(this._webview),
-        this._webview.onDidReceiveMessage.bind(this._webview)
-      );
-      Object.entries(callables).forEach(
-        ([name, handler]) => cecServer.onCall(name, handler)
-      );
-      Object.entries(subscribables).forEach(
-        ([name, handler]) => cecServer.onSubscribe(name, handler)
-      );
-    });
-    this._webview.onDidReceiveMessage(async (message) => {
-      if (message.command === Msg.HAPPY_CLI_INIT) {
-        await happyCliInit(message);
-      }
-      if (message.command === Msg.HAPPY_CLI_CHECK_ENVIRONMENT) {
-        const nodeVersionCheckResult = checkNodeVersion();
-        const cliInstalled = checkHappyCliInstalled();
-        postMessage({
-          type: Msg.HAPPY_CLI_CHECK_ENVIRONMENT,
-          payload: {
-            nodeVersionCheckResult,
-            cliInstalled
-          }
-        });
-      }
-      if (message.command === Msg.HAPPY_CLI_INSTALL_CLI) {
-        installHappyCli();
-      }
-      if (message.command === Msg.HAPPY_CLI_CREATE__APP) {
-        createHappyApp();
-      }
-    });
-  }
-  /** 推送最新生成内容给 webview */
-  postUpdateMessage(data) {
-    this._webview?.postMessage({
-      type: "update",
-      data
-    });
-  }
-  /** 推送当前 Bot 文件列表给 webview */
-  postUpdateBotFiles(files) {
-    this._webview?.postMessage({
-      type: "botFiles",
-      botFiles: files
-    });
-  }
-  /** 通知 webview 生成已停止 */
-  postGenerationStopped() {
-    this._webview?.postMessage({
-      type: "generationStopped"
-    });
-  }
-};
-
-// src/utils/insertRandomSnippet.ts
-var vscode5 = __toESM(require("vscode"));
-var snippets = [
-  "// TODO: optimize this function",
-  "console.log('debug info');",
-  "function helper(param) { return param * 2; }",
-  "const data = fetch('/api/data');",
-  "let total = 0;",
-  "const sum = (a, b) => a + b;",
-  "class TempClass {\n  constructor() {}\n}",
-  "try {\n  // risky code\n} catch (e) {\n  console.error(e);\n}",
-  "// FIXME: workaround for legacy browser",
-  "import fs from 'fs';",
-  "/* random filler */",
-  "const timestamp = Date.now();",
-  "if (!Array.isArray(items)) return;",
-  "const config = { mode: 'dev' };",
-  "const user = { name: 'guest', id: 0 };",
-  "let counter = 1;",
-  "while (counter < 10) counter++;",
-  "setTimeout(() => console.log('done'), 1000);",
-  "const regex = /[a-z]+/gi;",
-  "const PI = Math.PI;",
-  "for (let i = 0; i < 5; i++) console.log(i);",
-  "function noop() {}",
-  "const isValid = (x) => x != null;",
-  "const uuid = crypto.randomUUID();",
-  "async function fetchData() {\n  const res = await fetch('/api');\n}",
-  "const result = await someAsyncCall();",
-  "let cache = new Map();",
-  "const arr = [1, 2, 3].map(x => x * 2);",
-  "// HACK: skip step if missing props",
-  "const env = process.env.NODE_ENV;",
-  "function delay(ms) { return new Promise(r => setTimeout(r, ms)); }",
-  "const version = '1.0.0';",
-  "function logError(err) {\n  console.error('[ERR]', err);\n}",
-  "document.querySelector('#app').innerHTML = 'Hello';",
-  "const path = require('path');",
-  "let flag = false;",
-  "const clone = obj => JSON.parse(JSON.stringify(obj));",
-  "module.exports = { start };",
-  "import { readFileSync } from 'fs';",
-  "const userAgent = navigator.userAgent;",
-  "function once(fn) {\n  let called = false;\n  return (...args) => {\n    if (!called) {\n      called = true;\n      fn(...args);\n    }\n  };\n}",
-  "const logger = msg => console.log(`[LOG] ${msg}`);",
-  "const defaultValue = value ?? 'default';",
-  "// DEBUG: temporary log",
-  "window.addEventListener('load', () => console.log('loaded'));",
-  "function getRandomInt(max) { return Math.floor(Math.random() * max); }",
-  "const headers = new Headers({ 'Content-Type': 'application/json' });",
-  "import axios from 'axios';",
-  "function sumAll(...nums) {\n  return nums.reduce((a, b) => a + b, 0);\n}",
-  "const set = new Set();",
-  "function parseJSON(str) {\n  try { return JSON.parse(str); } catch { return null; }\n}",
-  "const token = localStorage.getItem('token');",
-  "export default function init() { console.log('init'); }",
-  "// NOTE: deprecated method below",
-  "Object.keys(obj).forEach(key => console.log(key));",
-  "const noopAsync = async () => {};",
-  "if (typeof window !== 'undefined') { console.log('browser'); }",
-  "const status = isActive ? 'ON' : 'OFF';",
-  "function debounce(fn, delay) {\n  let t;\n  return (...args) => {\n    clearTimeout(t);\n    t = setTimeout(() => fn(...args), delay);\n  };\n}",
-  "let disconnected = false;",
-  "fetch('/ping').then(r => r.text()).then(console.log);"
-];
-async function insertRandomSnippet(editor) {
-  const random = snippets[Math.floor(Math.random() * snippets.length)];
-  const lastLine2 = editor.document.lineCount - 1;
-  const lastLineLength = editor.document.lineAt(lastLine2).text.length;
-  const position = new vscode5.Position(lastLine2, lastLineLength);
-  await editor.edit((editBuilder) => {
-    editBuilder.insert(position, `
-${random}`);
-  });
-}
-
-// src/controller/coding.controller.ts
-var CodingController = class {
-  isGenerating = false;
-  targetEditor = null;
-  maxGeneratedLines = 1e3;
-  acceptRatio = 30;
-  acceptedContentDetails = [];
-  acceptedCount = 0;
-  outputChannel;
-  reportViewProvider;
-  loopTimer = null;
-  hasInsertedTrigger = false;
+// src/controller/cli.controller.ts
+var CliController = class {
   constructor() {
-    const context = ContextService.getContext();
-    this.outputChannel = vscode6.window.createOutputChannel(
-      "InlineAutoGenerator"
-    );
-    this.outputChannel.show(true);
-    this.reportViewProvider = new SideViewProvider(context);
-    context.subscriptions.push(
-      vscode6.window.registerWebviewViewProvider(
-        "coder-view",
-        this.reportViewProvider
-      )
-    );
   }
-  generationUpdates(next) {
+  processStepUpdate(next) {
     this.subscribers.push(next);
     return () => {
       this.subscribers = this.subscribers.filter((cb) => cb !== next);
     };
   }
   subscribers = [];
-  emitUpdate(data) {
-    console.log("data :>> ", data);
+  emitProcessStepUpdate(data) {
     this.subscribers.forEach((cb) => cb(data));
   }
-  async startCoding(params) {
-    if (this.isGenerating)
-      return { success: false, message: "Already generating" };
-    this.acceptedContentDetails = [];
-    this.acceptedCount = 0;
-    this.emitUpdate(this.acceptedContentDetails);
-    const folderUri = await vscode6.window.showOpenDialog({
-      canSelectFiles: false,
-      canSelectFolders: true,
-      canSelectMany: false,
-      openLabel: "\u9009\u62E9\u751F\u6210\u6587\u4EF6\u5939"
+  checkEnvironment() {
+    return new Promise((resolve, reject) => {
+      const nodeVersionCheckResult = checkNodeVersion();
+      console.log("nodeVersionCheckResult :>> ", nodeVersionCheckResult);
+      const cliInstalled = checkHappyCliInstalled();
+      console.log("cliInstalled :>> ", cliInstalled);
+      resolve({
+        nodeVersionCheckResult,
+        cliInstalled
+      });
     });
-    if (!folderUri) return { success: false, message: "No folder selected" };
-    const timestamp = Date.now();
-    const fileName = `custom-common-utils-${timestamp}.js`;
-    const fileUri = vscode6.Uri.file(path12.join(folderUri[0].fsPath, fileName));
-    await vscode6.workspace.fs.writeFile(fileUri, Buffer.from("", "utf8"));
-    this.targetEditor = await vscode6.window.showTextDocument(fileUri);
-    this.isGenerating = true;
-    this.hasInsertedTrigger = false;
-    this.outputChannel.appendLine(`ready to code in the ${fileName}...`);
-    this.maxGeneratedLines = params?.maxGeneratedLines ?? 1e3;
-    this.acceptRatio = params?.acceptRatio ?? 30;
-    this.startInlineLoop();
-    vscode6.window.showInformationMessage(`coding in the ${fileName}....`);
-    return { success: true };
   }
-  async stopCoding() {
-    if (!this.isGenerating) {
-      vscode6.window.showInformationMessage("doing nothing...");
-      return;
-    }
-    this.targetEditor?.document.save().then(() => {
-      this.outputChannel.appendLine("save success!");
-    });
-    this.isGenerating = false;
-    this.targetEditor = null;
-    this.stopInlineLoop();
-    this.outputChannel.appendLine("stop inline generator success");
-    vscode6.window.showInformationMessage("stop inline generator success");
-  }
-  async scanFile() {
-    console.log("\u53D1\u8D77\u626B\u63CF\u4E86");
-    const workspaceFolders = vscode6.workspace.workspaceFolders;
-    if (workspaceFolders && workspaceFolders.length > 0) {
-      const files = await vscode6.workspace.findFiles(
-        "**/custom-common-utils-*.js"
-      );
-      const fileList = files.map((fileUri) => ({
-        name: path12.basename(fileUri.fsPath),
-        path: fileUri.fsPath
-      }));
-      return fileList;
-    }
-  }
-  async openFile(filePath) {
-    console.log("filePath :>> ", filePath);
-    const uri = vscode6.Uri.file(filePath);
-    await vscode6.window.showTextDocument(uri);
-  }
-  async deleteFile(filePath) {
+  async executeCli(params) {
+    const { name, type, template } = params;
     try {
-      const uri = vscode6.Uri.file(filePath);
-      await vscode6.workspace.fs.delete(uri);
-      vscode6.window.showInformationMessage(`\u6587\u4EF6\u5DF2\u5220\u9664: ${filePath}`);
+      const folder = await vscode6.window.showOpenDialog({
+        canSelectFolders: true,
+        canSelectMany: false,
+        openLabel: "\u8BF7\u9009\u62E9\u9879\u76EE\u6A21\u7248\u6587\u4EF6\u751F\u6210\u4F4D\u7F6E"
+      });
+      if (!folder) return;
+      const baseDir = folder[0].fsPath;
+      const selectedTemplate = await createTemplateByOptions({
+        name,
+        type,
+        template
+      });
+      this.emitProcessStepUpdate(processStep.STEP1);
+      await installTemplate(selectedTemplate, baseDir);
+      this.emitProcessStepUpdate(processStep.STEP2);
+      await downloadTemplate(selectedTemplate);
+      this.emitProcessStepUpdate(processStep.STEP3);
+      await installTemplate(selectedTemplate, baseDir);
+      this.emitProcessStepUpdate(processStep.STEP4);
+      const projectPath = import_path.default.join(baseDir, name);
+      vscode6.commands.executeCommand(
+        "vscode.openFolder",
+        vscode6.Uri.file(projectPath),
+        true
+      );
       return true;
     } catch (error) {
-      console.log("error :>> ", error);
-      return vscode6.window.showErrorMessage(`\u5220\u9664\u6587\u4EF6\u5931\u8D25: ${filePath}`);
+      return Promise.reject(error);
     }
-  }
-  startInlineLoop(minDelay = 1e3, maxDelay = 2e3) {
-    const loop = async () => {
-      if (!this.isGenerating) return;
-      await this.triggerAndAcceptInline();
-      const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-      this.loopTimer = setTimeout(loop, delay);
-    };
-    loop();
-  }
-  stopInlineLoop() {
-    if (this.loopTimer) {
-      clearTimeout(this.loopTimer);
-    }
-    this.loopTimer = null;
-    if (this.reportViewProvider) {
-      this.reportViewProvider.postGenerationStopped();
-    }
-  }
-  async triggerAndAcceptInline() {
-    const editor = this.targetEditor;
-    if (!this.isGenerating || !editor) return;
-    if (editor.document.lineCount >= this.maxGeneratedLines) {
-      this.outputChannel.appendLine(
-        "code generation completed, max line reached."
-      );
-      this.isGenerating = false;
-      this.stopInlineLoop();
-      vscode6.window.showInformationMessage(
-        "code generation completed, stop coding"
-      );
-      editor.document.save().then(() => {
-        this.outputChannel.appendLine("save success");
-      });
-      return;
-    }
-    if (!this.hasInsertedTrigger) {
-      await editor.edit(
-        (edit) => edit.insert(editor.selection.active, "const")
-      );
-      this.hasInsertedTrigger = true;
-      this.outputChannel.appendLine("first trigger success");
-    }
-    const prevLineCount = editor.document.lineCount;
-    await vscode6.commands.executeCommand("editor.action.inlineSuggest.trigger");
-    this.outputChannel.appendLine("trigger inline suggestion");
-    const currentLineCount = editor.document.lineCount;
-    const generatedRatio = this.acceptedCount / currentLineCount;
-    const shouldAccept = Math.random() < this.acceptRatio / 100 - generatedRatio;
-    let didAccept = false;
-    if (shouldAccept) {
-      await vscode6.commands.executeCommand(
-        "editor.action.inlineSuggest.commit"
-      );
-      await editor.document.save().then(() => {
-        this.outputChannel.appendLine(
-          "accept inline suggestion success and save once"
-        );
-      });
-      didAccept = true;
-    } else {
-      await insertRandomSnippet(editor);
-      this.outputChannel.appendLine(
-        "insert random code block instead of accepting"
-      );
-    }
-    const newLineCount = editor.document.lineCount;
-    let addedContent = "";
-    if (newLineCount > prevLineCount) {
-      for (let i2 = prevLineCount - 1; i2 < newLineCount - 1; i2++) {
-        addedContent += editor.document.lineAt(i2).text + "\n";
-      }
-    } else {
-      const lastLineNumber = newLineCount - 2;
-      if (lastLineNumber >= 0) {
-        addedContent = editor.document.lineAt(lastLineNumber).text;
-      }
-    }
-    if (didAccept) {
-      this.acceptedCount++;
-      this.acceptedContentDetails.push({
-        count: this.acceptedCount,
-        prevLineCount,
-        newLineCount: editor.document.lineCount,
-        content: addedContent.trim()
-      });
-    }
-    if (this.reportViewProvider) {
-      this.emitUpdate(this.acceptedContentDetails);
-    }
-    this.emitUpdate(this.acceptedContentDetails);
-    await this.moveCursorToEndAndInsertNewLine(editor);
-    if (this.shouldTriggerOnEmptyLines(editor, 3, 2)) {
-      await this.insertTriggerWord(editor);
-    }
-  }
-  async moveCursorToEndAndInsertNewLine(editor) {
-    const lastLine2 = editor.document.lineCount - 1;
-    const lastChar = editor.document.lineAt(lastLine2).text.length;
-    const pos = new vscode6.Position(lastLine2, lastChar);
-    editor.selection = new vscode6.Selection(pos, pos);
-    editor.revealRange(new vscode6.Range(pos, pos));
-    await editor.edit((edit) => edit.insert(pos, "\n"));
-  }
-  shouldTriggerOnEmptyLines(editor, linesCount = 3, emptyThreshold = 2) {
-    const doc = editor.document;
-    let emptyLines = 0;
-    for (let i2 = doc.lineCount - 1; i2 >= Math.max(0, doc.lineCount - linesCount); i2--) {
-      if (doc.lineAt(i2).text.trim() === "") emptyLines++;
-    }
-    return emptyLines > emptyThreshold;
-  }
-  async insertTriggerWord(editor) {
-    const lastLine2 = editor.document.lineCount - 1;
-    const lastChar = editor.document.lineAt(lastLine2).text.length;
-    await editor.edit(
-      (edit) => edit.insert(new vscode6.Position(lastLine2, lastChar), "\nconst getData =")
-    );
-  }
-};
-__decorateClass([
-  subscribable("generationUpdates")
-], CodingController.prototype, "generationUpdates", 1);
-__decorateClass([
-  callable("start")
-], CodingController.prototype, "startCoding", 1);
-__decorateClass([
-  callable("stop")
-], CodingController.prototype, "stopCoding", 1);
-__decorateClass([
-  callable("scanFile")
-], CodingController.prototype, "scanFile", 1);
-__decorateClass([
-  callable("openFile")
-], CodingController.prototype, "openFile", 1);
-__decorateClass([
-  callable("deleteFile")
-], CodingController.prototype, "deleteFile", 1);
-CodingController = __decorateClass([
-  controller("Coding")
-], CodingController);
-
-// src/controller/cli.controller.ts
-var CliController = class {
-  _progressEmitter = null;
-  constructor() {
-  }
-  initProgress(next) {
-    this._progressEmitter = next;
-    return () => {
-      this._progressEmitter = null;
-    };
-  }
-  // 插件业务逻辑中调用它推送进度
-  emitProgress(data) {
-    if (this._progressEmitter) {
-      this._progressEmitter(data);
-    }
-  }
-  async init(data) {
-  }
-  async checkEnvironment() {
-    return new Promise((resolve, reject) => {
-    });
   }
   async installHappyCli() {
     return new Promise((resolve, reject) => {
+      console.log("111 :>> ", 111);
+      const terminal2 = vscode6.window.createTerminal("\u5B89\u88C5 Happy CLI");
+      terminal2.show();
+      terminal2.sendText("npm install -g @happy.cli/cli", true);
+      resolve(true);
     });
   }
   async createHappyApp() {
     return new Promise((resolve, reject) => {
+      const terminal2 = vscode6.window.createTerminal("Create Happy App\u6784\u5EFA\u6A21\u7248");
+      terminal2.show();
+      terminal2.sendText(
+        "npx create-happy-app my-app --type project -p template-vue",
+        true
+      );
+      resolve(true);
     });
   }
 };
 __decorateClass([
-  subscribable("initProgress")
-], CliController.prototype, "initProgress", 1);
-__decorateClass([
-  callable("init")
-], CliController.prototype, "init", 1);
+  subscribable("processStepUpdate")
+], CliController.prototype, "processStepUpdate", 1);
 __decorateClass([
   callable("checkEnvironment")
 ], CliController.prototype, "checkEnvironment", 1);
+__decorateClass([
+  callable("executeCli")
+], CliController.prototype, "executeCli", 1);
 __decorateClass([
   callable("installHappyCli")
 ], CliController.prototype, "installHappyCli", 1);

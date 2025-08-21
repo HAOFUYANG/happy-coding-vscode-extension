@@ -47,7 +47,6 @@ export class CodingController {
   }
   private subscribers: ((data: any) => void)[] = [];
   private emitUpdate(data: any) {
-    console.log("data :>> ", data);
     this.subscribers.forEach((cb) => cb(data));
   }
   @callable("start")
@@ -106,7 +105,6 @@ export class CodingController {
   }
   @callable("scanFile")
   async scanFile() {
-    console.log("发起扫描了");
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (workspaceFolders && workspaceFolders.length > 0) {
       const files = await vscode.workspace.findFiles(

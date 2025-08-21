@@ -105,15 +105,7 @@ const App = () => {
     return saved?.barrageUnlocked || false;
   });
   useEffect(() => {
-    const handler = (event) => {
-      const { type, botFiles } = event.data;
-      if (type === "GENERATION_STOPPED") {
-        setStartLoading(false);
-        message.success("文件已生成");
-      }
-    };
-    window.addEventListener("message", handler);
-    return () => window.removeEventListener("message", handler);
+    handleScanFile();
   }, []);
 
   const handleConfirmSettings = async () => {
@@ -222,7 +214,7 @@ const App = () => {
       <div className="container">
         <Tabs
           size="middle"
-          defaultActiveKey="GIT_TOOLS"
+          defaultActiveKey="CLI_TOOLS"
           type="card"
           tabBarExtraContent={extraContent}
           items={tabItems}

@@ -18,34 +18,30 @@ import { vscodeApi } from "@/utils/message";
 const { Option } = Select;
 const { Paragraph, Text } = Typography;
 import "./index.css";
+import { useCli } from "@/hooks/useCli";
 const templateOptions = [
   { label: "Vue-Arco-Vite模版", value: "template-vue-arco-vite" },
   { label: "Vue3模版", value: "template-vue" },
   { label: "React模版", value: "template-react" },
 ];
-
 const CliTab = () => {
+  const {
+    checkEnvironment,
+    executeCli,
+    steps,
+    currentStep,
+    installHappyCli,
+    createHappyApp,
+  } = useCli();
+
   const [form] = Form.useForm();
-  const [steps, setSteps] = useState([
-    { title: "Waiting", description: "准备创建项目模版..." },
-    { title: "Waiting", description: "项目模版下载成功" },
-    { title: "Waiting", description: "拷贝模版并开始渲染..." },
-    { title: "Waiting", description: "模版项目创建成功" },
-  ]);
   //环境检查loading
   const [checking, setChecking] = useState(false);
-
-  const [current, setCurrent] = useState(1);
   const [nodeCheckPassedResult, setNodeCheckPassedResult] = useState({
     version: null,
     result: false,
   });
   const [cliInstalled, setCliInstalled] = useState(false);
-
-  const onFinish = (values) => {
-    vscodeApi.postMessage({ command: "happyCli.init", params: values });
-    message.success("正在创建项目...");
-  };
 
   useEffect(() => {
     //获取当前环境信息的缓存数据比如node和cli的信息
@@ -57,44 +53,42 @@ const CliTab = () => {
     } else {
       runEnvironmentCheck(false);
     }
-    const handler = (event) => {
-      const { type, payload } = event.data;
-
-      //环境插件逻辑
-      if (type === "happyCli.checkEnvironment") {
-        const { nodeVersionCheckResult, cliInstalled } = payload;
-        setNodeCheckPassedResult(nodeVersionCheckResult);
-        setCliInstalled(cliInstalled);
-        // 缓存当前检查结果
-        vscodeApi.setState?.({
-          cachedEnvCheck: { nodeVersionCheckResult, cliInstalled },
-        });
-        setChecking(false);
-      }
-      //脚手架运行逻辑
-      if (type === "happyCli.init") {
-        const { current, stepDetails } = payload;
-        setCurrent(current);
-        setSteps(stepDetails);
-      }
-    };
-    window.addEventListener("message", handler);
-    return () => window.removeEventListener("message", handler);
   }, []);
 
-  const runEnvironmentCheck = (isManual = false) => {
+  const runEnvironmentCheck = async (isManual = false) => {
     if (isManual) {
       setChecking(true);
     }
-    vscodeApi.postMessage({ command: "happyCli.checkEnvironment" });
+    const result = await checkEnvironment();
+    const { nodeVersionCheckResult, cliInstalled } = result;
+    setNodeCheckPassedResult(nodeVersionCheckResult);
+    setCliInstalled(cliInstalled);
+    // 缓存当前检查结果
+    vscodeApi.setState?.({
+      cachedEnvCheck: { nodeVersionCheckResult, cliInstalled },
+    });
+    setChecking(false);
+  };
+  const handleExecuteCli = async (values) => {
+    message.success("正在创建项目...");
+    const result = await executeCli(values);
+    if (result) {
+      message.success("创建成功");
+    }
   };
 
-  const handleInstallHappyCli = () => {
-    vscodeApi.postMessage({ command: "happyCli.installHappyCli" });
+  const handleInstallHappyCli = async () => {
+    const result = await installHappyCli();
+    if (result) {
+      message.success("执行成功");
+    }
   };
 
-  const handleCreateHappyApp = () => {
-    vscodeApi.postMessage({ command: "happyCli.createHappyApp" });
+  const handleCreateHappyApp = async () => {
+    const result = await createHappyApp();
+    if (result) {
+      message.success("执行成功");
+    }
   };
 
   return (
@@ -123,14 +117,14 @@ const CliTab = () => {
               <div className="card-body">
                 <Paragraph>
                   1. nodejs版本需大于18
-                  {nodeCheckPassedResult.result ? (
+                  {nodeCheckPassedResult?.result ? (
                     <Text type="success" style={{ marginLeft: 8 }} strong>
-                      {nodeCheckPassedResult.version}
+                      {nodeCheckPassedResult?.version}
                     </Text>
                   ) : (
                     <Text type="danger" style={{ marginLeft: 8 }} strong>
                       <ExclamationCircleOutlined /> 当前版本
-                      {nodeCheckPassedResult.version} 过低，请升级
+                      {nodeCheckPassedResult?.version} 过低，请升级
                     </Text>
                   )}
                 </Paragraph>
@@ -222,7 +216,7 @@ const CliTab = () => {
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 14 }}
                   layout="horizontal"
-                  onFinish={onFinish}
+                  onFinish={handleExecuteCli}
                 >
                   <Form.Item
                     name="type"
@@ -261,7 +255,7 @@ const CliTab = () => {
                 <Steps
                   direction="vertical"
                   size="small"
-                  current={current}
+                  current={currentStep}
                   items={steps.map((step) => ({
                     title: step.title,
                     description: step.description,

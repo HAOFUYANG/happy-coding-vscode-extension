@@ -2,14 +2,6 @@ import * as vscode from "vscode";
 import * as path from "path";
 import { getControllers } from "cec-client-server/decorator";
 import { CecServer } from "cec-client-server";
-import { postMessage, Msg } from "@/core/Messager/index";
-import { happyCliInit } from "@/core/cli/index";
-import {
-  checkNodeVersion,
-  checkHappyCliInstalled,
-  installHappyCli,
-  createHappyApp,
-} from "@/utils/happyCliUtils";
 export class SideViewProvider implements vscode.WebviewViewProvider {
   private _webview: vscode.Webview | undefined;
   private _context: vscode.ExtensionContext;
@@ -62,29 +54,6 @@ export class SideViewProvider implements vscode.WebviewViewProvider {
       Object.entries(subscribables).forEach(([name, handler]) =>
         cecServer.onSubscribe(name, handler)
       );
-    });
-
-    this._webview.onDidReceiveMessage(async (message) => {
-      if (message.command === Msg.HAPPY_CLI_INIT) {
-        await happyCliInit(message);
-      }
-      if (message.command === Msg.HAPPY_CLI_CHECK_ENVIRONMENT) {
-        const nodeVersionCheckResult = checkNodeVersion();
-        const cliInstalled = checkHappyCliInstalled();
-        postMessage({
-          type: Msg.HAPPY_CLI_CHECK_ENVIRONMENT,
-          payload: {
-            nodeVersionCheckResult,
-            cliInstalled,
-          },
-        });
-      }
-      if (message.command === Msg.HAPPY_CLI_INSTALL_CLI) {
-        installHappyCli();
-      }
-      if (message.command === Msg.HAPPY_CLI_CREATE__APP) {
-        createHappyApp();
-      }
     });
   }
 
