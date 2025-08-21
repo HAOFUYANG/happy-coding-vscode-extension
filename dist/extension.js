@@ -63250,7 +63250,6 @@ var CliController = class {
   }
   async installHappyCli() {
     return new Promise((resolve, reject) => {
-      console.log("111 :>> ", 111);
       const terminal2 = vscode6.window.createTerminal("\u5B89\u88C5 Happy CLI");
       terminal2.show();
       terminal2.sendText("npm install -g @happy.cli/cli", true);
