@@ -44932,6 +44932,7 @@ var {
 
 // src/controller/user.controller.ts
 var UserController = class {
+  subscribers = [];
   constructor() {
   }
   async saveUser(userInfo) {
@@ -44943,7 +44944,14 @@ var UserController = class {
   }
   async clearUser() {
     await ContextService.setState("userInfo", null);
+    this.subscribers.forEach((cb) => cb({ isLogin: false }));
     return { success: true };
+  }
+  updateLoginStatus(next) {
+    this.subscribers.push(next);
+    return () => {
+      this.subscribers = this.subscribers.filter((cb) => cb !== next);
+    };
   }
 };
 __decorateClass([
@@ -44955,6 +44963,9 @@ __decorateClass([
 __decorateClass([
   callable("clearUser")
 ], UserController.prototype, "clearUser", 1);
+__decorateClass([
+  subscribable("updateLoginStatus")
+], UserController.prototype, "updateLoginStatus", 1);
 UserController = __decorateClass([
   controller("User")
 ], UserController);
@@ -45531,11 +45542,24 @@ var CodingController = class {
       this.subscribers = this.subscribers.filter((cb) => cb !== next);
     };
   }
+  generationStatus(next) {
+    this.statusSubscribers.push(next);
+    return () => {
+      this.statusSubscribers = this.statusSubscribers.filter(
+        (cb) => cb !== next
+      );
+    };
+  }
+  statusSubscribers = [];
+  emitBtnLoading(loading) {
+    this.statusSubscribers.forEach((cb) => cb({ loading }));
+  }
   subscribers = [];
   emitUpdate(data) {
     this.subscribers.forEach((cb) => cb(data));
   }
   async startCoding(params) {
+    this.emitBtnLoading(true);
     if (this.isGenerating)
       return { success: false, message: "Already generating" };
     this.acceptedContentDetails = [];
@@ -45575,6 +45599,7 @@ var CodingController = class {
     this.stopInlineLoop();
     this.outputChannel.appendLine("stop inline generator success");
     vscode4.window.showInformationMessage("stop inline generator success");
+    this.emitBtnLoading(false);
   }
   async scanFile() {
     const workspaceFolders = vscode4.workspace.workspaceFolders;
@@ -45635,6 +45660,7 @@ var CodingController = class {
       vscode4.window.showInformationMessage(
         "code generation completed, stop coding"
       );
+      this.emitBtnLoading(false);
       editor.document.save().then(() => {
         this.outputChannel.appendLine("save success");
       });
@@ -45727,6 +45753,9 @@ var CodingController = class {
 __decorateClass([
   subscribable("generationUpdates")
 ], CodingController.prototype, "generationUpdates", 1);
+__decorateClass([
+  subscribable("generationStatus")
+], CodingController.prototype, "generationStatus", 1);
 __decorateClass([
   callable("start")
 ], CodingController.prototype, "startCoding", 1);

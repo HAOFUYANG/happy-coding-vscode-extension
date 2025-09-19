@@ -18,9 +18,10 @@ import WorkspaceApi from "@/api/workspaceApi";
 import { useUser } from "@/hooks/useUser";
 import { useSession } from "@/hooks/useSession";
 const { TextArea } = Input;
-const { getUser } = useUser();
 const { Paragraph, Text } = Typography;
 const GitTab = () => {
+  const { getUser, updateLoginStatus } = useUser();
+
   //login
   const [showLogin, setShowLogin] = useState(true);
   const [user, setUser] = useState("");
@@ -70,6 +71,11 @@ const GitTab = () => {
       });
       return unsubscribe;
     })();
+    //登陆失效检查
+    const unsubscribe = updateLoginStatus(() => {
+      setShowLogin(true);
+    });
+    return () => unsubscribe;
   }, []);
   const handleLoginSuccess = async () => {
     try {

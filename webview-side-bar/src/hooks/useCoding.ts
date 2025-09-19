@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export function useCoding() {
   const [acceptDetails, setAcceptDetails] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
   const startCoding = async (params?: {
     maxGeneratedLines?: number;
     acceptRatio?: number;
@@ -28,7 +29,17 @@ export function useCoding() {
         setAcceptDetails(data);
       }
     );
-    return () => getGenerateList();
+    const generationStatus = useSubscribe(
+      "Coding.generationStatus",
+      (data: any) => {
+        console.log("loading :>> ", data);
+        setLoading(data.loading);
+      }
+    );
+    return () => {
+      getGenerateList();
+      generationStatus();
+    };
   }, []);
   return {
     startCoding,
@@ -37,5 +48,6 @@ export function useCoding() {
     openFile,
     deleteFile,
     acceptDetails,
+    loading,
   };
 }

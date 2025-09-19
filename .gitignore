@@ -10,6 +10,7 @@ lerna-debug.log*
 custom-common-utils-***
 node_modules/
 webview-side-bar/node_modules/
+nest-server/node_modules/
 dist/
 dist-ssr
 *.local

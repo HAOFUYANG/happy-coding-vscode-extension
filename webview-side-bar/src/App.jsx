@@ -89,13 +89,13 @@ const App = () => {
     scanFile,
     openFile,
     deleteFile,
+    loading,
   } = useCoding();
 
   const [botFiles, setBotFiles] = useState([]);
   const [maxLines, setMaxLines] = useState(100);
   const [acceptRatio, setAcceptRatio] = useState(25);
   const [configModalVisible, setConfigModalVisible] = useState(false);
-  const [startLoading, setStartLoading] = useState(false);
   const token = useMemo(() => getTokenWithVscodeTheme(), []);
   //添加展示隐藏tab的逻辑
   const [_clickCount, setClickCount] = useState(0);
@@ -109,14 +109,12 @@ const App = () => {
   }, []);
 
   const handleConfirmSettings = async () => {
-    setStartLoading(true);
     setConfigModalVisible(false);
     await startCoding({ maxGeneratedLines: maxLines, acceptRatio });
   };
 
   const handleStopCoding = async () => {
     await stopCoding();
-    setStartLoading(false);
   };
   const handleScanFile = async () => {
     const fileList = await scanFile();
@@ -187,7 +185,7 @@ const App = () => {
           }}
           onStart={() => setConfigModalVisible(true)}
           onStop={handleStopCoding}
-          loading={startLoading}
+          loading={loading}
         />
       ),
     });
@@ -227,7 +225,7 @@ const App = () => {
           setMaxLines={setMaxLines}
           acceptRatio={acceptRatio}
           setAcceptRatio={setAcceptRatio}
-          disabled={startLoading}
+          disabled={loading}
         />
       </div>
     </ConfigProvider>

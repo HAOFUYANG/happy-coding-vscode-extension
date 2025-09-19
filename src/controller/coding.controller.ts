@@ -45,6 +45,20 @@ export class CodingController {
       this.subscribers = this.subscribers.filter((cb) => cb !== next);
     };
   }
+  @subscribable("generationStatus")
+  generationStatus(next: (data: { loading: boolean }) => void) {
+    this.statusSubscribers.push(next);
+    return () => {
+      this.statusSubscribers = this.statusSubscribers.filter(
+        (cb) => cb !== next
+      );
+    };
+  }
+  private statusSubscribers: ((data: { loading: boolean }) => void)[] = [];
+  private emitBtnLoading(loading: boolean) {
+    this.statusSubscribers.forEach((cb) => cb({ loading }));
+  }
+
   private subscribers: ((data: any) => void)[] = [];
   private emitUpdate(data: any) {
     this.subscribers.forEach((cb) => cb(data));
@@ -54,6 +68,7 @@ export class CodingController {
     maxGeneratedLines?: number;
     acceptRatio?: number;
   }) {
+    this.emitBtnLoading(true);
     if (this.isGenerating)
       return { success: false, message: "Already generating" };
 
@@ -102,6 +117,7 @@ export class CodingController {
     this.stopInlineLoop();
     this.outputChannel.appendLine("stop inline generator success");
     vscode.window.showInformationMessage("stop inline generator success");
+    this.emitBtnLoading(false);
   }
   @callable("scanFile")
   async scanFile() {
@@ -167,6 +183,7 @@ export class CodingController {
       vscode.window.showInformationMessage(
         "code generation completed, stop coding"
       );
+      this.emitBtnLoading(false);
       editor.document.save().then(() => {
         this.outputChannel.appendLine("save success");
       });
