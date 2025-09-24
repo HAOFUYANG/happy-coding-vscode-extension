@@ -38467,7 +38467,7 @@ var require_stat = __commonJS({
       return checkParentPathsSync(src, srcStat, destParent, funcName);
     }
     function areIdentical(srcStat, destStat) {
-      return destStat.ino && destStat.dev && destStat.ino === srcStat.ino && destStat.dev === srcStat.dev;
+      return destStat.ino !== void 0 && destStat.dev !== void 0 && destStat.ino === srcStat.ino && destStat.dev === srcStat.dev;
     }
     function isSrcSubdir(src, dest) {
       const srcArr = path13.resolve(src).split(path13.sep).filter((i2) => i2);
@@ -38491,6 +38491,34 @@ var require_stat = __commonJS({
   }
 });
 
+// node_modules/fs-extra/lib/util/async.js
+var require_async3 = __commonJS({
+  "node_modules/fs-extra/lib/util/async.js"(exports2, module2) {
+    "use strict";
+    async function asyncIteratorConcurrentProcess(iterator2, fn) {
+      const promises = [];
+      for await (const item of iterator2) {
+        promises.push(
+          fn(item).then(
+            () => null,
+            (err) => err ?? new Error("unknown error")
+          )
+        );
+      }
+      await Promise.all(
+        promises.map(
+          (promise) => promise.then((possibleErr) => {
+            if (possibleErr !== null) throw possibleErr;
+          })
+        )
+      );
+    }
+    module2.exports = {
+      asyncIteratorConcurrentProcess
+    };
+  }
+});
+
 // node_modules/fs-extra/lib/copy/copy.js
 var require_copy = __commonJS({
   "node_modules/fs-extra/lib/copy/copy.js"(exports2, module2) {
@@ -38501,6 +38529,7 @@ var require_copy = __commonJS({
     var { pathExists } = require_path_exists();
     var { utimesMillis } = require_utimes();
     var stat = require_stat();
+    var { asyncIteratorConcurrentProcess } = require_async3();
     async function copy(src, dest, opts = {}) {
       if (typeof opts === "function") {
         opts = { filter: opts };
@@ -38570,21 +38599,15 @@ var require_copy = __commonJS({
       if (!destStat) {
         await fs2.mkdir(dest);
       }
-      const promises = [];
-      for await (const item of await fs2.opendir(src)) {
+      await asyncIteratorConcurrentProcess(await fs2.opendir(src), async (item) => {
         const srcItem = path13.join(src, item.name);
         const destItem = path13.join(dest, item.name);
-        promises.push(
-          runFilter(srcItem, destItem, opts).then((include) => {
-            if (include) {
-              return stat.checkPaths(srcItem, destItem, "copy", opts).then(({ destStat: destStat2 }) => {
-                return getStatsAndPerformCopy(destStat2, srcItem, destItem, opts);
-              });
-            }
-          })
-        );
-      }
-      await Promise.all(promises);
+        const include = await runFilter(srcItem, destItem, opts);
+        if (include) {
+          const { destStat: destStat2 } = await stat.checkPaths(srcItem, destItem, "copy", opts);
+          await getStatsAndPerformCopy(destStat2, srcItem, destItem, opts);
+        }
+      });
       if (!destStat) {
         await fs2.chmod(dest, srcStat.mode);
       }
@@ -45437,67 +45460,31 @@ var SideViewProvider = class {
 // src/utils/insertRandomSnippet.ts
 var vscode3 = __toESM(require("vscode"));
 var snippets = [
-  "// TODO: optimize this function",
-  "console.log('debug info');",
-  "function helper(param) { return param * 2; }",
-  "const data = fetch('/api/data');",
-  "let total = 0;",
-  "const sum = (a, b) => a + b;",
-  "class TempClass {\n  constructor() {}\n}",
-  "try {\n  // risky code\n} catch (e) {\n  console.error(e);\n}",
-  "// FIXME: workaround for legacy browser",
-  "import fs from 'fs';",
-  "/* random filler */",
-  "const timestamp = Date.now();",
-  "if (!Array.isArray(items)) return;",
-  "const config = { mode: 'dev' };",
-  "const user = { name: 'guest', id: 0 };",
-  "let counter = 1;",
-  "while (counter < 10) counter++;",
-  "setTimeout(() => console.log('done'), 1000);",
-  "const regex = /[a-z]+/gi;",
-  "const PI = Math.PI;",
-  "for (let i = 0; i < 5; i++) console.log(i);",
-  "function noop() {}",
-  "const isValid = (x) => x != null;",
-  "const uuid = crypto.randomUUID();",
-  "async function fetchData() {\n  const res = await fetch('/api');\n}",
-  "const result = await someAsyncCall();",
-  "let cache = new Map();",
-  "const arr = [1, 2, 3].map(x => x * 2);",
-  "// HACK: skip step if missing props",
-  "const env = process.env.NODE_ENV;",
-  "function delay(ms) { return new Promise(r => setTimeout(r, ms)); }",
-  "const version = '1.0.0';",
-  "function logError(err) {\n  console.error('[ERR]', err);\n}",
-  "document.querySelector('#app').innerHTML = 'Hello';",
-  "const path = require('path');",
-  "let flag = false;",
-  "const clone = obj => JSON.parse(JSON.stringify(obj));",
-  "module.exports = { start };",
-  "import { readFileSync } from 'fs';",
-  "const userAgent = navigator.userAgent;",
-  "function once(fn) {\n  let called = false;\n  return (...args) => {\n    if (!called) {\n      called = true;\n      fn(...args);\n    }\n  };\n}",
-  "const logger = msg => console.log(`[LOG] ${msg}`);",
-  "const defaultValue = value ?? 'default';",
-  "// DEBUG: temporary log",
-  "window.addEventListener('load', () => console.log('loaded'));",
-  "function getRandomInt(max) { return Math.floor(Math.random() * max); }",
-  "const headers = new Headers({ 'Content-Type': 'application/json' });",
-  "import axios from 'axios';",
-  "function sumAll(...nums) {\n  return nums.reduce((a, b) => a + b, 0);\n}",
-  "const set = new Set();",
-  "function parseJSON(str) {\n  try { return JSON.parse(str); } catch { return null; }\n}",
-  "const token = localStorage.getItem('token');",
-  "export default function init() { console.log('init'); }",
-  "// NOTE: deprecated method below",
-  "Object.keys(obj).forEach(key => console.log(key));",
-  "const noopAsync = async () => {};",
-  "if (typeof window !== 'undefined') { console.log('browser'); }",
-  "const status = isActive ? 'ON' : 'OFF';",
+  "interface User { id: number; name: string; email: string; roles: string[]; }\nconst users: User[] = [{ id: 1, name: 'Alice', email: 'alice@example.com', roles: ['admin'] }];",
+  "type ApiResponse<T> = { data: T; status: number; message: string; };\nconst response: ApiResponse<User[]> = { data: users, status: 200, message: 'Success' };",
+  "enum HttpStatus { OK = 200, NotFound = 404, Error = 500 }\nconst status = HttpStatus.OK;",
+  "class DataProcessor<T> {\n  private cache = new Map<string, T>();\n  async process(key: string, factory: () => Promise<T>): Promise<T> {\n    if (!this.cache.has(key)) this.cache.set(key, await factory());\n    return this.cache.get(key)!;\n  }\n}",
+  "const debounce = <T extends (...args: any[]) => any>(func: T, delay: number) => {\n  let timeout: NodeJS.Timeout;\n  return (...args: Parameters<T>) => {\n    clearTimeout(timeout);\n    timeout = setTimeout(() => func(...args), delay);\n  };\n};",
+  "async function* asyncGenerator<T>(items: T[]): AsyncGenerator<T, void, undefined> {\n  for (const item of items) {\n    await new Promise(r => setTimeout(r, 100));\n    yield item;\n  }\n}",
+  "const complexReducer = (state: State, action: Action): State => {\n  switch (action.type) {\n    case 'SET_DATA': return { ...state, data: action.payload };\n    case 'UPDATE_FIELD': return { ...state, [action.field]: action.value };\n    default: return state;\n  }\n};",
+  "const apiClient = {\n  async get<T>(url: string): Promise<T> {\n    const res = await fetch(url);\n    if (!res.ok) throw new Error(`HTTP ${res.status}`);\n    return res.json();\n  }\n};",
+  "function withLogging<T extends (...args: any[]) => any>(fn: T): (...args: Parameters<T>) => ReturnType<T> {\n  return (...args: Parameters<T>) => {\n    console.log(`Calling ${fn.name} with`, args);\n    const result = fn(...args);\n    console.log(`Result:`, result);\n    return result;\n  };\n}",
+  "const observable = {\n  subscribe(observer: { next: (value: any) => void; error?: (err: any) => void; complete?: () => void; }) {\n    // subscription logic\n    return { unsubscribe() { /* cleanup */ } };\n  }\n};",
   "function debounce(fn, delay) {\n  let t;\n  return (...args) => {\n    clearTimeout(t);\n    t = setTimeout(() => fn(...args), delay);\n  };\n}",
-  "let disconnected = false;",
-  "fetch('/ping').then(r => r.text()).then(console.log);"
+  "type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]> } : T;\nconst partialConfig: DeepPartial<Config> = { server: { port: 3000 } };",
+  "interface Repository<T> {\n  findById(id: string): Promise<T | null>;\n  findAll(): Promise<T[]>;\n  save(entity: T): Promise<T>;\n  delete(id: string): Promise<void>;\n}",
+  "class EventEmitter {\n  private events: Map<string, Function[]> = new Map();\n  on(event: string, listener: Function) { /* implementation */ }\n  emit(event: string, ...args: any[]) { /* implementation */ }\n  off(event: string, listener: Function) { /* implementation */ }\n}",
+  "const curry = <T extends (...args: any[]) => any>(fn: T) => (...args: Parameters<T>): ReturnType<T> | ((...nextArgs: any[]) => any) => {\n  return args.length >= fn.length ? fn(...args) : (...nextArgs: any[]) => curry(fn)(...args, ...nextArgs);\n};",
+  "abstract class BaseComponent<T> {\n  protected state: T;\n  constructor(initialState: T) { this.state = initialState; }\n  abstract render(): string;\n  protected setState(newState: Partial<T>) { this.state = { ...this.state, ...newState }; }\n}",
+  "const pipe = <T>(...fns: Array<(arg: T) => T>) => (value: T) => fns.reduce((acc, fn) => fn(acc), value);\nconst add5 = (x: number) => x + 5;\nconst multiply2 = (x: number) => x * 2;\nconst result = pipe(add5, multiply2)(10);",
+  "type ConditionalType<T> = T extends string ? string : T extends number ? number : T extends boolean ? boolean : object;\nconst value: ConditionalType<string> = 'hello';",
+  "const memoize = <T extends (...args: any[]) => any>(fn: T) => {\n  const cache = new Map<string, ReturnType<T>>();\n  return (...args: Parameters<T>): ReturnType<T> => {\n    const key = JSON.stringify(args);\n    if (cache.has(key)) return cache.get(key)!;\n    const result = fn(...args);\n    cache.set(key, result);\n    return result;\n  };\n};",
+  "interface Middleware<T> {\n  (context: T, next: () => Promise<void>): Promise<void>;\n}\nconst applyMiddleware = <T>(...middlewares: Middleware<T>[]) => (context: T) => {\n  const dispatch = (i: number): Promise<void> => {\n    if (i >= middlewares.length) return Promise.resolve();\n    return middlewares[i](context, () => dispatch(i + 1));\n  };\n  return dispatch(0);\n};",
+  "class DependencyContainer {\n  private dependencies = new Map<string, any>();\n  register<T>(token: string, factory: () => T) { this.dependencies.set(token, factory()); }\n  resolve<T>(token: string): T { return this.dependencies.get(token); }\n}",
+  "type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;\nconst intersection: UnionToIntersection<{a: number} | {b: string}> = {a: 1, b: 'test'};",
+  "const retry = <T>(fn: () => Promise<T>, retries: number, delay: number): Promise<T> => {\n  return fn().catch(err => retries > 0 ? new Promise(resolve => setTimeout(resolve, delay)).then(() => retry(fn, retries - 1, delay)) : Promise.reject(err));\n}",
+  "interface Store<S, A> {\n  getState(): S;\n  dispatch(action: A): void;\n  subscribe(listener: () => void): () => void;\n}\nconst createStore = <S, A>(reducer: (state: S, action: A) => S, initialState: S): Store<S, A> => { /* implementation */ };",
+  "type PickByValue<T, ValueType> = Pick<T, { [Key in keyof T]-?: T[Key] extends ValueType ? Key : never }[keyof T]>;\nconst stringsOnly: PickByValue<{a: string, b: number, c: string}, string> = {a: 'test', c: 'another'};"
 ];
 async function insertRandomSnippet(editor) {
   const random = snippets[Math.floor(Math.random() * snippets.length)];
@@ -45522,6 +45509,12 @@ var CodingController = class {
   reportViewProvider;
   loopTimer = null;
   hasInsertedTrigger = false;
+  lastInsertedContent = "";
+  // 类中新增字段
+  loopCounter = 0;
+  // 循环计数
+  snippetInterval = 10;
+  // 每 5 次循环插入一次随机 snippet
   constructor() {
     const context = ContextService.getContext();
     this.outputChannel = vscode4.window.createOutputChannel(
@@ -45586,17 +45579,49 @@ var CodingController = class {
     vscode4.window.showInformationMessage(`coding in the ${fileName}....`);
     return { success: true };
   }
-  async stopCoding() {
+  async stopCoding(manualStop = true) {
     if (!this.isGenerating) {
       vscode4.window.showInformationMessage("doing nothing...");
       return;
     }
-    this.targetEditor?.document.save().then(() => {
+    const editor = this.targetEditor;
+    this.stopInlineLoop();
+    if (manualStop) {
+      this.isGenerating = false;
+      this.targetEditor = null;
+      this.outputChannel.appendLine("manual stop: generator stopped");
+      vscode4.window.showInformationMessage("inline generator stopped manually");
+      this.emitBtnLoading(false);
+      return;
+    }
+    if (editor) {
+      await editor.document.save();
       this.outputChannel.appendLine("save success!");
-    });
+      let fullText = editor.document.getText().replace(/[ \t]+$/gm, "");
+      let cleanedText = fullText.replace(/(\r?\n){2,}/g, "\n");
+      cleanedText = cleanedText.replace(/^(\r?\n)+/, "");
+      cleanedText = cleanedText.replace(/(\r?\n)+$/, "\n");
+      if (cleanedText !== fullText) {
+        const fullRange = new vscode4.Range(
+          editor.document.positionAt(0),
+          editor.document.positionAt(fullText.length)
+        );
+        await editor.edit((edit) => edit.replace(fullRange, cleanedText));
+        await editor.document.save();
+        this.outputChannel.appendLine("clean blank lines success!");
+      }
+      const cleanedLineCount = editor.document.lineCount;
+      if (cleanedLineCount < this.maxGeneratedLines) {
+        this.outputChannel.appendLine(
+          `lines after cleanup (${cleanedLineCount}) < maxGeneratedLines (${this.maxGeneratedLines}), resume generating...`
+        );
+        this.isGenerating = true;
+        this.startInlineLoop();
+        return;
+      }
+    }
     this.isGenerating = false;
     this.targetEditor = null;
-    this.stopInlineLoop();
     this.outputChannel.appendLine("stop inline generator success");
     vscode4.window.showInformationMessage("stop inline generator success");
     this.emitBtnLoading(false);
@@ -45632,7 +45657,9 @@ var CodingController = class {
   }
   startInlineLoop(minDelay = 1e3, maxDelay = 2e3) {
     const loop = async () => {
-      if (!this.isGenerating) return;
+      if (!this.isGenerating) {
+        return;
+      }
       await this.triggerAndAcceptInline();
       const delay = Math.random() * (maxDelay - minDelay) + minDelay;
       this.loopTimer = setTimeout(loop, delay);
@@ -45661,21 +45688,36 @@ var CodingController = class {
         "code generation completed, stop coding"
       );
       this.emitBtnLoading(false);
-      editor.document.save().then(() => {
-        this.outputChannel.appendLine("save success");
-      });
+      await editor.document.save();
+      this.outputChannel.appendLine("save success");
       return;
     }
-    if (!this.hasInsertedTrigger) {
-      await editor.edit(
-        (edit) => edit.insert(editor.selection.active, "const")
+    this.loopCounter++;
+    if (this.loopCounter > this.snippetInterval) {
+      await insertRandomSnippet(editor);
+      this.outputChannel.appendLine(
+        `loopCounter ${this.loopCounter} > ${this.snippetInterval}, inserted new trigger snippet, reset loopCounter`
       );
+      this.loopCounter = 0;
+      await vscode4.commands.executeCommand(
+        "editor.action.inlineSuggest.trigger"
+      );
+      await new Promise((r) => setTimeout(r, 300));
+      await vscode4.commands.executeCommand(
+        "editor.action.inlineSuggest.commit"
+      );
+      await editor.document.save();
+      this.outputChannel.appendLine("trigger + commit after reset");
+    }
+    if (!this.hasInsertedTrigger || this.loopCounter % this.snippetInterval === 0) {
+      await insertRandomSnippet(editor);
       this.hasInsertedTrigger = true;
       this.outputChannel.appendLine("first trigger success");
     }
-    const prevLineCount = editor.document.lineCount;
+    const prevDocLength = editor.document.getText().length;
     await vscode4.commands.executeCommand("editor.action.inlineSuggest.trigger");
     this.outputChannel.appendLine("trigger inline suggestion");
+    await new Promise((r) => setTimeout(r, 300));
     const currentLineCount = editor.document.lineCount;
     const generatedRatio = this.acceptedCount / currentLineCount;
     const shouldAccept = Math.random() < this.acceptRatio / 100 - generatedRatio;
@@ -45684,70 +45726,33 @@ var CodingController = class {
       await vscode4.commands.executeCommand(
         "editor.action.inlineSuggest.commit"
       );
-      await editor.document.save().then(() => {
-        this.outputChannel.appendLine(
-          "accept inline suggestion success and save once"
-        );
-      });
       didAccept = true;
-    } else {
-      await insertRandomSnippet(editor);
+      await editor.document.save();
       this.outputChannel.appendLine(
-        "insert random code block instead of accepting"
+        "accept inline suggestion success and save once"
       );
     }
-    const newLineCount = editor.document.lineCount;
-    let addedContent = "";
-    if (newLineCount > prevLineCount) {
-      for (let i2 = prevLineCount - 1; i2 < newLineCount - 1; i2++) {
-        addedContent += editor.document.lineAt(i2).text + "\n";
-      }
-    } else {
-      const lastLineNumber = newLineCount - 2;
-      if (lastLineNumber >= 0) {
-        addedContent = editor.document.lineAt(lastLineNumber).text;
-      }
-    }
-    if (didAccept) {
-      this.acceptedCount++;
+    const newDocText = editor.document.getText();
+    let addedContent = newDocText.slice(prevDocLength).trim();
+    if (addedContent && addedContent !== this.lastInsertedContent) {
+      if (didAccept) this.acceptedCount++;
       this.acceptedContentDetails.push({
         count: this.acceptedCount,
-        prevLineCount,
-        newLineCount: editor.document.lineCount,
-        content: addedContent.trim()
+        content: addedContent,
+        prevLineCount: currentLineCount,
+        newLineCount: editor.document.lineCount
       });
-    }
-    if (this.reportViewProvider) {
-      this.emitUpdate(this.acceptedContentDetails);
+      this.lastInsertedContent = addedContent;
     }
     this.emitUpdate(this.acceptedContentDetails);
-    await this.moveCursorToEndAndInsertNewLine(editor);
-    if (this.shouldTriggerOnEmptyLines(editor, 3, 2)) {
-      await this.insertTriggerWord(editor);
-    }
-  }
-  async moveCursorToEndAndInsertNewLine(editor) {
     const lastLine2 = editor.document.lineCount - 1;
-    const lastChar = editor.document.lineAt(lastLine2).text.length;
-    const pos = new vscode4.Position(lastLine2, lastChar);
+    const lastLineText = editor.document.lineAt(lastLine2).text;
+    const pos = new vscode4.Position(lastLine2, lastLineText.length);
     editor.selection = new vscode4.Selection(pos, pos);
     editor.revealRange(new vscode4.Range(pos, pos));
-    await editor.edit((edit) => edit.insert(pos, "\n"));
-  }
-  shouldTriggerOnEmptyLines(editor, linesCount = 3, emptyThreshold = 2) {
-    const doc = editor.document;
-    let emptyLines = 0;
-    for (let i2 = doc.lineCount - 1; i2 >= Math.max(0, doc.lineCount - linesCount); i2--) {
-      if (doc.lineAt(i2).text.trim() === "") emptyLines++;
+    if (didAccept || this.loopCounter % this.snippetInterval === 0) {
+      await editor.edit((edit) => edit.insert(pos, "\n"));
     }
-    return emptyLines > emptyThreshold;
-  }
-  async insertTriggerWord(editor) {
-    const lastLine2 = editor.document.lineCount - 1;
-    const lastChar = editor.document.lineAt(lastLine2).text.length;
-    await editor.edit(
-      (edit) => edit.insert(new vscode4.Position(lastLine2, lastChar), "\nconst getData =")
-    );
   }
 };
 __decorateClass([

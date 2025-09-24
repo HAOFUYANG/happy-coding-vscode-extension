@@ -21,7 +21,10 @@ export class CodingController {
   private reportViewProvider: SideViewProvider;
   private loopTimer: NodeJS.Timeout | null = null;
   private hasInsertedTrigger = false;
-
+  private lastInsertedContent = "";
+  // 类中新增字段
+  private loopCounter = 0; // 循环计数
+  private snippetInterval = 10; // 每 5 次循环插入一次随机 snippet
   constructor() {
     const context = ContextService.getContext();
     this.outputChannel = vscode.window.createOutputChannel(
@@ -104,21 +107,73 @@ export class CodingController {
   }
 
   @callable("stop")
-  async stopCoding() {
+  async stopCoding(manualStop = true) {
     if (!this.isGenerating) {
       vscode.window.showInformationMessage("doing nothing...");
       return;
     }
-    this.targetEditor?.document.save().then(() => {
+
+    const editor = this.targetEditor;
+
+    // 停止循环
+    this.stopInlineLoop();
+
+    if (manualStop) {
+      // 主动停止：不做清理、不重启
+      this.isGenerating = false;
+      this.targetEditor = null;
+      this.outputChannel.appendLine("manual stop: generator stopped");
+      vscode.window.showInformationMessage("inline generator stopped manually");
+      this.emitBtnLoading(false);
+      return;
+    }
+
+    // 自动停止：清理空行并判断是否需要重新启动
+    if (editor) {
+      // 保存当前文档
+      await editor.document.save();
       this.outputChannel.appendLine("save success!");
-    });
+
+      // 1. 去掉每行末尾空格
+      let fullText = editor.document.getText().replace(/[ \t]+$/gm, "");
+      // 2. 连续空行压缩为 1 行
+      let cleanedText = fullText.replace(/(\r?\n){2,}/g, "\n");
+      // 3. 去掉开头空行
+      cleanedText = cleanedText.replace(/^(\r?\n)+/, "");
+      // 4. 去掉结尾多余空行，保留 1 个换行
+      cleanedText = cleanedText.replace(/(\r?\n)+$/, "\n");
+
+      if (cleanedText !== fullText) {
+        const fullRange = new vscode.Range(
+          editor.document.positionAt(0),
+          editor.document.positionAt(fullText.length)
+        );
+        await editor.edit((edit) => edit.replace(fullRange, cleanedText));
+        await editor.document.save();
+        this.outputChannel.appendLine("clean blank lines success!");
+      }
+
+      // 检查清理后行数
+      const cleanedLineCount = editor.document.lineCount;
+      if (cleanedLineCount < this.maxGeneratedLines) {
+        // 清理后行数不够，重新启动生成
+        this.outputChannel.appendLine(
+          `lines after cleanup (${cleanedLineCount}) < maxGeneratedLines (${this.maxGeneratedLines}), resume generating...`
+        );
+        this.isGenerating = true;
+        this.startInlineLoop();
+        return; // 不显示 stop success，等待生成完成
+      }
+    }
+
+    // 真正停止逻辑
     this.isGenerating = false;
     this.targetEditor = null;
-    this.stopInlineLoop();
     this.outputChannel.appendLine("stop inline generator success");
     vscode.window.showInformationMessage("stop inline generator success");
     this.emitBtnLoading(false);
   }
+
   @callable("scanFile")
   async scanFile() {
     const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -154,7 +209,9 @@ export class CodingController {
 
   private startInlineLoop(minDelay = 1000, maxDelay = 2000) {
     const loop = async () => {
-      if (!this.isGenerating) return;
+      if (!this.isGenerating) {
+        return;
+      }
       await this.triggerAndAcceptInline();
       const delay = Math.random() * (maxDelay - minDelay) + minDelay;
       this.loopTimer = setTimeout(loop, delay);
@@ -174,6 +231,7 @@ export class CodingController {
     const editor = this.targetEditor;
     if (!this.isGenerating || !editor) return;
 
+    // 超过最大行数直接停止
     if (editor.document.lineCount >= this.maxGeneratedLines) {
       this.outputChannel.appendLine(
         "code generation completed, max line reached."
@@ -184,107 +242,99 @@ export class CodingController {
         "code generation completed, stop coding"
       );
       this.emitBtnLoading(false);
-      editor.document.save().then(() => {
-        this.outputChannel.appendLine("save success");
-      });
+      await editor.document.save();
+      this.outputChannel.appendLine("save success");
       return;
     }
 
-    if (!this.hasInsertedTrigger) {
-      await editor.edit((edit) =>
-        edit.insert(editor.selection.active, "const")
+    this.loopCounter++;
+
+    // 超过 10 次循环，主动插入触发词
+    if (this.loopCounter > this.snippetInterval) {
+      await insertRandomSnippet(editor);
+      this.outputChannel.appendLine(
+        `loopCounter ${this.loopCounter} > ${this.snippetInterval}, inserted new trigger snippet, reset loopCounter`
       );
+      this.loopCounter = 0;
+
+      // 立即触发 inlineSuggest 并 commit
+      await vscode.commands.executeCommand(
+        "editor.action.inlineSuggest.trigger"
+      );
+      await new Promise((r) => setTimeout(r, 300));
+      await vscode.commands.executeCommand(
+        "editor.action.inlineSuggest.commit"
+      );
+      await editor.document.save();
+      this.outputChannel.appendLine("trigger + commit after reset");
+    }
+
+    // 首次触发，或者到 snippetInterval 时插入触发词
+    if (
+      !this.hasInsertedTrigger ||
+      this.loopCounter % this.snippetInterval === 0
+    ) {
+      await insertRandomSnippet(editor);
       this.hasInsertedTrigger = true;
       this.outputChannel.appendLine("first trigger success");
     }
 
-    const prevLineCount = editor.document.lineCount;
+    // 获取触发前文档长度
+    const prevDocLength = editor.document.getText().length;
+
+    // 触发 inline suggestion
     await vscode.commands.executeCommand("editor.action.inlineSuggest.trigger");
     this.outputChannel.appendLine("trigger inline suggestion");
 
+    // 等待 300ms 再 commit
+    await new Promise((r) => setTimeout(r, 300));
+
+    // 判断是否采纳
     const currentLineCount = editor.document.lineCount;
     const generatedRatio = this.acceptedCount / currentLineCount;
     const shouldAccept =
       Math.random() < this.acceptRatio / 100 - generatedRatio;
     let didAccept = false;
+
     if (shouldAccept) {
       await vscode.commands.executeCommand(
         "editor.action.inlineSuggest.commit"
       );
-      await editor.document.save().then(() => {
-        this.outputChannel.appendLine(
-          "accept inline suggestion success and save once"
-        );
-      });
       didAccept = true;
-    } else {
-      await insertRandomSnippet(editor);
+      await editor.document.save();
       this.outputChannel.appendLine(
-        "insert random code block instead of accepting"
+        "accept inline suggestion success and save once"
       );
     }
-    const newLineCount = editor.document.lineCount;
-    let addedContent = "";
-    if (newLineCount > prevLineCount) {
-      for (let i = prevLineCount - 1; i < newLineCount - 1; i++) {
-        addedContent += editor.document.lineAt(i).text + "\n";
-      }
-    } else {
-      const lastLineNumber = newLineCount - 2;
-      if (lastLineNumber >= 0) {
-        addedContent = editor.document.lineAt(lastLineNumber).text;
-      }
-    }
-    if (didAccept) {
-      this.acceptedCount++;
+
+    // 获取新增内容，避免重复
+    const newDocText = editor.document.getText();
+    let addedContent = newDocText.slice(prevDocLength).trim();
+
+    if (addedContent && addedContent !== this.lastInsertedContent) {
+      if (didAccept) this.acceptedCount++;
       this.acceptedContentDetails.push({
         count: this.acceptedCount,
-        prevLineCount,
+        content: addedContent,
+        prevLineCount: currentLineCount,
         newLineCount: editor.document.lineCount,
-        content: addedContent.trim(),
       });
+      this.lastInsertedContent = addedContent;
     }
-    if (this.reportViewProvider) {
-      this.emitUpdate(this.acceptedContentDetails);
-    }
-    this.emitUpdate(this.acceptedContentDetails);
-    await this.moveCursorToEndAndInsertNewLine(editor);
-    if (this.shouldTriggerOnEmptyLines(editor, 3, 2)) {
-      await this.insertTriggerWord(editor);
-    }
-  }
 
-  private async moveCursorToEndAndInsertNewLine(editor: vscode.TextEditor) {
+    // 更新报告面板
+    this.emitUpdate(this.acceptedContentDetails);
+
+    // 光标移到最后一行
     const lastLine = editor.document.lineCount - 1;
-    const lastChar = editor.document.lineAt(lastLine).text.length;
-    const pos = new vscode.Position(lastLine, lastChar);
+    const lastLineText = editor.document.lineAt(lastLine).text;
+    const pos = new vscode.Position(lastLine, lastLineText.length);
     editor.selection = new vscode.Selection(pos, pos);
     editor.revealRange(new vscode.Range(pos, pos));
-    await editor.edit((edit) => edit.insert(pos, "\n"));
-  }
 
-  private shouldTriggerOnEmptyLines(
-    editor: vscode.TextEditor,
-    linesCount = 3,
-    emptyThreshold = 2
-  ) {
-    const doc = editor.document;
-    let emptyLines = 0;
-    for (
-      let i = doc.lineCount - 1;
-      i >= Math.max(0, doc.lineCount - linesCount);
-      i--
-    ) {
-      if (doc.lineAt(i).text.trim() === "") emptyLines++;
+    // 如果采纳了，或者到了 snippetInterval，强制加一个换行保证下轮触发
+    if (didAccept || this.loopCounter % this.snippetInterval === 0) {
+      await editor.edit((edit) => edit.insert(pos, "\n"));
     }
-    return emptyLines > emptyThreshold;
-  }
-
-  private async insertTriggerWord(editor: vscode.TextEditor) {
-    const lastLine = editor.document.lineCount - 1;
-    const lastChar = editor.document.lineAt(lastLine).text.length;
-    await editor.edit((edit) =>
-      edit.insert(new vscode.Position(lastLine, lastChar), "\nconst getData =")
-    );
   }
 }

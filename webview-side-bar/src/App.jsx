@@ -94,7 +94,7 @@ const App = () => {
 
   const [botFiles, setBotFiles] = useState([]);
   const [maxLines, setMaxLines] = useState(100);
-  const [acceptRatio, setAcceptRatio] = useState(25);
+  const [acceptRatio, setAcceptRatio] = useState(100);
   const [configModalVisible, setConfigModalVisible] = useState(false);
   const token = useMemo(() => getTokenWithVscodeTheme(), []);
   //添加展示隐藏tab的逻辑

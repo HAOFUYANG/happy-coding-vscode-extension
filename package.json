@@ -2,7 +2,7 @@
   "name": "happy-coding-vscode-extension",
   "displayName": "some useful tools when coding,such as cli...",
   "description": "some useful tools when coding,such as cli...",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "publisher": "HaoFuYang",
   "icon": "icon.png",
   "engines": {
@@ -73,7 +73,7 @@
     "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^24.2.1",
-    "@types/vscode": "^1.102.0",
+    "@types/vscode": "1.70",
     "@vscode/vsce": "^3.6.0",
     "typescript": "^5.9.2"
   },
