@@ -11,7 +11,7 @@ import { AxiosController } from "./controller/axios.controller";
 import { UserController } from "./controller/user.controller";
 import { CodingController } from "./controller/coding.controller";
 import { CliController } from "./controller/cli.controller";
-
+import { PlaywrightController } from "./controller/script.controller";
 export function activate(context: vscode.ExtensionContext): void {
   //1.注册全局context
   ContextService.register(context);
@@ -23,6 +23,7 @@ export function activate(context: vscode.ExtensionContext): void {
     UserController,
     CodingController,
     CliController,
+    PlaywrightController,
   ]);
   // registerServices：负责暴露订阅流（@subscribable）
   registerServices([CodingController]);

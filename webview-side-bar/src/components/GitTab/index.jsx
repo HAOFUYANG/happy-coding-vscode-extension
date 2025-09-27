@@ -17,11 +17,11 @@ import { useGit } from "@/hooks/useGit";
 import WorkspaceApi from "@/api/workspaceApi";
 import { useUser } from "@/hooks/useUser";
 import { useSession } from "@/hooks/useSession";
+import { useScript } from "@/hooks/useScripts";
 const { TextArea } = Input;
 const { Paragraph, Text } = Typography;
 const GitTab = () => {
   const { getUser, updateLoginStatus } = useUser();
-
   //login
   const [showLogin, setShowLogin] = useState(true);
   const [user, setUser] = useState("");
@@ -47,6 +47,14 @@ const GitTab = () => {
       title: "Ant Design Title 2",
     },
   ]);
+  const handleMerge = () => {
+    const { autoMerge } = useScript();
+    let data = {
+      name: "yang",
+      psd: "******",
+    };
+    autoMerge(data);
+  };
   const requestGitRemote = async () => {
     const { remotes: newRemotes, cwd } = await getRemotesWithPath();
     const uniqueRemotes = [...new Set(newRemotes)];
@@ -132,22 +140,17 @@ const GitTab = () => {
   };
   return (
     <div style={{ padding: 0 }}>
-      {showLogin ? (
-        <Login
-          onSuccess={() => {
-            handleLoginSuccess();
-          }}
+      <div>
+        <Avatar
+          style={{ backgroundColor: "#87d068" }}
+          icon={<UserOutlined />}
         />
-      ) : (
-        <div>
-          <Avatar
-            style={{ backgroundColor: "#87d068" }}
-            icon={<UserOutlined />}
-          />
-          <span style={{ marginLeft: 8 }}>Hi, {user}</span>
-        </div>
-      )}
+        <span style={{ marginLeft: 8 }}>Hi, {user}</span>
+      </div>
       <div style={{ marginBottom: 12, textAlign: "right" }}>
+        <Button type="primary" onClick={handleMerge}>
+          Merge
+        </Button>
         <Button type="primary" onClick={handleRefresh}>
           刷新
         </Button>

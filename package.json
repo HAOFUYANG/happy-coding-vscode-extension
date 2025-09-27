@@ -62,6 +62,7 @@
   "scripts": {
     "compile": "tsc -p .",
     "watch": "tsc -watch -p .",
+    "run-merge": "playwright test script/tests/bilibiliBanner.spec.ts",
     "dev:webview": "cd webview-side-bar && npm run dev",
     "build:webview": "cd webview-side-bar && npm install && npm run build",
     "build:extension": "esbuild src/extension.js --bundle --platform=node --external:vscode --outfile=dist/extension.js",
@@ -70,6 +71,7 @@
     "package": "npm run build && vsce package"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
     "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^24.2.1",

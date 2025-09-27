@@ -159,14 +159,14 @@ const App = () => {
   );
   const tabItems = [
     {
+      key: "GIT_TOOLS",
+      label: <>小工具</>,
+      children: <GitTab />,
+    },
+    {
       key: "CLI_TOOLS",
       label: <>脚手架</>,
       children: <CliTab />,
-    },
-    {
-      key: "GIT_TOOLS",
-      label: <>git工具</>,
-      children: <GitTab />,
     },
   ];
 
@@ -212,7 +212,7 @@ const App = () => {
       <div className="container">
         <Tabs
           size="middle"
-          defaultActiveKey="CLI_TOOLS"
+          defaultActiveKey="GIT_TOOLS"
           type="card"
           tabBarExtraContent={extraContent}
           items={tabItems}
