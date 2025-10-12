@@ -11,6 +11,7 @@ import LogTable from "./components/LogTable";
 import SettingsModal from "./components/SettingsModal";
 import CliTab from "./components/CliTab/index";
 import GitTab from "./components/GitTab/index";
+import ScriptTab from "./components/ScriptTab";
 import "./style/antd.css";
 import { vscodeApi } from "./utils/message";
 const { darkAlgorithm, defaultSeed, getDesignToken } = theme;
@@ -167,6 +168,11 @@ const App = () => {
       key: "CLI_TOOLS",
       label: <>脚手架</>,
       children: <CliTab />,
+    },
+    {
+      key: "SCRIPT_TOOLS",
+      label: <>脚本</>,
+      children: <ScriptTab />,
     },
   ];
 

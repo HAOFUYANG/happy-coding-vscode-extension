@@ -1,4 +1,20 @@
 import { defineConfig, devices } from "@playwright/test";
+import * as os from "os";
+import * as path from "path";
+
+function getChromePath() {
+  switch (process.platform) {
+    case "darwin": // macOS
+      return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+    case "win32": // Windows
+      // Windows 上通常安装在这两个位置之一
+      return "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+    case "linux":
+      return "/usr/bin/google-chrome";
+    default:
+      return undefined;
+  }
+}
 
 export default defineConfig({
   testDir: "./script/tests",
@@ -14,7 +30,13 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        launchOptions: {
+          executablePath: getChromePath(),
+          headless: false,
+          args: ["--disable-gpu"],
+        },
+      },
     },
   ],
 });
