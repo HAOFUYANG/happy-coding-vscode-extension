@@ -43,13 +43,13 @@ var require_Reflect = __commonJS({
   "node_modules/reflect-metadata/Reflect.js"() {
     var Reflect2;
     (function(Reflect3) {
-      (function(factory) {
+      (function(factory2) {
         var root = typeof globalThis === "object" ? globalThis : typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : sloppyModeThis();
         var exporter = makeExporter(Reflect3);
         if (typeof root.Reflect !== "undefined") {
           exporter = makeExporter(root.Reflect, exporter);
         }
-        factory(exporter, root);
+        factory2(exporter, root);
         if (typeof root.Reflect === "undefined") {
           root.Reflect = Reflect3;
         }
@@ -9970,11 +9970,11 @@ var require_mime_types = __commonJS({
       }
       return exts[0];
     }
-    function lookup(path15) {
-      if (!path15 || typeof path15 !== "string") {
+    function lookup(path16) {
+      if (!path16 || typeof path16 !== "string") {
         return false;
       }
-      var extension2 = extname("x." + path15).toLowerCase().substr(1);
+      var extension2 = extname("x." + path16).toLowerCase().substr(1);
       if (!extension2) {
         return false;
       }
@@ -11079,7 +11079,7 @@ var require_form_data = __commonJS({
     "use strict";
     var CombinedStream = require_combined_stream();
     var util3 = require("util");
-    var path15 = require("path");
+    var path16 = require("path");
     var http2 = require("http");
     var https2 = require("https");
     var parseUrl = require("url").parse;
@@ -11207,11 +11207,11 @@ var require_form_data = __commonJS({
     FormData3.prototype._getContentDisposition = function(value, options) {
       var filename;
       if (typeof options.filepath === "string") {
-        filename = path15.normalize(options.filepath).replace(/\\/g, "/");
+        filename = path16.normalize(options.filepath).replace(/\\/g, "/");
       } else if (options.filename || value && (value.name || value.path)) {
-        filename = path15.basename(options.filename || value && (value.name || value.path));
+        filename = path16.basename(options.filename || value && (value.name || value.path));
       } else if (value && value.readable && hasOwn(value, "httpVersion")) {
-        filename = path15.basename(value.client._httpMessage.path || "");
+        filename = path16.basename(value.client._httpMessage.path || "");
       }
       if (filename) {
         return 'filename="' + filename + '"';
@@ -11942,7 +11942,7 @@ var require_has_flag = __commonJS({
 var require_supports_color = __commonJS({
   "node_modules/supports-color/index.js"(exports2, module2) {
     "use strict";
-    var os3 = require("os");
+    var os4 = require("os");
     var tty5 = require("tty");
     var hasFlag3 = require_has_flag();
     var { env: env3 } = process;
@@ -11990,7 +11990,7 @@ var require_supports_color = __commonJS({
         return min;
       }
       if (process.platform === "win32") {
-        const osRelease = os3.release().split(".");
+        const osRelease = os4.release().split(".");
         if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
           return Number(osRelease[2]) >= 14931 ? 3 : 2;
         }
@@ -12258,7 +12258,7 @@ var require_follow_redirects = __commonJS({
     (function detectUnsupportedEnvironment() {
       var looksLikeNode = typeof process !== "undefined";
       var looksLikeBrowser = typeof window !== "undefined" && typeof document !== "undefined";
-      var looksLikeV8 = isFunction2(Error.captureStackTrace);
+      var looksLikeV8 = isFunction3(Error.captureStackTrace);
       if (!looksLikeNode && (looksLikeBrowser || !looksLikeV8)) {
         console.warn("The follow-redirects package should be excluded from browser builds.");
       }
@@ -12353,7 +12353,7 @@ var require_follow_redirects = __commonJS({
       if (!isString2(data) && !isBuffer2(data)) {
         throw new TypeError("data should be a string, Buffer or Uint8Array");
       }
-      if (isFunction2(encoding)) {
+      if (isFunction3(encoding)) {
         callback = encoding;
         encoding = null;
       }
@@ -12373,10 +12373,10 @@ var require_follow_redirects = __commonJS({
       }
     };
     RedirectableRequest.prototype.end = function(data, encoding, callback) {
-      if (isFunction2(data)) {
+      if (isFunction3(data)) {
         callback = data;
         data = encoding = null;
-      } else if (isFunction2(encoding)) {
+      } else if (isFunction3(encoding)) {
         callback = encoding;
         encoding = null;
       }
@@ -12577,7 +12577,7 @@ var require_follow_redirects = __commonJS({
       if (redirectUrl.protocol !== currentUrlParts.protocol && redirectUrl.protocol !== "https:" || redirectUrl.host !== currentHost && !isSubdomain(redirectUrl.host, currentHost)) {
         removeMatchingHeaders(/^(?:(?:proxy-)?authorization|cookie)$/i, this._options.headers);
       }
-      if (isFunction2(beforeRedirect)) {
+      if (isFunction3(beforeRedirect)) {
         var responseDetails = {
           headers: response.headers,
           statusCode
@@ -12612,7 +12612,7 @@ var require_follow_redirects = __commonJS({
             options = validateUrl(input);
             input = { protocol };
           }
-          if (isFunction2(options)) {
+          if (isFunction3(options)) {
             callback = options;
             options = null;
           }
@@ -12692,7 +12692,7 @@ var require_follow_redirects = __commonJS({
     }
     function createErrorType(code, message, baseClass) {
       function CustomError(properties) {
-        if (isFunction2(Error.captureStackTrace)) {
+        if (isFunction3(Error.captureStackTrace)) {
           Error.captureStackTrace(this, this.constructor);
         }
         Object.assign(this, properties || {});
@@ -12727,7 +12727,7 @@ var require_follow_redirects = __commonJS({
     function isString2(value) {
       return typeof value === "string" || value instanceof String;
     }
-    function isFunction2(value) {
+    function isFunction3(value) {
       return typeof value === "function";
     }
     function isBuffer2(value) {
@@ -12976,7 +12976,7 @@ var require_console_control_strings = __commonJS({
     exports2.eraseData = function eraseData() {
       return prefix + "J";
     };
-    exports2.eraseLine = function eraseLine() {
+    exports2.eraseLine = function eraseLine2() {
       return prefix + "K";
     };
     exports2.goto = function(x, y) {
@@ -13725,9 +13725,9 @@ var require_plumbing = __commonJS({
 var require_has_unicode = __commonJS({
   "node_modules/has-unicode/index.js"(exports2, module2) {
     "use strict";
-    var os3 = require("os");
+    var os4 = require("os");
     var hasUnicode = module2.exports = function() {
-      if (os3.type() == "Windows_NT") {
+      if (os4.type() == "Windows_NT") {
         return false;
       }
       var isUTF8 = /UTF-?8$/i;
@@ -15020,8 +15020,10 @@ var require_yoctocolors_cjs = __commonJS({
         }
         let result = openCode;
         let lastIndex = 0;
+        const reopenOnNestedClose = close === 22;
+        const replaceCode = (reopenOnNestedClose ? closeCode : "") + openCode;
         while (index !== -1) {
-          result += string.slice(lastIndex, index) + openCode;
+          result += string.slice(lastIndex, index) + replaceCode;
           lastIndex = index + closeCode.length;
           index = string.indexOf(closeCode, lastIndex);
         }
@@ -16011,15 +16013,15 @@ var require_route = __commonJS({
       };
     }
     function wrapConversion(toModel, graph) {
-      const path15 = [graph[toModel].parent, toModel];
+      const path16 = [graph[toModel].parent, toModel];
       let fn = conversions[graph[toModel].parent][toModel];
       let cur = graph[toModel].parent;
       while (graph[cur].parent) {
-        path15.unshift(graph[cur].parent);
+        path16.unshift(graph[cur].parent);
         fn = link(conversions[graph[cur].parent][cur], fn);
         cur = graph[cur].parent;
       }
-      fn.conversion = path15;
+      fn.conversion = path16;
       return fn;
     }
     module2.exports = function(fromModel) {
@@ -16497,159 +16499,84 @@ var require_lib3 = __commonJS({
   }
 });
 
-// node_modules/ansi-escapes/index.js
-var require_ansi_escapes = __commonJS({
-  "node_modules/ansi-escapes/index.js"(exports2, module2) {
+// node_modules/chardet/lib/fs/node.js
+var require_node2 = __commonJS({
+  "node_modules/chardet/lib/fs/node.js"(exports2, module2) {
     "use strict";
-    var ansiEscapes6 = module2.exports;
-    module2.exports.default = ansiEscapes6;
-    var ESC = "\x1B[";
-    var OSC = "\x1B]";
-    var BEL = "\x07";
-    var SEP = ";";
-    var isTerminalApp = process.env.TERM_PROGRAM === "Apple_Terminal";
-    ansiEscapes6.cursorTo = (x, y) => {
-      if (typeof x !== "number") {
-        throw new TypeError("The `x` argument is required");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var fsModule;
+    exports2.default = () => {
+      if (typeof module2 === "object" && typeof module2.exports === "object") {
+        fsModule = fsModule ? fsModule : require("fs");
+        return fsModule;
       }
-      if (typeof y !== "number") {
-        return ESC + (x + 1) + "G";
-      }
-      return ESC + (y + 1) + ";" + (x + 1) + "H";
-    };
-    ansiEscapes6.cursorMove = (x, y) => {
-      if (typeof x !== "number") {
-        throw new TypeError("The `x` argument is required");
-      }
-      let ret = "";
-      if (x < 0) {
-        ret += ESC + -x + "D";
-      } else if (x > 0) {
-        ret += ESC + x + "C";
-      }
-      if (y < 0) {
-        ret += ESC + -y + "A";
-      } else if (y > 0) {
-        ret += ESC + y + "B";
-      }
-      return ret;
-    };
-    ansiEscapes6.cursorUp = (count2 = 1) => ESC + count2 + "A";
-    ansiEscapes6.cursorDown = (count2 = 1) => ESC + count2 + "B";
-    ansiEscapes6.cursorForward = (count2 = 1) => ESC + count2 + "C";
-    ansiEscapes6.cursorBackward = (count2 = 1) => ESC + count2 + "D";
-    ansiEscapes6.cursorLeft = ESC + "G";
-    ansiEscapes6.cursorSavePosition = isTerminalApp ? "\x1B7" : ESC + "s";
-    ansiEscapes6.cursorRestorePosition = isTerminalApp ? "\x1B8" : ESC + "u";
-    ansiEscapes6.cursorGetPosition = ESC + "6n";
-    ansiEscapes6.cursorNextLine = ESC + "E";
-    ansiEscapes6.cursorPrevLine = ESC + "F";
-    ansiEscapes6.cursorHide = ESC + "?25l";
-    ansiEscapes6.cursorShow = ESC + "?25h";
-    ansiEscapes6.eraseLines = (count2) => {
-      let clear = "";
-      for (let i2 = 0; i2 < count2; i2++) {
-        clear += ansiEscapes6.eraseLine + (i2 < count2 - 1 ? ansiEscapes6.cursorUp() : "");
-      }
-      if (count2) {
-        clear += ansiEscapes6.cursorLeft;
-      }
-      return clear;
-    };
-    ansiEscapes6.eraseEndLine = ESC + "K";
-    ansiEscapes6.eraseStartLine = ESC + "1K";
-    ansiEscapes6.eraseLine = ESC + "2K";
-    ansiEscapes6.eraseDown = ESC + "J";
-    ansiEscapes6.eraseUp = ESC + "1J";
-    ansiEscapes6.eraseScreen = ESC + "2J";
-    ansiEscapes6.scrollUp = ESC + "S";
-    ansiEscapes6.scrollDown = ESC + "T";
-    ansiEscapes6.clearScreen = "\x1Bc";
-    ansiEscapes6.clearTerminal = process.platform === "win32" ? `${ansiEscapes6.eraseScreen}${ESC}0f` : (
-      // 1. Erases the screen (Only done in case `2` is not supported)
-      // 2. Erases the whole screen including scrollback buffer
-      // 3. Moves cursor to the top-left position
-      // More info: https://www.real-world-systems.com/docs/ANSIcode.html
-      `${ansiEscapes6.eraseScreen}${ESC}3J${ESC}H`
-    );
-    ansiEscapes6.beep = BEL;
-    ansiEscapes6.link = (text, url2) => {
-      return [
-        OSC,
-        "8",
-        SEP,
-        SEP,
-        url2,
-        BEL,
-        text,
-        OSC,
-        "8",
-        SEP,
-        SEP,
-        BEL
-      ].join("");
-    };
-    ansiEscapes6.image = (buffer, options = {}) => {
-      let ret = `${OSC}1337;File=inline=1`;
-      if (options.width) {
-        ret += `;width=${options.width}`;
-      }
-      if (options.height) {
-        ret += `;height=${options.height}`;
-      }
-      if (options.preserveAspectRatio === false) {
-        ret += ";preserveAspectRatio=0";
-      }
-      return ret + ":" + buffer.toString("base64") + BEL;
-    };
-    ansiEscapes6.iTerm = {
-      setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
-      annotation: (message, options = {}) => {
-        let ret = `${OSC}1337;`;
-        const hasX = typeof options.x !== "undefined";
-        const hasY = typeof options.y !== "undefined";
-        if ((hasX || hasY) && !(hasX && hasY && typeof options.length !== "undefined")) {
-          throw new Error("`x`, `y` and `length` must be defined when `x` or `y` is defined");
-        }
-        message = message.replace(/\|/g, "");
-        ret += options.isHidden ? "AddHiddenAnnotation=" : "AddAnnotation=";
-        if (options.length > 0) {
-          ret += (hasX ? [message, options.length, options.x, options.y] : [options.length, message]).join("|");
-        } else {
-          ret += message;
-        }
-        return ret + BEL;
-      }
+      throw new Error("File system is not available");
     };
   }
 });
 
-// node_modules/chardet/match.js
+// node_modules/chardet/lib/match.js
 var require_match = __commonJS({
-  "node_modules/chardet/match.js"(exports2, module2) {
-    module2.exports = function(det, rec, confidence, name, lang) {
-      this.confidence = confidence;
-      this.name = name || rec.name(det);
-      this.lang = lang;
-    };
+  "node_modules/chardet/lib/match.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.default = (ctx, rec, confidence) => ({
+      confidence,
+      name: rec.name(ctx),
+      lang: rec.language ? rec.language() : void 0
+    });
   }
 });
 
-// node_modules/chardet/encoding/utf8.js
+// node_modules/chardet/lib/encoding/ascii.js
+var require_ascii = __commonJS({
+  "node_modules/chardet/lib/encoding/ascii.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var match_1 = __importDefault(require_match());
+    var Ascii = class {
+      name() {
+        return "ASCII";
+      }
+      match(det) {
+        const input = det.rawInput;
+        for (let i2 = 0; i2 < det.rawLen; i2++) {
+          const b = input[i2];
+          if (b < 32 || b > 126) {
+            return (0, match_1.default)(det, this, 0);
+          }
+        }
+        return (0, match_1.default)(det, this, 100);
+      }
+    };
+    exports2.default = Ascii;
+  }
+});
+
+// node_modules/chardet/lib/encoding/utf8.js
 var require_utf8 = __commonJS({
-  "node_modules/chardet/encoding/utf8.js"(exports2, module2) {
-    var Match = require_match();
-    module2.exports = function() {
-      this.name = function() {
+  "node_modules/chardet/lib/encoding/utf8.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var match_1 = __importDefault(require_match());
+    var Utf8 = class {
+      name() {
         return "UTF-8";
-      };
-      this.match = function(det) {
-        var hasBOM = false, numValid = 0, numInvalid = 0, input = det.fRawInput, trailBytes = 0, confidence;
-        if (det.fRawLength >= 3 && (input[0] & 255) == 239 && (input[1] & 255) == 187 && (input[2] & 255) == 191) {
+      }
+      match(det) {
+        let hasBOM = false, numValid = 0, numInvalid = 0, trailBytes = 0, confidence;
+        const input = det.rawInput;
+        if (det.rawLen >= 3 && (input[0] & 255) == 239 && (input[1] & 255) == 187 && (input[2] & 255) == 191) {
           hasBOM = true;
         }
-        for (var i2 = 0; i2 < det.fRawLength; i2++) {
-          var b = input[i2];
+        for (let i2 = 0; i2 < det.rawLen; i2++) {
+          const b = input[i2];
           if ((b & 128) == 0)
             continue;
           if ((b & 224) == 192) {
@@ -16666,7 +16593,7 @@ var require_utf8 = __commonJS({
           }
           for (; ; ) {
             i2++;
-            if (i2 >= det.fRawLength)
+            if (i2 >= det.rawLen)
               break;
             if ((input[i2] & 192) != 128) {
               numInvalid++;
@@ -16693,269 +16620,297 @@ var require_utf8 = __commonJS({
           confidence = 25;
         else
           return null;
-        return new Match(det, this, confidence);
-      };
+        return (0, match_1.default)(det, this, confidence);
+      }
     };
+    exports2.default = Utf8;
   }
 });
 
-// node_modules/chardet/encoding/unicode.js
+// node_modules/chardet/lib/encoding/unicode.js
 var require_unicode = __commonJS({
-  "node_modules/chardet/encoding/unicode.js"(exports2, module2) {
+  "node_modules/chardet/lib/encoding/unicode.js"(exports2) {
     "use strict";
-    var util3 = require("util");
-    var Match = require_match();
-    module2.exports.UTF_16BE = function() {
-      this.name = function() {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UTF_32LE = exports2.UTF_32BE = exports2.UTF_16LE = exports2.UTF_16BE = void 0;
+    var match_1 = __importDefault(require_match());
+    var UTF_16BE = class {
+      name() {
         return "UTF-16BE";
-      };
-      this.match = function(det) {
-        var input = det.fRawInput;
-        if (input.length >= 2 && ((input[0] & 255) == 254 && (input[1] & 255) == 255)) {
-          return new Match(det, this, 100);
+      }
+      match(det) {
+        const input = det.rawInput;
+        if (input.length >= 2 && (input[0] & 255) == 254 && (input[1] & 255) == 255) {
+          return (0, match_1.default)(det, this, 100);
         }
         return null;
-      };
+      }
     };
-    module2.exports.UTF_16LE = function() {
-      this.name = function() {
+    exports2.UTF_16BE = UTF_16BE;
+    var UTF_16LE = class {
+      name() {
         return "UTF-16LE";
-      };
-      this.match = function(det) {
-        var input = det.fRawInput;
-        if (input.length >= 2 && ((input[0] & 255) == 255 && (input[1] & 255) == 254)) {
+      }
+      match(det) {
+        const input = det.rawInput;
+        if (input.length >= 2 && (input[0] & 255) == 255 && (input[1] & 255) == 254) {
           if (input.length >= 4 && input[2] == 0 && input[3] == 0) {
             return null;
           }
-          return new Match(det, this, 100);
+          return (0, match_1.default)(det, this, 100);
         }
         return null;
-      };
+      }
     };
-    function UTF_32() {
-    }
-    UTF_32.prototype.match = function(det) {
-      var input = det.fRawInput, limit = det.fRawLength / 4 * 4, numValid = 0, numInvalid = 0, hasBOM = false, confidence = 0;
-      if (limit == 0) {
-        return null;
+    exports2.UTF_16LE = UTF_16LE;
+    var UTF_32 = class {
+      name() {
+        return "UTF-32";
       }
-      if (this.getChar(input, 0) == 65279) {
-        hasBOM = true;
+      getChar(_input, _index) {
+        return -1;
       }
-      for (var i2 = 0; i2 < limit; i2 += 4) {
-        var ch = this.getChar(input, i2);
-        if (ch < 0 || ch >= 1114111 || ch >= 55296 && ch <= 57343) {
-          numInvalid += 1;
-        } else {
-          numValid += 1;
+      match(det) {
+        let numValid = 0, numInvalid = 0, hasBOM = false, confidence = 0;
+        const limit = det.rawLen / 4 * 4;
+        const input = det.rawInput;
+        if (limit == 0) {
+          return null;
         }
+        if (this.getChar(input, 0) == 65279) {
+          hasBOM = true;
+        }
+        for (let i2 = 0; i2 < limit; i2 += 4) {
+          const ch = this.getChar(input, i2);
+          if (ch < 0 || ch >= 1114111 || ch >= 55296 && ch <= 57343) {
+            numInvalid += 1;
+          } else {
+            numValid += 1;
+          }
+        }
+        if (hasBOM && numInvalid == 0) {
+          confidence = 100;
+        } else if (hasBOM && numValid > numInvalid * 10) {
+          confidence = 80;
+        } else if (numValid > 3 && numInvalid == 0) {
+          confidence = 100;
+        } else if (numValid > 0 && numInvalid == 0) {
+          confidence = 80;
+        } else if (numValid > numInvalid * 10) {
+          confidence = 25;
+        }
+        return confidence == 0 ? null : (0, match_1.default)(det, this, confidence);
       }
-      if (hasBOM && numInvalid == 0) {
-        confidence = 100;
-      } else if (hasBOM && numValid > numInvalid * 10) {
-        confidence = 80;
-      } else if (numValid > 3 && numInvalid == 0) {
-        confidence = 100;
-      } else if (numValid > 0 && numInvalid == 0) {
-        confidence = 80;
-      } else if (numValid > numInvalid * 10) {
-        confidence = 25;
-      }
-      return confidence == 0 ? null : new Match(det, this, confidence);
     };
-    module2.exports.UTF_32BE = function() {
-      this.name = function() {
+    var UTF_32BE = class extends UTF_32 {
+      name() {
         return "UTF-32BE";
-      };
-      this.getChar = function(input, index) {
+      }
+      getChar(input, index) {
         return (input[index + 0] & 255) << 24 | (input[index + 1] & 255) << 16 | (input[index + 2] & 255) << 8 | input[index + 3] & 255;
-      };
+      }
     };
-    util3.inherits(module2.exports.UTF_32BE, UTF_32);
-    module2.exports.UTF_32LE = function() {
-      this.name = function() {
+    exports2.UTF_32BE = UTF_32BE;
+    var UTF_32LE = class extends UTF_32 {
+      name() {
         return "UTF-32LE";
-      };
-      this.getChar = function(input, index) {
+      }
+      getChar(input, index) {
         return (input[index + 3] & 255) << 24 | (input[index + 2] & 255) << 16 | (input[index + 1] & 255) << 8 | input[index + 0] & 255;
-      };
+      }
     };
-    util3.inherits(module2.exports.UTF_32LE, UTF_32);
+    exports2.UTF_32LE = UTF_32LE;
   }
 });
 
-// node_modules/chardet/encoding/mbcs.js
+// node_modules/chardet/lib/encoding/mbcs.js
 var require_mbcs = __commonJS({
-  "node_modules/chardet/encoding/mbcs.js"(exports2, module2) {
-    var util3 = require("util");
-    var Match = require_match();
+  "node_modules/chardet/lib/encoding/mbcs.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.gb_18030 = exports2.euc_kr = exports2.euc_jp = exports2.big5 = exports2.sjis = void 0;
+    var match_1 = __importDefault(require_match());
     function binarySearch(arr, searchValue) {
-      function find(arr2, searchValue2, left, right) {
+      const find = (arr2, searchValue2, left, right) => {
         if (right < left)
           return -1;
-        var mid = Math.floor(left + right >>> 1);
+        const mid = Math.floor(left + right >>> 1);
         if (searchValue2 > arr2[mid])
           return find(arr2, searchValue2, mid + 1, right);
         if (searchValue2 < arr2[mid])
           return find(arr2, searchValue2, left, mid - 1);
         return mid;
-      }
-      ;
+      };
       return find(arr, searchValue, 0, arr.length - 1);
     }
-    function IteratedChar() {
-      this.charValue = 0;
-      this.index = 0;
-      this.nextIndex = 0;
-      this.error = false;
-      this.done = false;
-      this.reset = function() {
+    var IteratedChar = class {
+      constructor() {
+        this.charValue = 0;
+        this.index = 0;
+        this.nextIndex = 0;
+        this.error = false;
+        this.done = false;
+      }
+      reset() {
         this.charValue = 0;
         this.index = -1;
         this.nextIndex = 0;
         this.error = false;
         this.done = false;
-      };
-      this.nextByte = function(det) {
-        if (this.nextIndex >= det.fRawLength) {
+      }
+      nextByte(det) {
+        if (this.nextIndex >= det.rawLen) {
           this.done = true;
           return -1;
         }
-        var byteValue = det.fRawInput[this.nextIndex++] & 255;
+        const byteValue = det.rawInput[this.nextIndex++] & 255;
         return byteValue;
-      };
-    }
-    function mbcs() {
-    }
-    mbcs.prototype.match = function(det) {
-      var singleByteCharCount = 0, doubleByteCharCount = 0, commonCharCount = 0, badCharCount = 0, totalCharCount = 0, confidence = 0;
-      var iter = new IteratedChar();
-      detectBlock: {
-        for (iter.reset(); this.nextChar(iter, det); ) {
-          totalCharCount++;
-          if (iter.error) {
-            badCharCount++;
-          } else {
-            var cv = iter.charValue & 4294967295;
-            if (cv <= 255) {
-              singleByteCharCount++;
+      }
+    };
+    var mbcs = class {
+      constructor() {
+        this.commonChars = [];
+      }
+      name() {
+        return "mbcs";
+      }
+      match(det) {
+        let doubleByteCharCount = 0, commonCharCount = 0, badCharCount = 0, totalCharCount = 0, confidence = 0;
+        const iter = new IteratedChar();
+        detectBlock: {
+          for (iter.reset(); this.nextChar(iter, det); ) {
+            totalCharCount++;
+            if (iter.error) {
+              badCharCount++;
             } else {
-              doubleByteCharCount++;
-              if (this.commonChars != null) {
-                if (binarySearch(this.commonChars, cv) >= 0) {
-                  commonCharCount++;
+              const cv = iter.charValue & 4294967295;
+              if (cv > 255) {
+                doubleByteCharCount++;
+                if (this.commonChars != null) {
+                  if (binarySearch(this.commonChars, cv) >= 0) {
+                    commonCharCount++;
+                  }
                 }
               }
             }
+            if (badCharCount >= 2 && badCharCount * 5 >= doubleByteCharCount) {
+              break detectBlock;
+            }
           }
-          if (badCharCount >= 2 && badCharCount * 5 >= doubleByteCharCount) {
+          if (doubleByteCharCount <= 10 && badCharCount == 0) {
+            if (doubleByteCharCount == 0 && totalCharCount < 10) {
+              confidence = 0;
+            } else {
+              confidence = 10;
+            }
             break detectBlock;
           }
-        }
-        if (doubleByteCharCount <= 10 && badCharCount == 0) {
-          if (doubleByteCharCount == 0 && totalCharCount < 10) {
+          if (doubleByteCharCount < 20 * badCharCount) {
             confidence = 0;
+            break detectBlock;
+          }
+          if (this.commonChars == null) {
+            confidence = 30 + doubleByteCharCount - 20 * badCharCount;
+            if (confidence > 100) {
+              confidence = 100;
+            }
           } else {
-            confidence = 10;
+            const maxVal = Math.log(doubleByteCharCount / 4);
+            const scaleFactor = 90 / maxVal;
+            confidence = Math.floor(Math.log(commonCharCount + 1) * scaleFactor + 10);
+            confidence = Math.min(confidence, 100);
           }
-          break detectBlock;
         }
-        if (doubleByteCharCount < 20 * badCharCount) {
-          confidence = 0;
-          break detectBlock;
-        }
-        if (this.commonChars == null) {
-          confidence = 30 + doubleByteCharCount - 20 * badCharCount;
-          if (confidence > 100) {
-            confidence = 100;
-          }
-        } else {
-          var maxVal = Math.log(parseFloat(doubleByteCharCount) / 4);
-          var scaleFactor = 90 / maxVal;
-          confidence = Math.floor(Math.log(commonCharCount + 1) * scaleFactor + 10);
-          confidence = Math.min(confidence, 100);
-        }
+        return confidence == 0 ? null : (0, match_1.default)(det, this, confidence);
       }
-      return confidence == 0 ? null : new Match(det, this, confidence);
+      nextChar(_iter, _det) {
+        return true;
+      }
     };
-    mbcs.prototype.nextChar = function(iter, det) {
-    };
-    module2.exports.sjis = function() {
-      this.name = function() {
-        return "Shift-JIS";
-      };
-      this.language = function() {
+    var sjis = class extends mbcs {
+      constructor() {
+        super(...arguments);
+        this.commonChars = [
+          33088,
+          33089,
+          33090,
+          33093,
+          33115,
+          33129,
+          33130,
+          33141,
+          33142,
+          33440,
+          33442,
+          33444,
+          33449,
+          33450,
+          33451,
+          33453,
+          33455,
+          33457,
+          33459,
+          33461,
+          33463,
+          33469,
+          33470,
+          33473,
+          33476,
+          33477,
+          33478,
+          33480,
+          33481,
+          33484,
+          33485,
+          33500,
+          33504,
+          33511,
+          33512,
+          33513,
+          33514,
+          33520,
+          33521,
+          33601,
+          33603,
+          33614,
+          33615,
+          33624,
+          33630,
+          33634,
+          33639,
+          33653,
+          33654,
+          33673,
+          33674,
+          33675,
+          33677,
+          33683,
+          36502,
+          37882,
+          38314
+        ];
+      }
+      name() {
+        return "Shift_JIS";
+      }
+      language() {
         return "ja";
-      };
-      this.commonChars = [
-        33088,
-        33089,
-        33090,
-        33093,
-        33115,
-        33129,
-        33130,
-        33141,
-        33142,
-        33440,
-        33442,
-        33444,
-        33449,
-        33450,
-        33451,
-        33453,
-        33455,
-        33457,
-        33459,
-        33461,
-        33463,
-        33469,
-        33470,
-        33473,
-        33476,
-        33477,
-        33478,
-        33480,
-        33481,
-        33484,
-        33485,
-        33500,
-        33504,
-        33511,
-        33512,
-        33513,
-        33514,
-        33520,
-        33521,
-        33601,
-        33603,
-        33614,
-        33615,
-        33624,
-        33630,
-        33634,
-        33639,
-        33653,
-        33654,
-        33673,
-        33674,
-        33675,
-        33677,
-        33683,
-        36502,
-        37882,
-        38314
-      ];
-      this.nextChar = function(iter, det) {
+      }
+      nextChar(iter, det) {
         iter.index = iter.nextIndex;
         iter.error = false;
-        var firstByte;
-        firstByte = iter.charValue = iter.nextByte(det);
+        const firstByte = iter.charValue = iter.nextByte(det);
         if (firstByte < 0)
           return false;
         if (firstByte <= 127 || firstByte > 160 && firstByte <= 223)
           return true;
-        var secondByte = iter.nextByte(det);
+        const secondByte = iter.nextByte(det);
         if (secondByte < 0)
           return false;
         iter.charValue = firstByte << 8 | secondByte;
@@ -16963,138 +16918,141 @@ var require_mbcs = __commonJS({
           iter.error = true;
         }
         return true;
-      };
+      }
     };
-    util3.inherits(module2.exports.sjis, mbcs);
-    module2.exports.big5 = function() {
-      this.name = function() {
+    exports2.sjis = sjis;
+    var big5 = class extends mbcs {
+      constructor() {
+        super(...arguments);
+        this.commonChars = [
+          41280,
+          41281,
+          41282,
+          41283,
+          41287,
+          41289,
+          41333,
+          41334,
+          42048,
+          42054,
+          42055,
+          42056,
+          42065,
+          42068,
+          42071,
+          42084,
+          42090,
+          42092,
+          42103,
+          42147,
+          42148,
+          42151,
+          42177,
+          42190,
+          42193,
+          42207,
+          42216,
+          42237,
+          42304,
+          42312,
+          42328,
+          42345,
+          42445,
+          42471,
+          42583,
+          42593,
+          42594,
+          42600,
+          42608,
+          42664,
+          42675,
+          42681,
+          42707,
+          42715,
+          42726,
+          42738,
+          42816,
+          42833,
+          42841,
+          42970,
+          43171,
+          43173,
+          43181,
+          43217,
+          43219,
+          43236,
+          43260,
+          43456,
+          43474,
+          43507,
+          43627,
+          43706,
+          43710,
+          43724,
+          43772,
+          44103,
+          44111,
+          44208,
+          44242,
+          44377,
+          44745,
+          45024,
+          45290,
+          45423,
+          45747,
+          45764,
+          45935,
+          46156,
+          46158,
+          46412,
+          46501,
+          46525,
+          46544,
+          46552,
+          46705,
+          47085,
+          47207,
+          47428,
+          47832,
+          47940,
+          48033,
+          48593,
+          49860,
+          50105,
+          50240,
+          50271
+        ];
+      }
+      name() {
         return "Big5";
-      };
-      this.language = function() {
+      }
+      language() {
         return "zh";
-      };
-      this.commonChars = [
-        41280,
-        41281,
-        41282,
-        41283,
-        41287,
-        41289,
-        41333,
-        41334,
-        42048,
-        42054,
-        42055,
-        42056,
-        42065,
-        42068,
-        42071,
-        42084,
-        42090,
-        42092,
-        42103,
-        42147,
-        42148,
-        42151,
-        42177,
-        42190,
-        42193,
-        42207,
-        42216,
-        42237,
-        42304,
-        42312,
-        42328,
-        42345,
-        42445,
-        42471,
-        42583,
-        42593,
-        42594,
-        42600,
-        42608,
-        42664,
-        42675,
-        42681,
-        42707,
-        42715,
-        42726,
-        42738,
-        42816,
-        42833,
-        42841,
-        42970,
-        43171,
-        43173,
-        43181,
-        43217,
-        43219,
-        43236,
-        43260,
-        43456,
-        43474,
-        43507,
-        43627,
-        43706,
-        43710,
-        43724,
-        43772,
-        44103,
-        44111,
-        44208,
-        44242,
-        44377,
-        44745,
-        45024,
-        45290,
-        45423,
-        45747,
-        45764,
-        45935,
-        46156,
-        46158,
-        46412,
-        46501,
-        46525,
-        46544,
-        46552,
-        46705,
-        47085,
-        47207,
-        47428,
-        47832,
-        47940,
-        48033,
-        48593,
-        49860,
-        50105,
-        50240,
-        50271
-      ];
-      this.nextChar = function(iter, det) {
+      }
+      nextChar(iter, det) {
         iter.index = iter.nextIndex;
         iter.error = false;
-        var firstByte = iter.charValue = iter.nextByte(det);
+        const firstByte = iter.charValue = iter.nextByte(det);
         if (firstByte < 0)
           return false;
         if (firstByte <= 127 || firstByte == 255)
           return true;
-        var secondByte = iter.nextByte(det);
+        const secondByte = iter.nextByte(det);
         if (secondByte < 0)
           return false;
         iter.charValue = iter.charValue << 8 | secondByte;
         if (secondByte < 64 || secondByte == 127 || secondByte == 255)
           iter.error = true;
         return true;
-      };
+      }
     };
-    util3.inherits(module2.exports.big5, mbcs);
+    exports2.big5 = big5;
     function eucNextChar(iter, det) {
       iter.index = iter.nextIndex;
       iter.error = false;
-      var firstByte = 0;
-      var secondByte = 0;
-      var thirdByte = 0;
+      let firstByte = 0;
+      let secondByte = 0;
+      let thirdByte = 0;
       buildChar: {
         firstByte = iter.charValue = iter.nextByte(det);
         if (firstByte < 0) {
@@ -17128,244 +17086,355 @@ var require_mbcs = __commonJS({
       }
       return iter.done == false;
     }
-    module2.exports.euc_jp = function() {
-      this.name = function() {
+    var euc_jp = class extends mbcs {
+      constructor() {
+        super(...arguments);
+        this.commonChars = [
+          41377,
+          41378,
+          41379,
+          41382,
+          41404,
+          41418,
+          41419,
+          41430,
+          41431,
+          42146,
+          42148,
+          42150,
+          42152,
+          42154,
+          42155,
+          42156,
+          42157,
+          42159,
+          42161,
+          42163,
+          42165,
+          42167,
+          42169,
+          42171,
+          42173,
+          42175,
+          42176,
+          42177,
+          42179,
+          42180,
+          42182,
+          42183,
+          42184,
+          42185,
+          42186,
+          42187,
+          42190,
+          42191,
+          42192,
+          42206,
+          42207,
+          42209,
+          42210,
+          42212,
+          42216,
+          42217,
+          42218,
+          42219,
+          42220,
+          42223,
+          42226,
+          42227,
+          42402,
+          42403,
+          42404,
+          42406,
+          42407,
+          42410,
+          42413,
+          42415,
+          42416,
+          42419,
+          42421,
+          42423,
+          42424,
+          42425,
+          42431,
+          42435,
+          42438,
+          42439,
+          42440,
+          42441,
+          42443,
+          42448,
+          42453,
+          42454,
+          42455,
+          42462,
+          42464,
+          42465,
+          42469,
+          42473,
+          42474,
+          42475,
+          42476,
+          42477,
+          42483,
+          47273,
+          47572,
+          47854,
+          48072,
+          48880,
+          49079,
+          50410,
+          50940,
+          51133,
+          51896,
+          51955,
+          52188,
+          52689
+        ];
+        this.nextChar = eucNextChar;
+      }
+      name() {
         return "EUC-JP";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ja";
-      };
-      this.commonChars = [
-        41377,
-        41378,
-        41379,
-        41382,
-        41404,
-        41418,
-        41419,
-        41430,
-        41431,
-        42146,
-        42148,
-        42150,
-        42152,
-        42154,
-        42155,
-        42156,
-        42157,
-        42159,
-        42161,
-        42163,
-        42165,
-        42167,
-        42169,
-        42171,
-        42173,
-        42175,
-        42176,
-        42177,
-        42179,
-        42180,
-        42182,
-        42183,
-        42184,
-        42185,
-        42186,
-        42187,
-        42190,
-        42191,
-        42192,
-        42206,
-        42207,
-        42209,
-        42210,
-        42212,
-        42216,
-        42217,
-        42218,
-        42219,
-        42220,
-        42223,
-        42226,
-        42227,
-        42402,
-        42403,
-        42404,
-        42406,
-        42407,
-        42410,
-        42413,
-        42415,
-        42416,
-        42419,
-        42421,
-        42423,
-        42424,
-        42425,
-        42431,
-        42435,
-        42438,
-        42439,
-        42440,
-        42441,
-        42443,
-        42448,
-        42453,
-        42454,
-        42455,
-        42462,
-        42464,
-        42465,
-        42469,
-        42473,
-        42474,
-        42475,
-        42476,
-        42477,
-        42483,
-        47273,
-        47572,
-        47854,
-        48072,
-        48880,
-        49079,
-        50410,
-        50940,
-        51133,
-        51896,
-        51955,
-        52188,
-        52689
-      ];
-      this.nextChar = eucNextChar;
+      }
     };
-    util3.inherits(module2.exports.euc_jp, mbcs);
-    module2.exports.euc_kr = function() {
-      this.name = function() {
+    exports2.euc_jp = euc_jp;
+    var euc_kr = class extends mbcs {
+      constructor() {
+        super(...arguments);
+        this.commonChars = [
+          45217,
+          45235,
+          45253,
+          45261,
+          45268,
+          45286,
+          45293,
+          45304,
+          45306,
+          45308,
+          45496,
+          45497,
+          45511,
+          45527,
+          45538,
+          45994,
+          46011,
+          46274,
+          46287,
+          46297,
+          46315,
+          46501,
+          46517,
+          46527,
+          46535,
+          46569,
+          46835,
+          47023,
+          47042,
+          47054,
+          47270,
+          47278,
+          47286,
+          47288,
+          47291,
+          47337,
+          47531,
+          47534,
+          47564,
+          47566,
+          47613,
+          47800,
+          47822,
+          47824,
+          47857,
+          48103,
+          48115,
+          48125,
+          48301,
+          48314,
+          48338,
+          48374,
+          48570,
+          48576,
+          48579,
+          48581,
+          48838,
+          48840,
+          48863,
+          48878,
+          48888,
+          48890,
+          49057,
+          49065,
+          49088,
+          49124,
+          49131,
+          49132,
+          49144,
+          49319,
+          49327,
+          49336,
+          49338,
+          49339,
+          49341,
+          49351,
+          49356,
+          49358,
+          49359,
+          49366,
+          49370,
+          49381,
+          49403,
+          49404,
+          49572,
+          49574,
+          49590,
+          49622,
+          49631,
+          49654,
+          49656,
+          50337,
+          50637,
+          50862,
+          51151,
+          51153,
+          51154,
+          51160,
+          51173,
+          51373
+        ];
+        this.nextChar = eucNextChar;
+      }
+      name() {
         return "EUC-KR";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ko";
-      };
-      this.commonChars = [
-        45217,
-        45235,
-        45253,
-        45261,
-        45268,
-        45286,
-        45293,
-        45304,
-        45306,
-        45308,
-        45496,
-        45497,
-        45511,
-        45527,
-        45538,
-        45994,
-        46011,
-        46274,
-        46287,
-        46297,
-        46315,
-        46501,
-        46517,
-        46527,
-        46535,
-        46569,
-        46835,
-        47023,
-        47042,
-        47054,
-        47270,
-        47278,
-        47286,
-        47288,
-        47291,
-        47337,
-        47531,
-        47534,
-        47564,
-        47566,
-        47613,
-        47800,
-        47822,
-        47824,
-        47857,
-        48103,
-        48115,
-        48125,
-        48301,
-        48314,
-        48338,
-        48374,
-        48570,
-        48576,
-        48579,
-        48581,
-        48838,
-        48840,
-        48863,
-        48878,
-        48888,
-        48890,
-        49057,
-        49065,
-        49088,
-        49124,
-        49131,
-        49132,
-        49144,
-        49319,
-        49327,
-        49336,
-        49338,
-        49339,
-        49341,
-        49351,
-        49356,
-        49358,
-        49359,
-        49366,
-        49370,
-        49381,
-        49403,
-        49404,
-        49572,
-        49574,
-        49590,
-        49622,
-        49631,
-        49654,
-        49656,
-        50337,
-        50637,
-        50862,
-        51151,
-        51153,
-        51154,
-        51160,
-        51173,
-        51373
-      ];
-      this.nextChar = eucNextChar;
+      }
     };
-    util3.inherits(module2.exports.euc_kr, mbcs);
-    module2.exports.gb_18030 = function() {
-      this.name = function() {
+    exports2.euc_kr = euc_kr;
+    var gb_18030 = class extends mbcs {
+      constructor() {
+        super(...arguments);
+        this.commonChars = [
+          41377,
+          41378,
+          41379,
+          41380,
+          41392,
+          41393,
+          41457,
+          41459,
+          41889,
+          41900,
+          41914,
+          45480,
+          45496,
+          45502,
+          45755,
+          46025,
+          46070,
+          46323,
+          46525,
+          46532,
+          46563,
+          46767,
+          46804,
+          46816,
+          47010,
+          47016,
+          47037,
+          47062,
+          47069,
+          47284,
+          47327,
+          47350,
+          47531,
+          47561,
+          47576,
+          47610,
+          47613,
+          47821,
+          48039,
+          48086,
+          48097,
+          48122,
+          48316,
+          48347,
+          48382,
+          48588,
+          48845,
+          48861,
+          49076,
+          49094,
+          49097,
+          49332,
+          49389,
+          49611,
+          49883,
+          50119,
+          50396,
+          50410,
+          50636,
+          50935,
+          51192,
+          51371,
+          51403,
+          51413,
+          51431,
+          51663,
+          51706,
+          51889,
+          51893,
+          51911,
+          51920,
+          51926,
+          51957,
+          51965,
+          52460,
+          52728,
+          52906,
+          52932,
+          52946,
+          52965,
+          53173,
+          53186,
+          53206,
+          53442,
+          53445,
+          53456,
+          53460,
+          53671,
+          53930,
+          53938,
+          53941,
+          53947,
+          53972,
+          54211,
+          54224,
+          54269,
+          54466,
+          54490,
+          54754,
+          54992
+        ];
+      }
+      name() {
         return "GB18030";
-      };
-      this.language = function() {
+      }
+      language() {
         return "zh";
-      };
-      this.nextChar = function(iter, det) {
+      }
+      nextChar(iter, det) {
         iter.index = iter.nextIndex;
         iter.error = false;
-        var firstByte = 0;
-        var secondByte = 0;
-        var thirdByte = 0;
-        var fourthByte = 0;
+        let firstByte = 0;
+        let secondByte = 0;
+        let thirdByte = 0;
+        let fourthByte = 0;
         buildChar: {
           firstByte = iter.charValue = iter.nextByte(det);
           if (firstByte < 0) {
@@ -17396,161 +17465,73 @@ var require_mbcs = __commonJS({
           }
         }
         return iter.done == false;
-      };
-      this.commonChars = [
-        41377,
-        41378,
-        41379,
-        41380,
-        41392,
-        41393,
-        41457,
-        41459,
-        41889,
-        41900,
-        41914,
-        45480,
-        45496,
-        45502,
-        45755,
-        46025,
-        46070,
-        46323,
-        46525,
-        46532,
-        46563,
-        46767,
-        46804,
-        46816,
-        47010,
-        47016,
-        47037,
-        47062,
-        47069,
-        47284,
-        47327,
-        47350,
-        47531,
-        47561,
-        47576,
-        47610,
-        47613,
-        47821,
-        48039,
-        48086,
-        48097,
-        48122,
-        48316,
-        48347,
-        48382,
-        48588,
-        48845,
-        48861,
-        49076,
-        49094,
-        49097,
-        49332,
-        49389,
-        49611,
-        49883,
-        50119,
-        50396,
-        50410,
-        50636,
-        50935,
-        51192,
-        51371,
-        51403,
-        51413,
-        51431,
-        51663,
-        51706,
-        51889,
-        51893,
-        51911,
-        51920,
-        51926,
-        51957,
-        51965,
-        52460,
-        52728,
-        52906,
-        52932,
-        52946,
-        52965,
-        53173,
-        53186,
-        53206,
-        53442,
-        53445,
-        53456,
-        53460,
-        53671,
-        53930,
-        53938,
-        53941,
-        53947,
-        53972,
-        54211,
-        54224,
-        54269,
-        54466,
-        54490,
-        54754,
-        54992
-      ];
+      }
     };
-    util3.inherits(module2.exports.gb_18030, mbcs);
+    exports2.gb_18030 = gb_18030;
   }
 });
 
-// node_modules/chardet/encoding/sbcs.js
+// node_modules/chardet/lib/encoding/sbcs.js
 var require_sbcs = __commonJS({
-  "node_modules/chardet/encoding/sbcs.js"(exports2, module2) {
-    var util3 = require("util");
-    var Match = require_match();
-    function NGramParser(theNgramList, theByteMap) {
-      var N_GRAM_MASK = 16777215;
-      this.byteIndex = 0;
-      this.ngram = 0;
-      this.ngramList = theNgramList;
-      this.byteMap = theByteMap;
-      this.ngramCount = 0;
-      this.hitCount = 0;
-      this.spaceChar;
-      this.search = function(table, value) {
-        var index = 0;
-        if (table[index + 32] <= value) index += 32;
-        if (table[index + 16] <= value) index += 16;
-        if (table[index + 8] <= value) index += 8;
-        if (table[index + 4] <= value) index += 4;
-        if (table[index + 2] <= value) index += 2;
-        if (table[index + 1] <= value) index += 1;
-        if (table[index] > value) index -= 1;
+  "node_modules/chardet/lib/encoding/sbcs.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.KOI8_R = exports2.windows_1256 = exports2.windows_1251 = exports2.ISO_8859_9 = exports2.ISO_8859_8 = exports2.ISO_8859_7 = exports2.ISO_8859_6 = exports2.ISO_8859_5 = exports2.ISO_8859_2 = exports2.ISO_8859_1 = void 0;
+    var match_1 = __importDefault(require_match());
+    var N_GRAM_MASK = 16777215;
+    var NGramParser = class {
+      constructor(theNgramList, theByteMap) {
+        this.byteIndex = 0;
+        this.ngram = 0;
+        this.ngramCount = 0;
+        this.hitCount = 0;
+        this.spaceChar = 32;
+        this.ngramList = theNgramList;
+        this.byteMap = theByteMap;
+      }
+      search(table, value) {
+        let index = 0;
+        if (table[index + 32] <= value)
+          index += 32;
+        if (table[index + 16] <= value)
+          index += 16;
+        if (table[index + 8] <= value)
+          index += 8;
+        if (table[index + 4] <= value)
+          index += 4;
+        if (table[index + 2] <= value)
+          index += 2;
+        if (table[index + 1] <= value)
+          index += 1;
+        if (table[index] > value)
+          index -= 1;
         if (index < 0 || table[index] != value)
           return -1;
         return index;
-      };
-      this.lookup = function(thisNgram) {
+      }
+      lookup(thisNgram) {
         this.ngramCount += 1;
         if (this.search(this.ngramList, thisNgram) >= 0) {
           this.hitCount += 1;
         }
-      };
-      this.addByte = function(b) {
+      }
+      addByte(b) {
         this.ngram = (this.ngram << 8) + (b & 255) & N_GRAM_MASK;
         this.lookup(this.ngram);
-      };
-      this.nextByte = function(det) {
-        if (this.byteIndex >= det.fInputLen)
+      }
+      nextByte(det) {
+        if (this.byteIndex >= det.inputLen)
           return -1;
-        return det.fInputBytes[this.byteIndex++] & 255;
-      };
-      this.parse = function(det, spaceCh) {
-        var b, ignoreSpace = false;
+        return det.inputBytes[this.byteIndex++] & 255;
+      }
+      parse(det, spaceCh) {
+        let b, ignoreSpace = false;
         this.spaceChar = spaceCh;
         while ((b = this.nextByte(det)) >= 0) {
-          var mb = this.byteMap[b];
+          const mb = this.byteMap[b];
           if (mb != 0) {
             if (!(mb == this.spaceChar && ignoreSpace)) {
               this.addByte(mb);
@@ -17559,47 +17540,59 @@ var require_sbcs = __commonJS({
           }
         }
         this.addByte(this.spaceChar);
-        var rawPercent = this.hitCount / this.ngramCount;
+        const rawPercent = this.hitCount / this.ngramCount;
         if (rawPercent > 0.33)
           return 98;
         return Math.floor(rawPercent * 300);
-      };
-    }
-    function NGramsPlusLang(la, ng) {
-      this.fLang = la;
-      this.fNGrams = ng;
-    }
-    function sbcs() {
-    }
-    sbcs.prototype.spaceChar = 32;
-    sbcs.prototype.ngrams = function() {
-    };
-    sbcs.prototype.byteMap = function() {
-    };
-    sbcs.prototype.match = function(det) {
-      var ngrams = this.ngrams();
-      var multiple = Array.isArray(ngrams) && ngrams[0] instanceof NGramsPlusLang;
-      if (!multiple) {
-        var parser = new NGramParser(ngrams, this.byteMap());
-        var confidence = parser.parse(det, this.spaceChar);
-        return confidence <= 0 ? null : new Match(det, this, confidence);
       }
-      var bestConfidenceSoFar = -1;
-      var lang = null;
-      for (var i2 = ngrams.length - 1; i2 >= 0; i2--) {
-        var ngl = ngrams[i2];
-        var parser = new NGramParser(ngl.fNGrams, this.byteMap());
-        var confidence = parser.parse(det, this.spaceChar);
-        if (confidence > bestConfidenceSoFar) {
-          bestConfidenceSoFar = confidence;
-          lang = ngl.fLang;
+    };
+    var NGramsPlusLang = class {
+      constructor(la, ng) {
+        this.fLang = la;
+        this.fNGrams = ng;
+      }
+    };
+    var isFlatNgrams = (val) => Array.isArray(val) && isFinite(val[0]);
+    var sbcs = class {
+      constructor() {
+        this.spaceChar = 32;
+        this.nGramLang = void 0;
+      }
+      ngrams() {
+        return [];
+      }
+      byteMap() {
+        return [];
+      }
+      name(_input) {
+        return "sbcs";
+      }
+      language() {
+        return this.nGramLang;
+      }
+      match(det) {
+        this.nGramLang = void 0;
+        const ngrams = this.ngrams();
+        if (isFlatNgrams(ngrams)) {
+          const parser = new NGramParser(ngrams, this.byteMap());
+          const confidence = parser.parse(det, this.spaceChar);
+          return confidence <= 0 ? null : (0, match_1.default)(det, this, confidence);
         }
+        let bestConfidence = -1;
+        for (let i2 = ngrams.length - 1; i2 >= 0; i2--) {
+          const ngl = ngrams[i2];
+          const parser = new NGramParser(ngl.fNGrams, this.byteMap());
+          const confidence = parser.parse(det, this.spaceChar);
+          if (confidence > bestConfidence) {
+            bestConfidence = confidence;
+            this.nGramLang = ngl.fLang;
+          }
+        }
+        return bestConfidence <= 0 ? null : (0, match_1.default)(det, this, bestConfidence);
       }
-      var name = this.name(det);
-      return bestConfidenceSoFar <= 0 ? null : new Match(det, this, bestConfidenceSoFar, name, lang);
     };
-    module2.exports.ISO_8859_1 = function() {
-      this.byteMap = function() {
+    var ISO_8859_1 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -17858,8 +17851,8 @@ var require_sbcs = __commonJS({
           254,
           255
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           new NGramsPlusLang("da", [
             2122086,
@@ -18522,14 +18515,14 @@ var require_sbcs = __commonJS({
             16151072
           ])
         ];
-      };
-      this.name = function(det) {
-        return det && det.fC1Bytes ? "windows-1252" : "ISO-8859-1";
-      };
+      }
+      name(input) {
+        return input && input.c1Bytes ? "windows-1252" : "ISO-8859-1";
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_1, sbcs);
-    module2.exports.ISO_8859_2 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_1 = ISO_8859_1;
+    var ISO_8859_2 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -18788,8 +18781,8 @@ var require_sbcs = __commonJS({
           254,
           32
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           new NGramsPlusLang("cs", [
             2122016,
@@ -19056,14 +19049,14 @@ var require_sbcs = __commonJS({
             15625760
           ])
         ];
-      };
-      this.name = function(det) {
-        return det && det.fC1Bytes ? "windows-1250" : "ISO-8859-2";
-      };
+      }
+      name(det) {
+        return det && det.c1Bytes ? "windows-1250" : "ISO-8859-2";
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_2, sbcs);
-    module2.exports.ISO_8859_5 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_2 = ISO_8859_2;
+    var ISO_8859_5 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -19322,8 +19315,8 @@ var require_sbcs = __commonJS({
           254,
           255
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2150944,
           2151134,
@@ -19390,17 +19383,17 @@ var require_sbcs = __commonJS({
           15196894,
           15459616
         ];
-      };
-      this.name = function(det) {
+      }
+      name() {
         return "ISO-8859-5";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ru";
-      };
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_5, sbcs);
-    module2.exports.ISO_8859_6 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_5 = ISO_8859_5;
+    var ISO_8859_6 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -19659,8 +19652,8 @@ var require_sbcs = __commonJS({
           32,
           32
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2148324,
           2148326,
@@ -19727,17 +19720,17 @@ var require_sbcs = __commonJS({
           15388960,
           15394336
         ];
-      };
-      this.name = function(det) {
+      }
+      name() {
         return "ISO-8859-6";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ar";
-      };
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_6, sbcs);
-    module2.exports.ISO_8859_7 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_6 = ISO_8859_6;
+    var ISO_8859_7 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -19996,8 +19989,8 @@ var require_sbcs = __commonJS({
           254,
           32
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2154989,
           2154992,
@@ -20064,17 +20057,17 @@ var require_sbcs = __commonJS({
           16379168,
           16706848
         ];
-      };
-      this.name = function(det) {
-        return det && det.fC1Bytes ? "windows-1253" : "ISO-8859-7";
-      };
-      this.language = function() {
+      }
+      name(det) {
+        return det && det.c1Bytes ? "windows-1253" : "ISO-8859-7";
+      }
+      language() {
         return "el";
-      };
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_7, sbcs);
-    module2.exports.ISO_8859_8 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_7 = ISO_8859_7;
+    var ISO_8859_8 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -20333,8 +20326,8 @@ var require_sbcs = __commonJS({
           32,
           32
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           new NGramsPlusLang("he", [
             2154725,
@@ -20469,17 +20462,17 @@ var require_sbcs = __commonJS({
             16442857
           ])
         ];
-      };
-      this.name = function(det) {
-        return det && det.fC1Bytes ? "windows-1255" : "ISO-8859-8";
-      };
-      this.language = function() {
+      }
+      name(det) {
+        return det && det.c1Bytes ? "windows-1255" : "ISO-8859-8";
+      }
+      language() {
         return "he";
-      };
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_8, sbcs);
-    module2.exports.ISO_8859_9 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_8 = ISO_8859_8;
+    var ISO_8859_9 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -20738,8 +20731,8 @@ var require_sbcs = __commonJS({
           254,
           255
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2122337,
           2122345,
@@ -20806,17 +20799,17 @@ var require_sbcs = __commonJS({
           16609021,
           16642301
         ];
-      };
-      this.name = function(det) {
-        return det && det.fC1Bytes ? "windows-1254" : "ISO-8859-9";
-      };
-      this.language = function() {
+      }
+      name(det) {
+        return det && det.c1Bytes ? "windows-1254" : "ISO-8859-9";
+      }
+      language() {
         return "tr";
-      };
+      }
     };
-    util3.inherits(module2.exports.ISO_8859_9, sbcs);
-    module2.exports.windows_1251 = function() {
-      this.byteMap = function() {
+    exports2.ISO_8859_9 = ISO_8859_9;
+    var windows_1251 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -21075,8 +21068,8 @@ var require_sbcs = __commonJS({
           254,
           255
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2155040,
           2155246,
@@ -21143,17 +21136,17 @@ var require_sbcs = __commonJS({
           16249582,
           16512288
         ];
-      };
-      this.name = function(det) {
+      }
+      name() {
         return "windows-1251";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ru";
-      };
+      }
     };
-    util3.inherits(module2.exports.windows_1251, sbcs);
-    module2.exports.windows_1256 = function() {
-      this.byteMap = function() {
+    exports2.windows_1251 = windows_1251;
+    var windows_1256 = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -21412,8 +21405,8 @@ var require_sbcs = __commonJS({
           32,
           255
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2148321,
           2148324,
@@ -21480,17 +21473,17 @@ var require_sbcs = __commonJS({
           15585568,
           15590432
         ];
-      };
-      this.name = function(det) {
+      }
+      name() {
         return "windows-1256";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ar";
-      };
+      }
     };
-    util3.inherits(module2.exports.windows_1256, sbcs);
-    module2.exports.KOI8_R = function() {
-      this.byteMap = function() {
+    exports2.windows_1256 = windows_1256;
+    var KOI8_R = class extends sbcs {
+      byteMap() {
         return [
           32,
           32,
@@ -21749,8 +21742,8 @@ var require_sbcs = __commonJS({
           222,
           223
         ];
-      };
-      this.ngrams = function() {
+      }
+      ngrams() {
         return [
           2147535,
           2148640,
@@ -21817,147 +21810,208 @@ var require_sbcs = __commonJS({
           14272544,
           14603471
         ];
-      };
-      this.name = function(det) {
+      }
+      name() {
         return "KOI8-R";
-      };
-      this.language = function() {
+      }
+      language() {
         return "ru";
-      };
+      }
     };
-    util3.inherits(module2.exports.KOI8_R, sbcs);
+    exports2.KOI8_R = KOI8_R;
   }
 });
 
-// node_modules/chardet/encoding/iso2022.js
+// node_modules/chardet/lib/encoding/iso2022.js
 var require_iso2022 = __commonJS({
-  "node_modules/chardet/encoding/iso2022.js"(exports2, module2) {
-    var util3 = require("util");
-    var Match = require_match();
-    function ISO_2022() {
-    }
-    ISO_2022.prototype.match = function(det) {
-      var i2, j;
-      var escN;
-      var hits = 0;
-      var misses = 0;
-      var shifts = 0;
-      var quality;
-      var text = det.fInputBytes;
-      var textLen = det.fInputLen;
-      scanInput:
-        for (i2 = 0; i2 < textLen; i2++) {
+  "node_modules/chardet/lib/encoding/iso2022.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ISO_2022_CN = exports2.ISO_2022_KR = exports2.ISO_2022_JP = void 0;
+    var match_1 = __importDefault(require_match());
+    var ISO_2022 = class {
+      constructor() {
+        this.escapeSequences = [];
+      }
+      name() {
+        return "ISO_2022";
+      }
+      match(det) {
+        let i2, j;
+        let escN;
+        let hits = 0;
+        let misses = 0;
+        let shifts = 0;
+        let confidence;
+        const text = det.inputBytes;
+        const textLen = det.inputLen;
+        scanInput: for (i2 = 0; i2 < textLen; i2++) {
           if (text[i2] == 27) {
-            checkEscapes:
-              for (escN = 0; escN < this.escapeSequences.length; escN++) {
-                var seq = this.escapeSequences[escN];
-                if (textLen - i2 < seq.length)
+            checkEscapes: for (escN = 0; escN < this.escapeSequences.length; escN++) {
+              const seq = this.escapeSequences[escN];
+              if (textLen - i2 < seq.length)
+                continue checkEscapes;
+              for (j = 1; j < seq.length; j++)
+                if (seq[j] != text[i2 + j])
                   continue checkEscapes;
-                for (j = 1; j < seq.length; j++)
-                  if (seq[j] != text[i2 + j])
-                    continue checkEscapes;
-                hits++;
-                i2 += seq.length - 1;
-                continue scanInput;
-              }
+              hits++;
+              i2 += seq.length - 1;
+              continue scanInput;
+            }
             misses++;
           }
           if (text[i2] == 14 || text[i2] == 15)
             shifts++;
         }
-      if (hits == 0)
-        return null;
-      quality = (100 * hits - 100 * misses) / (hits + misses);
-      if (hits + shifts < 5)
-        quality -= (5 - (hits + shifts)) * 10;
-      return quality <= 0 ? null : new Match(det, this, quality);
+        if (hits == 0)
+          return null;
+        confidence = (100 * hits - 100 * misses) / (hits + misses);
+        if (hits + shifts < 5)
+          confidence -= (5 - (hits + shifts)) * 10;
+        return confidence <= 0 ? null : (0, match_1.default)(det, this, confidence);
+      }
     };
-    module2.exports.ISO_2022_JP = function() {
-      this.name = function() {
+    var ISO_2022_JP = class extends ISO_2022 {
+      constructor() {
+        super(...arguments);
+        this.escapeSequences = [
+          [27, 36, 40, 67],
+          [27, 36, 40, 68],
+          [27, 36, 64],
+          [27, 36, 65],
+          [27, 36, 66],
+          [27, 38, 64],
+          [27, 40, 66],
+          [27, 40, 72],
+          [27, 40, 73],
+          [27, 40, 74],
+          [27, 46, 65],
+          [27, 46, 70]
+        ];
+      }
+      name() {
         return "ISO-2022-JP";
-      };
-      this.escapeSequences = [
-        [27, 36, 40, 67],
-        // KS X 1001:1992
-        [27, 36, 40, 68],
-        // JIS X 212-1990
-        [27, 36, 64],
-        // JIS C 6226-1978
-        [27, 36, 65],
-        // GB 2312-80
-        [27, 36, 66],
-        // JIS X 208-1983
-        [27, 38, 64],
-        // JIS X 208 1990, 1997
-        [27, 40, 66],
-        // ASCII
-        [27, 40, 72],
-        // JIS-Roman
-        [27, 40, 73],
-        // Half-width katakana
-        [27, 40, 74],
-        // JIS-Roman
-        [27, 46, 65],
-        // ISO 8859-1
-        [27, 46, 70]
-        // ISO 8859-7
-      ];
+      }
+      language() {
+        return "ja";
+      }
     };
-    util3.inherits(module2.exports.ISO_2022_JP, ISO_2022);
-    module2.exports.ISO_2022_KR = function() {
-      this.name = function() {
+    exports2.ISO_2022_JP = ISO_2022_JP;
+    var ISO_2022_KR = class extends ISO_2022 {
+      constructor() {
+        super(...arguments);
+        this.escapeSequences = [[27, 36, 41, 67]];
+      }
+      name() {
         return "ISO-2022-KR";
-      };
-      this.escapeSequences = [
-        [27, 36, 41, 67]
-      ];
+      }
+      language() {
+        return "kr";
+      }
     };
-    util3.inherits(module2.exports.ISO_2022_KR, ISO_2022);
-    module2.exports.ISO_2022_CN = function() {
-      this.name = function() {
+    exports2.ISO_2022_KR = ISO_2022_KR;
+    var ISO_2022_CN = class extends ISO_2022 {
+      constructor() {
+        super(...arguments);
+        this.escapeSequences = [
+          [27, 36, 41, 65],
+          [27, 36, 41, 71],
+          [27, 36, 42, 72],
+          [27, 36, 41, 69],
+          [27, 36, 43, 73],
+          [27, 36, 43, 74],
+          [27, 36, 43, 75],
+          [27, 36, 43, 76],
+          [27, 36, 43, 77],
+          [27, 78],
+          [27, 79]
+        ];
+      }
+      name() {
         return "ISO-2022-CN";
-      };
-      this.escapeSequences = [
-        [27, 36, 41, 65],
-        // GB 2312-80
-        [27, 36, 41, 71],
-        // CNS 11643-1992 Plane 1
-        [27, 36, 42, 72],
-        // CNS 11643-1992 Plane 2
-        [27, 36, 41, 69],
-        // ISO-IR-165
-        [27, 36, 43, 73],
-        // CNS 11643-1992 Plane 3
-        [27, 36, 43, 74],
-        // CNS 11643-1992 Plane 4
-        [27, 36, 43, 75],
-        // CNS 11643-1992 Plane 5
-        [27, 36, 43, 76],
-        // CNS 11643-1992 Plane 6
-        [27, 36, 43, 77],
-        // CNS 11643-1992 Plane 7
-        [27, 78],
-        // SS2
-        [27, 79]
-        // SS3
-      ];
+      }
+      language() {
+        return "zh";
+      }
     };
-    util3.inherits(module2.exports.ISO_2022_CN, ISO_2022);
+    exports2.ISO_2022_CN = ISO_2022_CN;
   }
 });
 
-// node_modules/chardet/index.js
-var require_chardet = __commonJS({
-  "node_modules/chardet/index.js"(exports2, module2) {
-    var fs3 = require("fs");
-    var utf8 = require_utf8();
-    var unicode = require_unicode();
-    var mbcs = require_mbcs();
-    var sbcs = require_sbcs();
-    var iso2022 = require_iso2022();
-    var self2 = exports2;
+// node_modules/chardet/lib/utils.js
+var require_utils = __commonJS({
+  "node_modules/chardet/lib/utils.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isByteArray = void 0;
+    var isByteArray = (input) => {
+      if (input == null || typeof input != "object")
+        return false;
+      return isFinite(input.length) && input.length >= 0;
+    };
+    exports2.isByteArray = isByteArray;
+  }
+});
+
+// node_modules/chardet/lib/index.js
+var require_lib4 = __commonJS({
+  "node_modules/chardet/lib/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o2, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o2, k2, desc);
+    } : function(o2, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      o2[k2] = m[k];
+    });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o2, v) {
+      Object.defineProperty(o2, "default", { enumerable: true, value: v });
+    } : function(o2, v) {
+      o2["default"] = v;
+    });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+      var ownKeys = function(o2) {
+        ownKeys = Object.getOwnPropertyNames || function(o3) {
+          var ar = [];
+          for (var k in o3) if (Object.prototype.hasOwnProperty.call(o3, k)) ar[ar.length] = k;
+          return ar;
+        };
+        return ownKeys(o2);
+      };
+      return function(mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) {
+          for (var k = ownKeys(mod), i2 = 0; i2 < k.length; i2++) if (k[i2] !== "default") __createBinding(result, mod, k[i2]);
+        }
+        __setModuleDefault(result, mod);
+        return result;
+      };
+    }();
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.detectFileSync = exports2.detectFile = exports2.analyse = exports2.detect = void 0;
+    var node_1 = __importDefault(require_node2());
+    var ascii_1 = __importDefault(require_ascii());
+    var utf8_1 = __importDefault(require_utf8());
+    var unicode = __importStar(require_unicode());
+    var mbcs = __importStar(require_mbcs());
+    var sbcs = __importStar(require_sbcs());
+    var iso2022 = __importStar(require_iso2022());
+    var utils_1 = require_utils();
     var recognisers = [
-      new utf8(),
+      new utf8_1.default(),
       new unicode.UTF_16BE(),
       new unicode.UTF_16LE(),
       new unicode.UTF_32BE(),
@@ -21979,97 +22033,89 @@ var require_chardet = __commonJS({
       new sbcs.ISO_8859_9(),
       new sbcs.windows_1251(),
       new sbcs.windows_1256(),
-      new sbcs.KOI8_R()
+      new sbcs.KOI8_R(),
+      new ascii_1.default()
     ];
-    module2.exports.detect = function(buffer, opts) {
-      var fByteStats = [];
-      for (var i2 = 0; i2 < 256; i2++)
-        fByteStats[i2] = 0;
-      for (var i2 = buffer.length - 1; i2 >= 0; i2--)
-        fByteStats[buffer[i2] & 255]++;
-      var fC1Bytes = false;
-      for (var i2 = 128; i2 <= 159; i2 += 1) {
-        if (fByteStats[i2] != 0) {
-          fC1Bytes = true;
+    var detect2 = (buffer) => {
+      const matches = (0, exports2.analyse)(buffer);
+      return matches.length > 0 ? matches[0].name : null;
+    };
+    exports2.detect = detect2;
+    var analyse = (buffer) => {
+      if (!(0, utils_1.isByteArray)(buffer)) {
+        throw new Error("Input must be a byte array, e.g. Buffer or Uint8Array");
+      }
+      const byteStats = [];
+      for (let i2 = 0; i2 < 256; i2++)
+        byteStats[i2] = 0;
+      for (let i2 = buffer.length - 1; i2 >= 0; i2--)
+        byteStats[buffer[i2] & 255]++;
+      let c1Bytes = false;
+      for (let i2 = 128; i2 <= 159; i2 += 1) {
+        if (byteStats[i2] !== 0) {
+          c1Bytes = true;
           break;
         }
       }
-      var context = {
-        fByteStats,
-        fC1Bytes,
-        fRawInput: buffer,
-        fRawLength: buffer.length,
-        fInputBytes: buffer,
-        fInputLen: buffer.length
+      const context = {
+        byteStats,
+        c1Bytes,
+        rawInput: buffer,
+        rawLen: buffer.length,
+        inputBytes: buffer,
+        inputLen: buffer.length
       };
-      var matches = recognisers.map(function(rec) {
+      const matches = recognisers.map((rec) => {
         return rec.match(context);
-      }).filter(function(match2) {
+      }).filter((match2) => {
         return !!match2;
-      }).sort(function(a2, b) {
+      }).sort((a2, b) => {
         return b.confidence - a2.confidence;
       });
-      if (opts && opts.returnAllMatches === true) {
-        return matches;
-      } else {
-        return matches.length > 0 ? matches[0].name : null;
-      }
+      return matches;
     };
-    module2.exports.detectFile = function(filepath, opts, cb) {
-      if (typeof opts === "function") {
-        cb = opts;
-        opts = void 0;
-      }
-      var fd;
-      var handler = function(err, buffer) {
+    exports2.analyse = analyse;
+    var detectFile = (filepath, opts = {}) => new Promise((resolve, reject) => {
+      let fd;
+      const fs3 = (0, node_1.default)();
+      const handler = (err, buffer) => {
         if (fd) {
           fs3.closeSync(fd);
         }
-        if (err) return cb(err, null);
-        cb(null, self2.detect(buffer, opts));
+        if (err) {
+          reject(err);
+        } else {
+          resolve((0, exports2.detect)(buffer));
+        }
       };
       if (opts && opts.sampleSize) {
-        fd = fs3.openSync(filepath, "r"), sample = Buffer.allocUnsafe(opts.sampleSize);
-        fs3.read(fd, sample, 0, opts.sampleSize, null, function(err) {
+        fd = fs3.openSync(filepath, "r");
+        const sample = Buffer.allocUnsafe(opts.sampleSize);
+        fs3.read(fd, sample, 0, opts.sampleSize, opts.offset, (err) => {
           handler(err, sample);
         });
         return;
       }
       fs3.readFile(filepath, handler);
-    };
-    module2.exports.detectFileSync = function(filepath, opts) {
+    });
+    exports2.detectFile = detectFile;
+    var detectFileSync = (filepath, opts = {}) => {
+      const fs3 = (0, node_1.default)();
       if (opts && opts.sampleSize) {
-        var fd = fs3.openSync(filepath, "r"), sample2 = Buffer.allocUnsafe(opts.sampleSize);
-        fs3.readSync(fd, sample2, 0, opts.sampleSize);
+        const fd = fs3.openSync(filepath, "r");
+        const sample = Buffer.allocUnsafe(opts.sampleSize);
+        fs3.readSync(fd, sample, 0, opts.sampleSize, opts.offset);
         fs3.closeSync(fd);
-        return self2.detect(sample2, opts);
+        return (0, exports2.detect)(sample);
       }
-      return self2.detect(fs3.readFileSync(filepath), opts);
+      return (0, exports2.detect)(fs3.readFileSync(filepath));
     };
-    module2.exports.detectAll = function(buffer, opts) {
-      if (typeof opts !== "object") {
-        opts = {};
-      }
-      opts.returnAllMatches = true;
-      return self2.detect(buffer, opts);
-    };
-    module2.exports.detectFileAll = function(filepath, opts, cb) {
-      if (typeof opts === "function") {
-        cb = opts;
-        opts = void 0;
-      }
-      if (typeof opts !== "object") {
-        opts = {};
-      }
-      opts.returnAllMatches = true;
-      self2.detectFile(filepath, opts, cb);
-    };
-    module2.exports.detectFileAllSync = function(filepath, opts) {
-      if (typeof opts !== "object") {
-        opts = {};
-      }
-      opts.returnAllMatches = true;
-      return self2.detectFileSync(filepath, opts);
+    exports2.detectFileSync = detectFileSync;
+    exports2.default = {
+      analyse: exports2.analyse,
+      detect: exports2.detect,
+      detectFileSync: exports2.detectFileSync,
+      detectFile: exports2.detectFile
     };
   }
 });
@@ -22142,9 +22188,9 @@ var require_safer = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/lib/bom-handling.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/bom-handling.js
 var require_bom_handling = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/lib/bom-handling.js"(exports2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/bom-handling.js"(exports2) {
     "use strict";
     var BOMChar = "\uFEFF";
     exports2.PrependBOM = PrependBOMWrapper;
@@ -22170,12 +22216,14 @@ var require_bom_handling = __commonJS({
     }
     StripBOMWrapper.prototype.write = function(buf) {
       var res = this.decoder.write(buf);
-      if (this.pass || !res)
+      if (this.pass || !res) {
         return res;
+      }
       if (res[0] === BOMChar) {
         res = res.slice(1);
-        if (typeof this.options.stripBOM === "function")
+        if (typeof this.options.stripBOM === "function") {
           this.options.stripBOM();
+        }
       }
       this.pass = true;
       return res;
@@ -22186,9 +22234,25 @@ var require_bom_handling = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/internal.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/helpers/merge-exports.js
+var require_merge_exports = __commonJS({
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports2, module2) {
+    "use strict";
+    var hasOwn = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
+    function mergeModules(target, module3) {
+      for (var key in module3) {
+        if (hasOwn(module3, key)) {
+          target[key] = module3[key];
+        }
+      }
+    }
+    module2.exports = mergeModules;
+  }
+});
+
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/internal.js
 var require_internal = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/internal.js"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/internal.js"(exports2, module2) {
     "use strict";
     var Buffer5 = require_safer().Buffer;
     module2.exports = {
@@ -22204,30 +22268,37 @@ var require_internal = __commonJS({
       // Codec.
       _internal: InternalCodec
     };
-    function InternalCodec(codecOptions, iconv) {
+    function InternalCodec(codecOptions, iconv2) {
       this.enc = codecOptions.encodingName;
       this.bomAware = codecOptions.bomAware;
-      if (this.enc === "base64")
+      if (this.enc === "base64") {
         this.encoder = InternalEncoderBase64;
-      else if (this.enc === "cesu8") {
+      } else if (this.enc === "utf8") {
+        this.encoder = InternalEncoderUtf8;
+      } else if (this.enc === "cesu8") {
         this.enc = "utf8";
         this.encoder = InternalEncoderCesu8;
         if (Buffer5.from("eda0bdedb2a9", "hex").toString() !== "\u{1F4A9}") {
           this.decoder = InternalDecoderCesu8;
-          this.defaultCharUnicode = iconv.defaultCharUnicode;
+          this.defaultCharUnicode = iconv2.defaultCharUnicode;
         }
       }
     }
     InternalCodec.prototype.encoder = InternalEncoder;
     InternalCodec.prototype.decoder = InternalDecoder;
     var StringDecoder4 = require("string_decoder").StringDecoder;
-    if (!StringDecoder4.prototype.end)
-      StringDecoder4.prototype.end = function() {
-      };
     function InternalDecoder(options, codec) {
-      StringDecoder4.call(this, codec.enc);
+      this.decoder = new StringDecoder4(codec.enc);
     }
-    InternalDecoder.prototype = StringDecoder4.prototype;
+    InternalDecoder.prototype.write = function(buf) {
+      if (!Buffer5.isBuffer(buf)) {
+        buf = Buffer5.from(buf);
+      }
+      return this.decoder.write(buf);
+    };
+    InternalDecoder.prototype.end = function() {
+      return this.decoder.end();
+    };
     function InternalEncoder(options, codec) {
       this.enc = codec.enc;
     }
@@ -22252,12 +22323,13 @@ var require_internal = __commonJS({
     function InternalEncoderCesu8(options, codec) {
     }
     InternalEncoderCesu8.prototype.write = function(str) {
-      var buf = Buffer5.alloc(str.length * 3), bufIdx = 0;
+      var buf = Buffer5.alloc(str.length * 3);
+      var bufIdx = 0;
       for (var i2 = 0; i2 < str.length; i2++) {
         var charCode = str.charCodeAt(i2);
-        if (charCode < 128)
+        if (charCode < 128) {
           buf[bufIdx++] = charCode;
-        else if (charCode < 2048) {
+        } else if (charCode < 2048) {
           buf[bufIdx++] = 192 + (charCode >>> 6);
           buf[bufIdx++] = 128 + (charCode & 63);
         } else {
@@ -22277,7 +22349,10 @@ var require_internal = __commonJS({
       this.defaultCharUnicode = codec.defaultCharUnicode;
     }
     InternalDecoderCesu8.prototype.write = function(buf) {
-      var acc = this.acc, contBytes = this.contBytes, accBytes = this.accBytes, res = "";
+      var acc = this.acc;
+      var contBytes = this.contBytes;
+      var accBytes = this.accBytes;
+      var res = "";
       for (var i2 = 0; i2 < buf.length; i2++) {
         var curByte = buf[i2];
         if ((curByte & 192) !== 128) {
@@ -22304,12 +22379,13 @@ var require_internal = __commonJS({
             contBytes--;
             accBytes++;
             if (contBytes === 0) {
-              if (accBytes === 2 && acc < 128 && acc > 0)
+              if (accBytes === 2 && acc < 128 && acc > 0) {
                 res += this.defaultCharUnicode;
-              else if (accBytes === 3 && acc < 2048)
+              } else if (accBytes === 3 && acc < 2048) {
                 res += this.defaultCharUnicode;
-              else
+              } else {
                 res += String.fromCharCode(acc);
+              }
             }
           } else {
             res += this.defaultCharUnicode;
@@ -22323,16 +22399,272 @@ var require_internal = __commonJS({
     };
     InternalDecoderCesu8.prototype.end = function() {
       var res = 0;
-      if (this.contBytes > 0)
+      if (this.contBytes > 0) {
         res += this.defaultCharUnicode;
+      }
       return res;
+    };
+    function InternalEncoderUtf8(options, codec) {
+      this.highSurrogate = "";
+    }
+    InternalEncoderUtf8.prototype.write = function(str) {
+      if (this.highSurrogate) {
+        str = this.highSurrogate + str;
+        this.highSurrogate = "";
+      }
+      if (str.length > 0) {
+        var charCode = str.charCodeAt(str.length - 1);
+        if (charCode >= 55296 && charCode < 56320) {
+          this.highSurrogate = str[str.length - 1];
+          str = str.slice(0, str.length - 1);
+        }
+      }
+      return Buffer5.from(str, this.enc);
+    };
+    InternalEncoderUtf8.prototype.end = function() {
+      if (this.highSurrogate) {
+        var str = this.highSurrogate;
+        this.highSurrogate = "";
+        return Buffer5.from(str, this.enc);
+      }
     };
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/utf16.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/utf32.js
+var require_utf32 = __commonJS({
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/utf32.js"(exports2) {
+    "use strict";
+    var Buffer5 = require_safer().Buffer;
+    exports2._utf32 = Utf32Codec;
+    function Utf32Codec(codecOptions, iconv2) {
+      this.iconv = iconv2;
+      this.bomAware = true;
+      this.isLE = codecOptions.isLE;
+    }
+    exports2.utf32le = { type: "_utf32", isLE: true };
+    exports2.utf32be = { type: "_utf32", isLE: false };
+    exports2.ucs4le = "utf32le";
+    exports2.ucs4be = "utf32be";
+    Utf32Codec.prototype.encoder = Utf32Encoder;
+    Utf32Codec.prototype.decoder = Utf32Decoder;
+    function Utf32Encoder(options, codec) {
+      this.isLE = codec.isLE;
+      this.highSurrogate = 0;
+    }
+    Utf32Encoder.prototype.write = function(str) {
+      var src = Buffer5.from(str, "ucs2");
+      var dst = Buffer5.alloc(src.length * 2);
+      var write32 = this.isLE ? dst.writeUInt32LE : dst.writeUInt32BE;
+      var offset = 0;
+      for (var i2 = 0; i2 < src.length; i2 += 2) {
+        var code = src.readUInt16LE(i2);
+        var isHighSurrogate = code >= 55296 && code < 56320;
+        var isLowSurrogate = code >= 56320 && code < 57344;
+        if (this.highSurrogate) {
+          if (isHighSurrogate || !isLowSurrogate) {
+            write32.call(dst, this.highSurrogate, offset);
+            offset += 4;
+          } else {
+            var codepoint = (this.highSurrogate - 55296 << 10 | code - 56320) + 65536;
+            write32.call(dst, codepoint, offset);
+            offset += 4;
+            this.highSurrogate = 0;
+            continue;
+          }
+        }
+        if (isHighSurrogate) {
+          this.highSurrogate = code;
+        } else {
+          write32.call(dst, code, offset);
+          offset += 4;
+          this.highSurrogate = 0;
+        }
+      }
+      if (offset < dst.length) {
+        dst = dst.slice(0, offset);
+      }
+      return dst;
+    };
+    Utf32Encoder.prototype.end = function() {
+      if (!this.highSurrogate) {
+        return;
+      }
+      var buf = Buffer5.alloc(4);
+      if (this.isLE) {
+        buf.writeUInt32LE(this.highSurrogate, 0);
+      } else {
+        buf.writeUInt32BE(this.highSurrogate, 0);
+      }
+      this.highSurrogate = 0;
+      return buf;
+    };
+    function Utf32Decoder(options, codec) {
+      this.isLE = codec.isLE;
+      this.badChar = codec.iconv.defaultCharUnicode.charCodeAt(0);
+      this.overflow = [];
+    }
+    Utf32Decoder.prototype.write = function(src) {
+      if (src.length === 0) {
+        return "";
+      }
+      var i2 = 0;
+      var codepoint = 0;
+      var dst = Buffer5.alloc(src.length + 4);
+      var offset = 0;
+      var isLE = this.isLE;
+      var overflow = this.overflow;
+      var badChar = this.badChar;
+      if (overflow.length > 0) {
+        for (; i2 < src.length && overflow.length < 4; i2++) {
+          overflow.push(src[i2]);
+        }
+        if (overflow.length === 4) {
+          if (isLE) {
+            codepoint = overflow[i2] | overflow[i2 + 1] << 8 | overflow[i2 + 2] << 16 | overflow[i2 + 3] << 24;
+          } else {
+            codepoint = overflow[i2 + 3] | overflow[i2 + 2] << 8 | overflow[i2 + 1] << 16 | overflow[i2] << 24;
+          }
+          overflow.length = 0;
+          offset = _writeCodepoint(dst, offset, codepoint, badChar);
+        }
+      }
+      for (; i2 < src.length - 3; i2 += 4) {
+        if (isLE) {
+          codepoint = src[i2] | src[i2 + 1] << 8 | src[i2 + 2] << 16 | src[i2 + 3] << 24;
+        } else {
+          codepoint = src[i2 + 3] | src[i2 + 2] << 8 | src[i2 + 1] << 16 | src[i2] << 24;
+        }
+        offset = _writeCodepoint(dst, offset, codepoint, badChar);
+      }
+      for (; i2 < src.length; i2++) {
+        overflow.push(src[i2]);
+      }
+      return dst.slice(0, offset).toString("ucs2");
+    };
+    function _writeCodepoint(dst, offset, codepoint, badChar) {
+      if (codepoint < 0 || codepoint > 1114111) {
+        codepoint = badChar;
+      }
+      if (codepoint >= 65536) {
+        codepoint -= 65536;
+        var high = 55296 | codepoint >> 10;
+        dst[offset++] = high & 255;
+        dst[offset++] = high >> 8;
+        var codepoint = 56320 | codepoint & 1023;
+      }
+      dst[offset++] = codepoint & 255;
+      dst[offset++] = codepoint >> 8;
+      return offset;
+    }
+    Utf32Decoder.prototype.end = function() {
+      this.overflow.length = 0;
+    };
+    exports2.utf32 = Utf32AutoCodec;
+    exports2.ucs4 = "utf32";
+    function Utf32AutoCodec(options, iconv2) {
+      this.iconv = iconv2;
+    }
+    Utf32AutoCodec.prototype.encoder = Utf32AutoEncoder;
+    Utf32AutoCodec.prototype.decoder = Utf32AutoDecoder;
+    function Utf32AutoEncoder(options, codec) {
+      options = options || {};
+      if (options.addBOM === void 0) {
+        options.addBOM = true;
+      }
+      this.encoder = codec.iconv.getEncoder(options.defaultEncoding || "utf-32le", options);
+    }
+    Utf32AutoEncoder.prototype.write = function(str) {
+      return this.encoder.write(str);
+    };
+    Utf32AutoEncoder.prototype.end = function() {
+      return this.encoder.end();
+    };
+    function Utf32AutoDecoder(options, codec) {
+      this.decoder = null;
+      this.initialBufs = [];
+      this.initialBufsLen = 0;
+      this.options = options || {};
+      this.iconv = codec.iconv;
+    }
+    Utf32AutoDecoder.prototype.write = function(buf) {
+      if (!this.decoder) {
+        this.initialBufs.push(buf);
+        this.initialBufsLen += buf.length;
+        if (this.initialBufsLen < 32) {
+          return "";
+        }
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
+        this.decoder = this.iconv.getDecoder(encoding, this.options);
+        var resStr = "";
+        for (var i2 = 0; i2 < this.initialBufs.length; i2++) {
+          resStr += this.decoder.write(this.initialBufs[i2]);
+        }
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
+      }
+      return this.decoder.write(buf);
+    };
+    Utf32AutoDecoder.prototype.end = function() {
+      if (!this.decoder) {
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
+        this.decoder = this.iconv.getDecoder(encoding, this.options);
+        var resStr = "";
+        for (var i2 = 0; i2 < this.initialBufs.length; i2++) {
+          resStr += this.decoder.write(this.initialBufs[i2]);
+        }
+        var trail = this.decoder.end();
+        if (trail) {
+          resStr += trail;
+        }
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
+      }
+      return this.decoder.end();
+    };
+    function detectEncoding(bufs, defaultEncoding) {
+      var b = [];
+      var charsProcessed = 0;
+      var invalidLE = 0;
+      var invalidBE = 0;
+      var bmpCharsLE = 0;
+      var bmpCharsBE = 0;
+      outerLoop:
+        for (var i2 = 0; i2 < bufs.length; i2++) {
+          var buf = bufs[i2];
+          for (var j = 0; j < buf.length; j++) {
+            b.push(buf[j]);
+            if (b.length === 4) {
+              if (charsProcessed === 0) {
+                if (b[0] === 255 && b[1] === 254 && b[2] === 0 && b[3] === 0) {
+                  return "utf-32le";
+                }
+                if (b[0] === 0 && b[1] === 0 && b[2] === 254 && b[3] === 255) {
+                  return "utf-32be";
+                }
+              }
+              if (b[0] !== 0 || b[1] > 16) invalidBE++;
+              if (b[3] !== 0 || b[2] > 16) invalidLE++;
+              if (b[0] === 0 && b[1] === 0 && (b[2] !== 0 || b[3] !== 0)) bmpCharsBE++;
+              if ((b[0] !== 0 || b[1] !== 0) && b[2] === 0 && b[3] === 0) bmpCharsLE++;
+              b.length = 0;
+              charsProcessed++;
+              if (charsProcessed >= 100) {
+                break outerLoop;
+              }
+            }
+          }
+        }
+      if (bmpCharsBE - invalidBE > bmpCharsLE - invalidLE) return "utf-32be";
+      if (bmpCharsBE - invalidBE < bmpCharsLE - invalidLE) return "utf-32le";
+      return defaultEncoding || "utf-32le";
+    }
+  }
+});
+
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/utf16.js
 var require_utf16 = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/utf16.js"(exports2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/utf16.js"(exports2) {
     "use strict";
     var Buffer5 = require_safer().Buffer;
     exports2.utf16be = Utf16BECodec;
@@ -22358,9 +22690,12 @@ var require_utf16 = __commonJS({
       this.overflowByte = -1;
     }
     Utf16BEDecoder.prototype.write = function(buf) {
-      if (buf.length == 0)
+      if (buf.length == 0) {
         return "";
-      var buf2 = Buffer5.alloc(buf.length + 1), i2 = 0, j = 0;
+      }
+      var buf2 = Buffer5.alloc(buf.length + 1);
+      var i2 = 0;
+      var j = 0;
       if (this.overflowByte !== -1) {
         buf2[0] = buf[0];
         buf2[1] = this.overflowByte;
@@ -22375,17 +22710,19 @@ var require_utf16 = __commonJS({
       return buf2.slice(0, j).toString("ucs2");
     };
     Utf16BEDecoder.prototype.end = function() {
+      this.overflowByte = -1;
     };
     exports2.utf16 = Utf16Codec;
-    function Utf16Codec(codecOptions, iconv) {
-      this.iconv = iconv;
+    function Utf16Codec(codecOptions, iconv2) {
+      this.iconv = iconv2;
     }
     Utf16Codec.prototype.encoder = Utf16Encoder;
     Utf16Codec.prototype.decoder = Utf16Decoder;
     function Utf16Encoder(options, codec) {
       options = options || {};
-      if (options.addBOM === void 0)
+      if (options.addBOM === void 0) {
         options.addBOM = true;
+      }
       this.encoder = codec.iconv.getEncoder("utf-16le", options);
     }
     Utf16Encoder.prototype.write = function(str) {
@@ -22396,65 +22733,87 @@ var require_utf16 = __commonJS({
     };
     function Utf16Decoder(options, codec) {
       this.decoder = null;
-      this.initialBytes = [];
-      this.initialBytesLen = 0;
+      this.initialBufs = [];
+      this.initialBufsLen = 0;
       this.options = options || {};
       this.iconv = codec.iconv;
     }
     Utf16Decoder.prototype.write = function(buf) {
       if (!this.decoder) {
-        this.initialBytes.push(buf);
-        this.initialBytesLen += buf.length;
-        if (this.initialBytesLen < 16)
+        this.initialBufs.push(buf);
+        this.initialBufsLen += buf.length;
+        if (this.initialBufsLen < 16) {
           return "";
-        var buf = Buffer5.concat(this.initialBytes), encoding = detectEncoding(buf, this.options.defaultEncoding);
+        }
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
         this.decoder = this.iconv.getDecoder(encoding, this.options);
-        this.initialBytes.length = this.initialBytesLen = 0;
+        var resStr = "";
+        for (var i2 = 0; i2 < this.initialBufs.length; i2++) {
+          resStr += this.decoder.write(this.initialBufs[i2]);
+        }
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
       }
       return this.decoder.write(buf);
     };
     Utf16Decoder.prototype.end = function() {
       if (!this.decoder) {
-        var buf = Buffer5.concat(this.initialBytes), encoding = detectEncoding(buf, this.options.defaultEncoding);
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
         this.decoder = this.iconv.getDecoder(encoding, this.options);
-        var res = this.decoder.write(buf), trail = this.decoder.end();
-        return trail ? res + trail : res;
+        var resStr = "";
+        for (var i2 = 0; i2 < this.initialBufs.length; i2++) {
+          resStr += this.decoder.write(this.initialBufs[i2]);
+        }
+        var trail = this.decoder.end();
+        if (trail) {
+          resStr += trail;
+        }
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
       }
       return this.decoder.end();
     };
-    function detectEncoding(buf, defaultEncoding) {
-      var enc = defaultEncoding || "utf-16le";
-      if (buf.length >= 2) {
-        if (buf[0] == 254 && buf[1] == 255)
-          enc = "utf-16be";
-        else if (buf[0] == 255 && buf[1] == 254)
-          enc = "utf-16le";
-        else {
-          var asciiCharsLE = 0, asciiCharsBE = 0, _len = Math.min(buf.length - buf.length % 2, 64);
-          for (var i2 = 0; i2 < _len; i2 += 2) {
-            if (buf[i2] === 0 && buf[i2 + 1] !== 0) asciiCharsBE++;
-            if (buf[i2] !== 0 && buf[i2 + 1] === 0) asciiCharsLE++;
+    function detectEncoding(bufs, defaultEncoding) {
+      var b = [];
+      var charsProcessed = 0;
+      var asciiCharsLE = 0;
+      var asciiCharsBE = 0;
+      outerLoop:
+        for (var i2 = 0; i2 < bufs.length; i2++) {
+          var buf = bufs[i2];
+          for (var j = 0; j < buf.length; j++) {
+            b.push(buf[j]);
+            if (b.length === 2) {
+              if (charsProcessed === 0) {
+                if (b[0] === 255 && b[1] === 254) return "utf-16le";
+                if (b[0] === 254 && b[1] === 255) return "utf-16be";
+              }
+              if (b[0] === 0 && b[1] !== 0) asciiCharsBE++;
+              if (b[0] !== 0 && b[1] === 0) asciiCharsLE++;
+              b.length = 0;
+              charsProcessed++;
+              if (charsProcessed >= 100) {
+                break outerLoop;
+              }
+            }
           }
-          if (asciiCharsBE > asciiCharsLE)
-            enc = "utf-16be";
-          else if (asciiCharsBE < asciiCharsLE)
-            enc = "utf-16le";
         }
-      }
-      return enc;
+      if (asciiCharsBE > asciiCharsLE) return "utf-16be";
+      if (asciiCharsBE < asciiCharsLE) return "utf-16le";
+      return defaultEncoding || "utf-16le";
     }
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/utf7.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/utf7.js
 var require_utf7 = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/utf7.js"(exports2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/utf7.js"(exports2) {
     "use strict";
     var Buffer5 = require_safer().Buffer;
     exports2.utf7 = Utf7Codec;
     exports2.unicode11utf7 = "utf7";
-    function Utf7Codec(codecOptions, iconv) {
-      this.iconv = iconv;
+    function Utf7Codec(codecOptions, iconv2) {
+      this.iconv = iconv2;
     }
     Utf7Codec.prototype.encoder = Utf7Encoder;
     Utf7Codec.prototype.decoder = Utf7Decoder;
@@ -22477,14 +22836,18 @@ var require_utf7 = __commonJS({
     }
     var base64Regex = /[A-Za-z0-9\/+]/;
     var base64Chars = [];
-    for (i2 = 0; i2 < 256; i2++)
+    for (i2 = 0; i2 < 256; i2++) {
       base64Chars[i2] = base64Regex.test(String.fromCharCode(i2));
+    }
     var i2;
     var plusChar = "+".charCodeAt(0);
     var minusChar = "-".charCodeAt(0);
     var andChar = "&".charCodeAt(0);
     Utf7Decoder.prototype.write = function(buf) {
-      var res = "", lastI = 0, inBase64 = this.inBase64, base64Accum = this.base64Accum;
+      var res = "";
+      var lastI = 0;
+      var inBase64 = this.inBase64;
+      var base64Accum = this.base64Accum;
       for (var i3 = 0; i3 < buf.length; i3++) {
         if (!inBase64) {
           if (buf[i3] == plusChar) {
@@ -22497,11 +22860,12 @@ var require_utf7 = __commonJS({
             if (i3 == lastI && buf[i3] == minusChar) {
               res += "+";
             } else {
-              var b64str = base64Accum + buf.slice(lastI, i3).toString();
+              var b64str = base64Accum + this.iconv.decode(buf.slice(lastI, i3), "ascii");
               res += this.iconv.decode(Buffer5.from(b64str, "base64"), "utf16-be");
             }
-            if (buf[i3] != minusChar)
+            if (buf[i3] != minusChar) {
               i3--;
+            }
             lastI = i3 + 1;
             inBase64 = false;
             base64Accum = "";
@@ -22511,7 +22875,7 @@ var require_utf7 = __commonJS({
       if (!inBase64) {
         res += this.iconv.decode(buf.slice(lastI), "ascii");
       } else {
-        var b64str = base64Accum + buf.slice(lastI).toString();
+        var b64str = base64Accum + this.iconv.decode(buf.slice(lastI), "ascii");
         var canBeDecoded = b64str.length - b64str.length % 8;
         base64Accum = b64str.slice(canBeDecoded);
         b64str = b64str.slice(0, canBeDecoded);
@@ -22523,15 +22887,16 @@ var require_utf7 = __commonJS({
     };
     Utf7Decoder.prototype.end = function() {
       var res = "";
-      if (this.inBase64 && this.base64Accum.length > 0)
+      if (this.inBase64 && this.base64Accum.length > 0) {
         res = this.iconv.decode(Buffer5.from(this.base64Accum, "base64"), "utf16-be");
+      }
       this.inBase64 = false;
       this.base64Accum = "";
       return res;
     };
     exports2.utf7imap = Utf7IMAPCodec;
-    function Utf7IMAPCodec(codecOptions, iconv) {
-      this.iconv = iconv;
+    function Utf7IMAPCodec(codecOptions, iconv2) {
+      this.iconv = iconv2;
     }
     Utf7IMAPCodec.prototype.encoder = Utf7IMAPEncoder;
     Utf7IMAPCodec.prototype.decoder = Utf7IMAPDecoder;
@@ -22543,10 +22908,14 @@ var require_utf7 = __commonJS({
       this.base64AccumIdx = 0;
     }
     Utf7IMAPEncoder.prototype.write = function(str) {
-      var inBase64 = this.inBase64, base64Accum = this.base64Accum, base64AccumIdx = this.base64AccumIdx, buf = Buffer5.alloc(str.length * 5 + 10), bufIdx = 0;
+      var inBase64 = this.inBase64;
+      var base64Accum = this.base64Accum;
+      var base64AccumIdx = this.base64AccumIdx;
+      var buf = Buffer5.alloc(str.length * 5 + 10);
+      var bufIdx = 0;
       for (var i3 = 0; i3 < str.length; i3++) {
         var uChar = str.charCodeAt(i3);
-        if (32 <= uChar && uChar <= 126) {
+        if (uChar >= 32 && uChar <= 126) {
           if (inBase64) {
             if (base64AccumIdx > 0) {
               bufIdx += buf.write(base64Accum.slice(0, base64AccumIdx).toString("base64").replace(/\//g, ",").replace(/=+$/, ""), bufIdx);
@@ -22557,8 +22926,9 @@ var require_utf7 = __commonJS({
           }
           if (!inBase64) {
             buf[bufIdx++] = uChar;
-            if (uChar === andChar)
+            if (uChar === andChar) {
               buf[bufIdx++] = minusChar;
+            }
           }
         } else {
           if (!inBase64) {
@@ -22580,7 +22950,8 @@ var require_utf7 = __commonJS({
       return buf.slice(0, bufIdx);
     };
     Utf7IMAPEncoder.prototype.end = function() {
-      var buf = Buffer5.alloc(10), bufIdx = 0;
+      var buf = Buffer5.alloc(10);
+      var bufIdx = 0;
       if (this.inBase64) {
         if (this.base64AccumIdx > 0) {
           bufIdx += buf.write(this.base64Accum.slice(0, this.base64AccumIdx).toString("base64").replace(/\//g, ",").replace(/=+$/, ""), bufIdx);
@@ -22599,7 +22970,10 @@ var require_utf7 = __commonJS({
     var base64IMAPChars = base64Chars.slice();
     base64IMAPChars[",".charCodeAt(0)] = true;
     Utf7IMAPDecoder.prototype.write = function(buf) {
-      var res = "", lastI = 0, inBase64 = this.inBase64, base64Accum = this.base64Accum;
+      var res = "";
+      var lastI = 0;
+      var inBase64 = this.inBase64;
+      var base64Accum = this.base64Accum;
       for (var i3 = 0; i3 < buf.length; i3++) {
         if (!inBase64) {
           if (buf[i3] == andChar) {
@@ -22612,11 +22986,12 @@ var require_utf7 = __commonJS({
             if (i3 == lastI && buf[i3] == minusChar) {
               res += "&";
             } else {
-              var b64str = base64Accum + buf.slice(lastI, i3).toString().replace(/,/g, "/");
+              var b64str = base64Accum + this.iconv.decode(buf.slice(lastI, i3), "ascii").replace(/,/g, "/");
               res += this.iconv.decode(Buffer5.from(b64str, "base64"), "utf16-be");
             }
-            if (buf[i3] != minusChar)
+            if (buf[i3] != minusChar) {
               i3--;
+            }
             lastI = i3 + 1;
             inBase64 = false;
             base64Accum = "";
@@ -22626,7 +23001,7 @@ var require_utf7 = __commonJS({
       if (!inBase64) {
         res += this.iconv.decode(buf.slice(lastI), "ascii");
       } else {
-        var b64str = base64Accum + buf.slice(lastI).toString().replace(/,/g, "/");
+        var b64str = base64Accum + this.iconv.decode(buf.slice(lastI), "ascii").replace(/,/g, "/");
         var canBeDecoded = b64str.length - b64str.length % 8;
         base64Accum = b64str.slice(canBeDecoded);
         b64str = b64str.slice(0, canBeDecoded);
@@ -22638,8 +23013,9 @@ var require_utf7 = __commonJS({
     };
     Utf7IMAPDecoder.prototype.end = function() {
       var res = "";
-      if (this.inBase64 && this.base64Accum.length > 0)
+      if (this.inBase64 && this.base64Accum.length > 0) {
         res = this.iconv.decode(Buffer5.from(this.base64Accum, "base64"), "utf16-be");
+      }
       this.inBase64 = false;
       this.base64Accum = "";
       return res;
@@ -22647,27 +23023,31 @@ var require_utf7 = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/sbcs-codec.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/sbcs-codec.js
 var require_sbcs_codec = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports2) {
     "use strict";
     var Buffer5 = require_safer().Buffer;
     exports2._sbcs = SBCSCodec;
-    function SBCSCodec(codecOptions, iconv) {
-      if (!codecOptions)
+    function SBCSCodec(codecOptions, iconv2) {
+      if (!codecOptions) {
         throw new Error("SBCS codec is called without the data.");
-      if (!codecOptions.chars || codecOptions.chars.length !== 128 && codecOptions.chars.length !== 256)
+      }
+      if (!codecOptions.chars || codecOptions.chars.length !== 128 && codecOptions.chars.length !== 256) {
         throw new Error("Encoding '" + codecOptions.type + "' has incorrect 'chars' (must be of len 128 or 256)");
+      }
       if (codecOptions.chars.length === 128) {
         var asciiString = "";
-        for (var i2 = 0; i2 < 128; i2++)
+        for (var i2 = 0; i2 < 128; i2++) {
           asciiString += String.fromCharCode(i2);
+        }
         codecOptions.chars = asciiString + codecOptions.chars;
       }
       this.decodeBuf = Buffer5.from(codecOptions.chars, "ucs2");
-      var encodeBuf = Buffer5.alloc(65536, iconv.defaultCharSingleByte.charCodeAt(0));
-      for (var i2 = 0; i2 < codecOptions.chars.length; i2++)
+      var encodeBuf = Buffer5.alloc(65536, iconv2.defaultCharSingleByte.charCodeAt(0));
+      for (var i2 = 0; i2 < codecOptions.chars.length; i2++) {
         encodeBuf[codecOptions.chars.charCodeAt(i2)] = i2;
+      }
       this.encodeBuf = encodeBuf;
     }
     SBCSCodec.prototype.encoder = SBCSEncoder;
@@ -22677,8 +23057,9 @@ var require_sbcs_codec = __commonJS({
     }
     SBCSEncoder.prototype.write = function(str) {
       var buf = Buffer5.alloc(str.length);
-      for (var i2 = 0; i2 < str.length; i2++)
+      for (var i2 = 0; i2 < str.length; i2++) {
         buf[i2] = this.encodeBuf[str.charCodeAt(i2)];
+      }
       return buf;
     };
     SBCSEncoder.prototype.end = function() {
@@ -22689,7 +23070,8 @@ var require_sbcs_codec = __commonJS({
     SBCSDecoder.prototype.write = function(buf) {
       var decodeBuf = this.decodeBuf;
       var newBuf = Buffer5.alloc(buf.length * 2);
-      var idx1 = 0, idx2 = 0;
+      var idx1 = 0;
+      var idx2 = 0;
       for (var i2 = 0; i2 < buf.length; i2++) {
         idx1 = buf[i2] * 2;
         idx2 = i2 * 2;
@@ -22703,158 +23085,162 @@ var require_sbcs_codec = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/sbcs-data.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/sbcs-data.js
 var require_sbcs_data = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/sbcs-data.js"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/sbcs-data.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       // Not supported by iconv, not sure why.
-      "10029": "maccenteuro",
-      "maccenteuro": {
-        "type": "_sbcs",
-        "chars": "\xC4\u0100\u0101\xC9\u0104\xD6\xDC\xE1\u0105\u010C\xE4\u010D\u0106\u0107\xE9\u0179\u017A\u010E\xED\u010F\u0112\u0113\u0116\xF3\u0117\xF4\xF6\xF5\xFA\u011A\u011B\xFC\u2020\xB0\u0118\xA3\xA7\u2022\xB6\xDF\xAE\xA9\u2122\u0119\xA8\u2260\u0123\u012E\u012F\u012A\u2264\u2265\u012B\u0136\u2202\u2211\u0142\u013B\u013C\u013D\u013E\u0139\u013A\u0145\u0146\u0143\xAC\u221A\u0144\u0147\u2206\xAB\xBB\u2026\xA0\u0148\u0150\xD5\u0151\u014C\u2013\u2014\u201C\u201D\u2018\u2019\xF7\u25CA\u014D\u0154\u0155\u0158\u2039\u203A\u0159\u0156\u0157\u0160\u201A\u201E\u0161\u015A\u015B\xC1\u0164\u0165\xCD\u017D\u017E\u016A\xD3\xD4\u016B\u016E\xDA\u016F\u0170\u0171\u0172\u0173\xDD\xFD\u0137\u017B\u0141\u017C\u0122\u02C7"
+      10029: "maccenteuro",
+      maccenteuro: {
+        type: "_sbcs",
+        chars: "\xC4\u0100\u0101\xC9\u0104\xD6\xDC\xE1\u0105\u010C\xE4\u010D\u0106\u0107\xE9\u0179\u017A\u010E\xED\u010F\u0112\u0113\u0116\xF3\u0117\xF4\xF6\xF5\xFA\u011A\u011B\xFC\u2020\xB0\u0118\xA3\xA7\u2022\xB6\xDF\xAE\xA9\u2122\u0119\xA8\u2260\u0123\u012E\u012F\u012A\u2264\u2265\u012B\u0136\u2202\u2211\u0142\u013B\u013C\u013D\u013E\u0139\u013A\u0145\u0146\u0143\xAC\u221A\u0144\u0147\u2206\xAB\xBB\u2026\xA0\u0148\u0150\xD5\u0151\u014C\u2013\u2014\u201C\u201D\u2018\u2019\xF7\u25CA\u014D\u0154\u0155\u0158\u2039\u203A\u0159\u0156\u0157\u0160\u201A\u201E\u0161\u015A\u015B\xC1\u0164\u0165\xCD\u017D\u017E\u016A\xD3\xD4\u016B\u016E\xDA\u016F\u0170\u0171\u0172\u0173\xDD\xFD\u0137\u017B\u0141\u017C\u0122\u02C7"
       },
-      "808": "cp808",
-      "ibm808": "cp808",
-      "cp808": {
-        "type": "_sbcs",
-        "chars": "\u0410\u0411\u0412\u0413\u0414\u0415\u0416\u0417\u0418\u0419\u041A\u041B\u041C\u041D\u041E\u041F\u0420\u0421\u0422\u0423\u0424\u0425\u0426\u0427\u0428\u0429\u042A\u042B\u042C\u042D\u042E\u042F\u0430\u0431\u0432\u0433\u0434\u0435\u0436\u0437\u0438\u0439\u043A\u043B\u043C\u043D\u043E\u043F\u2591\u2592\u2593\u2502\u2524\u2561\u2562\u2556\u2555\u2563\u2551\u2557\u255D\u255C\u255B\u2510\u2514\u2534\u252C\u251C\u2500\u253C\u255E\u255F\u255A\u2554\u2569\u2566\u2560\u2550\u256C\u2567\u2568\u2564\u2565\u2559\u2558\u2552\u2553\u256B\u256A\u2518\u250C\u2588\u2584\u258C\u2590\u2580\u0440\u0441\u0442\u0443\u0444\u0445\u0446\u0447\u0448\u0449\u044A\u044B\u044C\u044D\u044E\u044F\u0401\u0451\u0404\u0454\u0407\u0457\u040E\u045E\xB0\u2219\xB7\u221A\u2116\u20AC\u25A0\xA0"
+      808: "cp808",
+      ibm808: "cp808",
+      cp808: {
+        type: "_sbcs",
+        chars: "\u0410\u0411\u0412\u0413\u0414\u0415\u0416\u0417\u0418\u0419\u041A\u041B\u041C\u041D\u041E\u041F\u0420\u0421\u0422\u0423\u0424\u0425\u0426\u0427\u0428\u0429\u042A\u042B\u042C\u042D\u042E\u042F\u0430\u0431\u0432\u0433\u0434\u0435\u0436\u0437\u0438\u0439\u043A\u043B\u043C\u043D\u043E\u043F\u2591\u2592\u2593\u2502\u2524\u2561\u2562\u2556\u2555\u2563\u2551\u2557\u255D\u255C\u255B\u2510\u2514\u2534\u252C\u251C\u2500\u253C\u255E\u255F\u255A\u2554\u2569\u2566\u2560\u2550\u256C\u2567\u2568\u2564\u2565\u2559\u2558\u2552\u2553\u256B\u256A\u2518\u250C\u2588\u2584\u258C\u2590\u2580\u0440\u0441\u0442\u0443\u0444\u0445\u0446\u0447\u0448\u0449\u044A\u044B\u044C\u044D\u044E\u044F\u0401\u0451\u0404\u0454\u0407\u0457\u040E\u045E\xB0\u2219\xB7\u221A\u2116\u20AC\u25A0\xA0"
       },
-      "mik": {
-        "type": "_sbcs",
-        "chars": "\u0410\u0411\u0412\u0413\u0414\u0415\u0416\u0417\u0418\u0419\u041A\u041B\u041C\u041D\u041E\u041F\u0420\u0421\u0422\u0423\u0424\u0425\u0426\u0427\u0428\u0429\u042A\u042B\u042C\u042D\u042E\u042F\u0430\u0431\u0432\u0433\u0434\u0435\u0436\u0437\u0438\u0439\u043A\u043B\u043C\u043D\u043E\u043F\u0440\u0441\u0442\u0443\u0444\u0445\u0446\u0447\u0448\u0449\u044A\u044B\u044C\u044D\u044E\u044F\u2514\u2534\u252C\u251C\u2500\u253C\u2563\u2551\u255A\u2554\u2569\u2566\u2560\u2550\u256C\u2510\u2591\u2592\u2593\u2502\u2524\u2116\xA7\u2557\u255D\u2518\u250C\u2588\u2584\u258C\u2590\u2580\u03B1\xDF\u0393\u03C0\u03A3\u03C3\xB5\u03C4\u03A6\u0398\u03A9\u03B4\u221E\u03C6\u03B5\u2229\u2261\xB1\u2265\u2264\u2320\u2321\xF7\u2248\xB0\u2219\xB7\u221A\u207F\xB2\u25A0\xA0"
+      mik: {
+        type: "_sbcs",
+        chars: "\u0410\u0411\u0412\u0413\u0414\u0415\u0416\u0417\u0418\u0419\u041A\u041B\u041C\u041D\u041E\u041F\u0420\u0421\u0422\u0423\u0424\u0425\u0426\u0427\u0428\u0429\u042A\u042B\u042C\u042D\u042E\u042F\u0430\u0431\u0432\u0433\u0434\u0435\u0436\u0437\u0438\u0439\u043A\u043B\u043C\u043D\u043E\u043F\u0440\u0441\u0442\u0443\u0444\u0445\u0446\u0447\u0448\u0449\u044A\u044B\u044C\u044D\u044E\u044F\u2514\u2534\u252C\u251C\u2500\u253C\u2563\u2551\u255A\u2554\u2569\u2566\u2560\u2550\u256C\u2510\u2591\u2592\u2593\u2502\u2524\u2116\xA7\u2557\u255D\u2518\u250C\u2588\u2584\u258C\u2590\u2580\u03B1\xDF\u0393\u03C0\u03A3\u03C3\xB5\u03C4\u03A6\u0398\u03A9\u03B4\u221E\u03C6\u03B5\u2229\u2261\xB1\u2265\u2264\u2320\u2321\xF7\u2248\xB0\u2219\xB7\u221A\u207F\xB2\u25A0\xA0"
+      },
+      cp720: {
+        type: "_sbcs",
+        chars: "\x80\x81\xE9\xE2\x84\xE0\x86\xE7\xEA\xEB\xE8\xEF\xEE\x8D\x8E\x8F\x90\u0651\u0652\xF4\xA4\u0640\xFB\xF9\u0621\u0622\u0623\u0624\xA3\u0625\u0626\u0627\u0628\u0629\u062A\u062B\u062C\u062D\u062E\u062F\u0630\u0631\u0632\u0633\u0634\u0635\xAB\xBB\u2591\u2592\u2593\u2502\u2524\u2561\u2562\u2556\u2555\u2563\u2551\u2557\u255D\u255C\u255B\u2510\u2514\u2534\u252C\u251C\u2500\u253C\u255E\u255F\u255A\u2554\u2569\u2566\u2560\u2550\u256C\u2567\u2568\u2564\u2565\u2559\u2558\u2552\u2553\u256B\u256A\u2518\u250C\u2588\u2584\u258C\u2590\u2580\u0636\u0637\u0638\u0639\u063A\u0641\xB5\u0642\u0643\u0644\u0645\u0646\u0647\u0648\u0649\u064A\u2261\u064B\u064C\u064D\u064E\u064F\u0650\u2248\xB0\u2219\xB7\u221A\u207F\xB2\u25A0\xA0"
       },
       // Aliases of generated encodings.
-      "ascii8bit": "ascii",
-      "usascii": "ascii",
-      "ansix34": "ascii",
-      "ansix341968": "ascii",
-      "ansix341986": "ascii",
-      "csascii": "ascii",
-      "cp367": "ascii",
-      "ibm367": "ascii",
-      "isoir6": "ascii",
-      "iso646us": "ascii",
-      "iso646irv": "ascii",
-      "us": "ascii",
-      "latin1": "iso88591",
-      "latin2": "iso88592",
-      "latin3": "iso88593",
-      "latin4": "iso88594",
-      "latin5": "iso88599",
-      "latin6": "iso885910",
-      "latin7": "iso885913",
-      "latin8": "iso885914",
-      "latin9": "iso885915",
-      "latin10": "iso885916",
-      "csisolatin1": "iso88591",
-      "csisolatin2": "iso88592",
-      "csisolatin3": "iso88593",
-      "csisolatin4": "iso88594",
-      "csisolatincyrillic": "iso88595",
-      "csisolatinarabic": "iso88596",
-      "csisolatingreek": "iso88597",
-      "csisolatinhebrew": "iso88598",
-      "csisolatin5": "iso88599",
-      "csisolatin6": "iso885910",
-      "l1": "iso88591",
-      "l2": "iso88592",
-      "l3": "iso88593",
-      "l4": "iso88594",
-      "l5": "iso88599",
-      "l6": "iso885910",
-      "l7": "iso885913",
-      "l8": "iso885914",
-      "l9": "iso885915",
-      "l10": "iso885916",
-      "isoir14": "iso646jp",
-      "isoir57": "iso646cn",
-      "isoir100": "iso88591",
-      "isoir101": "iso88592",
-      "isoir109": "iso88593",
-      "isoir110": "iso88594",
-      "isoir144": "iso88595",
-      "isoir127": "iso88596",
-      "isoir126": "iso88597",
-      "isoir138": "iso88598",
-      "isoir148": "iso88599",
-      "isoir157": "iso885910",
-      "isoir166": "tis620",
-      "isoir179": "iso885913",
-      "isoir199": "iso885914",
-      "isoir203": "iso885915",
-      "isoir226": "iso885916",
-      "cp819": "iso88591",
-      "ibm819": "iso88591",
-      "cyrillic": "iso88595",
-      "arabic": "iso88596",
-      "arabic8": "iso88596",
-      "ecma114": "iso88596",
-      "asmo708": "iso88596",
-      "greek": "iso88597",
-      "greek8": "iso88597",
-      "ecma118": "iso88597",
-      "elot928": "iso88597",
-      "hebrew": "iso88598",
-      "hebrew8": "iso88598",
-      "turkish": "iso88599",
-      "turkish8": "iso88599",
-      "thai": "iso885911",
-      "thai8": "iso885911",
-      "celtic": "iso885914",
-      "celtic8": "iso885914",
-      "isoceltic": "iso885914",
-      "tis6200": "tis620",
-      "tis62025291": "tis620",
-      "tis62025330": "tis620",
-      "10000": "macroman",
-      "10006": "macgreek",
-      "10007": "maccyrillic",
-      "10079": "maciceland",
-      "10081": "macturkish",
-      "cspc8codepage437": "cp437",
-      "cspc775baltic": "cp775",
-      "cspc850multilingual": "cp850",
-      "cspcp852": "cp852",
-      "cspc862latinhebrew": "cp862",
-      "cpgr": "cp869",
-      "msee": "cp1250",
-      "mscyrl": "cp1251",
-      "msansi": "cp1252",
-      "msgreek": "cp1253",
-      "msturk": "cp1254",
-      "mshebr": "cp1255",
-      "msarab": "cp1256",
-      "winbaltrim": "cp1257",
-      "cp20866": "koi8r",
-      "20866": "koi8r",
-      "ibm878": "koi8r",
-      "cskoi8r": "koi8r",
-      "cp21866": "koi8u",
-      "21866": "koi8u",
-      "ibm1168": "koi8u",
-      "strk10482002": "rk1048",
-      "tcvn5712": "tcvn",
-      "tcvn57121": "tcvn",
-      "gb198880": "iso646cn",
-      "cn": "iso646cn",
-      "csiso14jisc6220ro": "iso646jp",
-      "jisc62201969ro": "iso646jp",
-      "jp": "iso646jp",
-      "cshproman8": "hproman8",
-      "r8": "hproman8",
-      "roman8": "hproman8",
-      "xroman8": "hproman8",
-      "ibm1051": "hproman8",
-      "mac": "macintosh",
-      "csmacintosh": "macintosh"
+      ascii8bit: "ascii",
+      usascii: "ascii",
+      ansix34: "ascii",
+      ansix341968: "ascii",
+      ansix341986: "ascii",
+      csascii: "ascii",
+      cp367: "ascii",
+      ibm367: "ascii",
+      isoir6: "ascii",
+      iso646us: "ascii",
+      iso646irv: "ascii",
+      us: "ascii",
+      latin1: "iso88591",
+      latin2: "iso88592",
+      latin3: "iso88593",
+      latin4: "iso88594",
+      latin5: "iso88599",
+      latin6: "iso885910",
+      latin7: "iso885913",
+      latin8: "iso885914",
+      latin9: "iso885915",
+      latin10: "iso885916",
+      csisolatin1: "iso88591",
+      csisolatin2: "iso88592",
+      csisolatin3: "iso88593",
+      csisolatin4: "iso88594",
+      csisolatincyrillic: "iso88595",
+      csisolatinarabic: "iso88596",
+      csisolatingreek: "iso88597",
+      csisolatinhebrew: "iso88598",
+      csisolatin5: "iso88599",
+      csisolatin6: "iso885910",
+      l1: "iso88591",
+      l2: "iso88592",
+      l3: "iso88593",
+      l4: "iso88594",
+      l5: "iso88599",
+      l6: "iso885910",
+      l7: "iso885913",
+      l8: "iso885914",
+      l9: "iso885915",
+      l10: "iso885916",
+      isoir14: "iso646jp",
+      isoir57: "iso646cn",
+      isoir100: "iso88591",
+      isoir101: "iso88592",
+      isoir109: "iso88593",
+      isoir110: "iso88594",
+      isoir144: "iso88595",
+      isoir127: "iso88596",
+      isoir126: "iso88597",
+      isoir138: "iso88598",
+      isoir148: "iso88599",
+      isoir157: "iso885910",
+      isoir166: "tis620",
+      isoir179: "iso885913",
+      isoir199: "iso885914",
+      isoir203: "iso885915",
+      isoir226: "iso885916",
+      cp819: "iso88591",
+      ibm819: "iso88591",
+      cyrillic: "iso88595",
+      arabic: "iso88596",
+      arabic8: "iso88596",
+      ecma114: "iso88596",
+      asmo708: "iso88596",
+      greek: "iso88597",
+      greek8: "iso88597",
+      ecma118: "iso88597",
+      elot928: "iso88597",
+      hebrew: "iso88598",
+      hebrew8: "iso88598",
+      turkish: "iso88599",
+      turkish8: "iso88599",
+      thai: "iso885911",
+      thai8: "iso885911",
+      celtic: "iso885914",
+      celtic8: "iso885914",
+      isoceltic: "iso885914",
+      tis6200: "tis620",
+      tis62025291: "tis620",
+      tis62025330: "tis620",
+      1e4: "macroman",
+      10006: "macgreek",
+      10007: "maccyrillic",
+      10079: "maciceland",
+      10081: "macturkish",
+      cspc8codepage437: "cp437",
+      cspc775baltic: "cp775",
+      cspc850multilingual: "cp850",
+      cspcp852: "cp852",
+      cspc862latinhebrew: "cp862",
+      cpgr: "cp869",
+      msee: "cp1250",
+      mscyrl: "cp1251",
+      msansi: "cp1252",
+      msgreek: "cp1253",
+      msturk: "cp1254",
+      mshebr: "cp1255",
+      msarab: "cp1256",
+      winbaltrim: "cp1257",
+      cp20866: "koi8r",
+      20866: "koi8r",
+      ibm878: "koi8r",
+      cskoi8r: "koi8r",
+      cp21866: "koi8u",
+      21866: "koi8u",
+      ibm1168: "koi8u",
+      strk10482002: "rk1048",
+      tcvn5712: "tcvn",
+      tcvn57121: "tcvn",
+      gb198880: "iso646cn",
+      cn: "iso646cn",
+      csiso14jisc6220ro: "iso646jp",
+      jisc62201969ro: "iso646jp",
+      jp: "iso646jp",
+      cshproman8: "hproman8",
+      r8: "hproman8",
+      roman8: "hproman8",
+      xroman8: "hproman8",
+      ibm1051: "hproman8",
+      mac: "macintosh",
+      csmacintosh: "macintosh"
     };
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/sbcs-data-generated.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/sbcs-data-generated.js
 var require_sbcs_data_generated = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       "437": "cp437",
@@ -23307,9 +23693,9 @@ var require_sbcs_data_generated = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/dbcs-codec.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/dbcs-codec.js
 var require_dbcs_codec = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports2) {
     "use strict";
     var Buffer5 = require_safer().Buffer;
     exports2._dbcs = DBCSCodec;
@@ -23319,69 +23705,97 @@ var require_dbcs_codec = __commonJS({
     var NODE_START = -1e3;
     var UNASSIGNED_NODE = new Array(256);
     var DEF_CHAR = -1;
-    for (i2 = 0; i2 < 256; i2++)
+    for (i2 = 0; i2 < 256; i2++) {
       UNASSIGNED_NODE[i2] = UNASSIGNED;
+    }
     var i2;
-    function DBCSCodec(codecOptions, iconv) {
+    function DBCSCodec(codecOptions, iconv2) {
       this.encodingName = codecOptions.encodingName;
-      if (!codecOptions)
+      if (!codecOptions) {
         throw new Error("DBCS codec is called without the data.");
-      if (!codecOptions.table)
+      }
+      if (!codecOptions.table) {
         throw new Error("Encoding '" + this.encodingName + "' has no data.");
+      }
       var mappingTable = codecOptions.table();
       this.decodeTables = [];
       this.decodeTables[0] = UNASSIGNED_NODE.slice(0);
       this.decodeTableSeq = [];
-      for (var i3 = 0; i3 < mappingTable.length; i3++)
+      for (var i3 = 0; i3 < mappingTable.length; i3++) {
         this._addDecodeChunk(mappingTable[i3]);
-      this.defaultCharUnicode = iconv.defaultCharUnicode;
+      }
+      if (typeof codecOptions.gb18030 === "function") {
+        this.gb18030 = codecOptions.gb18030();
+        var commonThirdByteNodeIdx = this.decodeTables.length;
+        this.decodeTables.push(UNASSIGNED_NODE.slice(0));
+        var commonFourthByteNodeIdx = this.decodeTables.length;
+        this.decodeTables.push(UNASSIGNED_NODE.slice(0));
+        var firstByteNode = this.decodeTables[0];
+        for (var i3 = 129; i3 <= 254; i3++) {
+          var secondByteNode = this.decodeTables[NODE_START - firstByteNode[i3]];
+          for (var j = 48; j <= 57; j++) {
+            if (secondByteNode[j] === UNASSIGNED) {
+              secondByteNode[j] = NODE_START - commonThirdByteNodeIdx;
+            } else if (secondByteNode[j] > NODE_START) {
+              throw new Error("gb18030 decode tables conflict at byte 2");
+            }
+            var thirdByteNode = this.decodeTables[NODE_START - secondByteNode[j]];
+            for (var k = 129; k <= 254; k++) {
+              if (thirdByteNode[k] === UNASSIGNED) {
+                thirdByteNode[k] = NODE_START - commonFourthByteNodeIdx;
+              } else if (thirdByteNode[k] === NODE_START - commonFourthByteNodeIdx) {
+                continue;
+              } else if (thirdByteNode[k] > NODE_START) {
+                throw new Error("gb18030 decode tables conflict at byte 3");
+              }
+              var fourthByteNode = this.decodeTables[NODE_START - thirdByteNode[k]];
+              for (var l = 48; l <= 57; l++) {
+                if (fourthByteNode[l] === UNASSIGNED) {
+                  fourthByteNode[l] = GB18030_CODE;
+                }
+              }
+            }
+          }
+        }
+      }
+      this.defaultCharUnicode = iconv2.defaultCharUnicode;
       this.encodeTable = [];
       this.encodeTableSeq = [];
       var skipEncodeChars = {};
-      if (codecOptions.encodeSkipVals)
+      if (codecOptions.encodeSkipVals) {
         for (var i3 = 0; i3 < codecOptions.encodeSkipVals.length; i3++) {
           var val = codecOptions.encodeSkipVals[i3];
-          if (typeof val === "number")
+          if (typeof val === "number") {
             skipEncodeChars[val] = true;
-          else
-            for (var j = val.from; j <= val.to; j++)
+          } else {
+            for (var j = val.from; j <= val.to; j++) {
               skipEncodeChars[j] = true;
+            }
+          }
         }
+      }
       this._fillEncodeTable(0, 0, skipEncodeChars);
       if (codecOptions.encodeAdd) {
-        for (var uChar in codecOptions.encodeAdd)
-          if (Object.prototype.hasOwnProperty.call(codecOptions.encodeAdd, uChar))
+        for (var uChar in codecOptions.encodeAdd) {
+          if (Object.prototype.hasOwnProperty.call(codecOptions.encodeAdd, uChar)) {
             this._setEncodeChar(uChar.charCodeAt(0), codecOptions.encodeAdd[uChar]);
+          }
+        }
       }
-      this.defCharSB = this.encodeTable[0][iconv.defaultCharSingleByte.charCodeAt(0)];
+      this.defCharSB = this.encodeTable[0][iconv2.defaultCharSingleByte.charCodeAt(0)];
       if (this.defCharSB === UNASSIGNED) this.defCharSB = this.encodeTable[0]["?"];
       if (this.defCharSB === UNASSIGNED) this.defCharSB = "?".charCodeAt(0);
-      if (typeof codecOptions.gb18030 === "function") {
-        this.gb18030 = codecOptions.gb18030();
-        var thirdByteNodeIdx = this.decodeTables.length;
-        var thirdByteNode = this.decodeTables[thirdByteNodeIdx] = UNASSIGNED_NODE.slice(0);
-        var fourthByteNodeIdx = this.decodeTables.length;
-        var fourthByteNode = this.decodeTables[fourthByteNodeIdx] = UNASSIGNED_NODE.slice(0);
-        for (var i3 = 129; i3 <= 254; i3++) {
-          var secondByteNodeIdx = NODE_START - this.decodeTables[0][i3];
-          var secondByteNode = this.decodeTables[secondByteNodeIdx];
-          for (var j = 48; j <= 57; j++)
-            secondByteNode[j] = NODE_START - thirdByteNodeIdx;
-        }
-        for (var i3 = 129; i3 <= 254; i3++)
-          thirdByteNode[i3] = NODE_START - fourthByteNodeIdx;
-        for (var i3 = 48; i3 <= 57; i3++)
-          fourthByteNode[i3] = GB18030_CODE;
-      }
     }
     DBCSCodec.prototype.encoder = DBCSEncoder;
     DBCSCodec.prototype.decoder = DBCSDecoder;
     DBCSCodec.prototype._getDecodeTrieNode = function(addr) {
       var bytes = [];
-      for (; addr > 0; addr >>= 8)
+      for (; addr > 0; addr >>>= 8) {
         bytes.push(addr & 255);
-      if (bytes.length == 0)
+      }
+      if (bytes.length == 0) {
         bytes.push(0);
+      }
       var node = this.decodeTables[0];
       for (var i3 = bytes.length - 1; i3 > 0; i3--) {
         var val = node[bytes[i3]];
@@ -23390,8 +23804,9 @@ var require_dbcs_codec = __commonJS({
           this.decodeTables.push(node = UNASSIGNED_NODE.slice(0));
         } else if (val <= NODE_START) {
           node = this.decodeTables[NODE_START - val];
-        } else
+        } else {
           throw new Error("Overwrite byte in " + this.encodingName + ", addr: " + addr.toString(16));
+        }
       }
       return node;
     };
@@ -23404,45 +23819,53 @@ var require_dbcs_codec = __commonJS({
         if (typeof part === "string") {
           for (var l = 0; l < part.length; ) {
             var code = part.charCodeAt(l++);
-            if (55296 <= code && code < 56320) {
+            if (code >= 55296 && code < 56320) {
               var codeTrail = part.charCodeAt(l++);
-              if (56320 <= codeTrail && codeTrail < 57344)
+              if (codeTrail >= 56320 && codeTrail < 57344) {
                 writeTable[curAddr++] = 65536 + (code - 55296) * 1024 + (codeTrail - 56320);
-              else
+              } else {
                 throw new Error("Incorrect surrogate pair in " + this.encodingName + " at chunk " + chunk[0]);
-            } else if (4080 < code && code <= 4095) {
+              }
+            } else if (code > 4080 && code <= 4095) {
               var len = 4095 - code + 2;
               var seq = [];
-              for (var m = 0; m < len; m++)
+              for (var m = 0; m < len; m++) {
                 seq.push(part.charCodeAt(l++));
+              }
               writeTable[curAddr++] = SEQ_START - this.decodeTableSeq.length;
               this.decodeTableSeq.push(seq);
-            } else
+            } else {
               writeTable[curAddr++] = code;
+            }
           }
         } else if (typeof part === "number") {
           var charCode = writeTable[curAddr - 1] + 1;
-          for (var l = 0; l < part; l++)
+          for (var l = 0; l < part; l++) {
             writeTable[curAddr++] = charCode++;
-        } else
+          }
+        } else {
           throw new Error("Incorrect type '" + typeof part + "' given in " + this.encodingName + " at chunk " + chunk[0]);
+        }
       }
-      if (curAddr > 255)
+      if (curAddr > 255) {
         throw new Error("Incorrect chunk in " + this.encodingName + " at addr " + chunk[0] + ": too long" + curAddr);
+      }
     };
     DBCSCodec.prototype._getEncodeBucket = function(uCode) {
       var high = uCode >> 8;
-      if (this.encodeTable[high] === void 0)
+      if (this.encodeTable[high] === void 0) {
         this.encodeTable[high] = UNASSIGNED_NODE.slice(0);
+      }
       return this.encodeTable[high];
     };
     DBCSCodec.prototype._setEncodeChar = function(uCode, dbcsCode) {
       var bucket = this._getEncodeBucket(uCode);
       var low = uCode & 255;
-      if (bucket[low] <= SEQ_START)
+      if (bucket[low] <= SEQ_START) {
         this.encodeTableSeq[SEQ_START - bucket[low]][DEF_CHAR] = dbcsCode;
-      else if (bucket[low] == UNASSIGNED)
+      } else if (bucket[low] == UNASSIGNED) {
         bucket[low] = dbcsCode;
+      }
     };
     DBCSCodec.prototype._setEncodeSequence = function(seq, dbcsCode) {
       var uCode = seq[0];
@@ -23459,12 +23882,13 @@ var require_dbcs_codec = __commonJS({
       }
       for (var j = 1; j < seq.length - 1; j++) {
         var oldVal = node[uCode];
-        if (typeof oldVal === "object")
+        if (typeof oldVal === "object") {
           node = oldVal;
-        else {
+        } else {
           node = node[uCode] = {};
-          if (oldVal !== void 0)
+          if (oldVal !== void 0) {
             node[DEF_CHAR] = oldVal;
+          }
         }
       }
       uCode = seq[seq.length - 1];
@@ -23472,18 +23896,33 @@ var require_dbcs_codec = __commonJS({
     };
     DBCSCodec.prototype._fillEncodeTable = function(nodeIdx, prefix, skipEncodeChars) {
       var node = this.decodeTables[nodeIdx];
+      var hasValues = false;
+      var subNodeEmpty = {};
       for (var i3 = 0; i3 < 256; i3++) {
         var uCode = node[i3];
         var mbCode = prefix + i3;
-        if (skipEncodeChars[mbCode])
+        if (skipEncodeChars[mbCode]) {
           continue;
-        if (uCode >= 0)
+        }
+        if (uCode >= 0) {
           this._setEncodeChar(uCode, mbCode);
-        else if (uCode <= NODE_START)
-          this._fillEncodeTable(NODE_START - uCode, mbCode << 8, skipEncodeChars);
-        else if (uCode <= SEQ_START)
+          hasValues = true;
+        } else if (uCode <= NODE_START) {
+          var subNodeIdx = NODE_START - uCode;
+          if (!subNodeEmpty[subNodeIdx]) {
+            var newPrefix = mbCode << 8 >>> 0;
+            if (this._fillEncodeTable(subNodeIdx, newPrefix, skipEncodeChars)) {
+              hasValues = true;
+            } else {
+              subNodeEmpty[subNodeIdx] = true;
+            }
+          }
+        } else if (uCode <= SEQ_START) {
           this._setEncodeSequence(this.decodeTableSeq[SEQ_START - uCode], mbCode);
+          hasValues = true;
+        }
       }
+      return hasValues;
     };
     function DBCSEncoder(options, codec) {
       this.leadSurrogate = -1;
@@ -23494,7 +23933,12 @@ var require_dbcs_codec = __commonJS({
       this.gb18030 = codec.gb18030;
     }
     DBCSEncoder.prototype.write = function(str) {
-      var newBuf = Buffer5.alloc(str.length * (this.gb18030 ? 4 : 3)), leadSurrogate = this.leadSurrogate, seqObj = this.seqObj, nextChar = -1, i3 = 0, j = 0;
+      var newBuf = Buffer5.alloc(str.length * (this.gb18030 ? 4 : 3));
+      var leadSurrogate = this.leadSurrogate;
+      var seqObj = this.seqObj;
+      var nextChar = -1;
+      var i3 = 0;
+      var j = 0;
       while (true) {
         if (nextChar === -1) {
           if (i3 == str.length) break;
@@ -23503,7 +23947,7 @@ var require_dbcs_codec = __commonJS({
           var uCode = nextChar;
           nextChar = -1;
         }
-        if (55296 <= uCode && uCode < 57344) {
+        if (uCode >= 55296 && uCode < 57344) {
           if (uCode < 56320) {
             if (leadSurrogate === -1) {
               leadSurrogate = uCode;
@@ -23531,7 +23975,7 @@ var require_dbcs_codec = __commonJS({
           if (typeof resCode === "object") {
             seqObj = resCode;
             continue;
-          } else if (typeof resCode == "number") {
+          } else if (typeof resCode === "number") {
             dbcsCode = resCode;
           } else if (resCode == void 0) {
             resCode = seqObj[DEF_CHAR];
@@ -23544,8 +23988,9 @@ var require_dbcs_codec = __commonJS({
           seqObj = void 0;
         } else if (uCode >= 0) {
           var subtable = this.encodeTable[uCode >> 8];
-          if (subtable !== void 0)
+          if (subtable !== void 0) {
             dbcsCode = subtable[uCode & 255];
+          }
           if (dbcsCode <= SEQ_START) {
             seqObj = this.encodeTableSeq[SEQ_START - dbcsCode];
             continue;
@@ -23565,16 +24010,22 @@ var require_dbcs_codec = __commonJS({
             }
           }
         }
-        if (dbcsCode === UNASSIGNED)
+        if (dbcsCode === UNASSIGNED) {
           dbcsCode = this.defaultCharSingleByte;
+        }
         if (dbcsCode < 256) {
           newBuf[j++] = dbcsCode;
         } else if (dbcsCode < 65536) {
           newBuf[j++] = dbcsCode >> 8;
           newBuf[j++] = dbcsCode & 255;
-        } else {
+        } else if (dbcsCode < 16777216) {
           newBuf[j++] = dbcsCode >> 16;
           newBuf[j++] = dbcsCode >> 8 & 255;
+          newBuf[j++] = dbcsCode & 255;
+        } else {
+          newBuf[j++] = dbcsCode >>> 24;
+          newBuf[j++] = dbcsCode >>> 16 & 255;
+          newBuf[j++] = dbcsCode >>> 8 & 255;
           newBuf[j++] = dbcsCode & 255;
         }
       }
@@ -23583,9 +24034,11 @@ var require_dbcs_codec = __commonJS({
       return newBuf.slice(0, j);
     };
     DBCSEncoder.prototype.end = function() {
-      if (this.leadSurrogate === -1 && this.seqObj === void 0)
+      if (this.leadSurrogate === -1 && this.seqObj === void 0) {
         return;
-      var newBuf = Buffer5.alloc(10), j = 0;
+      }
+      var newBuf = Buffer5.alloc(10);
+      var j = 0;
       if (this.seqObj) {
         var dbcsCode = this.seqObj[DEF_CHAR];
         if (dbcsCode !== void 0) {
@@ -23608,26 +24061,32 @@ var require_dbcs_codec = __commonJS({
     DBCSEncoder.prototype.findIdx = findIdx;
     function DBCSDecoder(options, codec) {
       this.nodeIdx = 0;
-      this.prevBuf = Buffer5.alloc(0);
+      this.prevBytes = [];
       this.decodeTables = codec.decodeTables;
       this.decodeTableSeq = codec.decodeTableSeq;
       this.defaultCharUnicode = codec.defaultCharUnicode;
       this.gb18030 = codec.gb18030;
     }
     DBCSDecoder.prototype.write = function(buf) {
-      var newBuf = Buffer5.alloc(buf.length * 2), nodeIdx = this.nodeIdx, prevBuf = this.prevBuf, prevBufOffset = this.prevBuf.length, seqStart = -this.prevBuf.length, uCode;
-      if (prevBufOffset > 0)
-        prevBuf = Buffer5.concat([prevBuf, buf.slice(0, 10)]);
+      var newBuf = Buffer5.alloc(buf.length * 2);
+      var nodeIdx = this.nodeIdx;
+      var prevBytes = this.prevBytes;
+      var prevOffset = this.prevBytes.length;
+      var seqStart = -this.prevBytes.length;
+      var uCode;
       for (var i3 = 0, j = 0; i3 < buf.length; i3++) {
-        var curByte = i3 >= 0 ? buf[i3] : prevBuf[i3 + prevBufOffset];
+        var curByte = i3 >= 0 ? buf[i3] : prevBytes[i3 + prevOffset];
         var uCode = this.decodeTables[nodeIdx][curByte];
         if (uCode >= 0) {
         } else if (uCode === UNASSIGNED) {
-          i3 = seqStart;
           uCode = this.defaultCharUnicode.charCodeAt(0);
+          i3 = seqStart;
         } else if (uCode === GB18030_CODE) {
-          var curSeq = seqStart >= 0 ? buf.slice(seqStart, i3 + 1) : prevBuf.slice(seqStart + prevBufOffset, i3 + 1 + prevBufOffset);
-          var ptr = (curSeq[0] - 129) * 12600 + (curSeq[1] - 48) * 1260 + (curSeq[2] - 129) * 10 + (curSeq[3] - 48);
+          if (i3 >= 3) {
+            var ptr = (buf[i3 - 3] - 129) * 12600 + (buf[i3 - 2] - 48) * 1260 + (buf[i3 - 1] - 129) * 10 + (curByte - 48);
+          } else {
+            var ptr = (prevBytes[i3 - 3 + prevOffset] - 129) * 12600 + ((i3 - 2 >= 0 ? buf[i3 - 2] : prevBytes[i3 - 2 + prevOffset]) - 48) * 1260 + ((i3 - 1 >= 0 ? buf[i3 - 1] : prevBytes[i3 - 1 + prevOffset]) - 129) * 10 + (curByte - 48);
+          }
           var idx = findIdx(this.gb18030.gbChars, ptr);
           uCode = this.gb18030.uChars[idx] + ptr - this.gb18030.gbChars[idx];
         } else if (uCode <= NODE_START) {
@@ -23641,14 +24100,15 @@ var require_dbcs_codec = __commonJS({
             newBuf[j++] = uCode >> 8;
           }
           uCode = seq[seq.length - 1];
-        } else
+        } else {
           throw new Error("iconv-lite internal error: invalid decoding table value " + uCode + " at " + nodeIdx + "/" + curByte);
-        if (uCode > 65535) {
+        }
+        if (uCode >= 65536) {
           uCode -= 65536;
-          var uCodeLead = 55296 + Math.floor(uCode / 1024);
+          var uCodeLead = 55296 | uCode >> 10;
           newBuf[j++] = uCodeLead & 255;
           newBuf[j++] = uCodeLead >> 8;
-          uCode = 56320 + uCode % 1024;
+          uCode = 56320 | uCode & 1023;
         }
         newBuf[j++] = uCode & 255;
         newBuf[j++] = uCode >> 8;
@@ -23656,41 +24116,46 @@ var require_dbcs_codec = __commonJS({
         seqStart = i3 + 1;
       }
       this.nodeIdx = nodeIdx;
-      this.prevBuf = seqStart >= 0 ? buf.slice(seqStart) : prevBuf.slice(seqStart + prevBufOffset);
+      this.prevBytes = seqStart >= 0 ? Array.prototype.slice.call(buf, seqStart) : prevBytes.slice(seqStart + prevOffset).concat(Array.prototype.slice.call(buf));
       return newBuf.slice(0, j).toString("ucs2");
     };
     DBCSDecoder.prototype.end = function() {
       var ret = "";
-      while (this.prevBuf.length > 0) {
+      while (this.prevBytes.length > 0) {
         ret += this.defaultCharUnicode;
-        var buf = this.prevBuf.slice(1);
-        this.prevBuf = Buffer5.alloc(0);
+        var bytesArr = this.prevBytes.slice(1);
+        this.prevBytes = [];
         this.nodeIdx = 0;
-        if (buf.length > 0)
-          ret += this.write(buf);
+        if (bytesArr.length > 0) {
+          ret += this.write(bytesArr);
+        }
       }
+      this.prevBytes = [];
       this.nodeIdx = 0;
       return ret;
     };
     function findIdx(table, val) {
-      if (table[0] > val)
+      if (table[0] > val) {
         return -1;
-      var l = 0, r = table.length;
+      }
+      var l = 0;
+      var r = table.length;
       while (l < r - 1) {
-        var mid = l + Math.floor((r - l + 1) / 2);
-        if (table[mid] <= val)
+        var mid = l + (r - l + 1 >> 1);
+        if (table[mid] <= val) {
           l = mid;
-        else
+        } else {
           r = mid;
+        }
       }
       return l;
     }
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/shiftjis.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/shiftjis.json
 var require_shiftjis = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports2, module2) {
     module2.exports = [
       ["0", "\0", 128],
       ["a1", "\uFF61", 62],
@@ -23819,9 +24284,9 @@ var require_shiftjis = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/eucjp.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/eucjp.json
 var require_eucjp = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports2, module2) {
     module2.exports = [
       ["0", "\0", 127],
       ["8ea1", "\uFF61", 62],
@@ -24007,9 +24472,9 @@ var require_eucjp = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/cp936.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/cp936.json
 var require_cp936 = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/cp936.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/cp936.json"(exports2, module2) {
     module2.exports = [
       ["0", "\0", 127, "\u20AC"],
       ["8140", "\u4E02\u4E04\u4E05\u4E06\u4E0F\u4E12\u4E17\u4E1F\u4E20\u4E21\u4E23\u4E26\u4E29\u4E2E\u4E2F\u4E31\u4E33\u4E35\u4E37\u4E3C\u4E40\u4E41\u4E42\u4E44\u4E46\u4E4A\u4E51\u4E55\u4E57\u4E5A\u4E5B\u4E62\u4E63\u4E64\u4E65\u4E67\u4E68\u4E6A", 5, "\u4E72\u4E74", 9, "\u4E7F", 6, "\u4E87\u4E8A"],
@@ -24277,9 +24742,9 @@ var require_cp936 = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/gbk-added.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/gbk-added.json
 var require_gbk_added = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports2, module2) {
     module2.exports = [
       ["a140", "\uE4C6", 62],
       ["a180", "\uE505", 32],
@@ -24309,7 +24774,7 @@ var require_gbk_added = __commonJS({
       ["a7c2", "\uE7A0", 14],
       ["a7f2", "\uE7AF", 12],
       ["a896", "\uE7BC", 10],
-      ["a8bc", "\uE7C7"],
+      ["a8bc", "\u1E3F"],
       ["a8bf", "\u01F9"],
       ["a8c1", "\uE7C9\uE7CA\uE7CB\uE7CC"],
       ["a8ea", "\uE7CD", 20],
@@ -24333,21 +24798,22 @@ var require_gbk_added = __commonJS({
       ["fca1", "\uE3AC", 93],
       ["fda1", "\uE40A", 93],
       ["fe50", "\u2E81\uE816\uE817\uE818\u2E84\u3473\u3447\u2E88\u2E8B\uE81E\u359E\u361A\u360E\u2E8C\u2E97\u396E\u3918\uE826\u39CF\u39DF\u3A73\u39D0\uE82B\uE82C\u3B4E\u3C6E\u3CE0\u2EA7\uE831\uE832\u2EAA\u4056\u415F\u2EAE\u4337\u2EB3\u2EB6\u2EB7\uE83B\u43B1\u43AC\u2EBB\u43DD\u44D6\u4661\u464C\uE843"],
-      ["fe80", "\u4723\u4729\u477C\u478D\u2ECA\u4947\u497A\u497D\u4982\u4983\u4985\u4986\u499F\u499B\u49B7\u49B6\uE854\uE855\u4CA3\u4C9F\u4CA0\u4CA1\u4C77\u4CA2\u4D13", 6, "\u4DAE\uE864\uE468", 93]
+      ["fe80", "\u4723\u4729\u477C\u478D\u2ECA\u4947\u497A\u497D\u4982\u4983\u4985\u4986\u499F\u499B\u49B7\u49B6\uE854\uE855\u4CA3\u4C9F\u4CA0\u4CA1\u4C77\u4CA2\u4D13", 6, "\u4DAE\uE864\uE468", 93],
+      ["8135f437", "\uE7C7"]
     ];
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
 var require_gb18030_ranges = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports2, module2) {
     module2.exports = { uChars: [128, 165, 169, 178, 184, 216, 226, 235, 238, 244, 248, 251, 253, 258, 276, 284, 300, 325, 329, 334, 364, 463, 465, 467, 469, 471, 473, 475, 477, 506, 594, 610, 712, 716, 730, 930, 938, 962, 970, 1026, 1104, 1106, 8209, 8215, 8218, 8222, 8231, 8241, 8244, 8246, 8252, 8365, 8452, 8454, 8458, 8471, 8482, 8556, 8570, 8596, 8602, 8713, 8720, 8722, 8726, 8731, 8737, 8740, 8742, 8748, 8751, 8760, 8766, 8777, 8781, 8787, 8802, 8808, 8816, 8854, 8858, 8870, 8896, 8979, 9322, 9372, 9548, 9588, 9616, 9622, 9634, 9652, 9662, 9672, 9676, 9680, 9702, 9735, 9738, 9793, 9795, 11906, 11909, 11913, 11917, 11928, 11944, 11947, 11951, 11956, 11960, 11964, 11979, 12284, 12292, 12312, 12319, 12330, 12351, 12436, 12447, 12535, 12543, 12586, 12842, 12850, 12964, 13200, 13215, 13218, 13253, 13263, 13267, 13270, 13384, 13428, 13727, 13839, 13851, 14617, 14703, 14801, 14816, 14964, 15183, 15471, 15585, 16471, 16736, 17208, 17325, 17330, 17374, 17623, 17997, 18018, 18212, 18218, 18301, 18318, 18760, 18811, 18814, 18820, 18823, 18844, 18848, 18872, 19576, 19620, 19738, 19887, 40870, 59244, 59336, 59367, 59413, 59417, 59423, 59431, 59437, 59443, 59452, 59460, 59478, 59493, 63789, 63866, 63894, 63976, 63986, 64016, 64018, 64021, 64025, 64034, 64037, 64042, 65074, 65093, 65107, 65112, 65127, 65132, 65375, 65510, 65536], gbChars: [0, 36, 38, 45, 50, 81, 89, 95, 96, 100, 103, 104, 105, 109, 126, 133, 148, 172, 175, 179, 208, 306, 307, 308, 309, 310, 311, 312, 313, 341, 428, 443, 544, 545, 558, 741, 742, 749, 750, 805, 819, 820, 7922, 7924, 7925, 7927, 7934, 7943, 7944, 7945, 7950, 8062, 8148, 8149, 8152, 8164, 8174, 8236, 8240, 8262, 8264, 8374, 8380, 8381, 8384, 8388, 8390, 8392, 8393, 8394, 8396, 8401, 8406, 8416, 8419, 8424, 8437, 8439, 8445, 8482, 8485, 8496, 8521, 8603, 8936, 8946, 9046, 9050, 9063, 9066, 9076, 9092, 9100, 9108, 9111, 9113, 9131, 9162, 9164, 9218, 9219, 11329, 11331, 11334, 11336, 11346, 11361, 11363, 11366, 11370, 11372, 11375, 11389, 11682, 11686, 11687, 11692, 11694, 11714, 11716, 11723, 11725, 11730, 11736, 11982, 11989, 12102, 12336, 12348, 12350, 12384, 12393, 12395, 12397, 12510, 12553, 12851, 12962, 12973, 13738, 13823, 13919, 13933, 14080, 14298, 14585, 14698, 15583, 15847, 16318, 16434, 16438, 16481, 16729, 17102, 17122, 17315, 17320, 17402, 17418, 17859, 17909, 17911, 17915, 17916, 17936, 17939, 17961, 18664, 18703, 18814, 18962, 19043, 33469, 33470, 33471, 33484, 33485, 33490, 33497, 33501, 33505, 33513, 33520, 33536, 33550, 37845, 37921, 37948, 38029, 38038, 38064, 38065, 38066, 38069, 38075, 38076, 38078, 39108, 39109, 39113, 39114, 39115, 39116, 39265, 39394, 189e3] };
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/cp949.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/cp949.json
 var require_cp949 = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/cp949.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/cp949.json"(exports2, module2) {
     module2.exports = [
       ["0", "\0", 127],
       ["8141", "\uAC02\uAC03\uAC05\uAC06\uAC0B", 4, "\uAC18\uAC1E\uAC1F\uAC21\uAC22\uAC23\uAC25", 6, "\uAC2E\uAC32\uAC33\uAC34"],
@@ -24624,9 +25090,9 @@ var require_cp949 = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/cp950.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/cp950.json
 var require_cp950 = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/cp950.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/cp950.json"(exports2, module2) {
     module2.exports = [
       ["0", "\0", 127],
       ["a140", "\u3000\uFF0C\u3001\u3002\uFF0E\u2027\uFF1B\uFF1A\uFF1F\uFF01\uFE30\u2026\u2025\uFE50\uFE51\uFE52\xB7\uFE54\uFE55\uFE56\uFE57\uFF5C\u2013\uFE31\u2014\uFE33\u2574\uFE34\uFE4F\uFF08\uFF09\uFE35\uFE36\uFF5B\uFF5D\uFE37\uFE38\u3014\u3015\uFE39\uFE3A\u3010\u3011\uFE3B\uFE3C\u300A\u300B\uFE3D\uFE3E\u3008\u3009\uFE3F\uFE40\u300C\u300D\uFE41\uFE42\u300E\u300F\uFE43\uFE44\uFE59\uFE5A"],
@@ -24807,9 +25273,9 @@ var require_cp950 = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/tables/big5-added.json
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/big5-added.json
 var require_big5_added = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports2, module2) {
     module2.exports = [
       ["8740", "\u43F0\u4C32\u4603\u45A6\u4578\u{27267}\u4D77\u45B3\u{27CB1}\u4CE2\u{27CC5}\u3B95\u4736\u4744\u4C47\u4C40\u{242BF}\u{23617}\u{27352}\u{26E8B}\u{270D2}\u4C57\u{2A351}\u474F\u45DA\u4C85\u{27C6C}\u4D07\u4AA4\u46A1\u{26B23}\u7225\u{25A54}\u{21A63}\u{23E06}\u{23F61}\u664D\u56FB"],
       ["8767", "\u7D95\u591D\u{28BB9}\u3DF4\u9734\u{27BEF}\u5BDB\u{21D5E}\u5AA4\u3625\u{29EB0}\u5AD1\u5BB7\u5CFC\u676E\u8593\u{29945}\u7461\u749D\u3875\u{21D53}\u{2369E}\u{26021}\u3EEC"],
@@ -24935,15 +25401,15 @@ var require_big5_added = __commonJS({
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/dbcs-data.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/dbcs-data.js
 var require_dbcs_data = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/dbcs-data.js"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/dbcs-data.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       // == Japanese/ShiftJIS ====================================================
       // All japanese encodings are based on JIS X set of standards:
       // JIS X 0201 - Single-byte encoding of ASCII + ¥ + Kana chars at 0xA1-0xDF.
-      // JIS X 0208 - Main set of 6879 characters, placed in 94x94 plane, to be encoded by 2 bytes. 
+      // JIS X 0208 - Main set of 6879 characters, placed in 94x94 plane, to be encoded by 2 bytes.
       //              Has several variations in 1978, 1983, 1990 and 1997.
       // JIS X 0212 - Supplementary plane of 6067 chars in 94x94 plane. 1990. Effectively dead.
       // JIS X 0213 - Extension and modern replacement of 0208 and 0212. Total chars: 11233.
@@ -24960,7 +25426,7 @@ var require_dbcs_data = __commonJS({
       //               0x8F, (0xA1-0xFE)x2 - 0212 plane (94x94).
       //  * JIS X 208: 7-bit, direct encoding of 0208. Byte ranges: 0x21-0x7E (94 values). Uncommon.
       //               Used as-is in ISO2022 family.
-      //  * ISO2022-JP: Stateful encoding, with escape sequences to switch between ASCII, 
+      //  * ISO2022-JP: Stateful encoding, with escape sequences to switch between ASCII,
       //                0201-1976 Roman, 0208-1978, 0208-1983.
       //  * ISO2022-JP-1: Adds esc seq for 0212-1990.
       //  * ISO2022-JP-2: Adds esc seq for GB2313-1980, KSX1001-1992, ISO8859-1, ISO8859-7.
@@ -24970,7 +25436,7 @@ var require_dbcs_data = __commonJS({
       // After JIS X 0213 appeared, Shift_JIS-2004, EUC-JISX0213 and ISO2022-JP-2004 followed, with just changing the planes.
       //
       // Overall, it seems that it's a mess :( http://www8.plala.or.jp/tkubota1/unicode-symbols-map2.html
-      "shiftjis": {
+      shiftjis: {
         type: "_dbcs",
         table: function() {
           return require_shiftjis();
@@ -24978,17 +25444,17 @@ var require_dbcs_data = __commonJS({
         encodeAdd: { "\xA5": 92, "\u203E": 126 },
         encodeSkipVals: [{ from: 60736, to: 63808 }]
       },
-      "csshiftjis": "shiftjis",
-      "mskanji": "shiftjis",
-      "sjis": "shiftjis",
-      "windows31j": "shiftjis",
-      "ms31j": "shiftjis",
-      "xsjis": "shiftjis",
-      "windows932": "shiftjis",
-      "ms932": "shiftjis",
-      "932": "shiftjis",
-      "cp932": "shiftjis",
-      "eucjp": {
+      csshiftjis: "shiftjis",
+      mskanji: "shiftjis",
+      sjis: "shiftjis",
+      windows31j: "shiftjis",
+      ms31j: "shiftjis",
+      xsjis: "shiftjis",
+      windows932: "shiftjis",
+      ms932: "shiftjis",
+      932: "shiftjis",
+      cp932: "shiftjis",
+      eucjp: {
         type: "_dbcs",
         table: function() {
           return require_eucjp();
@@ -25002,37 +25468,37 @@ var require_dbcs_data = __commonJS({
       // http://en.wikipedia.org/wiki/GBK
       // We mostly implement W3C recommendation: https://www.w3.org/TR/encoding/#gbk-encoder
       // Oldest GB2312 (1981, ~7600 chars) is a subset of CP936
-      "gb2312": "cp936",
-      "gb231280": "cp936",
-      "gb23121980": "cp936",
-      "csgb2312": "cp936",
-      "csiso58gb231280": "cp936",
-      "euccn": "cp936",
+      gb2312: "cp936",
+      gb231280: "cp936",
+      gb23121980: "cp936",
+      csgb2312: "cp936",
+      csiso58gb231280: "cp936",
+      euccn: "cp936",
       // Microsoft's CP936 is a subset and approximation of GBK.
-      "windows936": "cp936",
-      "ms936": "cp936",
-      "936": "cp936",
-      "cp936": {
+      windows936: "cp936",
+      ms936: "cp936",
+      936: "cp936",
+      cp936: {
         type: "_dbcs",
         table: function() {
           return require_cp936();
         }
       },
       // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
-      "gbk": {
+      gbk: {
         type: "_dbcs",
         table: function() {
           return require_cp936().concat(require_gbk_added());
         }
       },
-      "xgbk": "gbk",
-      "isoir58": "gbk",
+      xgbk: "gbk",
+      isoir58: "gbk",
       // GB18030 is an algorithmic extension of GBK.
       // Main source: https://www.w3.org/TR/encoding/#gbk-encoder
       // http://icu-project.org/docs/papers/gb18030.html
       // http://source.icu-project.org/repos/icu/data/trunk/charset/data/xml/gb-18030-2000.xml
       // http://www.khngai.com/chinese/charmap/tblgbk.php?page=0
-      "gb18030": {
+      gb18030: {
         type: "_dbcs",
         table: function() {
           return require_cp936().concat(require_gbk_added());
@@ -25043,26 +25509,26 @@ var require_dbcs_data = __commonJS({
         encodeSkipVals: [128],
         encodeAdd: { "\u20AC": 41699 }
       },
-      "chinese": "gb18030",
+      chinese: "gb18030",
       // == Korean ===============================================================
       // EUC-KR, KS_C_5601 and KS X 1001 are exactly the same.
-      "windows949": "cp949",
-      "ms949": "cp949",
-      "949": "cp949",
-      "cp949": {
+      windows949: "cp949",
+      ms949: "cp949",
+      949: "cp949",
+      cp949: {
         type: "_dbcs",
         table: function() {
           return require_cp949();
         }
       },
-      "cseuckr": "cp949",
-      "csksc56011987": "cp949",
-      "euckr": "cp949",
-      "isoir149": "cp949",
-      "korean": "cp949",
-      "ksc56011987": "cp949",
-      "ksc56011989": "cp949",
-      "ksc5601": "cp949",
+      cseuckr: "cp949",
+      csksc56011987: "cp949",
+      euckr: "cp949",
+      isoir149: "cp949",
+      korean: "cp949",
+      ksc56011987: "cp949",
+      ksc56011989: "cp949",
+      ksc5601: "cp949",
       // == Big5/Taiwan/Hong Kong ================================================
       // There are lots of tables for Big5 and cp950. Please see the following links for history:
       // http://moztw.org/docs/big5/  http://www.haible.de/bruno/charsets/conversion-tables/Big5.html
@@ -25071,7 +25537,7 @@ var require_dbcs_data = __commonJS({
       //  * Windows CP 951: Microsoft variant of Big5-HKSCS-2001. Seems to be never public. http://me.abelcheung.org/articles/research/what-is-cp951/
       //  * Big5-2003 (Taiwan standard) almost superset of cp950.
       //  * Unicode-at-on (UAO) / Mozilla 1.8. Falling out of use on the Web. Not supported by other browsers.
-      //  * Big5-HKSCS (-2001, -2004, -2008). Hong Kong standard. 
+      //  * Big5-HKSCS (-2001, -2004, -2008). Hong Kong standard.
       //    many unicode code points moved from PUA to Supplementary plane (U+2XXXX) over the years.
       //    Plus, it has 4 combining sequences.
       //    Seems that Mozilla refused to support it for 10 yrs. https://bugzilla.mozilla.org/show_bug.cgi?id=162431 https://bugzilla.mozilla.org/show_bug.cgi?id=310299
@@ -25082,40 +25548,114 @@ var require_dbcs_data = __commonJS({
       //    In the encoder, it might make sense to support encoding old PUA mappings to Big5 bytes seq-s.
       //    Official spec: http://www.ogcio.gov.hk/en/business/tech_promotion/ccli/terms/doc/2003cmp_2008.txt
       //                   http://www.ogcio.gov.hk/tc/business/tech_promotion/ccli/terms/doc/hkscs-2008-big5-iso.txt
-      // 
+      //
       // Current understanding of how to deal with Big5(-HKSCS) is in the Encoding Standard, http://encoding.spec.whatwg.org/#big5-encoder
       // Unicode mapping (http://www.unicode.org/Public/MAPPINGS/OBSOLETE/EASTASIA/OTHER/BIG5.TXT) is said to be wrong.
-      "windows950": "cp950",
-      "ms950": "cp950",
-      "950": "cp950",
-      "cp950": {
+      windows950: "cp950",
+      ms950: "cp950",
+      950: "cp950",
+      cp950: {
         type: "_dbcs",
         table: function() {
           return require_cp950();
         }
       },
       // Big5 has many variations and is an extension of cp950. We use Encoding Standard's as a consensus.
-      "big5": "big5hkscs",
-      "big5hkscs": {
+      big5: "big5hkscs",
+      big5hkscs: {
         type: "_dbcs",
         table: function() {
           return require_cp950().concat(require_big5_added());
         },
-        encodeSkipVals: [41676]
+        encodeSkipVals: [
+          // Although Encoding Standard says we should avoid encoding to HKSCS area (See Step 1 of
+          // https://encoding.spec.whatwg.org/#index-big5-pointer), we still do it to increase compatibility with ICU.
+          // But if a single unicode point can be encoded both as HKSCS and regular Big5, we prefer the latter.
+          36457,
+          36463,
+          36478,
+          36523,
+          36532,
+          36557,
+          36560,
+          36695,
+          36713,
+          36718,
+          36811,
+          36862,
+          36973,
+          36986,
+          37060,
+          37084,
+          37105,
+          37311,
+          37551,
+          37552,
+          37553,
+          37554,
+          37585,
+          37959,
+          38090,
+          38361,
+          38652,
+          39285,
+          39798,
+          39800,
+          39803,
+          39878,
+          39902,
+          39916,
+          39926,
+          40002,
+          40019,
+          40034,
+          40040,
+          40043,
+          40055,
+          40124,
+          40125,
+          40144,
+          40279,
+          40282,
+          40388,
+          40431,
+          40443,
+          40617,
+          40687,
+          40701,
+          40800,
+          40907,
+          41079,
+          41180,
+          41183,
+          36812,
+          37576,
+          38468,
+          38637,
+          // Step 2 of https://encoding.spec.whatwg.org/#index-big5-pointer: Use last pointer for U+2550, U+255E, U+2561, U+256A, U+5341, or U+5345
+          41636,
+          41637,
+          41639,
+          41638,
+          41676,
+          41678
+        ]
       },
-      "cnbig5": "big5hkscs",
-      "csbig5": "big5hkscs",
-      "xxbig5": "big5hkscs"
+      cnbig5: "big5hkscs",
+      csbig5: "big5hkscs",
+      xxbig5: "big5hkscs"
     };
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/encodings/index.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/index.js
 var require_encodings = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/encodings/index.js"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/encodings/index.js"(exports2, module2) {
     "use strict";
+    var mergeModules = require_merge_exports();
     var modules = [
       require_internal(),
+      require_utf32(),
       require_utf16(),
       require_utf7(),
       require_sbcs_codec(),
@@ -25126,1040 +25666,240 @@ var require_encodings = __commonJS({
     ];
     for (i2 = 0; i2 < modules.length; i2++) {
       module2 = modules[i2];
-      for (enc in module2)
-        if (Object.prototype.hasOwnProperty.call(module2, enc))
-          exports2[enc] = module2[enc];
+      mergeModules(exports2, module2);
     }
     var module2;
-    var enc;
     var i2;
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/lib/streams.js
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/streams.js
 var require_streams = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/lib/streams.js"(exports2, module2) {
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/streams.js"(exports2, module2) {
     "use strict";
-    var Buffer5 = require("buffer").Buffer;
-    var Transform2 = require("stream").Transform;
-    module2.exports = function(iconv) {
-      iconv.encodeStream = function encodeStream(encoding, options) {
-        return new IconvLiteEncoderStream(iconv.getEncoder(encoding, options), options);
-      };
-      iconv.decodeStream = function decodeStream(encoding, options) {
-        return new IconvLiteDecoderStream(iconv.getDecoder(encoding, options), options);
-      };
-      iconv.supportsStreams = true;
-      iconv.IconvLiteEncoderStream = IconvLiteEncoderStream;
-      iconv.IconvLiteDecoderStream = IconvLiteDecoderStream;
-      iconv._collect = IconvLiteDecoderStream.prototype.collect;
-    };
-    function IconvLiteEncoderStream(conv, options) {
-      this.conv = conv;
-      options = options || {};
-      options.decodeStrings = false;
-      Transform2.call(this, options);
-    }
-    IconvLiteEncoderStream.prototype = Object.create(Transform2.prototype, {
-      constructor: { value: IconvLiteEncoderStream }
-    });
-    IconvLiteEncoderStream.prototype._transform = function(chunk, encoding, done) {
-      if (typeof chunk != "string")
-        return done(new Error("Iconv encoding stream needs strings as its input."));
-      try {
-        var res = this.conv.write(chunk);
-        if (res && res.length) this.push(res);
-        done();
-      } catch (e) {
-        done(e);
+    var Buffer5 = require_safer().Buffer;
+    module2.exports = function(streamModule) {
+      var Transform2 = streamModule.Transform;
+      function IconvLiteEncoderStream(conv, options) {
+        this.conv = conv;
+        options = options || {};
+        options.decodeStrings = false;
+        Transform2.call(this, options);
       }
-    };
-    IconvLiteEncoderStream.prototype._flush = function(done) {
-      try {
-        var res = this.conv.end();
-        if (res && res.length) this.push(res);
-        done();
-      } catch (e) {
-        done(e);
-      }
-    };
-    IconvLiteEncoderStream.prototype.collect = function(cb) {
-      var chunks = [];
-      this.on("error", cb);
-      this.on("data", function(chunk) {
-        chunks.push(chunk);
+      IconvLiteEncoderStream.prototype = Object.create(Transform2.prototype, {
+        constructor: { value: IconvLiteEncoderStream }
       });
-      this.on("end", function() {
-        cb(null, Buffer5.concat(chunks));
-      });
-      return this;
-    };
-    function IconvLiteDecoderStream(conv, options) {
-      this.conv = conv;
-      options = options || {};
-      options.encoding = this.encoding = "utf8";
-      Transform2.call(this, options);
-    }
-    IconvLiteDecoderStream.prototype = Object.create(Transform2.prototype, {
-      constructor: { value: IconvLiteDecoderStream }
-    });
-    IconvLiteDecoderStream.prototype._transform = function(chunk, encoding, done) {
-      if (!Buffer5.isBuffer(chunk))
-        return done(new Error("Iconv decoding stream needs buffers as its input."));
-      try {
-        var res = this.conv.write(chunk);
-        if (res && res.length) this.push(res, this.encoding);
-        done();
-      } catch (e) {
-        done(e);
-      }
-    };
-    IconvLiteDecoderStream.prototype._flush = function(done) {
-      try {
-        var res = this.conv.end();
-        if (res && res.length) this.push(res, this.encoding);
-        done();
-      } catch (e) {
-        done(e);
-      }
-    };
-    IconvLiteDecoderStream.prototype.collect = function(cb) {
-      var res = "";
-      this.on("error", cb);
-      this.on("data", function(chunk) {
-        res += chunk;
-      });
-      this.on("end", function() {
-        cb(null, res);
-      });
-      return this;
-    };
-  }
-});
-
-// node_modules/external-editor/node_modules/iconv-lite/lib/extend-node.js
-var require_extend_node = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/lib/extend-node.js"(exports2, module2) {
-    "use strict";
-    var Buffer5 = require("buffer").Buffer;
-    module2.exports = function(iconv) {
-      var original = void 0;
-      iconv.supportsNodeEncodingsExtension = !(Buffer5.from || new Buffer5(0) instanceof Uint8Array);
-      iconv.extendNodeEncodings = function extendNodeEncodings() {
-        if (original) return;
-        original = {};
-        if (!iconv.supportsNodeEncodingsExtension) {
-          console.error("ACTION NEEDED: require('iconv-lite').extendNodeEncodings() is not supported in your version of Node");
-          console.error("See more info at https://github.com/ashtuchkin/iconv-lite/wiki/Node-v4-compatibility");
-          return;
+      IconvLiteEncoderStream.prototype._transform = function(chunk, encoding, done) {
+        if (typeof chunk !== "string") {
+          return done(new Error("Iconv encoding stream needs strings as its input."));
         }
-        var nodeNativeEncodings = {
-          "hex": true,
-          "utf8": true,
-          "utf-8": true,
-          "ascii": true,
-          "binary": true,
-          "base64": true,
-          "ucs2": true,
-          "ucs-2": true,
-          "utf16le": true,
-          "utf-16le": true
-        };
-        Buffer5.isNativeEncoding = function(enc) {
-          return enc && nodeNativeEncodings[enc.toLowerCase()];
-        };
-        var SlowBuffer = require("buffer").SlowBuffer;
-        original.SlowBufferToString = SlowBuffer.prototype.toString;
-        SlowBuffer.prototype.toString = function(encoding, start, end) {
-          encoding = String(encoding || "utf8").toLowerCase();
-          if (Buffer5.isNativeEncoding(encoding))
-            return original.SlowBufferToString.call(this, encoding, start, end);
-          if (typeof start == "undefined") start = 0;
-          if (typeof end == "undefined") end = this.length;
-          return iconv.decode(this.slice(start, end), encoding);
-        };
-        original.SlowBufferWrite = SlowBuffer.prototype.write;
-        SlowBuffer.prototype.write = function(string, offset, length, encoding) {
-          if (isFinite(offset)) {
-            if (!isFinite(length)) {
-              encoding = length;
-              length = void 0;
-            }
-          } else {
-            var swap = encoding;
-            encoding = offset;
-            offset = length;
-            length = swap;
-          }
-          offset = +offset || 0;
-          var remaining = this.length - offset;
-          if (!length) {
-            length = remaining;
-          } else {
-            length = +length;
-            if (length > remaining) {
-              length = remaining;
-            }
-          }
-          encoding = String(encoding || "utf8").toLowerCase();
-          if (Buffer5.isNativeEncoding(encoding))
-            return original.SlowBufferWrite.call(this, string, offset, length, encoding);
-          if (string.length > 0 && (length < 0 || offset < 0))
-            throw new RangeError("attempt to write beyond buffer bounds");
-          var buf = iconv.encode(string, encoding);
-          if (buf.length < length) length = buf.length;
-          buf.copy(this, offset, 0, length);
-          return length;
-        };
-        original.BufferIsEncoding = Buffer5.isEncoding;
-        Buffer5.isEncoding = function(encoding) {
-          return Buffer5.isNativeEncoding(encoding) || iconv.encodingExists(encoding);
-        };
-        original.BufferByteLength = Buffer5.byteLength;
-        Buffer5.byteLength = SlowBuffer.byteLength = function(str, encoding) {
-          encoding = String(encoding || "utf8").toLowerCase();
-          if (Buffer5.isNativeEncoding(encoding))
-            return original.BufferByteLength.call(this, str, encoding);
-          return iconv.encode(str, encoding).length;
-        };
-        original.BufferToString = Buffer5.prototype.toString;
-        Buffer5.prototype.toString = function(encoding, start, end) {
-          encoding = String(encoding || "utf8").toLowerCase();
-          if (Buffer5.isNativeEncoding(encoding))
-            return original.BufferToString.call(this, encoding, start, end);
-          if (typeof start == "undefined") start = 0;
-          if (typeof end == "undefined") end = this.length;
-          return iconv.decode(this.slice(start, end), encoding);
-        };
-        original.BufferWrite = Buffer5.prototype.write;
-        Buffer5.prototype.write = function(string, offset, length, encoding) {
-          var _offset = offset, _length = length, _encoding = encoding;
-          if (isFinite(offset)) {
-            if (!isFinite(length)) {
-              encoding = length;
-              length = void 0;
-            }
-          } else {
-            var swap = encoding;
-            encoding = offset;
-            offset = length;
-            length = swap;
-          }
-          encoding = String(encoding || "utf8").toLowerCase();
-          if (Buffer5.isNativeEncoding(encoding))
-            return original.BufferWrite.call(this, string, _offset, _length, _encoding);
-          offset = +offset || 0;
-          var remaining = this.length - offset;
-          if (!length) {
-            length = remaining;
-          } else {
-            length = +length;
-            if (length > remaining) {
-              length = remaining;
-            }
-          }
-          if (string.length > 0 && (length < 0 || offset < 0))
-            throw new RangeError("attempt to write beyond buffer bounds");
-          var buf = iconv.encode(string, encoding);
-          if (buf.length < length) length = buf.length;
-          buf.copy(this, offset, 0, length);
-          return length;
-        };
-        if (iconv.supportsStreams) {
-          var Readable5 = require("stream").Readable;
-          original.ReadableSetEncoding = Readable5.prototype.setEncoding;
-          Readable5.prototype.setEncoding = function setEncoding(enc, options) {
-            this._readableState.decoder = iconv.getDecoder(enc, options);
-            this._readableState.encoding = enc;
-          };
-          Readable5.prototype.collect = iconv._collect;
+        try {
+          var res = this.conv.write(chunk);
+          if (res && res.length) this.push(res);
+          done();
+        } catch (e) {
+          done(e);
         }
       };
-      iconv.undoExtendNodeEncodings = function undoExtendNodeEncodings() {
-        if (!iconv.supportsNodeEncodingsExtension)
-          return;
-        if (!original)
-          throw new Error("require('iconv-lite').undoExtendNodeEncodings(): Nothing to undo; extendNodeEncodings() is not called.");
-        delete Buffer5.isNativeEncoding;
-        var SlowBuffer = require("buffer").SlowBuffer;
-        SlowBuffer.prototype.toString = original.SlowBufferToString;
-        SlowBuffer.prototype.write = original.SlowBufferWrite;
-        Buffer5.isEncoding = original.BufferIsEncoding;
-        Buffer5.byteLength = original.BufferByteLength;
-        Buffer5.prototype.toString = original.BufferToString;
-        Buffer5.prototype.write = original.BufferWrite;
-        if (iconv.supportsStreams) {
-          var Readable5 = require("stream").Readable;
-          Readable5.prototype.setEncoding = original.ReadableSetEncoding;
-          delete Readable5.prototype.collect;
+      IconvLiteEncoderStream.prototype._flush = function(done) {
+        try {
+          var res = this.conv.end();
+          if (res && res.length) this.push(res);
+          done();
+        } catch (e) {
+          done(e);
         }
-        original = void 0;
+      };
+      IconvLiteEncoderStream.prototype.collect = function(cb) {
+        var chunks = [];
+        this.on("error", cb);
+        this.on("data", function(chunk) {
+          chunks.push(chunk);
+        });
+        this.on("end", function() {
+          cb(null, Buffer5.concat(chunks));
+        });
+        return this;
+      };
+      function IconvLiteDecoderStream(conv, options) {
+        this.conv = conv;
+        options = options || {};
+        options.encoding = this.encoding = "utf8";
+        Transform2.call(this, options);
+      }
+      IconvLiteDecoderStream.prototype = Object.create(Transform2.prototype, {
+        constructor: { value: IconvLiteDecoderStream }
+      });
+      IconvLiteDecoderStream.prototype._transform = function(chunk, encoding, done) {
+        if (!Buffer5.isBuffer(chunk) && !(chunk instanceof Uint8Array)) {
+          return done(new Error("Iconv decoding stream needs buffers as its input."));
+        }
+        try {
+          var res = this.conv.write(chunk);
+          if (res && res.length) this.push(res, this.encoding);
+          done();
+        } catch (e) {
+          done(e);
+        }
+      };
+      IconvLiteDecoderStream.prototype._flush = function(done) {
+        try {
+          var res = this.conv.end();
+          if (res && res.length) this.push(res, this.encoding);
+          done();
+        } catch (e) {
+          done(e);
+        }
+      };
+      IconvLiteDecoderStream.prototype.collect = function(cb) {
+        var res = "";
+        this.on("error", cb);
+        this.on("data", function(chunk) {
+          res += chunk;
+        });
+        this.on("end", function() {
+          cb(null, res);
+        });
+        return this;
+      };
+      return {
+        IconvLiteEncoderStream,
+        IconvLiteDecoderStream
       };
     };
   }
 });
 
-// node_modules/external-editor/node_modules/iconv-lite/lib/index.js
-var require_lib4 = __commonJS({
-  "node_modules/external-editor/node_modules/iconv-lite/lib/index.js"(exports2, module2) {
+// node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/index.js
+var require_lib5 = __commonJS({
+  "node_modules/@inquirer/external-editor/node_modules/iconv-lite/lib/index.js"(exports2, module2) {
     "use strict";
     var Buffer5 = require_safer().Buffer;
     var bomHandling = require_bom_handling();
-    var iconv = module2.exports;
-    iconv.encodings = null;
-    iconv.defaultCharUnicode = "\uFFFD";
-    iconv.defaultCharSingleByte = "?";
-    iconv.encode = function encode3(str, encoding, options) {
+    var mergeModules = require_merge_exports();
+    var iconv2 = module2.exports;
+    iconv2.encodings = null;
+    iconv2.defaultCharUnicode = "\uFFFD";
+    iconv2.defaultCharSingleByte = "?";
+    iconv2.encode = function encode3(str, encoding, options) {
       str = "" + (str || "");
-      var encoder = iconv.getEncoder(encoding, options);
+      var encoder = iconv2.getEncoder(encoding, options);
       var res = encoder.write(str);
       var trail = encoder.end();
       return trail && trail.length > 0 ? Buffer5.concat([res, trail]) : res;
     };
-    iconv.decode = function decode(buf, encoding, options) {
+    iconv2.decode = function decode(buf, encoding, options) {
       if (typeof buf === "string") {
-        if (!iconv.skipDecodeWarning) {
+        if (!iconv2.skipDecodeWarning) {
           console.error("Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-lite/wiki/Use-Buffers-when-decoding");
-          iconv.skipDecodeWarning = true;
+          iconv2.skipDecodeWarning = true;
         }
         buf = Buffer5.from("" + (buf || ""), "binary");
       }
-      var decoder = iconv.getDecoder(encoding, options);
+      var decoder = iconv2.getDecoder(encoding, options);
       var res = decoder.write(buf);
       var trail = decoder.end();
       return trail ? res + trail : res;
     };
-    iconv.encodingExists = function encodingExists(enc) {
+    iconv2.encodingExists = function encodingExists(enc) {
       try {
-        iconv.getCodec(enc);
+        iconv2.getCodec(enc);
         return true;
       } catch (e) {
         return false;
       }
     };
-    iconv.toEncoding = iconv.encode;
-    iconv.fromEncoding = iconv.decode;
-    iconv._codecDataCache = {};
-    iconv.getCodec = function getCodec(encoding) {
-      if (!iconv.encodings)
-        iconv.encodings = require_encodings();
-      var enc = iconv._canonicalizeEncoding(encoding);
+    iconv2.toEncoding = iconv2.encode;
+    iconv2.fromEncoding = iconv2.decode;
+    iconv2._codecDataCache = { __proto__: null };
+    iconv2.getCodec = function getCodec(encoding) {
+      if (!iconv2.encodings) {
+        var raw = require_encodings();
+        iconv2.encodings = { __proto__: null };
+        mergeModules(iconv2.encodings, raw);
+      }
+      var enc = iconv2._canonicalizeEncoding(encoding);
       var codecOptions = {};
       while (true) {
-        var codec = iconv._codecDataCache[enc];
-        if (codec)
+        var codec = iconv2._codecDataCache[enc];
+        if (codec) {
           return codec;
-        var codecDef = iconv.encodings[enc];
+        }
+        var codecDef = iconv2.encodings[enc];
         switch (typeof codecDef) {
           case "string":
             enc = codecDef;
             break;
           case "object":
-            for (var key in codecDef)
+            for (var key in codecDef) {
               codecOptions[key] = codecDef[key];
-            if (!codecOptions.encodingName)
+            }
+            if (!codecOptions.encodingName) {
               codecOptions.encodingName = enc;
+            }
             enc = codecDef.type;
             break;
           case "function":
-            if (!codecOptions.encodingName)
+            if (!codecOptions.encodingName) {
               codecOptions.encodingName = enc;
-            codec = new codecDef(codecOptions, iconv);
-            iconv._codecDataCache[codecOptions.encodingName] = codec;
+            }
+            codec = new codecDef(codecOptions, iconv2);
+            iconv2._codecDataCache[codecOptions.encodingName] = codec;
             return codec;
           default:
             throw new Error("Encoding not recognized: '" + encoding + "' (searched as: '" + enc + "')");
         }
       }
     };
-    iconv._canonicalizeEncoding = function(encoding) {
+    iconv2._canonicalizeEncoding = function(encoding) {
       return ("" + encoding).toLowerCase().replace(/:\d{4}$|[^0-9a-z]/g, "");
     };
-    iconv.getEncoder = function getEncoder(encoding, options) {
-      var codec = iconv.getCodec(encoding), encoder = new codec.encoder(options, codec);
-      if (codec.bomAware && options && options.addBOM)
+    iconv2.getEncoder = function getEncoder(encoding, options) {
+      var codec = iconv2.getCodec(encoding);
+      var encoder = new codec.encoder(options, codec);
+      if (codec.bomAware && options && options.addBOM) {
         encoder = new bomHandling.PrependBOM(encoder, options);
+      }
       return encoder;
     };
-    iconv.getDecoder = function getDecoder(encoding, options) {
-      var codec = iconv.getCodec(encoding), decoder = new codec.decoder(options, codec);
-      if (codec.bomAware && !(options && options.stripBOM === false))
+    iconv2.getDecoder = function getDecoder(encoding, options) {
+      var codec = iconv2.getCodec(encoding);
+      var decoder = new codec.decoder(options, codec);
+      if (codec.bomAware && !(options && options.stripBOM === false)) {
         decoder = new bomHandling.StripBOM(decoder, options);
+      }
       return decoder;
     };
-    var nodeVer = typeof process !== "undefined" && process.versions && process.versions.node;
-    if (nodeVer) {
-      nodeVerArr = nodeVer.split(".").map(Number);
-      if (nodeVerArr[0] > 0 || nodeVerArr[1] >= 10) {
-        require_streams()(iconv);
-      }
-      require_extend_node()(iconv);
-    }
-    var nodeVerArr;
-    if (false) {
-      console.error("iconv-lite warning: javascript files use encoding different from utf-8. See https://github.com/ashtuchkin/iconv-lite/wiki/Javascript-source-file-encodings for more info.");
-    }
-  }
-});
-
-// node_modules/os-tmpdir/index.js
-var require_os_tmpdir = __commonJS({
-  "node_modules/os-tmpdir/index.js"(exports2, module2) {
-    "use strict";
-    var isWindows = process.platform === "win32";
-    var trailingSlashRe = isWindows ? /[^:]\\$/ : /.\/$/;
-    module2.exports = function() {
-      var path15;
-      if (isWindows) {
-        path15 = process.env.TEMP || process.env.TMP || (process.env.SystemRoot || process.env.windir) + "\\temp";
-      } else {
-        path15 = process.env.TMPDIR || process.env.TMP || process.env.TEMP || "/tmp";
-      }
-      if (trailingSlashRe.test(path15)) {
-        path15 = path15.slice(0, -1);
-      }
-      return path15;
-    };
-  }
-});
-
-// node_modules/external-editor/node_modules/tmp/lib/tmp.js
-var require_tmp = __commonJS({
-  "node_modules/external-editor/node_modules/tmp/lib/tmp.js"(exports2, module2) {
-    var fs3 = require("fs");
-    var path15 = require("path");
-    var crypto3 = require("crypto");
-    var osTmpDir = require_os_tmpdir();
-    var _c = process.binding("constants");
-    var tmpDir = osTmpDir();
-    var RANDOM_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    var TEMPLATE_PATTERN = /XXXXXX/;
-    var DEFAULT_TRIES = 3;
-    var CREATE_FLAGS = (_c.O_CREAT || _c.fs.O_CREAT) | (_c.O_EXCL || _c.fs.O_EXCL) | (_c.O_RDWR || _c.fs.O_RDWR);
-    var EBADF = _c.EBADF || _c.os.errno.EBADF;
-    var ENOENT2 = _c.ENOENT || _c.os.errno.ENOENT;
-    var DIR_MODE = 448;
-    var FILE_MODE = 384;
-    var _removeObjects = [];
-    var _gracefulCleanup = false;
-    var _uncaughtException = false;
-    function _randomChars(howMany) {
-      var value = [], rnd = null;
-      try {
-        rnd = crypto3.randomBytes(howMany);
-      } catch (e) {
-        rnd = crypto3.pseudoRandomBytes(howMany);
-      }
-      for (var i2 = 0; i2 < howMany; i2++) {
-        value.push(RANDOM_CHARS[rnd[i2] % RANDOM_CHARS.length]);
-      }
-      return value.join("");
-    }
-    function _isUndefined(obj) {
-      return typeof obj === "undefined";
-    }
-    function _parseArguments(options, callback) {
-      if (typeof options == "function") {
-        return [callback || {}, options];
-      }
-      if (_isUndefined(options)) {
-        return [{}, callback];
-      }
-      return [options, callback];
-    }
-    function _generateTmpName(opts) {
-      if (opts.name) {
-        return path15.join(opts.dir || tmpDir, opts.name);
-      }
-      if (opts.template) {
-        return opts.template.replace(TEMPLATE_PATTERN, _randomChars(6));
-      }
-      const name = [
-        opts.prefix || "tmp-",
-        process.pid,
-        _randomChars(12),
-        opts.postfix || ""
-      ].join("");
-      return path15.join(opts.dir || tmpDir, name);
-    }
-    function tmpName(options, callback) {
-      var args = _parseArguments(options, callback), opts = args[0], cb = args[1], tries = opts.name ? 1 : opts.tries || DEFAULT_TRIES;
-      if (isNaN(tries) || tries < 0)
-        return cb(new Error("Invalid tries"));
-      if (opts.template && !opts.template.match(TEMPLATE_PATTERN))
-        return cb(new Error("Invalid template provided"));
-      (function _getUniqueName() {
-        const name = _generateTmpName(opts);
-        fs3.stat(name, function(err) {
-          if (!err) {
-            if (tries-- > 0) return _getUniqueName();
-            return cb(new Error("Could not get a unique tmp filename, max tries reached " + name));
-          }
-          cb(null, name);
-        });
-      })();
-    }
-    function tmpNameSync(options) {
-      var args = _parseArguments(options), opts = args[0], tries = opts.name ? 1 : opts.tries || DEFAULT_TRIES;
-      if (isNaN(tries) || tries < 0)
-        throw new Error("Invalid tries");
-      if (opts.template && !opts.template.match(TEMPLATE_PATTERN))
-        throw new Error("Invalid template provided");
-      do {
-        const name = _generateTmpName(opts);
-        try {
-          fs3.statSync(name);
-        } catch (e) {
-          return name;
-        }
-      } while (tries-- > 0);
-      throw new Error("Could not get a unique tmp filename, max tries reached");
-    }
-    function file(options, callback) {
-      var args = _parseArguments(options, callback), opts = args[0], cb = args[1];
-      opts.postfix = _isUndefined(opts.postfix) ? ".tmp" : opts.postfix;
-      tmpName(opts, function _tmpNameCreated(err, name) {
-        if (err) return cb(err);
-        fs3.open(name, CREATE_FLAGS, opts.mode || FILE_MODE, function _fileCreated(err2, fd) {
-          if (err2) return cb(err2);
-          if (opts.discardDescriptor) {
-            return fs3.close(fd, function _discardCallback(err3) {
-              if (err3) {
-                try {
-                  fs3.unlinkSync(name);
-                } catch (e) {
-                  if (!isENOENT(e)) {
-                    err3 = e;
-                  }
-                }
-                return cb(err3);
-              }
-              cb(null, name, void 0, _prepareTmpFileRemoveCallback(name, -1, opts));
-            });
-          }
-          if (opts.detachDescriptor) {
-            return cb(null, name, fd, _prepareTmpFileRemoveCallback(name, -1, opts));
-          }
-          cb(null, name, fd, _prepareTmpFileRemoveCallback(name, fd, opts));
-        });
-      });
-    }
-    function fileSync(options) {
-      var args = _parseArguments(options), opts = args[0];
-      opts.postfix = opts.postfix || ".tmp";
-      const discardOrDetachDescriptor = opts.discardDescriptor || opts.detachDescriptor;
-      const name = tmpNameSync(opts);
-      var fd = fs3.openSync(name, CREATE_FLAGS, opts.mode || FILE_MODE);
-      if (opts.discardDescriptor) {
-        fs3.closeSync(fd);
-        fd = void 0;
-      }
-      return {
-        name,
-        fd,
-        removeCallback: _prepareTmpFileRemoveCallback(name, discardOrDetachDescriptor ? -1 : fd, opts)
-      };
-    }
-    function _rmdirRecursiveSync(root) {
-      const dirs = [root];
-      do {
-        var dir2 = dirs.pop(), deferred = false, files = fs3.readdirSync(dir2);
-        for (var i2 = 0, length = files.length; i2 < length; i2++) {
-          var file2 = path15.join(dir2, files[i2]), stat = fs3.lstatSync(file2);
-          if (stat.isDirectory()) {
-            if (!deferred) {
-              deferred = true;
-              dirs.push(dir2);
-            }
-            dirs.push(file2);
-          } else {
-            fs3.unlinkSync(file2);
-          }
-        }
-        if (!deferred) {
-          fs3.rmdirSync(dir2);
-        }
-      } while (dirs.length !== 0);
-    }
-    function dir(options, callback) {
-      var args = _parseArguments(options, callback), opts = args[0], cb = args[1];
-      tmpName(opts, function _tmpNameCreated(err, name) {
-        if (err) return cb(err);
-        fs3.mkdir(name, opts.mode || DIR_MODE, function _dirCreated(err2) {
-          if (err2) return cb(err2);
-          cb(null, name, _prepareTmpDirRemoveCallback(name, opts));
-        });
-      });
-    }
-    function dirSync(options) {
-      var args = _parseArguments(options), opts = args[0];
-      const name = tmpNameSync(opts);
-      fs3.mkdirSync(name, opts.mode || DIR_MODE);
-      return {
-        name,
-        removeCallback: _prepareTmpDirRemoveCallback(name, opts)
-      };
-    }
-    function _prepareTmpFileRemoveCallback(name, fd, opts) {
-      const removeCallback = _prepareRemoveCallback(function _removeCallback(fdPath) {
-        try {
-          if (0 <= fdPath[0]) {
-            fs3.closeSync(fdPath[0]);
-          }
-        } catch (e) {
-          if (!isEBADF(e) && !isENOENT(e)) {
-            throw e;
-          }
-        }
-        try {
-          fs3.unlinkSync(fdPath[1]);
-        } catch (e) {
-          if (!isENOENT(e)) {
-            throw e;
-          }
-        }
-      }, [fd, name]);
-      if (!opts.keep) {
-        _removeObjects.unshift(removeCallback);
-      }
-      return removeCallback;
-    }
-    function _prepareTmpDirRemoveCallback(name, opts) {
-      const removeFunction = opts.unsafeCleanup ? _rmdirRecursiveSync : fs3.rmdirSync.bind(fs3);
-      const removeCallback = _prepareRemoveCallback(removeFunction, name);
-      if (!opts.keep) {
-        _removeObjects.unshift(removeCallback);
-      }
-      return removeCallback;
-    }
-    function _prepareRemoveCallback(removeFunction, arg) {
-      var called = false;
-      return function _cleanupCallback(next) {
-        if (!called) {
-          const index = _removeObjects.indexOf(_cleanupCallback);
-          if (index >= 0) {
-            _removeObjects.splice(index, 1);
-          }
-          called = true;
-          removeFunction(arg);
-        }
-        if (next) next(null);
-      };
-    }
-    function _garbageCollector() {
-      if (_uncaughtException && !_gracefulCleanup) {
+    iconv2.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
+      if (iconv2.supportsStreams) {
         return;
       }
-      while (_removeObjects.length) {
-        try {
-          _removeObjects[0].call(null);
-        } catch (e) {
-        }
-      }
-    }
-    function isEBADF(error) {
-      return isExpectedError(error, -EBADF, "EBADF");
-    }
-    function isENOENT(error) {
-      return isExpectedError(error, -ENOENT2, "ENOENT");
-    }
-    function isExpectedError(error, code, errno) {
-      return error.code == code || error.code == errno;
-    }
-    function setGracefulCleanup() {
-      _gracefulCleanup = true;
-    }
-    var version = process.versions.node.split(".").map(function(value) {
-      return parseInt(value, 10);
-    });
-    if (version[0] === 0 && (version[1] < 9 || version[1] === 9 && version[2] < 5)) {
-      process.addListener("uncaughtException", function _uncaughtExceptionThrown(err) {
-        _uncaughtException = true;
-        _garbageCollector();
-        throw err;
-      });
-    }
-    process.addListener("exit", function _exit(code) {
-      if (code) _uncaughtException = true;
-      _garbageCollector();
-    });
-    module2.exports.tmpdir = tmpDir;
-    module2.exports.dir = dir;
-    module2.exports.dirSync = dirSync;
-    module2.exports.file = file;
-    module2.exports.fileSync = fileSync;
-    module2.exports.tmpName = tmpName;
-    module2.exports.tmpNameSync = tmpNameSync;
-    module2.exports.setGracefulCleanup = setGracefulCleanup;
-  }
-});
-
-// node_modules/external-editor/main/errors/CreateFileError.js
-var require_CreateFileError = __commonJS({
-  "node_modules/external-editor/main/errors/CreateFileError.js"(exports2) {
-    "use strict";
-    var __extends2 = exports2 && exports2.__extends || /* @__PURE__ */ function() {
-      var extendStatics2 = function(d, b) {
-        extendStatics2 = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2) if (b2.hasOwnProperty(p)) d2[p] = b2[p];
-        };
-        return extendStatics2(d, b);
+      var streams = require_streams()(streamModule2);
+      iconv2.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
+      iconv2.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
+      iconv2.encodeStream = function encodeStream(encoding, options) {
+        return new iconv2.IconvLiteEncoderStream(iconv2.getEncoder(encoding, options), options);
       };
-      return function(d, b) {
-        extendStatics2(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+      iconv2.decodeStream = function decodeStream(encoding, options) {
+        return new iconv2.IconvLiteDecoderStream(iconv2.getDecoder(encoding, options), options);
       };
-    }();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    var CreateFileError = (
-      /** @class */
-      function(_super) {
-        __extends2(CreateFileError2, _super);
-        function CreateFileError2(originalError) {
-          var _newTarget = this.constructor;
-          var _this = _super.call(this, "Failed to create temporary file for editor") || this;
-          _this.originalError = originalError;
-          var proto3 = _newTarget.prototype;
-          if (Object.setPrototypeOf) {
-            Object.setPrototypeOf(_this, proto3);
-          } else {
-            _this.__proto__ = _newTarget.prototype;
-          }
-          return _this;
-        }
-        return CreateFileError2;
-      }(Error)
-    );
-    exports2.CreateFileError = CreateFileError;
-  }
-});
-
-// node_modules/external-editor/main/errors/LaunchEditorError.js
-var require_LaunchEditorError = __commonJS({
-  "node_modules/external-editor/main/errors/LaunchEditorError.js"(exports2) {
-    "use strict";
-    var __extends2 = exports2 && exports2.__extends || /* @__PURE__ */ function() {
-      var extendStatics2 = function(d, b) {
-        extendStatics2 = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2) if (b2.hasOwnProperty(p)) d2[p] = b2[p];
-        };
-        return extendStatics2(d, b);
-      };
-      return function(d, b) {
-        extendStatics2(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-      };
-    }();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    var LaunchEditorError = (
-      /** @class */
-      function(_super) {
-        __extends2(LaunchEditorError2, _super);
-        function LaunchEditorError2(originalError) {
-          var _newTarget = this.constructor;
-          var _this = _super.call(this, "Failed launch editor") || this;
-          _this.originalError = originalError;
-          var proto3 = _newTarget.prototype;
-          if (Object.setPrototypeOf) {
-            Object.setPrototypeOf(_this, proto3);
-          } else {
-            _this.__proto__ = _newTarget.prototype;
-          }
-          return _this;
-        }
-        return LaunchEditorError2;
-      }(Error)
-    );
-    exports2.LaunchEditorError = LaunchEditorError;
-  }
-});
-
-// node_modules/external-editor/main/errors/ReadFileError.js
-var require_ReadFileError = __commonJS({
-  "node_modules/external-editor/main/errors/ReadFileError.js"(exports2) {
-    "use strict";
-    var __extends2 = exports2 && exports2.__extends || /* @__PURE__ */ function() {
-      var extendStatics2 = function(d, b) {
-        extendStatics2 = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2) if (b2.hasOwnProperty(p)) d2[p] = b2[p];
-        };
-        return extendStatics2(d, b);
-      };
-      return function(d, b) {
-        extendStatics2(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-      };
-    }();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    var ReadFileError = (
-      /** @class */
-      function(_super) {
-        __extends2(ReadFileError2, _super);
-        function ReadFileError2(originalError) {
-          var _newTarget = this.constructor;
-          var _this = _super.call(this, "Failed to read temporary file") || this;
-          _this.originalError = originalError;
-          var proto3 = _newTarget.prototype;
-          if (Object.setPrototypeOf) {
-            Object.setPrototypeOf(_this, proto3);
-          } else {
-            _this.__proto__ = _newTarget.prototype;
-          }
-          return _this;
-        }
-        return ReadFileError2;
-      }(Error)
-    );
-    exports2.ReadFileError = ReadFileError;
-  }
-});
-
-// node_modules/external-editor/main/errors/RemoveFileError.js
-var require_RemoveFileError = __commonJS({
-  "node_modules/external-editor/main/errors/RemoveFileError.js"(exports2) {
-    "use strict";
-    var __extends2 = exports2 && exports2.__extends || /* @__PURE__ */ function() {
-      var extendStatics2 = function(d, b) {
-        extendStatics2 = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2) if (b2.hasOwnProperty(p)) d2[p] = b2[p];
-        };
-        return extendStatics2(d, b);
-      };
-      return function(d, b) {
-        extendStatics2(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-      };
-    }();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    var RemoveFileError = (
-      /** @class */
-      function(_super) {
-        __extends2(RemoveFileError2, _super);
-        function RemoveFileError2(originalError) {
-          var _newTarget = this.constructor;
-          var _this = _super.call(this, "Failed to cleanup temporary file") || this;
-          _this.originalError = originalError;
-          var proto3 = _newTarget.prototype;
-          if (Object.setPrototypeOf) {
-            Object.setPrototypeOf(_this, proto3);
-          } else {
-            _this.__proto__ = _newTarget.prototype;
-          }
-          return _this;
-        }
-        return RemoveFileError2;
-      }(Error)
-    );
-    exports2.RemoveFileError = RemoveFileError;
-  }
-});
-
-// node_modules/external-editor/main/index.js
-var require_main = __commonJS({
-  "node_modules/external-editor/main/index.js"(exports2) {
-    "use strict";
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    var chardet_1 = require_chardet();
-    var child_process_1 = require("child_process");
-    var fs_1 = require("fs");
-    var iconv_lite_1 = require_lib4();
-    var tmp_1 = require_tmp();
-    var CreateFileError_1 = require_CreateFileError();
-    exports2.CreateFileError = CreateFileError_1.CreateFileError;
-    var LaunchEditorError_1 = require_LaunchEditorError();
-    exports2.LaunchEditorError = LaunchEditorError_1.LaunchEditorError;
-    var ReadFileError_1 = require_ReadFileError();
-    exports2.ReadFileError = ReadFileError_1.ReadFileError;
-    var RemoveFileError_1 = require_RemoveFileError();
-    exports2.RemoveFileError = RemoveFileError_1.RemoveFileError;
-    function edit(text, fileOptions) {
-      if (text === void 0) {
-        text = "";
-      }
-      var editor = new ExternalEditor(text, fileOptions);
-      editor.run();
-      editor.cleanup();
-      return editor.text;
+      iconv2.supportsStreams = true;
+    };
+    var streamModule;
+    try {
+      streamModule = require("stream");
+    } catch (e) {
     }
-    exports2.edit = edit;
-    function editAsync2(text, callback, fileOptions) {
-      if (text === void 0) {
-        text = "";
-      }
-      var editor = new ExternalEditor(text, fileOptions);
-      editor.runAsync(function(err, result) {
-        if (err) {
-          setImmediate(callback, err, null);
-        } else {
-          try {
-            editor.cleanup();
-            setImmediate(callback, null, result);
-          } catch (cleanupError) {
-            setImmediate(callback, cleanupError, null);
-          }
-        }
-      });
+    if (streamModule && streamModule.Transform) {
+      iconv2.enableStreamingAPI(streamModule);
+    } else {
+      iconv2.encodeStream = iconv2.decodeStream = function() {
+        throw new Error("iconv-lite Streaming API is not enabled. Use iconv.enableStreamingAPI(require('stream')); to enable it.");
+      };
     }
-    exports2.editAsync = editAsync2;
-    var ExternalEditor = (
-      /** @class */
-      function() {
-        function ExternalEditor2(text, fileOptions) {
-          if (text === void 0) {
-            text = "";
-          }
-          this.text = "";
-          this.fileOptions = {};
-          this.text = text;
-          if (fileOptions) {
-            this.fileOptions = fileOptions;
-          }
-          this.determineEditor();
-          this.createTemporaryFile();
-        }
-        ExternalEditor2.splitStringBySpace = function(str) {
-          var pieces = [];
-          var currentString = "";
-          for (var strIndex = 0; strIndex < str.length; strIndex++) {
-            var currentLetter = str[strIndex];
-            if (strIndex > 0 && currentLetter === " " && str[strIndex - 1] !== "\\" && currentString.length > 0) {
-              pieces.push(currentString);
-              currentString = "";
-            } else {
-              currentString += currentLetter;
-            }
-          }
-          if (currentString.length > 0) {
-            pieces.push(currentString);
-          }
-          return pieces;
-        };
-        Object.defineProperty(ExternalEditor2.prototype, "temp_file", {
-          get: function() {
-            console.log("DEPRECATED: temp_file. Use tempFile moving forward.");
-            return this.tempFile;
-          },
-          enumerable: true,
-          configurable: true
-        });
-        Object.defineProperty(ExternalEditor2.prototype, "last_exit_status", {
-          get: function() {
-            console.log("DEPRECATED: last_exit_status. Use lastExitStatus moving forward.");
-            return this.lastExitStatus;
-          },
-          enumerable: true,
-          configurable: true
-        });
-        ExternalEditor2.prototype.run = function() {
-          this.launchEditor();
-          this.readTemporaryFile();
-          return this.text;
-        };
-        ExternalEditor2.prototype.runAsync = function(callback) {
-          var _this = this;
-          try {
-            this.launchEditorAsync(function() {
-              try {
-                _this.readTemporaryFile();
-                setImmediate(callback, null, _this.text);
-              } catch (readError) {
-                setImmediate(callback, readError, null);
-              }
-            });
-          } catch (launchError) {
-            setImmediate(callback, launchError, null);
-          }
-        };
-        ExternalEditor2.prototype.cleanup = function() {
-          this.removeTemporaryFile();
-        };
-        ExternalEditor2.prototype.determineEditor = function() {
-          var editor = process.env.VISUAL ? process.env.VISUAL : process.env.EDITOR ? process.env.EDITOR : /^win/.test(process.platform) ? "notepad" : "vim";
-          var editorOpts = ExternalEditor2.splitStringBySpace(editor).map(function(piece) {
-            return piece.replace("\\ ", " ");
-          });
-          var bin = editorOpts.shift();
-          this.editor = { args: editorOpts, bin };
-        };
-        ExternalEditor2.prototype.createTemporaryFile = function() {
-          try {
-            this.tempFile = tmp_1.tmpNameSync(this.fileOptions);
-            var opt = { encoding: "utf8" };
-            if (this.fileOptions.hasOwnProperty("mode")) {
-              opt.mode = this.fileOptions.mode;
-            }
-            fs_1.writeFileSync(this.tempFile, this.text, opt);
-          } catch (createFileError) {
-            throw new CreateFileError_1.CreateFileError(createFileError);
-          }
-        };
-        ExternalEditor2.prototype.readTemporaryFile = function() {
-          try {
-            var tempFileBuffer = fs_1.readFileSync(this.tempFile);
-            if (tempFileBuffer.length === 0) {
-              this.text = "";
-            } else {
-              var encoding = chardet_1.detect(tempFileBuffer).toString();
-              if (!iconv_lite_1.encodingExists(encoding)) {
-                encoding = "utf8";
-              }
-              this.text = iconv_lite_1.decode(tempFileBuffer, encoding);
-            }
-          } catch (readFileError) {
-            throw new ReadFileError_1.ReadFileError(readFileError);
-          }
-        };
-        ExternalEditor2.prototype.removeTemporaryFile = function() {
-          try {
-            fs_1.unlinkSync(this.tempFile);
-          } catch (removeFileError) {
-            throw new RemoveFileError_1.RemoveFileError(removeFileError);
-          }
-        };
-        ExternalEditor2.prototype.launchEditor = function() {
-          try {
-            var editorProcess = child_process_1.spawnSync(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
-            this.lastExitStatus = editorProcess.status;
-          } catch (launchError) {
-            throw new LaunchEditorError_1.LaunchEditorError(launchError);
-          }
-        };
-        ExternalEditor2.prototype.launchEditorAsync = function(callback) {
-          var _this = this;
-          try {
-            var editorProcess = child_process_1.spawn(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
-            editorProcess.on("exit", function(code) {
-              _this.lastExitStatus = code;
-              setImmediate(callback);
-            });
-          } catch (launchError) {
-            throw new LaunchEditorError_1.LaunchEditorError(launchError);
-          }
-        };
-        return ExternalEditor2;
-      }()
-    );
-    exports2.ExternalEditor = ExternalEditor;
+    if (false) {
+      console.error("iconv-lite warning: js files use non-utf8 encoding. See https://github.com/ashtuchkin/iconv-lite/wiki/Javascript-source-file-encodings for more info.");
+    }
   }
 });
 
@@ -26169,10 +25909,10 @@ var require_isFunction = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isFunction = void 0;
-    function isFunction2(value) {
+    function isFunction3(value) {
       return typeof value === "function";
     }
-    exports2.isFunction = isFunction2;
+    exports2.isFunction = isFunction3;
   }
 });
 
@@ -33570,7 +33310,7 @@ var require_sample = __commonJS({
     var lift_1 = require_lift();
     var noop_1 = require_noop();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
-    function sample2(notifier) {
+    function sample(notifier) {
       return lift_1.operate(function(source, subscriber) {
         var hasValue = false;
         var lastValue = null;
@@ -33588,7 +33328,7 @@ var require_sample = __commonJS({
         }, noop_1.noop));
       });
     }
-    exports2.sample = sample2;
+    exports2.sample = sample;
   }
 });
 
@@ -37318,7 +37058,7 @@ var require_cli_spinners = __commonJS({
 var require_emoji_regex2 = __commonJS({
   "node_modules/ora/node_modules/emoji-regex/index.js"(exports2, module2) {
     module2.exports = () => {
-      return /[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26D3\uFE0F?(?:\u200D\uD83D\uDCA5)?|\u26F9(?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF43\uDF45-\uDF4A\uDF4C-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDF44(?:\u200D\uD83D\uDFEB)?|\uDF4B(?:\u200D\uD83D\uDFE9)?|\uDFC3(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4\uDEB5](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC25\uDC27-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE41\uDE43\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED7\uDEDC-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC26(?:\u200D(?:\u2B1B|\uD83D\uDD25))?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE])))?))?|\uDC6F(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDD75(?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?|\uDE42(?:\u200D[\u2194\u2195]\uFE0F?)?|\uDEB6(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF8](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE7C\uDE80-\uDE89\uDE8F-\uDEC2\uDEC6\uDECE-\uDEDC\uDEDF-\uDEE9]|\uDD3C(?:\u200D[\u2640\u2642]\uFE0F?|\uD83C[\uDFFB-\uDFFF])?|\uDDCE(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1|\uDDD1\u200D\uD83E\uDDD2(?:\u200D\uD83E\uDDD2)?|\uDDD2(?:\u200D\uD83E\uDDD2)?))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?)/g;
+      return /[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26D3\uFE0F?(?:\u200D\uD83D\uDCA5)?|\u26F9(?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF43\uDF45-\uDF4A\uDF4C-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDF44(?:\u200D\uD83D\uDFEB)?|\uDF4B(?:\u200D\uD83D\uDFE9)?|\uDFC3(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E-\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4\uDEB5](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC25\uDC27-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE41\uDE43\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED8\uDEDC-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC26(?:\u200D(?:\u2B1B|\uD83D\uDD25))?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFC-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFE])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFE])))?))?|\uDD75(?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?|\uDE42(?:\u200D[\u2194\u2195]\uFE0F?)?|\uDEB6(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF8](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3C-\uDD3E\uDDB8\uDDB9\uDDCD\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE7C\uDE80-\uDE8A\uDE8E-\uDEC2\uDEC6\uDEC8\uDECD-\uDEDC\uDEDF-\uDEEA\uDEEF]|\uDDCE(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1|\uDDD1\u200D\uD83E\uDDD2(?:\u200D\uD83E\uDDD2)?|\uDDD2(?:\u200D\uD83E\uDDD2)?))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?)/g;
     };
   }
 });
@@ -37403,14 +37143,14 @@ var require_polyfills = __commonJS({
       fs3.fstatSync = statFixSync(fs3.fstatSync);
       fs3.lstatSync = statFixSync(fs3.lstatSync);
       if (fs3.chmod && !fs3.lchmod) {
-        fs3.lchmod = function(path15, mode, cb) {
+        fs3.lchmod = function(path16, mode, cb) {
           if (cb) process.nextTick(cb);
         };
         fs3.lchmodSync = function() {
         };
       }
       if (fs3.chown && !fs3.lchown) {
-        fs3.lchown = function(path15, uid, gid, cb) {
+        fs3.lchown = function(path16, uid, gid, cb) {
           if (cb) process.nextTick(cb);
         };
         fs3.lchownSync = function() {
@@ -37477,9 +37217,9 @@ var require_polyfills = __commonJS({
         };
       }(fs3.readSync);
       function patchLchmod(fs4) {
-        fs4.lchmod = function(path15, mode, callback) {
+        fs4.lchmod = function(path16, mode, callback) {
           fs4.open(
-            path15,
+            path16,
             constants4.O_WRONLY | constants4.O_SYMLINK,
             mode,
             function(err, fd) {
@@ -37495,8 +37235,8 @@ var require_polyfills = __commonJS({
             }
           );
         };
-        fs4.lchmodSync = function(path15, mode) {
-          var fd = fs4.openSync(path15, constants4.O_WRONLY | constants4.O_SYMLINK, mode);
+        fs4.lchmodSync = function(path16, mode) {
+          var fd = fs4.openSync(path16, constants4.O_WRONLY | constants4.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
@@ -37517,8 +37257,8 @@ var require_polyfills = __commonJS({
       }
       function patchLutimes(fs4) {
         if (constants4.hasOwnProperty("O_SYMLINK") && fs4.futimes) {
-          fs4.lutimes = function(path15, at, mt, cb) {
-            fs4.open(path15, constants4.O_SYMLINK, function(er, fd) {
+          fs4.lutimes = function(path16, at, mt, cb) {
+            fs4.open(path16, constants4.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb) cb(er);
                 return;
@@ -37530,8 +37270,8 @@ var require_polyfills = __commonJS({
               });
             });
           };
-          fs4.lutimesSync = function(path15, at, mt) {
-            var fd = fs4.openSync(path15, constants4.O_SYMLINK);
+          fs4.lutimesSync = function(path16, at, mt) {
+            var fd = fs4.openSync(path16, constants4.O_SYMLINK);
             var ret;
             var threw = true;
             try {
@@ -37649,11 +37389,11 @@ var require_legacy_streams = __commonJS({
         ReadStream,
         WriteStream
       };
-      function ReadStream(path15, options) {
-        if (!(this instanceof ReadStream)) return new ReadStream(path15, options);
+      function ReadStream(path16, options) {
+        if (!(this instanceof ReadStream)) return new ReadStream(path16, options);
         Stream2.call(this);
         var self2 = this;
-        this.path = path15;
+        this.path = path16;
         this.fd = null;
         this.readable = true;
         this.paused = false;
@@ -37698,10 +37438,10 @@ var require_legacy_streams = __commonJS({
           self2._read();
         });
       }
-      function WriteStream(path15, options) {
-        if (!(this instanceof WriteStream)) return new WriteStream(path15, options);
+      function WriteStream(path16, options) {
+        if (!(this instanceof WriteStream)) return new WriteStream(path16, options);
         Stream2.call(this);
-        this.path = path15;
+        this.path = path16;
         this.fd = null;
         this.writable = true;
         this.flags = "w";
@@ -37844,14 +37584,14 @@ var require_graceful_fs = __commonJS({
       fs4.createWriteStream = createWriteStream2;
       var fs$readFile = fs4.readFile;
       fs4.readFile = readFile;
-      function readFile(path15, options, cb) {
+      function readFile(path16, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$readFile(path15, options, cb);
-        function go$readFile(path16, options2, cb2, startTime) {
-          return fs$readFile(path16, options2, function(err) {
+        return go$readFile(path16, options, cb);
+        function go$readFile(path17, options2, cb2, startTime) {
+          return fs$readFile(path17, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$readFile, [path16, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$readFile, [path17, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -37861,14 +37601,14 @@ var require_graceful_fs = __commonJS({
       }
       var fs$writeFile = fs4.writeFile;
       fs4.writeFile = writeFile;
-      function writeFile(path15, data, options, cb) {
+      function writeFile(path16, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$writeFile(path15, data, options, cb);
-        function go$writeFile(path16, data2, options2, cb2, startTime) {
-          return fs$writeFile(path16, data2, options2, function(err) {
+        return go$writeFile(path16, data, options, cb);
+        function go$writeFile(path17, data2, options2, cb2, startTime) {
+          return fs$writeFile(path17, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$writeFile, [path16, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$writeFile, [path17, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -37879,14 +37619,14 @@ var require_graceful_fs = __commonJS({
       var fs$appendFile = fs4.appendFile;
       if (fs$appendFile)
         fs4.appendFile = appendFile;
-      function appendFile(path15, data, options, cb) {
+      function appendFile(path16, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$appendFile(path15, data, options, cb);
-        function go$appendFile(path16, data2, options2, cb2, startTime) {
-          return fs$appendFile(path16, data2, options2, function(err) {
+        return go$appendFile(path16, data, options, cb);
+        function go$appendFile(path17, data2, options2, cb2, startTime) {
+          return fs$appendFile(path17, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$appendFile, [path16, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$appendFile, [path17, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -37917,31 +37657,31 @@ var require_graceful_fs = __commonJS({
       var fs$readdir = fs4.readdir;
       fs4.readdir = readdir2;
       var noReaddirOptionVersions = /^v[0-5]\./;
-      function readdir2(path15, options, cb) {
+      function readdir2(path16, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path16, options2, cb2, startTime) {
-          return fs$readdir(path16, fs$readdirCallback(
-            path16,
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path17, options2, cb2, startTime) {
+          return fs$readdir(path17, fs$readdirCallback(
+            path17,
             options2,
             cb2,
             startTime
           ));
-        } : function go$readdir2(path16, options2, cb2, startTime) {
-          return fs$readdir(path16, options2, fs$readdirCallback(
-            path16,
+        } : function go$readdir2(path17, options2, cb2, startTime) {
+          return fs$readdir(path17, options2, fs$readdirCallback(
+            path17,
             options2,
             cb2,
             startTime
           ));
         };
-        return go$readdir(path15, options, cb);
-        function fs$readdirCallback(path16, options2, cb2, startTime) {
+        return go$readdir(path16, options, cb);
+        function fs$readdirCallback(path17, options2, cb2, startTime) {
           return function(err, files) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
               enqueue([
                 go$readdir,
-                [path16, options2, cb2],
+                [path17, options2, cb2],
                 err,
                 startTime || Date.now(),
                 Date.now()
@@ -38012,7 +37752,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      function ReadStream(path15, options) {
+      function ReadStream(path16, options) {
         if (this instanceof ReadStream)
           return fs$ReadStream.apply(this, arguments), this;
         else
@@ -38032,7 +37772,7 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function WriteStream(path15, options) {
+      function WriteStream(path16, options) {
         if (this instanceof WriteStream)
           return fs$WriteStream.apply(this, arguments), this;
         else
@@ -38050,22 +37790,22 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function createReadStream2(path15, options) {
-        return new fs4.ReadStream(path15, options);
+      function createReadStream2(path16, options) {
+        return new fs4.ReadStream(path16, options);
       }
-      function createWriteStream2(path15, options) {
-        return new fs4.WriteStream(path15, options);
+      function createWriteStream2(path16, options) {
+        return new fs4.WriteStream(path16, options);
       }
       var fs$open = fs4.open;
       fs4.open = open;
-      function open(path15, flags, mode, cb) {
+      function open(path16, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
-        return go$open(path15, flags, mode, cb);
-        function go$open(path16, flags2, mode2, cb2, startTime) {
-          return fs$open(path16, flags2, mode2, function(err, fd) {
+        return go$open(path16, flags, mode, cb);
+        function go$open(path17, flags2, mode2, cb2, startTime) {
+          return fs$open(path17, flags2, mode2, function(err, fd) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$open, [path16, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$open, [path17, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -38245,13 +37985,13 @@ var require_fs = __commonJS({
 });
 
 // node_modules/fs-extra/lib/mkdirs/utils.js
-var require_utils = __commonJS({
+var require_utils2 = __commonJS({
   "node_modules/fs-extra/lib/mkdirs/utils.js"(exports2, module2) {
     "use strict";
-    var path15 = require("path");
+    var path16 = require("path");
     module2.exports.checkPath = function checkPath(pth) {
       if (process.platform === "win32") {
-        const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(pth.replace(path15.parse(pth).root, ""));
+        const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(pth.replace(path16.parse(pth).root, ""));
         if (pathHasInvalidWinCharacters) {
           const error = new Error(`Path contains invalid characters: ${pth}`);
           error.code = "EINVAL";
@@ -38267,7 +38007,7 @@ var require_make_dir = __commonJS({
   "node_modules/fs-extra/lib/mkdirs/make-dir.js"(exports2, module2) {
     "use strict";
     var fs3 = require_fs();
-    var { checkPath } = require_utils();
+    var { checkPath } = require_utils2();
     var getMode = (options) => {
       const defaults3 = { mode: 511 };
       if (typeof options === "number") return options;
@@ -38315,8 +38055,8 @@ var require_path_exists = __commonJS({
     "use strict";
     var u2 = require_universalify().fromPromise;
     var fs3 = require_fs();
-    function pathExists(path15) {
-      return fs3.access(path15).then(() => true).catch(() => false);
+    function pathExists(path16) {
+      return fs3.access(path16).then(() => true).catch(() => false);
     }
     module2.exports = {
       pathExists: u2(pathExists),
@@ -38331,8 +38071,8 @@ var require_utimes = __commonJS({
     "use strict";
     var fs3 = require_fs();
     var u2 = require_universalify().fromPromise;
-    async function utimesMillis(path15, atime, mtime) {
-      const fd = await fs3.open(path15, "r+");
+    async function utimesMillis(path16, atime, mtime) {
+      const fd = await fs3.open(path16, "r+");
       let closeErr = null;
       try {
         await fs3.futimes(fd, atime, mtime);
@@ -38347,8 +38087,8 @@ var require_utimes = __commonJS({
         throw closeErr;
       }
     }
-    function utimesMillisSync(path15, atime, mtime) {
-      const fd = fs3.openSync(path15, "r+");
+    function utimesMillisSync(path16, atime, mtime) {
+      const fd = fs3.openSync(path16, "r+");
       fs3.futimesSync(fd, atime, mtime);
       return fs3.closeSync(fd);
     }
@@ -38364,7 +38104,7 @@ var require_stat = __commonJS({
   "node_modules/fs-extra/lib/util/stat.js"(exports2, module2) {
     "use strict";
     var fs3 = require_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var u2 = require_universalify().fromPromise;
     function getStats(src, dest, opts) {
       const statFunc = opts.dereference ? (file) => fs3.stat(file, { bigint: true }) : (file) => fs3.lstat(file, { bigint: true });
@@ -38392,8 +38132,8 @@ var require_stat = __commonJS({
       const { srcStat, destStat } = await getStats(src, dest, opts);
       if (destStat) {
         if (areIdentical(srcStat, destStat)) {
-          const srcBaseName = path15.basename(src);
-          const destBaseName = path15.basename(dest);
+          const srcBaseName = path16.basename(src);
+          const destBaseName = path16.basename(dest);
           if (funcName === "move" && srcBaseName !== destBaseName && srcBaseName.toLowerCase() === destBaseName.toLowerCase()) {
             return { srcStat, destStat, isChangingCase: true };
           }
@@ -38415,8 +38155,8 @@ var require_stat = __commonJS({
       const { srcStat, destStat } = getStatsSync(src, dest, opts);
       if (destStat) {
         if (areIdentical(srcStat, destStat)) {
-          const srcBaseName = path15.basename(src);
-          const destBaseName = path15.basename(dest);
+          const srcBaseName = path16.basename(src);
+          const destBaseName = path16.basename(dest);
           if (funcName === "move" && srcBaseName !== destBaseName && srcBaseName.toLowerCase() === destBaseName.toLowerCase()) {
             return { srcStat, destStat, isChangingCase: true };
           }
@@ -38435,9 +38175,9 @@ var require_stat = __commonJS({
       return { srcStat, destStat };
     }
     async function checkParentPaths(src, srcStat, dest, funcName) {
-      const srcParent = path15.resolve(path15.dirname(src));
-      const destParent = path15.resolve(path15.dirname(dest));
-      if (destParent === srcParent || destParent === path15.parse(destParent).root) return;
+      const srcParent = path16.resolve(path16.dirname(src));
+      const destParent = path16.resolve(path16.dirname(dest));
+      if (destParent === srcParent || destParent === path16.parse(destParent).root) return;
       let destStat;
       try {
         destStat = await fs3.stat(destParent, { bigint: true });
@@ -38451,9 +38191,9 @@ var require_stat = __commonJS({
       return checkParentPaths(src, srcStat, destParent, funcName);
     }
     function checkParentPathsSync(src, srcStat, dest, funcName) {
-      const srcParent = path15.resolve(path15.dirname(src));
-      const destParent = path15.resolve(path15.dirname(dest));
-      if (destParent === srcParent || destParent === path15.parse(destParent).root) return;
+      const srcParent = path16.resolve(path16.dirname(src));
+      const destParent = path16.resolve(path16.dirname(dest));
+      if (destParent === srcParent || destParent === path16.parse(destParent).root) return;
       let destStat;
       try {
         destStat = fs3.statSync(destParent, { bigint: true });
@@ -38467,11 +38207,11 @@ var require_stat = __commonJS({
       return checkParentPathsSync(src, srcStat, destParent, funcName);
     }
     function areIdentical(srcStat, destStat) {
-      return destStat.ino && destStat.dev && destStat.ino === srcStat.ino && destStat.dev === srcStat.dev;
+      return destStat.ino !== void 0 && destStat.dev !== void 0 && destStat.ino === srcStat.ino && destStat.dev === srcStat.dev;
     }
     function isSrcSubdir(src, dest) {
-      const srcArr = path15.resolve(src).split(path15.sep).filter((i2) => i2);
-      const destArr = path15.resolve(dest).split(path15.sep).filter((i2) => i2);
+      const srcArr = path16.resolve(src).split(path16.sep).filter((i2) => i2);
+      const destArr = path16.resolve(dest).split(path16.sep).filter((i2) => i2);
       return srcArr.every((cur, i2) => destArr[i2] === cur);
     }
     function errMsg(src, dest, funcName) {
@@ -38491,16 +38231,45 @@ var require_stat = __commonJS({
   }
 });
 
+// node_modules/fs-extra/lib/util/async.js
+var require_async3 = __commonJS({
+  "node_modules/fs-extra/lib/util/async.js"(exports2, module2) {
+    "use strict";
+    async function asyncIteratorConcurrentProcess(iterator2, fn) {
+      const promises = [];
+      for await (const item of iterator2) {
+        promises.push(
+          fn(item).then(
+            () => null,
+            (err) => err ?? new Error("unknown error")
+          )
+        );
+      }
+      await Promise.all(
+        promises.map(
+          (promise) => promise.then((possibleErr) => {
+            if (possibleErr !== null) throw possibleErr;
+          })
+        )
+      );
+    }
+    module2.exports = {
+      asyncIteratorConcurrentProcess
+    };
+  }
+});
+
 // node_modules/fs-extra/lib/copy/copy.js
 var require_copy = __commonJS({
   "node_modules/fs-extra/lib/copy/copy.js"(exports2, module2) {
     "use strict";
     var fs3 = require_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var { mkdirs } = require_mkdirs();
     var { pathExists } = require_path_exists();
     var { utimesMillis } = require_utimes();
     var stat = require_stat();
+    var { asyncIteratorConcurrentProcess } = require_async3();
     async function copy(src, dest, opts = {}) {
       if (typeof opts === "function") {
         opts = { filter: opts };
@@ -38518,7 +38287,7 @@ var require_copy = __commonJS({
       await stat.checkParentPaths(src, srcStat, dest, "copy");
       const include = await runFilter(src, dest, opts);
       if (!include) return;
-      const destParent = path15.dirname(dest);
+      const destParent = path16.dirname(dest);
       const dirExists = await pathExists(destParent);
       if (!dirExists) {
         await mkdirs(destParent);
@@ -38570,21 +38339,15 @@ var require_copy = __commonJS({
       if (!destStat) {
         await fs3.mkdir(dest);
       }
-      const promises = [];
-      for await (const item of await fs3.opendir(src)) {
-        const srcItem = path15.join(src, item.name);
-        const destItem = path15.join(dest, item.name);
-        promises.push(
-          runFilter(srcItem, destItem, opts).then((include) => {
-            if (include) {
-              return stat.checkPaths(srcItem, destItem, "copy", opts).then(({ destStat: destStat2 }) => {
-                return getStatsAndPerformCopy(destStat2, srcItem, destItem, opts);
-              });
-            }
-          })
-        );
-      }
-      await Promise.all(promises);
+      await asyncIteratorConcurrentProcess(await fs3.opendir(src), async (item) => {
+        const srcItem = path16.join(src, item.name);
+        const destItem = path16.join(dest, item.name);
+        const include = await runFilter(srcItem, destItem, opts);
+        if (include) {
+          const { destStat: destStat2 } = await stat.checkPaths(srcItem, destItem, "copy", opts);
+          await getStatsAndPerformCopy(destStat2, srcItem, destItem, opts);
+        }
+      });
       if (!destStat) {
         await fs3.chmod(dest, srcStat.mode);
       }
@@ -38592,7 +38355,7 @@ var require_copy = __commonJS({
     async function onLink(destStat, src, dest, opts) {
       let resolvedSrc = await fs3.readlink(src);
       if (opts.dereference) {
-        resolvedSrc = path15.resolve(process.cwd(), resolvedSrc);
+        resolvedSrc = path16.resolve(process.cwd(), resolvedSrc);
       }
       if (!destStat) {
         return fs3.symlink(resolvedSrc, dest);
@@ -38605,7 +38368,7 @@ var require_copy = __commonJS({
         throw e;
       }
       if (opts.dereference) {
-        resolvedDest = path15.resolve(process.cwd(), resolvedDest);
+        resolvedDest = path16.resolve(process.cwd(), resolvedDest);
       }
       if (stat.isSrcSubdir(resolvedSrc, resolvedDest)) {
         throw new Error(`Cannot copy '${resolvedSrc}' to a subdirectory of itself, '${resolvedDest}'.`);
@@ -38625,7 +38388,7 @@ var require_copy_sync = __commonJS({
   "node_modules/fs-extra/lib/copy/copy-sync.js"(exports2, module2) {
     "use strict";
     var fs3 = require_graceful_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var mkdirsSync = require_mkdirs().mkdirsSync;
     var utimesMillisSync = require_utimes().utimesMillisSync;
     var stat = require_stat();
@@ -38646,7 +38409,7 @@ var require_copy_sync = __commonJS({
       const { srcStat, destStat } = stat.checkPathsSync(src, dest, "copy", opts);
       stat.checkParentPathsSync(src, srcStat, dest, "copy");
       if (opts.filter && !opts.filter(src, dest)) return;
-      const destParent = path15.dirname(dest);
+      const destParent = path16.dirname(dest);
       if (!fs3.existsSync(destParent)) mkdirsSync(destParent);
       return getStats(destStat, src, dest, opts);
     }
@@ -38715,8 +38478,8 @@ var require_copy_sync = __commonJS({
       }
     }
     function copyDirItem(item, src, dest, opts) {
-      const srcItem = path15.join(src, item);
-      const destItem = path15.join(dest, item);
+      const srcItem = path16.join(src, item);
+      const destItem = path16.join(dest, item);
       if (opts.filter && !opts.filter(srcItem, destItem)) return;
       const { destStat } = stat.checkPathsSync(srcItem, destItem, "copy", opts);
       return getStats(destStat, srcItem, destItem, opts);
@@ -38724,7 +38487,7 @@ var require_copy_sync = __commonJS({
     function onLink(destStat, src, dest, opts) {
       let resolvedSrc = fs3.readlinkSync(src);
       if (opts.dereference) {
-        resolvedSrc = path15.resolve(process.cwd(), resolvedSrc);
+        resolvedSrc = path16.resolve(process.cwd(), resolvedSrc);
       }
       if (!destStat) {
         return fs3.symlinkSync(resolvedSrc, dest);
@@ -38737,7 +38500,7 @@ var require_copy_sync = __commonJS({
           throw err;
         }
         if (opts.dereference) {
-          resolvedDest = path15.resolve(process.cwd(), resolvedDest);
+          resolvedDest = path16.resolve(process.cwd(), resolvedDest);
         }
         if (stat.isSrcSubdir(resolvedSrc, resolvedDest)) {
           throw new Error(`Cannot copy '${resolvedSrc}' to a subdirectory of itself, '${resolvedDest}'.`);
@@ -38774,11 +38537,11 @@ var require_remove = __commonJS({
     "use strict";
     var fs3 = require_graceful_fs();
     var u2 = require_universalify().fromCallback;
-    function remove(path15, callback) {
-      fs3.rm(path15, { recursive: true, force: true }, callback);
+    function remove(path16, callback) {
+      fs3.rm(path16, { recursive: true, force: true }, callback);
     }
-    function removeSync(path15) {
-      fs3.rmSync(path15, { recursive: true, force: true });
+    function removeSync(path16) {
+      fs3.rmSync(path16, { recursive: true, force: true });
     }
     module2.exports = {
       remove: u2(remove),
@@ -38793,7 +38556,7 @@ var require_empty2 = __commonJS({
     "use strict";
     var u2 = require_universalify().fromPromise;
     var fs3 = require_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var mkdir = require_mkdirs();
     var remove = require_remove();
     var emptyDir = u2(async function emptyDir2(dir) {
@@ -38803,7 +38566,7 @@ var require_empty2 = __commonJS({
       } catch {
         return mkdir.mkdirs(dir);
       }
-      return Promise.all(items.map((item) => remove.remove(path15.join(dir, item))));
+      return Promise.all(items.map((item) => remove.remove(path16.join(dir, item))));
     });
     function emptyDirSync(dir) {
       let items;
@@ -38813,7 +38576,7 @@ var require_empty2 = __commonJS({
         return mkdir.mkdirsSync(dir);
       }
       items.forEach((item) => {
-        item = path15.join(dir, item);
+        item = path16.join(dir, item);
         remove.removeSync(item);
       });
     }
@@ -38831,7 +38594,7 @@ var require_file = __commonJS({
   "node_modules/fs-extra/lib/ensure/file.js"(exports2, module2) {
     "use strict";
     var u2 = require_universalify().fromPromise;
-    var path15 = require("path");
+    var path16 = require("path");
     var fs3 = require_fs();
     var mkdir = require_mkdirs();
     async function createFile(file) {
@@ -38841,7 +38604,7 @@ var require_file = __commonJS({
       } catch {
       }
       if (stats && stats.isFile()) return;
-      const dir = path15.dirname(file);
+      const dir = path16.dirname(file);
       let dirStats = null;
       try {
         dirStats = await fs3.stat(dir);
@@ -38867,7 +38630,7 @@ var require_file = __commonJS({
       } catch {
       }
       if (stats && stats.isFile()) return;
-      const dir = path15.dirname(file);
+      const dir = path16.dirname(file);
       try {
         if (!fs3.statSync(dir).isDirectory()) {
           fs3.readdirSync(dir);
@@ -38890,7 +38653,7 @@ var require_link = __commonJS({
   "node_modules/fs-extra/lib/ensure/link.js"(exports2, module2) {
     "use strict";
     var u2 = require_universalify().fromPromise;
-    var path15 = require("path");
+    var path16 = require("path");
     var fs3 = require_fs();
     var mkdir = require_mkdirs();
     var { pathExists } = require_path_exists();
@@ -38909,7 +38672,7 @@ var require_link = __commonJS({
         throw err;
       }
       if (dstStat && areIdentical(srcStat, dstStat)) return;
-      const dir = path15.dirname(dstpath);
+      const dir = path16.dirname(dstpath);
       const dirExists = await pathExists(dir);
       if (!dirExists) {
         await mkdir.mkdirs(dir);
@@ -38929,7 +38692,7 @@ var require_link = __commonJS({
         err.message = err.message.replace("lstat", "ensureLink");
         throw err;
       }
-      const dir = path15.dirname(dstpath);
+      const dir = path16.dirname(dstpath);
       const dirExists = fs3.existsSync(dir);
       if (dirExists) return fs3.linkSync(srcpath, dstpath);
       mkdir.mkdirsSync(dir);
@@ -38946,12 +38709,12 @@ var require_link = __commonJS({
 var require_symlink_paths = __commonJS({
   "node_modules/fs-extra/lib/ensure/symlink-paths.js"(exports2, module2) {
     "use strict";
-    var path15 = require("path");
+    var path16 = require("path");
     var fs3 = require_fs();
     var { pathExists } = require_path_exists();
     var u2 = require_universalify().fromPromise;
     async function symlinkPaths(srcpath, dstpath) {
-      if (path15.isAbsolute(srcpath)) {
+      if (path16.isAbsolute(srcpath)) {
         try {
           await fs3.lstat(srcpath);
         } catch (err) {
@@ -38963,8 +38726,8 @@ var require_symlink_paths = __commonJS({
           toDst: srcpath
         };
       }
-      const dstdir = path15.dirname(dstpath);
-      const relativeToDst = path15.join(dstdir, srcpath);
+      const dstdir = path16.dirname(dstpath);
+      const relativeToDst = path16.join(dstdir, srcpath);
       const exists = await pathExists(relativeToDst);
       if (exists) {
         return {
@@ -38980,11 +38743,11 @@ var require_symlink_paths = __commonJS({
       }
       return {
         toCwd: srcpath,
-        toDst: path15.relative(dstdir, srcpath)
+        toDst: path16.relative(dstdir, srcpath)
       };
     }
     function symlinkPathsSync(srcpath, dstpath) {
-      if (path15.isAbsolute(srcpath)) {
+      if (path16.isAbsolute(srcpath)) {
         const exists2 = fs3.existsSync(srcpath);
         if (!exists2) throw new Error("absolute srcpath does not exist");
         return {
@@ -38992,8 +38755,8 @@ var require_symlink_paths = __commonJS({
           toDst: srcpath
         };
       }
-      const dstdir = path15.dirname(dstpath);
-      const relativeToDst = path15.join(dstdir, srcpath);
+      const dstdir = path16.dirname(dstpath);
+      const relativeToDst = path16.join(dstdir, srcpath);
       const exists = fs3.existsSync(relativeToDst);
       if (exists) {
         return {
@@ -39005,7 +38768,7 @@ var require_symlink_paths = __commonJS({
       if (!srcExists) throw new Error("relative srcpath does not exist");
       return {
         toCwd: srcpath,
-        toDst: path15.relative(dstdir, srcpath)
+        toDst: path16.relative(dstdir, srcpath)
       };
     }
     module2.exports = {
@@ -39053,7 +38816,7 @@ var require_symlink = __commonJS({
   "node_modules/fs-extra/lib/ensure/symlink.js"(exports2, module2) {
     "use strict";
     var u2 = require_universalify().fromPromise;
-    var path15 = require("path");
+    var path16 = require("path");
     var fs3 = require_fs();
     var { mkdirs, mkdirsSync } = require_mkdirs();
     var { symlinkPaths, symlinkPathsSync } = require_symlink_paths();
@@ -39076,7 +38839,7 @@ var require_symlink = __commonJS({
       const relative = await symlinkPaths(srcpath, dstpath);
       srcpath = relative.toDst;
       const toType2 = await symlinkType(relative.toCwd, type);
-      const dir = path15.dirname(dstpath);
+      const dir = path16.dirname(dstpath);
       if (!await pathExists(dir)) {
         await mkdirs(dir);
       }
@@ -39096,7 +38859,7 @@ var require_symlink = __commonJS({
       const relative = symlinkPathsSync(srcpath, dstpath);
       srcpath = relative.toDst;
       type = symlinkTypeSync(relative.toCwd, type);
-      const dir = path15.dirname(dstpath);
+      const dir = path16.dirname(dstpath);
       const exists = fs3.existsSync(dir);
       if (exists) return fs3.symlinkSync(srcpath, dstpath, type);
       mkdirsSync(dir);
@@ -39137,7 +38900,7 @@ var require_ensure = __commonJS({
 });
 
 // node_modules/jsonfile/utils.js
-var require_utils2 = __commonJS({
+var require_utils3 = __commonJS({
   "node_modules/jsonfile/utils.js"(exports2, module2) {
     function stringify2(obj, { EOL = "\n", finalEOL = true, replacer = null, spaces } = {}) {
       const EOF2 = finalEOL ? EOL : "";
@@ -39162,7 +38925,7 @@ var require_jsonfile = __commonJS({
       _fs = require("fs");
     }
     var universalify = require_universalify();
-    var { stringify: stringify2, stripBom } = require_utils2();
+    var { stringify: stringify2, stripBom } = require_utils3();
     async function _readFile(file, options = {}) {
       if (typeof options === "string") {
         options = { encoding: options };
@@ -39185,7 +38948,7 @@ var require_jsonfile = __commonJS({
       return obj;
     }
     var readFile = universalify.fromPromise(_readFile);
-    function readFileSync3(file, options = {}) {
+    function readFileSync4(file, options = {}) {
       if (typeof options === "string") {
         options = { encoding: options };
       }
@@ -39210,18 +38973,17 @@ var require_jsonfile = __commonJS({
       await universalify.fromCallback(fs3.writeFile)(file, str, options);
     }
     var writeFile = universalify.fromPromise(_writeFile);
-    function writeFileSync2(file, obj, options = {}) {
+    function writeFileSync3(file, obj, options = {}) {
       const fs3 = options.fs || _fs;
       const str = stringify2(obj, options);
       return fs3.writeFileSync(file, str, options);
     }
-    var jsonfile = {
+    module2.exports = {
       readFile,
-      readFileSync: readFileSync3,
+      readFileSync: readFileSync4,
       writeFile,
-      writeFileSync: writeFileSync2
+      writeFileSync: writeFileSync3
     };
-    module2.exports = jsonfile;
   }
 });
 
@@ -39246,18 +39008,18 @@ var require_output_file = __commonJS({
     "use strict";
     var u2 = require_universalify().fromPromise;
     var fs3 = require_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var mkdir = require_mkdirs();
     var pathExists = require_path_exists().pathExists;
     async function outputFile(file, data, encoding = "utf-8") {
-      const dir = path15.dirname(file);
+      const dir = path16.dirname(file);
       if (!await pathExists(dir)) {
         await mkdir.mkdirs(dir);
       }
       return fs3.writeFile(file, data, encoding);
     }
     function outputFileSync(file, ...args) {
-      const dir = path15.dirname(file);
+      const dir = path16.dirname(file);
       if (!fs3.existsSync(dir)) {
         mkdir.mkdirsSync(dir);
       }
@@ -39274,7 +39036,7 @@ var require_output_file = __commonJS({
 var require_output_json = __commonJS({
   "node_modules/fs-extra/lib/json/output-json.js"(exports2, module2) {
     "use strict";
-    var { stringify: stringify2 } = require_utils2();
+    var { stringify: stringify2 } = require_utils3();
     var { outputFile } = require_output_file();
     async function outputJson(file, data, options = {}) {
       const str = stringify2(data, options);
@@ -39288,7 +39050,7 @@ var require_output_json = __commonJS({
 var require_output_json_sync = __commonJS({
   "node_modules/fs-extra/lib/json/output-json-sync.js"(exports2, module2) {
     "use strict";
-    var { stringify: stringify2 } = require_utils2();
+    var { stringify: stringify2 } = require_utils3();
     var { outputFileSync } = require_output_file();
     function outputJsonSync(file, data, options) {
       const str = stringify2(data, options);
@@ -39321,7 +39083,7 @@ var require_move = __commonJS({
   "node_modules/fs-extra/lib/move/move.js"(exports2, module2) {
     "use strict";
     var fs3 = require_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var { copy } = require_copy2();
     var { remove } = require_remove();
     var { mkdirp } = require_mkdirs();
@@ -39331,8 +39093,8 @@ var require_move = __commonJS({
       const overwrite = opts.overwrite || opts.clobber || false;
       const { srcStat, isChangingCase = false } = await stat.checkPaths(src, dest, "move", opts);
       await stat.checkParentPaths(src, srcStat, dest, "move");
-      const destParent = path15.dirname(dest);
-      const parsedParentPath = path15.parse(destParent);
+      const destParent = path16.dirname(dest);
+      const parsedParentPath = path16.parse(destParent);
       if (parsedParentPath.root !== destParent) {
         await mkdirp(destParent);
       }
@@ -39373,7 +39135,7 @@ var require_move_sync = __commonJS({
   "node_modules/fs-extra/lib/move/move-sync.js"(exports2, module2) {
     "use strict";
     var fs3 = require_graceful_fs();
-    var path15 = require("path");
+    var path16 = require("path");
     var copySync = require_copy2().copySync;
     var removeSync = require_remove().removeSync;
     var mkdirpSync = require_mkdirs().mkdirpSync;
@@ -39383,12 +39145,12 @@ var require_move_sync = __commonJS({
       const overwrite = opts.overwrite || opts.clobber || false;
       const { srcStat, isChangingCase = false } = stat.checkPathsSync(src, dest, "move", opts);
       stat.checkParentPathsSync(src, srcStat, dest, "move");
-      if (!isParentRoot(dest)) mkdirpSync(path15.dirname(dest));
+      if (!isParentRoot(dest)) mkdirpSync(path16.dirname(dest));
       return doRename(src, dest, overwrite, isChangingCase);
     }
     function isParentRoot(dest) {
-      const parent = path15.dirname(dest);
-      const parsedPath = path15.parse(parent);
+      const parent = path16.dirname(dest);
+      const parsedPath = path16.parse(parent);
       return parsedPath.root === parent;
     }
     function doRename(src, dest, overwrite, isChangingCase) {
@@ -39434,7 +39196,7 @@ var require_move2 = __commonJS({
 });
 
 // node_modules/fs-extra/lib/index.js
-var require_lib5 = __commonJS({
+var require_lib6 = __commonJS({
   "node_modules/fs-extra/lib/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
@@ -39460,7 +39222,7 @@ var require_windows = __commonJS({
     module2.exports = isexe;
     isexe.sync = sync2;
     var fs3 = require("fs");
-    function checkPathExt(path15, options) {
+    function checkPathExt(path16, options) {
       var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
@@ -39471,25 +39233,25 @@ var require_windows = __commonJS({
       }
       for (var i2 = 0; i2 < pathext.length; i2++) {
         var p = pathext[i2].toLowerCase();
-        if (p && path15.substr(-p.length).toLowerCase() === p) {
+        if (p && path16.substr(-p.length).toLowerCase() === p) {
           return true;
         }
       }
       return false;
     }
-    function checkStat(stat, path15, options) {
+    function checkStat(stat, path16, options) {
       if (!stat.isSymbolicLink() && !stat.isFile()) {
         return false;
       }
-      return checkPathExt(path15, options);
+      return checkPathExt(path16, options);
     }
-    function isexe(path15, options, cb) {
-      fs3.stat(path15, function(er, stat) {
-        cb(er, er ? false : checkStat(stat, path15, options));
+    function isexe(path16, options, cb) {
+      fs3.stat(path16, function(er, stat) {
+        cb(er, er ? false : checkStat(stat, path16, options));
       });
     }
-    function sync2(path15, options) {
-      return checkStat(fs3.statSync(path15), path15, options);
+    function sync2(path16, options) {
+      return checkStat(fs3.statSync(path16), path16, options);
     }
   }
 });
@@ -39500,13 +39262,13 @@ var require_mode = __commonJS({
     module2.exports = isexe;
     isexe.sync = sync2;
     var fs3 = require("fs");
-    function isexe(path15, options, cb) {
-      fs3.stat(path15, function(er, stat) {
+    function isexe(path16, options, cb) {
+      fs3.stat(path16, function(er, stat) {
         cb(er, er ? false : checkStat(stat, options));
       });
     }
-    function sync2(path15, options) {
-      return checkStat(fs3.statSync(path15), options);
+    function sync2(path16, options) {
+      return checkStat(fs3.statSync(path16), options);
     }
     function checkStat(stat, options) {
       return stat.isFile() && checkMode(stat, options);
@@ -39539,7 +39301,7 @@ var require_isexe = __commonJS({
     }
     module2.exports = isexe;
     isexe.sync = sync2;
-    function isexe(path15, options, cb) {
+    function isexe(path16, options, cb) {
       if (typeof options === "function") {
         cb = options;
         options = {};
@@ -39549,7 +39311,7 @@ var require_isexe = __commonJS({
           throw new TypeError("callback not provided");
         }
         return new Promise(function(resolve, reject) {
-          isexe(path15, options || {}, function(er, is) {
+          isexe(path16, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
@@ -39558,7 +39320,7 @@ var require_isexe = __commonJS({
           });
         });
       }
-      core(path15, options || {}, function(er, is) {
+      core(path16, options || {}, function(er, is) {
         if (er) {
           if (er.code === "EACCES" || options && options.ignoreErrors) {
             er = null;
@@ -39568,9 +39330,9 @@ var require_isexe = __commonJS({
         cb(er, is);
       });
     }
-    function sync2(path15, options) {
+    function sync2(path16, options) {
       try {
-        return core.sync(path15, options || {});
+        return core.sync(path16, options || {});
       } catch (er) {
         if (options && options.ignoreErrors || er.code === "EACCES") {
           return false;
@@ -39586,7 +39348,7 @@ var require_isexe = __commonJS({
 var require_which = __commonJS({
   "node_modules/which/which.js"(exports2, module2) {
     var isWindows = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path15 = require("path");
+    var path16 = require("path");
     var COLON = isWindows ? ";" : ":";
     var isexe = require_isexe();
     var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
@@ -39624,7 +39386,7 @@ var require_which = __commonJS({
           return opt.all && found.length ? resolve(found) : reject(getNotFoundError(cmd));
         const ppRaw = pathEnv[i2];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path15.join(pathPart, cmd);
+        const pCmd = path16.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         resolve(subStep(p, i2, 0));
       });
@@ -39651,7 +39413,7 @@ var require_which = __commonJS({
       for (let i2 = 0; i2 < pathEnv.length; i2++) {
         const ppRaw = pathEnv[i2];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path15.join(pathPart, cmd);
+        const pCmd = path16.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         for (let j = 0; j < pathExt.length; j++) {
           const cur = p + pathExt[j];
@@ -39699,7 +39461,7 @@ var require_path_key = __commonJS({
 var require_resolveCommand = __commonJS({
   "node_modules/cross-spawn/lib/util/resolveCommand.js"(exports2, module2) {
     "use strict";
-    var path15 = require("path");
+    var path16 = require("path");
     var which = require_which();
     var getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
@@ -39717,7 +39479,7 @@ var require_resolveCommand = __commonJS({
       try {
         resolved = which.sync(parsed.command, {
           path: env3[getPathKey({ env: env3 })],
-          pathExt: withoutPathExt ? path15.delimiter : void 0
+          pathExt: withoutPathExt ? path16.delimiter : void 0
         });
       } catch (e) {
       } finally {
@@ -39726,7 +39488,7 @@ var require_resolveCommand = __commonJS({
         }
       }
       if (resolved) {
-        resolved = path15.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
+        resolved = path16.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
       }
       return resolved;
     }
@@ -39780,8 +39542,8 @@ var require_shebang_command = __commonJS({
       if (!match2) {
         return null;
       }
-      const [path15, argument] = match2[0].replace(/#! ?/, "").split(" ");
-      const binary = path15.split("/").pop();
+      const [path16, argument] = match2[0].replace(/#! ?/, "").split(" ");
+      const binary = path16.split("/").pop();
       if (binary === "env") {
         return argument;
       }
@@ -39816,7 +39578,7 @@ var require_readShebang = __commonJS({
 var require_parse = __commonJS({
   "node_modules/cross-spawn/lib/parse.js"(exports2, module2) {
     "use strict";
-    var path15 = require("path");
+    var path16 = require("path");
     var resolveCommand = require_resolveCommand();
     var escape2 = require_escape();
     var readShebang = require_readShebang();
@@ -39841,7 +39603,7 @@ var require_parse = __commonJS({
       const needsShell = !isExecutableRegExp.test(commandFile);
       if (parsed.options.forceShell || needsShell) {
         const needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
-        parsed.command = path15.normalize(parsed.command);
+        parsed.command = path16.normalize(parsed.command);
         parsed.command = escape2.command(parsed.command);
         parsed.args = parsed.args.map((arg) => escape2.argument(arg, needsDoubleEscapeMetaChars));
         const shellCommand = [parsed.command].concat(parsed.args).join(" ");
@@ -39931,28 +39693,28 @@ var require_cross_spawn = __commonJS({
     var cp = require("child_process");
     var parse2 = require_parse();
     var enoent = require_enoent();
-    function spawn2(command, args, options) {
+    function spawn3(command, args, options) {
       const parsed = parse2(command, args, options);
       const spawned = cp.spawn(parsed.command, parsed.args, parsed.options);
       enoent.hookChildProcess(spawned, parsed);
       return spawned;
     }
-    function spawnSync2(command, args, options) {
+    function spawnSync3(command, args, options) {
       const parsed = parse2(command, args, options);
       const result = cp.spawnSync(parsed.command, parsed.args, parsed.options);
       result.error = result.error || enoent.verifyENOENTSync(result.status, parsed);
       return result;
     }
-    module2.exports = spawn2;
-    module2.exports.spawn = spawn2;
-    module2.exports.sync = spawnSync2;
+    module2.exports = spawn3;
+    module2.exports.spawn = spawn3;
+    module2.exports.sync = spawnSync3;
     module2.exports._parse = parse2;
     module2.exports._enoent = enoent;
   }
 });
 
 // node_modules/ejs/lib/utils.js
-var require_utils3 = __commonJS({
+var require_utils4 = __commonJS({
   "node_modules/ejs/lib/utils.js"(exports2) {
     "use strict";
     var regExpChars = /[|\\{}()[\]^$+*?.]/g;
@@ -40138,8 +39900,8 @@ var require_ejs = __commonJS({
   "node_modules/ejs/lib/ejs.js"(exports2) {
     "use strict";
     var fs3 = require("fs");
-    var path15 = require("path");
-    var utils = require_utils3();
+    var path16 = require("path");
+    var utils = require_utils4();
     var scopeOptionWarned = false;
     var _VERSION_STRING = require_package().version;
     var _DEFAULT_OPEN_DELIMITER = "<";
@@ -40169,9 +39931,9 @@ var require_ejs = __commonJS({
     exports2.localsName = _DEFAULT_LOCALS_NAME;
     exports2.promiseImpl = new Function("return this;")().Promise;
     exports2.resolveInclude = function(name, filename, isDir) {
-      var dirname = path15.dirname;
-      var extname = path15.extname;
-      var resolve = path15.resolve;
+      var dirname = path16.dirname;
+      var extname = path16.extname;
+      var resolve = path16.resolve;
       var includePath = resolve(isDir ? filename : dirname(filename), name);
       var ext2 = extname(name);
       if (!ext2) {
@@ -40188,30 +39950,30 @@ var require_ejs = __commonJS({
         return filePath;
       }
     }
-    function getIncludePath(path16, options) {
+    function getIncludePath(path17, options) {
       var includePath;
       var filePath;
       var views = options.views;
-      var match2 = /^[A-Za-z]+:\\|^\//.exec(path16);
+      var match2 = /^[A-Za-z]+:\\|^\//.exec(path17);
       if (match2 && match2.length) {
-        path16 = path16.replace(/^\/*/, "");
+        path17 = path17.replace(/^\/*/, "");
         if (Array.isArray(options.root)) {
-          includePath = resolvePaths(path16, options.root);
+          includePath = resolvePaths(path17, options.root);
         } else {
-          includePath = exports2.resolveInclude(path16, options.root || "/", true);
+          includePath = exports2.resolveInclude(path17, options.root || "/", true);
         }
       } else {
         if (options.filename) {
-          filePath = exports2.resolveInclude(path16, options.filename);
+          filePath = exports2.resolveInclude(path17, options.filename);
           if (fs3.existsSync(filePath)) {
             includePath = filePath;
           }
         }
         if (!includePath && Array.isArray(views)) {
-          includePath = resolvePaths(path16, views);
+          includePath = resolvePaths(path17, views);
         }
         if (!includePath && typeof options.includer !== "function") {
-          throw new Error('Could not find the include file "' + options.escapeFunction(path16) + '"');
+          throw new Error('Could not find the include file "' + options.escapeFunction(path17) + '"');
         }
       }
       return includePath;
@@ -40270,11 +40032,11 @@ var require_ejs = __commonJS({
     function fileLoader(filePath) {
       return exports2.fileLoader(filePath);
     }
-    function includeFile(path16, options) {
+    function includeFile(path17, options) {
       var opts = utils.shallowCopy(utils.createNullProtoObjWherePossible(), options);
-      opts.filename = getIncludePath(path16, opts);
+      opts.filename = getIncludePath(path17, opts);
       if (typeof options.includer === "function") {
-        var includerResult = options.includer(path16, opts.filename);
+        var includerResult = options.includer(path17, opts.filename);
         if (includerResult) {
           if (includerResult.filename) {
             opts.filename = includerResult.filename;
@@ -40509,12 +40271,12 @@ var require_ejs = __commonJS({
           throw e;
         }
         var returnedFn = opts.client ? fn : function anonymous(data) {
-          var include = function(path16, includeData) {
+          var include = function(path17, includeData) {
             var d = utils.shallowCopy(utils.createNullProtoObjWherePossible(), data);
             if (includeData) {
               d = utils.shallowCopy(d, includeData);
             }
-            return includeFile(path16, opts)(d);
+            return includeFile(path17, opts)(d);
           };
           return fn.apply(
             opts.context,
@@ -40523,7 +40285,7 @@ var require_ejs = __commonJS({
         };
         if (opts.filename && typeof Object.defineProperty === "function") {
           var filename = opts.filename;
-          var basename2 = path15.basename(filename, path15.extname(filename));
+          var basename2 = path16.basename(filename, path16.extname(filename));
           try {
             Object.defineProperty(returnedFn, "name", {
               value: basename2,
@@ -41072,14 +40834,14 @@ var InternalDependencyContainer = function() {
       provider = providerOrConstructor;
     }
     if (isTokenProvider(provider)) {
-      var path15 = [token];
+      var path16 = [token];
       var tokenProvider = provider;
       while (tokenProvider != null) {
         var currentToken = tokenProvider.useToken;
-        if (path15.includes(currentToken)) {
-          throw new Error("Token registration cycle detected! " + __spread(path15, [currentToken]).join(" -> "));
+        if (path16.includes(currentToken)) {
+          throw new Error("Token registration cycle detected! " + __spread(path16, [currentToken]).join(" -> "));
         }
-        path15.push(currentToken);
+        path16.push(currentToken);
         var registration = this._registry.get(currentToken);
         if (registration && isTokenProvider(registration.provider)) {
           tokenProvider = registration.provider;
@@ -41715,7 +41477,7 @@ var _global = (() => {
 })();
 var isContextDefined = (context) => !isUndefined(context) && context !== _global;
 function merge() {
-  const { caseless } = isContextDefined(this) && this || {};
+  const { caseless, skipUndefined } = isContextDefined(this) && this || {};
   const result = {};
   const assignValue = (val, key) => {
     const targetKey = caseless && findKey(result, key) || key;
@@ -41725,7 +41487,7 @@ function merge() {
       result[targetKey] = merge({}, val);
     } else if (isArray(val)) {
       result[targetKey] = val.slice();
-    } else {
+    } else if (!skipUndefined || !isUndefined(val)) {
       result[targetKey] = val;
     }
   };
@@ -42056,9 +41818,13 @@ AxiosError.from = (error, code, config, request, response, customProps) => {
   }, (prop) => {
     return prop !== "isAxiosError";
   });
-  AxiosError.call(axiosError, error.message, code, config, request, response);
-  axiosError.cause = error;
-  axiosError.name = error.name;
+  const msg = error && error.message ? error.message : "Error";
+  const errCode = code == null && error ? error.code : code;
+  AxiosError.call(axiosError, msg, errCode, config, request, response);
+  if (error && axiosError.cause == null) {
+    Object.defineProperty(axiosError, "cause", { value: error, configurable: true });
+  }
+  axiosError.name = error && error.name || "Error";
   customProps && Object.assign(axiosError, customProps);
   return axiosError;
 };
@@ -42075,9 +41841,9 @@ function isVisitable(thing) {
 function removeBrackets(key) {
   return utils_default.endsWith(key, "[]") ? key.slice(0, -2) : key;
 }
-function renderKey(path15, key, dots) {
-  if (!path15) return key;
-  return path15.concat(key).map(function each(token, i2) {
+function renderKey(path16, key, dots) {
+  if (!path16) return key;
+  return path16.concat(key).map(function each(token, i2) {
     token = removeBrackets(token);
     return !dots && i2 ? "[" + token + "]" : token;
   }).join(dots ? "." : "");
@@ -42125,9 +41891,9 @@ function toFormData(obj, formData, options) {
     }
     return value;
   }
-  function defaultVisitor(value, key, path15) {
+  function defaultVisitor(value, key, path16) {
     let arr = value;
-    if (value && !path15 && typeof value === "object") {
+    if (value && !path16 && typeof value === "object") {
       if (utils_default.endsWith(key, "{}")) {
         key = metaTokens ? key : key.slice(0, -2);
         value = JSON.stringify(value);
@@ -42146,7 +41912,7 @@ function toFormData(obj, formData, options) {
     if (isVisitable(value)) {
       return true;
     }
-    formData.append(renderKey(path15, key, dots), convertValue(value));
+    formData.append(renderKey(path16, key, dots), convertValue(value));
     return false;
   }
   const stack = [];
@@ -42155,10 +41921,10 @@ function toFormData(obj, formData, options) {
     convertValue,
     isVisitable
   });
-  function build(value, path15) {
+  function build(value, path16) {
     if (utils_default.isUndefined(value)) return;
     if (stack.indexOf(value) !== -1) {
-      throw Error("Circular reference detected in " + path15.join("."));
+      throw Error("Circular reference detected in " + path16.join("."));
     }
     stack.push(value);
     utils_default.forEach(value, function each(el, key) {
@@ -42166,11 +41932,11 @@ function toFormData(obj, formData, options) {
         formData,
         el,
         utils_default.isString(key) ? key.trim() : key,
-        path15,
+        path16,
         exposedHelpers
       );
       if (result === true) {
-        build(el, path15 ? path15.concat(key) : [key]);
+        build(el, path16 ? path16.concat(key) : [key]);
       }
     });
     stack.pop();
@@ -42218,7 +41984,7 @@ var AxiosURLSearchParams_default = AxiosURLSearchParams;
 
 // node_modules/axios/lib/helpers/buildURL.js
 function encode2(val) {
-  return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
+  return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+");
 }
 function buildURL(url2, params, options) {
   if (!params) {
@@ -42382,7 +42148,7 @@ var platform_default = {
 // node_modules/axios/lib/helpers/toURLEncodedForm.js
 function toURLEncodedForm(data, options) {
   return toFormData_default(data, new platform_default.classes.URLSearchParams(), {
-    visitor: function(value, key, path15, helpers) {
+    visitor: function(value, key, path16, helpers) {
       if (platform_default.isNode && utils_default.isBuffer(value)) {
         this.append(key, value.toString("base64"));
         return false;
@@ -42412,11 +42178,11 @@ function arrayToObject(arr) {
   return obj;
 }
 function formDataToJSON(formData) {
-  function buildPath(path15, value, target, index) {
-    let name = path15[index++];
+  function buildPath(path16, value, target, index) {
+    let name = path16[index++];
     if (name === "__proto__") return true;
     const isNumericKey = Number.isFinite(+name);
-    const isLast = index >= path15.length;
+    const isLast = index >= path16.length;
     name = !name && utils_default.isArray(target) ? target.length : name;
     if (isLast) {
       if (utils_default.hasOwnProp(target, name)) {
@@ -42429,7 +42195,7 @@ function formDataToJSON(formData) {
     if (!target[name] || !utils_default.isObject(target[name])) {
       target[name] = [];
     }
-    const result = buildPath(path15, value, target[name], index);
+    const result = buildPath(path16, value, target[name], index);
     if (result && utils_default.isArray(target[name])) {
       target[name] = arrayToObject(target[name]);
     }
@@ -42515,7 +42281,7 @@ var defaults = {
       const silentJSONParsing = transitional2 && transitional2.silentJSONParsing;
       const strictJSONParsing = !silentJSONParsing && JSONRequested;
       try {
-        return JSON.parse(data);
+        return JSON.parse(data, this.parseReviver);
       } catch (e) {
         if (strictJSONParsing) {
           if (e.name === "SyntaxError") {
@@ -42901,7 +42667,7 @@ var import_follow_redirects = __toESM(require_follow_redirects(), 1);
 var import_zlib = __toESM(require("zlib"), 1);
 
 // node_modules/axios/lib/env/data.js
-var VERSION = "1.11.0";
+var VERSION = "1.12.2";
 
 // node_modules/axios/lib/helpers/parseProtocol.js
 function parseProtocol(url2) {
@@ -43300,6 +43066,57 @@ var progressEventDecorator = (total, throttled) => {
 };
 var asyncDecorator = (fn) => (...args) => utils_default.asap(() => fn(...args));
 
+// node_modules/axios/lib/helpers/estimateDataURLDecodedBytes.js
+function estimateDataURLDecodedBytes(url2) {
+  if (!url2 || typeof url2 !== "string") return 0;
+  if (!url2.startsWith("data:")) return 0;
+  const comma = url2.indexOf(",");
+  if (comma < 0) return 0;
+  const meta = url2.slice(5, comma);
+  const body = url2.slice(comma + 1);
+  const isBase64 = /;base64/i.test(meta);
+  if (isBase64) {
+    let effectiveLen = body.length;
+    const len = body.length;
+    for (let i2 = 0; i2 < len; i2++) {
+      if (body.charCodeAt(i2) === 37 && i2 + 2 < len) {
+        const a2 = body.charCodeAt(i2 + 1);
+        const b = body.charCodeAt(i2 + 2);
+        const isHex = (a2 >= 48 && a2 <= 57 || a2 >= 65 && a2 <= 70 || a2 >= 97 && a2 <= 102) && (b >= 48 && b <= 57 || b >= 65 && b <= 70 || b >= 97 && b <= 102);
+        if (isHex) {
+          effectiveLen -= 2;
+          i2 += 2;
+        }
+      }
+    }
+    let pad = 0;
+    let idx = len - 1;
+    const tailIsPct3D = (j) => j >= 2 && body.charCodeAt(j - 2) === 37 && // '%'
+    body.charCodeAt(j - 1) === 51 && // '3'
+    (body.charCodeAt(j) === 68 || body.charCodeAt(j) === 100);
+    if (idx >= 0) {
+      if (body.charCodeAt(idx) === 61) {
+        pad++;
+        idx--;
+      } else if (tailIsPct3D(idx)) {
+        pad++;
+        idx -= 3;
+      }
+    }
+    if (pad === 1 && idx >= 0) {
+      if (body.charCodeAt(idx) === 61) {
+        pad++;
+      } else if (tailIsPct3D(idx)) {
+        pad++;
+      }
+    }
+    const groups = Math.floor(effectiveLen / 4);
+    const bytes = groups * 3 - (pad || 0);
+    return bytes > 0 ? bytes : 0;
+  }
+  return Buffer.byteLength(body, "utf8");
+}
+
 // node_modules/axios/lib/adapters/http.js
 var zlibOptions = {
   flush: import_zlib.default.constants.Z_SYNC_FLUSH,
@@ -43442,6 +43259,17 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config) {
     const parsed = new URL(fullPath, platform_default.hasBrowserEnv ? platform_default.origin : void 0);
     const protocol = parsed.protocol || supportedProtocols[0];
     if (protocol === "data:") {
+      if (config.maxContentLength > -1) {
+        const dataUrl = String(config.url || fullPath || "");
+        const estimated = estimateDataURLDecodedBytes(dataUrl);
+        if (estimated > config.maxContentLength) {
+          return reject(new AxiosError_default(
+            "maxContentLength size of " + config.maxContentLength + " exceeded",
+            AxiosError_default.ERR_BAD_RESPONSE,
+            config
+          ));
+        }
+      }
       let convertedData;
       if (method !== "GET") {
         return settle(resolve, reject, {
@@ -43564,9 +43392,9 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config) {
       auth = urlUsername + ":" + urlPassword;
     }
     auth && headers.delete("authorization");
-    let path15;
+    let path16;
     try {
-      path15 = buildURL(
+      path16 = buildURL(
         parsed.pathname + parsed.search,
         config.params,
         config.paramsSerializer
@@ -43584,7 +43412,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config) {
       false
     );
     const options = {
-      path: path15,
+      path: path16,
       method,
       headers: headers.toJSON(),
       agents: { http: config.httpAgent, https: config.httpsAgent },
@@ -43814,10 +43642,10 @@ var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? /* @__PUR
 var cookies_default = platform_default.hasStandardBrowserEnv ? (
   // Standard browser envs support document.cookie
   {
-    write(name, value, expires, path15, domain, secure) {
+    write(name, value, expires, path16, domain, secure) {
       const cookie = [name + "=" + encodeURIComponent(value)];
       utils_default.isNumber(expires) && cookie.push("expires=" + new Date(expires).toGMTString());
-      utils_default.isString(path15) && cookie.push("path=" + path15);
+      utils_default.isString(path16) && cookie.push("path=" + path16);
       utils_default.isString(domain) && cookie.push("domain=" + domain);
       secure === true && cookie.push("secure");
       document.cookie = cookie.join("; ");
@@ -43935,13 +43763,17 @@ var resolveConfig_default = (config) => {
       "Basic " + btoa((auth.username || "") + ":" + (auth.password ? unescape(encodeURIComponent(auth.password)) : ""))
     );
   }
-  let contentType;
   if (utils_default.isFormData(data)) {
     if (platform_default.hasStandardBrowserEnv || platform_default.hasStandardBrowserWebWorkerEnv) {
       headers.setContentType(void 0);
-    } else if ((contentType = headers.getContentType()) !== false) {
-      const [type, ...tokens] = contentType ? contentType.split(";").map((token) => token.trim()).filter(Boolean) : [];
-      headers.setContentType([type || "multipart/form-data", ...tokens].join("; "));
+    } else if (utils_default.isFunction(data.getHeaders)) {
+      const formHeaders = data.getHeaders();
+      const allowedHeaders = ["content-type", "content-length"];
+      Object.entries(formHeaders).forEach(([key, val]) => {
+        if (allowedHeaders.includes(key.toLowerCase())) {
+          headers.set(key, val);
+        }
+      });
     }
   }
   if (platform_default.hasStandardBrowserEnv) {
@@ -44021,8 +43853,11 @@ var xhr_default = isXHRAdapterSupported && function(config) {
       reject(new AxiosError_default("Request aborted", AxiosError_default.ECONNABORTED, config, request));
       request = null;
     };
-    request.onerror = function handleError() {
-      reject(new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config, request));
+    request.onerror = function handleError(event) {
+      const msg = event && event.message ? event.message : "Network Error";
+      const err = new AxiosError_default(msg, AxiosError_default.ERR_NETWORK, config, request);
+      err.event = event || null;
+      reject(err);
       request = null;
     };
     request.ontimeout = function handleTimeout() {
@@ -44197,9 +44032,16 @@ var trackStream = (stream5, chunkSize, onProgress, onFinish) => {
 };
 
 // node_modules/axios/lib/adapters/fetch.js
-var isFetchSupported = typeof fetch === "function" && typeof Request === "function" && typeof Response === "function";
-var isReadableStreamSupported = isFetchSupported && typeof ReadableStream === "function";
-var encodeText = isFetchSupported && (typeof TextEncoder === "function" ? /* @__PURE__ */ ((encoder) => (str) => encoder.encode(str))(new TextEncoder()) : async (str) => new Uint8Array(await new Response(str).arrayBuffer()));
+var DEFAULT_CHUNK_SIZE = 64 * 1024;
+var { isFunction: isFunction2 } = utils_default;
+var globalFetchAPI = (({ Request, Response }) => ({
+  Request,
+  Response
+}))(utils_default.global);
+var {
+  ReadableStream: ReadableStream2,
+  TextEncoder: TextEncoder2
+} = utils_default.global;
 var test = (fn, ...args) => {
   try {
     return !!fn(...args);
@@ -44207,164 +44049,204 @@ var test = (fn, ...args) => {
     return false;
   }
 };
-var supportsRequestStream = isReadableStreamSupported && test(() => {
-  let duplexAccessed = false;
-  const hasContentType = new Request(platform_default.origin, {
-    body: new ReadableStream(),
-    method: "POST",
-    get duplex() {
-      duplexAccessed = true;
-      return "half";
-    }
-  }).headers.has("Content-Type");
-  return duplexAccessed && !hasContentType;
-});
-var DEFAULT_CHUNK_SIZE = 64 * 1024;
-var supportsResponseStream = isReadableStreamSupported && test(() => utils_default.isReadableStream(new Response("").body));
-var resolvers = {
-  stream: supportsResponseStream && ((res) => res.body)
-};
-isFetchSupported && ((res) => {
-  ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((type) => {
-    !resolvers[type] && (resolvers[type] = utils_default.isFunction(res[type]) ? (res2) => res2[type]() : (_2, config) => {
-      throw new AxiosError_default(`Response type '${type}' is not supported`, AxiosError_default.ERR_NOT_SUPPORT, config);
-    });
-  });
-})(new Response());
-var getBodyLength = async (body) => {
-  if (body == null) {
-    return 0;
+var factory = (env3) => {
+  env3 = utils_default.merge.call({
+    skipUndefined: true
+  }, globalFetchAPI, env3);
+  const { fetch: envFetch, Request, Response } = env3;
+  const isFetchSupported = envFetch ? isFunction2(envFetch) : typeof fetch === "function";
+  const isRequestSupported = isFunction2(Request);
+  const isResponseSupported = isFunction2(Response);
+  if (!isFetchSupported) {
+    return false;
   }
-  if (utils_default.isBlob(body)) {
-    return body.size;
-  }
-  if (utils_default.isSpecCompliantForm(body)) {
-    const _request = new Request(platform_default.origin, {
+  const isReadableStreamSupported = isFetchSupported && isFunction2(ReadableStream2);
+  const encodeText = isFetchSupported && (typeof TextEncoder2 === "function" ? /* @__PURE__ */ ((encoder) => (str) => encoder.encode(str))(new TextEncoder2()) : async (str) => new Uint8Array(await new Request(str).arrayBuffer()));
+  const supportsRequestStream = isRequestSupported && isReadableStreamSupported && test(() => {
+    let duplexAccessed = false;
+    const hasContentType = new Request(platform_default.origin, {
+      body: new ReadableStream2(),
       method: "POST",
-      body
-    });
-    return (await _request.arrayBuffer()).byteLength;
-  }
-  if (utils_default.isArrayBufferView(body) || utils_default.isArrayBuffer(body)) {
-    return body.byteLength;
-  }
-  if (utils_default.isURLSearchParams(body)) {
-    body = body + "";
-  }
-  if (utils_default.isString(body)) {
-    return (await encodeText(body)).byteLength;
-  }
-};
-var resolveBodyLength = async (headers, body) => {
-  const length = utils_default.toFiniteNumber(headers.getContentLength());
-  return length == null ? getBodyLength(body) : length;
-};
-var fetch_default = isFetchSupported && (async (config) => {
-  let {
-    url: url2,
-    method,
-    data,
-    signal,
-    cancelToken,
-    timeout,
-    onDownloadProgress,
-    onUploadProgress,
-    responseType,
-    headers,
-    withCredentials = "same-origin",
-    fetchOptions
-  } = resolveConfig_default(config);
-  responseType = responseType ? (responseType + "").toLowerCase() : "text";
-  let composedSignal = composeSignals_default([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
-  let request;
-  const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
-    composedSignal.unsubscribe();
+      get duplex() {
+        duplexAccessed = true;
+        return "half";
+      }
+    }).headers.has("Content-Type");
+    return duplexAccessed && !hasContentType;
   });
-  let requestContentLength;
-  try {
-    if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
-      let _request = new Request(url2, {
-        method: "POST",
-        body: data,
-        duplex: "half"
-      });
-      let contentTypeHeader;
-      if (utils_default.isFormData(data) && (contentTypeHeader = _request.headers.get("content-type"))) {
-        headers.setContentType(contentTypeHeader);
-      }
-      if (_request.body) {
-        const [onProgress, flush] = progressEventDecorator(
-          requestContentLength,
-          progressEventReducer(asyncDecorator(onUploadProgress))
-        );
-        data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
-      }
-    }
-    if (!utils_default.isString(withCredentials)) {
-      withCredentials = withCredentials ? "include" : "omit";
-    }
-    const isCredentialsSupported = "credentials" in Request.prototype;
-    request = new Request(url2, {
-      ...fetchOptions,
-      signal: composedSignal,
-      method: method.toUpperCase(),
-      headers: headers.normalize().toJSON(),
-      body: data,
-      duplex: "half",
-      credentials: isCredentialsSupported ? withCredentials : void 0
-    });
-    let response = await fetch(request, fetchOptions);
-    const isStreamResponse = supportsResponseStream && (responseType === "stream" || responseType === "response");
-    if (supportsResponseStream && (onDownloadProgress || isStreamResponse && unsubscribe)) {
-      const options = {};
-      ["status", "statusText", "headers"].forEach((prop) => {
-        options[prop] = response[prop];
-      });
-      const responseContentLength = utils_default.toFiniteNumber(response.headers.get("content-length"));
-      const [onProgress, flush] = onDownloadProgress && progressEventDecorator(
-        responseContentLength,
-        progressEventReducer(asyncDecorator(onDownloadProgress), true)
-      ) || [];
-      response = new Response(
-        trackStream(response.body, DEFAULT_CHUNK_SIZE, onProgress, () => {
-          flush && flush();
-          unsubscribe && unsubscribe();
-        }),
-        options
-      );
-    }
-    responseType = responseType || "text";
-    let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](response, config);
-    !isStreamResponse && unsubscribe && unsubscribe();
-    return await new Promise((resolve, reject) => {
-      settle(resolve, reject, {
-        data: responseData,
-        headers: AxiosHeaders_default.from(response.headers),
-        status: response.status,
-        statusText: response.statusText,
-        config,
-        request
-      });
-    });
-  } catch (err) {
-    unsubscribe && unsubscribe();
-    if (err && err.name === "TypeError" && /Load failed|fetch/i.test(err.message)) {
-      throw Object.assign(
-        new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config, request),
-        {
-          cause: err.cause || err
+  const supportsResponseStream = isResponseSupported && isReadableStreamSupported && test(() => utils_default.isReadableStream(new Response("").body));
+  const resolvers = {
+    stream: supportsResponseStream && ((res) => res.body)
+  };
+  isFetchSupported && (() => {
+    ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((type) => {
+      !resolvers[type] && (resolvers[type] = (res, config) => {
+        let method = res && res[type];
+        if (method) {
+          return method.call(res);
         }
-      );
+        throw new AxiosError_default(`Response type '${type}' is not supported`, AxiosError_default.ERR_NOT_SUPPORT, config);
+      });
+    });
+  })();
+  const getBodyLength = async (body) => {
+    if (body == null) {
+      return 0;
     }
-    throw AxiosError_default.from(err, err && err.code, config, request);
+    if (utils_default.isBlob(body)) {
+      return body.size;
+    }
+    if (utils_default.isSpecCompliantForm(body)) {
+      const _request = new Request(platform_default.origin, {
+        method: "POST",
+        body
+      });
+      return (await _request.arrayBuffer()).byteLength;
+    }
+    if (utils_default.isArrayBufferView(body) || utils_default.isArrayBuffer(body)) {
+      return body.byteLength;
+    }
+    if (utils_default.isURLSearchParams(body)) {
+      body = body + "";
+    }
+    if (utils_default.isString(body)) {
+      return (await encodeText(body)).byteLength;
+    }
+  };
+  const resolveBodyLength = async (headers, body) => {
+    const length = utils_default.toFiniteNumber(headers.getContentLength());
+    return length == null ? getBodyLength(body) : length;
+  };
+  return async (config) => {
+    let {
+      url: url2,
+      method,
+      data,
+      signal,
+      cancelToken,
+      timeout,
+      onDownloadProgress,
+      onUploadProgress,
+      responseType,
+      headers,
+      withCredentials = "same-origin",
+      fetchOptions
+    } = resolveConfig_default(config);
+    let _fetch = envFetch || fetch;
+    responseType = responseType ? (responseType + "").toLowerCase() : "text";
+    let composedSignal = composeSignals_default([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
+    let request = null;
+    const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
+      composedSignal.unsubscribe();
+    });
+    let requestContentLength;
+    try {
+      if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
+        let _request = new Request(url2, {
+          method: "POST",
+          body: data,
+          duplex: "half"
+        });
+        let contentTypeHeader;
+        if (utils_default.isFormData(data) && (contentTypeHeader = _request.headers.get("content-type"))) {
+          headers.setContentType(contentTypeHeader);
+        }
+        if (_request.body) {
+          const [onProgress, flush] = progressEventDecorator(
+            requestContentLength,
+            progressEventReducer(asyncDecorator(onUploadProgress))
+          );
+          data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
+        }
+      }
+      if (!utils_default.isString(withCredentials)) {
+        withCredentials = withCredentials ? "include" : "omit";
+      }
+      const isCredentialsSupported = isRequestSupported && "credentials" in Request.prototype;
+      const resolvedOptions = {
+        ...fetchOptions,
+        signal: composedSignal,
+        method: method.toUpperCase(),
+        headers: headers.normalize().toJSON(),
+        body: data,
+        duplex: "half",
+        credentials: isCredentialsSupported ? withCredentials : void 0
+      };
+      request = isRequestSupported && new Request(url2, resolvedOptions);
+      let response = await (isRequestSupported ? _fetch(request, fetchOptions) : _fetch(url2, resolvedOptions));
+      const isStreamResponse = supportsResponseStream && (responseType === "stream" || responseType === "response");
+      if (supportsResponseStream && (onDownloadProgress || isStreamResponse && unsubscribe)) {
+        const options = {};
+        ["status", "statusText", "headers"].forEach((prop) => {
+          options[prop] = response[prop];
+        });
+        const responseContentLength = utils_default.toFiniteNumber(response.headers.get("content-length"));
+        const [onProgress, flush] = onDownloadProgress && progressEventDecorator(
+          responseContentLength,
+          progressEventReducer(asyncDecorator(onDownloadProgress), true)
+        ) || [];
+        response = new Response(
+          trackStream(response.body, DEFAULT_CHUNK_SIZE, onProgress, () => {
+            flush && flush();
+            unsubscribe && unsubscribe();
+          }),
+          options
+        );
+      }
+      responseType = responseType || "text";
+      let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](response, config);
+      !isStreamResponse && unsubscribe && unsubscribe();
+      return await new Promise((resolve, reject) => {
+        settle(resolve, reject, {
+          data: responseData,
+          headers: AxiosHeaders_default.from(response.headers),
+          status: response.status,
+          statusText: response.statusText,
+          config,
+          request
+        });
+      });
+    } catch (err) {
+      unsubscribe && unsubscribe();
+      if (err && err.name === "TypeError" && /Load failed|fetch/i.test(err.message)) {
+        throw Object.assign(
+          new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config, request),
+          {
+            cause: err.cause || err
+          }
+        );
+      }
+      throw AxiosError_default.from(err, err && err.code, config, request);
+    }
+  };
+};
+var seedCache = /* @__PURE__ */ new Map();
+var getFetch = (config) => {
+  let env3 = config ? config.env : {};
+  const { fetch: fetch2, Request, Response } = env3;
+  const seeds = [
+    Request,
+    Response,
+    fetch2
+  ];
+  let len = seeds.length, i2 = len, seed, target, map = seedCache;
+  while (i2--) {
+    seed = seeds[i2];
+    target = map.get(seed);
+    target === void 0 && map.set(seed, target = i2 ? /* @__PURE__ */ new Map() : factory(env3));
+    map = target;
   }
-});
+  return target;
+};
+var adapter = getFetch();
 
 // node_modules/axios/lib/adapters/adapters.js
 var knownAdapters = {
   http: http_default,
   xhr: xhr_default,
-  fetch: fetch_default
+  fetch: {
+    get: getFetch
+  }
 };
 utils_default.forEach(knownAdapters, (fn, value) => {
   if (fn) {
@@ -44376,30 +44258,30 @@ utils_default.forEach(knownAdapters, (fn, value) => {
   }
 });
 var renderReason = (reason) => `- ${reason}`;
-var isResolvedHandle = (adapter) => utils_default.isFunction(adapter) || adapter === null || adapter === false;
+var isResolvedHandle = (adapter2) => utils_default.isFunction(adapter2) || adapter2 === null || adapter2 === false;
 var adapters_default = {
-  getAdapter: (adapters) => {
+  getAdapter: (adapters, config) => {
     adapters = utils_default.isArray(adapters) ? adapters : [adapters];
     const { length } = adapters;
     let nameOrAdapter;
-    let adapter;
+    let adapter2;
     const rejectedReasons = {};
     for (let i2 = 0; i2 < length; i2++) {
       nameOrAdapter = adapters[i2];
       let id;
-      adapter = nameOrAdapter;
+      adapter2 = nameOrAdapter;
       if (!isResolvedHandle(nameOrAdapter)) {
-        adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
-        if (adapter === void 0) {
+        adapter2 = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
+        if (adapter2 === void 0) {
           throw new AxiosError_default(`Unknown adapter '${id}'`);
         }
       }
-      if (adapter) {
+      if (adapter2 && (utils_default.isFunction(adapter2) || (adapter2 = adapter2.get(config)))) {
         break;
       }
-      rejectedReasons[id || "#" + i2] = adapter;
+      rejectedReasons[id || "#" + i2] = adapter2;
     }
-    if (!adapter) {
+    if (!adapter2) {
       const reasons = Object.entries(rejectedReasons).map(
         ([id, state]) => `adapter ${id} ` + (state === false ? "is not supported by the environment" : "is not available in the build")
       );
@@ -44409,7 +44291,7 @@ var adapters_default = {
         "ERR_NOT_SUPPORT"
       );
     }
-    return adapter;
+    return adapter2;
   },
   adapters: knownAdapters
 };
@@ -44433,8 +44315,8 @@ function dispatchRequest(config) {
   if (["post", "put", "patch"].indexOf(config.method) !== -1) {
     config.headers.setContentType("application/x-www-form-urlencoded", false);
   }
-  const adapter = adapters_default.getAdapter(config.adapter || defaults_default.adapter);
-  return adapter(config).then(function onAdapterResolution(response) {
+  const adapter2 = adapters_default.getAdapter(config.adapter || defaults_default.adapter, config);
+  return adapter2(config).then(function onAdapterResolution(response) {
     throwIfCancellationRequested(config);
     response.data = transformData.call(
       config,
@@ -44640,7 +44522,6 @@ var Axios = class {
     }
     len = requestInterceptorChain.length;
     let newConfig = config;
-    i2 = 0;
     while (i2 < len) {
       const onFulfilled = requestInterceptorChain[i2++];
       const onRejected = requestInterceptorChain[i2++];
@@ -46042,20 +45923,21 @@ import_npmlog.default.addLevel("success", 2e3, { fg: "green", bg: "white", bold:
 var log_default = import_npmlog.default;
 
 // node_modules/@inquirer/core/dist/esm/lib/key.js
-var isUpKey = (key) => (
+var isUpKey = (key, keybindings = []) => (
   // The up key
-  key.name === "up" || // Vim keybinding
-  key.name === "k" || // Emacs keybinding
-  key.ctrl && key.name === "p"
+  key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
+  keybindings.includes("vim") && key.name === "k" || // Emacs keybinding: Ctrl+P means "previous" in Emacs navigation conventions
+  keybindings.includes("emacs") && key.ctrl && key.name === "p"
 );
-var isDownKey = (key) => (
+var isDownKey = (key, keybindings = []) => (
   // The down key
-  key.name === "down" || // Vim keybinding
-  key.name === "j" || // Emacs keybinding
-  key.ctrl && key.name === "n"
+  key.name === "down" || // Vim keybinding: hjkl keys map to left/down/up/right
+  keybindings.includes("vim") && key.name === "j" || // Emacs keybinding: Ctrl+N means "next" in Emacs navigation conventions
+  keybindings.includes("emacs") && key.ctrl && key.name === "n"
 );
 var isSpaceKey = (key) => key.name === "space";
 var isBackspaceKey = (key) => key.name === "backspace";
+var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
@@ -46988,12 +46870,26 @@ var {
 
 // node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var import_node_util = require("node:util");
-var import_ansi_escapes = __toESM(require_ansi_escapes(), 1);
+
+// node_modules/@inquirer/ansi/dist/esm/index.js
+var ESC = "\x1B[";
+var cursorLeft = ESC + "G";
+var cursorHide = ESC + "?25l";
+var cursorShow = ESC + "?25h";
+var cursorUp = (rows = 1) => rows > 0 ? `${ESC}${rows}A` : "";
+var cursorDown = (rows = 1) => rows > 0 ? `${ESC}${rows}B` : "";
+var cursorTo = (x, y) => {
+  if (typeof y === "number" && !Number.isNaN(y)) {
+    return `${ESC}${y + 1};${x + 1}H`;
+  }
+  return `${ESC}${x + 1}G`;
+};
+var eraseLine = ESC + "2K";
+var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
+
+// node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
-function cursorDown(n2) {
-  return n2 > 0 ? import_ansi_escapes.default.cursorDown(n2) : "";
-}
 var ScreenManager = class {
   // These variables are keeping information to allow correct prompt re-rendering
   height = 0;
@@ -47028,24 +46924,24 @@ var ScreenManager = class {
     const promptLineUpDiff = Math.floor(rawPromptLine.length / width) - this.cursorPos.rows;
     const bottomContentHeight = promptLineUpDiff + (bottomContent ? height(bottomContent) : 0);
     if (bottomContentHeight > 0)
-      output += import_ansi_escapes.default.cursorUp(bottomContentHeight);
-    output += import_ansi_escapes.default.cursorTo(this.cursorPos.cols);
-    this.write(cursorDown(this.extraLinesUnderPrompt) + import_ansi_escapes.default.eraseLines(this.height) + output);
+      output += cursorUp(bottomContentHeight);
+    output += cursorTo(this.cursorPos.cols);
+    this.write(cursorDown(this.extraLinesUnderPrompt) + eraseLines(this.height) + output);
     this.extraLinesUnderPrompt = bottomContentHeight;
     this.height = height(output);
   }
   checkCursorPos() {
     const cursorPos = this.rl.getCursorPos();
     if (cursorPos.cols !== this.cursorPos.cols) {
-      this.write(import_ansi_escapes.default.cursorTo(cursorPos.cols));
+      this.write(cursorTo(cursorPos.cols));
       this.cursorPos = cursorPos;
     }
   }
   done({ clearContent }) {
     this.rl.setPrompt("");
     let output = cursorDown(this.extraLinesUnderPrompt);
-    output += clearContent ? import_ansi_escapes.default.eraseLines(this.height) : "\n";
-    output += import_ansi_escapes.default.cursorShow;
+    output += clearContent ? eraseLines(this.height) : "\n";
+    output += cursorShow;
     this.write(output);
     this.rl.close();
   }
@@ -47170,7 +47066,6 @@ var Separator = class {
 
 // node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
-var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
   icon: {
     checked: import_yoctocolors_cjs3.default.green(esm_default.circleFilled),
@@ -47180,15 +47075,17 @@ var checkboxTheme = {
   style: {
     disabledChoice: (text) => import_yoctocolors_cjs3.default.dim(`- ${text}`),
     renderSelectedChoices: (selectedChoices) => selectedChoices.map((choice) => choice.short).join(", "),
-    description: (text) => import_yoctocolors_cjs3.default.cyan(text)
+    description: (text) => import_yoctocolors_cjs3.default.cyan(text),
+    keysHelpTip: (keys2) => keys2.map(([key, action]) => `${import_yoctocolors_cjs3.default.bold(key)} ${import_yoctocolors_cjs3.default.dim(action)}`).join(import_yoctocolors_cjs3.default.dim(" \u2022 "))
   },
-  helpMode: "auto"
+  helpMode: "always",
+  keybindings: []
 };
 function isSelectable(item) {
   return !Separator.isSeparator(item) && !item.disabled;
 }
 function isChecked(item) {
-  return isSelectable(item) && Boolean(item.checked);
+  return isSelectable(item) && item.checked;
 }
 function toggle(item) {
   return isSelectable(item) ? { ...item, checked: !item.checked } : item;
@@ -47207,6 +47104,7 @@ function normalizeChoices(choices) {
         value: choice,
         name: choice,
         short: choice,
+        checkedName: choice,
         disabled: false,
         checked: false
       };
@@ -47216,6 +47114,7 @@ function normalizeChoices(choices) {
       value: choice.value,
       name,
       short: choice.short ?? name,
+      checkedName: choice.checkedName ?? name,
       disabled: choice.disabled ?? false,
       checked: choice.checked ?? false
     };
@@ -47226,10 +47125,17 @@ function normalizeChoices(choices) {
   });
 }
 var esm_default2 = createPrompt((config, done) => {
-  const { instructions, pageSize = 7, loop = true, required, validate: validate2 = () => true } = config;
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
+    instructions,
+    pageSize = 7,
+    loop = true,
+    required,
+    validate: validate2 = () => true
+  } = config;
   const shortcuts = { all: "a", invert: "i", ...config.shortcuts };
   const theme = makeTheme(checkboxTheme, config.theme);
-  const firstRender = useRef(true);
+  const { keybindings } = theme;
   const [status, setStatus] = useState("idle");
   const prefix = usePrefix({ status, theme });
   const [items, setItems] = useState(normalizeChoices(config.choices));
@@ -47242,7 +47148,6 @@ var esm_default2 = createPrompt((config, done) => {
     return { first, last };
   }, [items]);
   const [active, setActive] = useState(bounds.first);
-  const [showHelpTip, setShowHelpTip] = useState(true);
   const [errorMsg, setError] = useState();
   useKeypress(async (key) => {
     if (isEnterKey(key)) {
@@ -47256,9 +47161,9 @@ var esm_default2 = createPrompt((config, done) => {
       } else {
         setError(isValid || "You must select a valid value");
       }
-    } else if (isUpKey(key) || isDownKey(key)) {
-      if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
-        const offset = isUpKey(key) ? -1 : 1;
+    } else if (isUpKey(key, keybindings) || isDownKey(key, keybindings)) {
+      if (loop || isUpKey(key, keybindings) && active !== bounds.first || isDownKey(key, keybindings) && active !== bounds.last) {
+        const offset = isUpKey(key, keybindings) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + items.length) % items.length;
@@ -47267,7 +47172,6 @@ var esm_default2 = createPrompt((config, done) => {
       }
     } else if (isSpaceKey(key)) {
       setError(void 0);
-      setShowHelpTip(false);
       setItems(items.map((choice, i2) => i2 === active ? toggle(choice) : choice));
     } else if (key.name === shortcuts.all) {
       const selectAll = items.some((choice) => isSelectable(choice) && !choice.checked);
@@ -47307,9 +47211,10 @@ var esm_default2 = createPrompt((config, done) => {
         description = item.description;
       }
       const checkbox = item.checked ? theme.icon.checked : theme.icon.unchecked;
+      const name = item.checked ? item.checkedName : item.name;
       const color = isActive ? theme.style.highlight : (x) => x;
       const cursor = isActive ? theme.icon.cursor : " ";
-      return color(`${cursor}${checkbox} ${item.name}`);
+      return color(`${cursor}${checkbox} ${name}`);
     },
     pageSize,
     loop
@@ -47317,42 +47222,236 @@ var esm_default2 = createPrompt((config, done) => {
   if (status === "done") {
     const selection = items.filter(isChecked);
     const answer = theme.style.answer(theme.style.renderSelectedChoices(selection, items));
-    return `${prefix} ${message} ${answer}`;
+    return [prefix, message, answer].filter(Boolean).join(" ");
   }
-  let helpTipTop = "";
-  let helpTipBottom = "";
-  if (theme.helpMode === "always" || theme.helpMode === "auto" && showHelpTip && (instructions === void 0 || instructions)) {
+  let helpLine;
+  if (theme.helpMode !== "never" && instructions !== false) {
     if (typeof instructions === "string") {
-      helpTipTop = instructions;
+      helpLine = instructions;
     } else {
       const keys2 = [
-        `${theme.style.key("space")} to select`,
-        shortcuts.all ? `${theme.style.key(shortcuts.all)} to toggle all` : "",
-        shortcuts.invert ? `${theme.style.key(shortcuts.invert)} to invert selection` : "",
-        `and ${theme.style.key("enter")} to proceed`
+        ["\u2191\u2193", "navigate"],
+        ["space", "select"]
       ];
-      helpTipTop = ` (Press ${keys2.filter((key) => key !== "").join(", ")})`;
-    }
-    if (items.length > pageSize && (theme.helpMode === "always" || // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    theme.helpMode === "auto" && firstRender.current)) {
-      helpTipBottom = `
-${theme.style.help("(Use arrow keys to reveal more choices)")}`;
-      firstRender.current = false;
+      if (shortcuts.all)
+        keys2.push([shortcuts.all, "all"]);
+      if (shortcuts.invert)
+        keys2.push([shortcuts.invert, "invert"]);
+      keys2.push(["\u23CE", "submit"]);
+      helpLine = theme.style.keysHelpTip(keys2);
     }
   }
-  const choiceDescription = description ? `
-${theme.style.description(description)}` : ``;
-  let error = "";
-  if (errorMsg) {
-    error = `
-${theme.style.error(errorMsg)}`;
-  }
-  return `${prefix} ${message}${helpTipTop}
-${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
+  const lines = [
+    [prefix, message].filter(Boolean).join(" "),
+    page,
+    " ",
+    description ? theme.style.description(description) : "",
+    errorMsg ? theme.style.error(errorMsg) : "",
+    helpLine
+  ].filter(Boolean).join("\n").trimEnd();
+  return `${lines}${cursorHide}`;
 });
 
+// node_modules/@inquirer/external-editor/dist/esm/index.js
+var import_chardet = __toESM(require_lib4(), 1);
+var import_child_process3 = require("child_process");
+var import_fs = require("fs");
+var import_node_path = __toESM(require("node:path"), 1);
+var import_node_os = __toESM(require("node:os"), 1);
+var import_node_crypto = require("node:crypto");
+var import_iconv_lite = __toESM(require_lib5(), 1);
+
+// node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
+var CreateFileError = class extends Error {
+  originalError;
+  constructor(originalError) {
+    super(`Failed to create temporary file. ${originalError.message}`);
+    this.originalError = originalError;
+  }
+};
+
+// node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
+var LaunchEditorError = class extends Error {
+  originalError;
+  constructor(originalError) {
+    super(`Failed to launch editor. ${originalError.message}`);
+    this.originalError = originalError;
+  }
+};
+
+// node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
+var ReadFileError = class extends Error {
+  originalError;
+  constructor(originalError) {
+    super(`Failed to read temporary file. ${originalError.message}`);
+    this.originalError = originalError;
+  }
+};
+
+// node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
+var RemoveFileError = class extends Error {
+  originalError;
+  constructor(originalError) {
+    super(`Failed to remove temporary file. ${originalError.message}`);
+    this.originalError = originalError;
+  }
+};
+
+// node_modules/@inquirer/external-editor/dist/esm/index.js
+function editAsync(text = "", callback, fileOptions) {
+  const editor = new ExternalEditor(text, fileOptions);
+  editor.runAsync((err, result) => {
+    if (err) {
+      setImmediate(callback, err, void 0);
+    } else {
+      try {
+        editor.cleanup();
+        setImmediate(callback, void 0, result);
+      } catch (cleanupError) {
+        setImmediate(callback, cleanupError, void 0);
+      }
+    }
+  });
+}
+function sanitizeAffix(affix) {
+  if (!affix)
+    return "";
+  return affix.replace(/[^a-zA-Z0-9_.-]/g, "_");
+}
+function splitStringBySpace(str) {
+  const pieces = [];
+  let currentString = "";
+  for (let strIndex = 0; strIndex < str.length; strIndex++) {
+    const currentLetter = str.charAt(strIndex);
+    if (strIndex > 0 && currentLetter === " " && str[strIndex - 1] !== "\\" && currentString.length > 0) {
+      pieces.push(currentString);
+      currentString = "";
+    } else {
+      currentString = `${currentString}${currentLetter}`;
+    }
+  }
+  if (currentString.length > 0) {
+    pieces.push(currentString);
+  }
+  return pieces;
+}
+var ExternalEditor = class {
+  text = "";
+  tempFile;
+  editor;
+  lastExitStatus = 0;
+  fileOptions = {};
+  get temp_file() {
+    console.log("DEPRECATED: temp_file. Use tempFile moving forward.");
+    return this.tempFile;
+  }
+  get last_exit_status() {
+    console.log("DEPRECATED: last_exit_status. Use lastExitStatus moving forward.");
+    return this.lastExitStatus;
+  }
+  constructor(text = "", fileOptions) {
+    this.text = text;
+    if (fileOptions) {
+      this.fileOptions = fileOptions;
+    }
+    this.determineEditor();
+    this.createTemporaryFile();
+  }
+  run() {
+    this.launchEditor();
+    this.readTemporaryFile();
+    return this.text;
+  }
+  runAsync(callback) {
+    try {
+      this.launchEditorAsync(() => {
+        try {
+          this.readTemporaryFile();
+          setImmediate(callback, void 0, this.text);
+        } catch (readError) {
+          setImmediate(callback, readError, void 0);
+        }
+      });
+    } catch (launchError) {
+      setImmediate(callback, launchError, void 0);
+    }
+  }
+  cleanup() {
+    this.removeTemporaryFile();
+  }
+  determineEditor() {
+    const editor = process.env["VISUAL"] ? process.env["VISUAL"] : process.env["EDITOR"] ? process.env["EDITOR"] : process.platform.startsWith("win") ? "notepad" : "vim";
+    const editorOpts = splitStringBySpace(editor).map((piece) => piece.replace("\\ ", " "));
+    const bin = editorOpts.shift();
+    this.editor = { args: editorOpts, bin };
+  }
+  createTemporaryFile() {
+    try {
+      const baseDir = this.fileOptions.dir ?? import_node_os.default.tmpdir();
+      const id = (0, import_node_crypto.randomUUID)();
+      const prefix = sanitizeAffix(this.fileOptions.prefix);
+      const postfix = sanitizeAffix(this.fileOptions.postfix);
+      const filename = `${prefix}${id}${postfix}`;
+      const candidate = import_node_path.default.resolve(baseDir, filename);
+      const baseResolved = import_node_path.default.resolve(baseDir) + import_node_path.default.sep;
+      if (!candidate.startsWith(baseResolved)) {
+        throw new Error("Resolved temporary file escaped the base directory");
+      }
+      this.tempFile = candidate;
+      const opt = { encoding: "utf8", flag: "wx" };
+      if (Object.prototype.hasOwnProperty.call(this.fileOptions, "mode")) {
+        opt.mode = this.fileOptions.mode;
+      }
+      (0, import_fs.writeFileSync)(this.tempFile, this.text, opt);
+    } catch (createFileError) {
+      throw new CreateFileError(createFileError);
+    }
+  }
+  readTemporaryFile() {
+    try {
+      const tempFileBuffer = (0, import_fs.readFileSync)(this.tempFile);
+      if (tempFileBuffer.length === 0) {
+        this.text = "";
+      } else {
+        let encoding = (0, import_chardet.detect)(tempFileBuffer) ?? "utf8";
+        if (!import_iconv_lite.default.encodingExists(encoding)) {
+          encoding = "utf8";
+        }
+        this.text = import_iconv_lite.default.decode(tempFileBuffer, encoding);
+      }
+    } catch (readFileError) {
+      throw new ReadFileError(readFileError);
+    }
+  }
+  removeTemporaryFile() {
+    try {
+      (0, import_fs.unlinkSync)(this.tempFile);
+    } catch (removeFileError) {
+      throw new RemoveFileError(removeFileError);
+    }
+  }
+  launchEditor() {
+    try {
+      const editorProcess = (0, import_child_process3.spawnSync)(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
+      this.lastExitStatus = editorProcess.status ?? 0;
+    } catch (launchError) {
+      throw new LaunchEditorError(launchError);
+    }
+  }
+  launchEditorAsync(callback) {
+    try {
+      const editorProcess = (0, import_child_process3.spawn)(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
+      editorProcess.on("exit", (code) => {
+        this.lastExitStatus = code;
+        setImmediate(callback);
+      });
+    } catch (launchError) {
+      throw new LaunchEditorError(launchError);
+    }
+  }
+};
+
 // node_modules/@inquirer/editor/dist/esm/index.js
-var import_external_editor = __toESM(require_main(), 1);
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -47371,23 +47470,24 @@ var esm_default3 = createPrompt((config, done) => {
         setError(error2.toString());
       } else {
         setStatus("loading");
-        const isValid = await validate2(answer);
+        const finalAnswer = answer ?? "";
+        const isValid = await validate2(finalAnswer);
         if (isValid === true) {
           setError(void 0);
           setStatus("done");
-          done(answer);
+          done(finalAnswer);
         } else {
           if (theme.validationFailureMode === "clear") {
             setValue(config.default);
           } else {
-            setValue(answer);
+            setValue(finalAnswer);
           }
           setError(isValid || "You must provide a valid value");
           setStatus("idle");
         }
       }
     };
-    (0, import_external_editor.editAsync)(value, (error2, answer) => void editCallback(error2, answer), {
+    editAsync(value, (error2, answer) => void editCallback(error2, answer), {
       postfix,
       ...fileProps
     });
@@ -47439,12 +47539,14 @@ var esm_default4 = createPrompt((config, done) => {
   const theme = makeTheme(config.theme);
   const prefix = usePrefix({ status, theme });
   useKeypress((key, rl) => {
+    if (status !== "idle")
+      return;
     if (isEnterKey(key)) {
       const answer = getBooleanValue(value, config.default);
       setValue(transformer(answer));
       setStatus("done");
       done(answer);
-    } else if (key.name === "tab") {
+    } else if (isTabKey(key)) {
       const answer = boolToString(!getBooleanValue(value, config.default));
       rl.clearLine(0);
       rl.write(answer);
@@ -47499,7 +47601,7 @@ var esm_default5 = createPrompt((config, done) => {
       }
     } else if (isBackspaceKey(key) && !value) {
       setDefaultValue(void 0);
-    } else if (key.name === "tab" && !value) {
+    } else if (isTabKey(key) && !value) {
       setDefaultValue(void 0);
       rl.clearLine(0);
       rl.write(defaultValue);
@@ -47588,7 +47690,7 @@ var esm_default6 = createPrompt((config, done) => {
       }
     } else if (isBackspaceKey(key) && !value) {
       setDefaultValue(void 0);
-    } else if (key.name === "tab" && !value) {
+    } else if (isTabKey(key) && !value) {
       setDefaultValue(void 0);
       rl.clearLine(0);
       rl.write(defaultValue);
@@ -47745,11 +47847,10 @@ function normalizeChoices3(choices) {
 function getSelectedChoice(input, choices) {
   let selectedChoice;
   const selectableChoices = choices.filter(isSelectableChoice);
-  if (numberRegex.test(input)) {
+  selectedChoice = selectableChoices.find((choice) => choice.key === input);
+  if (!selectedChoice && numberRegex.test(input)) {
     const answer = Number.parseInt(input, 10) - 1;
     selectedChoice = selectableChoices[answer];
-  } else {
-    selectedChoice = selectableChoices.find((choice) => choice.key === input);
   }
   return selectedChoice ? [selectedChoice, choices.indexOf(selectedChoice)] : [void 0, void 0];
 }
@@ -47781,14 +47882,14 @@ var esm_default8 = createPrompt((config, done) => {
       } else {
         setError(`"${import_yoctocolors_cjs5.default.red(value)}" isn't an available option`);
       }
-    } else if (key.name === "up" || key.name === "down") {
+    } else if (isUpKey(key) || isDownKey(key)) {
       rl.clearLine(0);
       const [selectedChoice, active] = getSelectedChoice(value, choices);
       if (!selectedChoice) {
-        const firstChoice = key.name === "down" ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
+        const firstChoice = isDownKey(key) ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
         setValue(firstChoice.key);
-      } else if (loop || key.name === "up" && active !== bounds.first || key.name === "down" && active !== bounds.last) {
-        const offset = key.name === "up" ? -1 : 1;
+      } else if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
+        const offset = isUpKey(key) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + choices.length) % choices.length;
@@ -47825,7 +47926,6 @@ var esm_default8 = createPrompt((config, done) => {
 });
 
 // node_modules/@inquirer/password/dist/esm/index.js
-var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var esm_default9 = createPrompt((config, done) => {
   const { validate: validate2 = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -47862,7 +47962,7 @@ var esm_default9 = createPrompt((config, done) => {
     const maskChar = typeof config.mask === "string" ? config.mask : "*";
     formattedValue = maskChar.repeat(value.length);
   } else if (status !== "done") {
-    helpTip = `${theme.style.help("[input is masked]")}${import_ansi_escapes3.default.cursorHide}`;
+    helpTip = `${theme.style.help("[input is masked]")}${cursorHide}`;
   }
   if (status === "done") {
     formattedValue = theme.style.answer(formattedValue);
@@ -47881,9 +47981,10 @@ var searchTheme = {
   style: {
     disabled: (text) => import_yoctocolors_cjs6.default.dim(`- ${text}`),
     searchTerm: (text) => import_yoctocolors_cjs6.default.cyan(text),
-    description: (text) => import_yoctocolors_cjs6.default.cyan(text)
+    description: (text) => import_yoctocolors_cjs6.default.cyan(text),
+    keysHelpTip: (keys2) => keys2.map(([key, action]) => `${import_yoctocolors_cjs6.default.bold(key)} ${import_yoctocolors_cjs6.default.dim(action)}`).join(import_yoctocolors_cjs6.default.dim(" \u2022 "))
   },
-  helpMode: "auto"
+  helpMode: "always"
 };
 function isSelectable2(item) {
   return !Separator.isSeparator(item) && !item.disabled;
@@ -47916,7 +48017,6 @@ function normalizeChoices4(choices) {
 var esm_default10 = createPrompt((config, done) => {
   const { pageSize = 7, validate: validate2 = () => true } = config;
   const theme = makeTheme(searchTheme, config.theme);
-  const firstRender = useRef(true);
   const [status, setStatus] = useState("loading");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -47973,14 +48073,14 @@ var esm_default10 = createPrompt((config, done) => {
       } else {
         rl.write(searchTerm);
       }
-    } else if (key.name === "tab" && selectedChoice) {
+    } else if (isTabKey(key) && selectedChoice) {
       rl.clearLine(0);
       rl.write(selectedChoice.name);
       setSearchTerm(selectedChoice.name);
-    } else if (status !== "loading" && (key.name === "up" || key.name === "down")) {
+    } else if (status !== "loading" && (isUpKey(key) || isDownKey(key))) {
       rl.clearLine(0);
-      if (key.name === "up" && active !== bounds.first || key.name === "down" && active !== bounds.last) {
-        const offset = key.name === "up" ? -1 : 1;
+      if (isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
+        const offset = isUpKey(key) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + searchResults.length) % searchResults.length;
@@ -47992,14 +48092,17 @@ var esm_default10 = createPrompt((config, done) => {
     }
   });
   const message = theme.style.message(config.message, status);
-  if (active > 0) {
-    firstRender.current = false;
-  }
-  let helpTip = "";
-  if (searchResults.length > 1 && (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current)) {
-    helpTip = searchResults.length > pageSize ? `
-${theme.style.help("(Use arrow keys to reveal more choices)")}` : `
-${theme.style.help("(Use arrow keys)")}`;
+  let helpLine;
+  if (theme.helpMode !== "never") {
+    if (config.instructions) {
+      const { pager, navigation } = config.instructions;
+      helpLine = theme.style.help(searchResults.length > pageSize ? pager : navigation);
+    } else {
+      helpLine = theme.style.keysHelpTip([
+        ["\u2191\u2193", "navigate"],
+        ["\u23CE", "select"]
+      ]);
+    }
   }
   const page = usePagination({
     items: searchResults,
@@ -48027,30 +48130,33 @@ ${theme.style.help("(Use arrow keys)")}`;
   }
   let searchStr;
   if (status === "done" && selectedChoice) {
-    const answer = selectedChoice.short;
-    return `${prefix} ${message} ${theme.style.answer(answer)}`;
+    return [prefix, message, theme.style.answer(selectedChoice.short)].filter(Boolean).join(" ").trimEnd();
   } else {
     searchStr = theme.style.searchTerm(searchTerm);
   }
-  const choiceDescription = selectedChoice?.description ? `
-${theme.style.description(selectedChoice.description)}` : ``;
-  return [
-    [prefix, message, searchStr].filter(Boolean).join(" "),
-    `${error ?? page}${helpTip}${choiceDescription}`
-  ];
+  const description = selectedChoice?.description;
+  const header = [prefix, message, searchStr].filter(Boolean).join(" ").trimEnd();
+  const body = [
+    error ?? page,
+    " ",
+    description ? theme.style.description(description) : "",
+    helpLine
+  ].filter(Boolean).join("\n").trimEnd();
+  return [header, body];
 });
 
 // node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs(), 1);
-var import_ansi_escapes4 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
   icon: { cursor: esm_default.pointer },
   style: {
     disabled: (text) => import_yoctocolors_cjs7.default.dim(`- ${text}`),
-    description: (text) => import_yoctocolors_cjs7.default.cyan(text)
+    description: (text) => import_yoctocolors_cjs7.default.cyan(text),
+    keysHelpTip: (keys2) => keys2.map(([key, action]) => `${import_yoctocolors_cjs7.default.bold(key)} ${import_yoctocolors_cjs7.default.dim(action)}`).join(import_yoctocolors_cjs7.default.dim(" \u2022 "))
   },
-  helpMode: "auto",
-  indexMode: "hidden"
+  helpMode: "always",
+  indexMode: "hidden",
+  keybindings: []
 };
 function isSelectable3(item) {
   return !Separator.isSeparator(item) && !item.disabled;
@@ -48082,11 +48188,12 @@ function normalizeChoices5(choices) {
 }
 var esm_default11 = createPrompt((config, done) => {
   const { loop = true, pageSize = 7 } = config;
-  const firstRender = useRef(true);
   const theme = makeTheme(selectTheme, config.theme);
+  const { keybindings } = theme;
   const [status, setStatus] = useState("idle");
   const prefix = usePrefix({ status, theme });
   const searchTimeoutRef = useRef();
+  const searchEnabled = !keybindings.includes("vim");
   const items = useMemo(() => normalizeChoices5(config.choices), [config.choices]);
   const bounds = useMemo(() => {
     const first = items.findIndex(isSelectable3);
@@ -48108,10 +48215,10 @@ var esm_default11 = createPrompt((config, done) => {
     if (isEnterKey(key)) {
       setStatus("done");
       done(selectedChoice.value);
-    } else if (isUpKey(key) || isDownKey(key)) {
+    } else if (isUpKey(key, keybindings) || isDownKey(key, keybindings)) {
       rl.clearLine(0);
-      if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
-        const offset = isUpKey(key) ? -1 : 1;
+      if (loop || isUpKey(key, keybindings) && active !== bounds.first || isDownKey(key, keybindings) && active !== bounds.last) {
+        const offset = isUpKey(key, keybindings) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + items.length) % items.length;
@@ -48136,7 +48243,7 @@ var esm_default11 = createPrompt((config, done) => {
       }, 700);
     } else if (isBackspaceKey(key)) {
       rl.clearLine(0);
-    } else {
+    } else if (searchEnabled) {
       const searchTerm = rl.line.toLowerCase();
       const matchIndex = items.findIndex((item) => {
         if (Separator.isSeparator(item) || !isSelectable3(item))
@@ -48155,15 +48262,16 @@ var esm_default11 = createPrompt((config, done) => {
     clearTimeout(searchTimeoutRef.current);
   }, []);
   const message = theme.style.message(config.message, status);
-  let helpTipTop = "";
-  let helpTipBottom = "";
-  if (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current) {
-    firstRender.current = false;
-    if (items.length > pageSize) {
-      helpTipBottom = `
-${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal more choices"})`)}`;
+  let helpLine;
+  if (theme.helpMode !== "never") {
+    if (config.instructions) {
+      const { pager, navigation } = config.instructions;
+      helpLine = theme.style.help(items.length > pageSize ? pager : navigation);
     } else {
-      helpTipTop = theme.style.help(`(${config.instructions?.navigation ?? "Use arrow keys"})`);
+      helpLine = theme.style.keysHelpTip([
+        ["\u2191\u2193", "navigate"],
+        ["\u23CE", "select"]
+      ]);
     }
   }
   let separatorCount = 0;
@@ -48188,12 +48296,17 @@ ${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal m
     loop
   });
   if (status === "done") {
-    return `${prefix} ${message} ${theme.style.answer(selectedChoice.short)}`;
+    return [prefix, message, theme.style.answer(selectedChoice.short)].filter(Boolean).join(" ");
   }
-  const choiceDescription = selectedChoice.description ? `
-${theme.style.description(selectedChoice.description)}` : ``;
-  return `${[prefix, message, helpTipTop].filter(Boolean).join(" ")}
-${page}${helpTipBottom}${choiceDescription}${import_ansi_escapes4.default.cursorHide}`;
+  const { description } = selectedChoice;
+  const lines = [
+    [prefix, message].filter(Boolean).join(" "),
+    page,
+    " ",
+    description ? theme.style.description(description) : "",
+    helpLine
+  ].filter(Boolean).join("\n").trimEnd();
+  return `${lines}${cursorHide}`;
 });
 
 // node_modules/inquirer/dist/esm/ui/prompt.js
@@ -48201,11 +48314,10 @@ var import_node_readline = __toESM(require("node:readline"), 1);
 var import_rxjs = __toESM(require_cjs2(), 1);
 var import_run_async = __toESM(require_run_async(), 1);
 var import_mute_stream2 = __toESM(require_lib3(), 1);
-var import_ansi_escapes5 = __toESM(require_ansi_escapes(), 1);
 var _ = {
-  set: (obj, path15 = "", value) => {
+  set: (obj, path16 = "", value) => {
     let pointer = obj;
-    path15.split(".").forEach((key, index, arr) => {
+    path16.split(".").forEach((key, index, arr) => {
       if (key === "__proto__" || key === "constructor")
         return;
       if (index === arr.length - 1) {
@@ -48216,8 +48328,8 @@ var _ = {
       pointer = pointer[key];
     });
   },
-  get: (obj, path15 = "", defaultValue) => {
-    const travel = (regexp) => String.prototype.split.call(path15, regexp).filter(Boolean).reduce(
+  get: (obj, path16 = "", defaultValue) => {
+    const travel = (regexp) => String.prototype.split.call(path16, regexp).filter(Boolean).reduce(
       // @ts-expect-error implicit any on res[key]
       (res, key) => res == null ? res : res[key],
       obj
@@ -48352,7 +48464,7 @@ var PromptsRunner = class {
         rl.removeListener("SIGINT", onForceClose);
         rl.setPrompt("");
         rl.output.unmute();
-        rl.output.write(import_ansi_escapes5.default.cursorShow);
+        rl.output.write(cursorShow);
         rl.output.end();
         rl.close();
       };
@@ -48690,7 +48802,7 @@ var ansi_styles_default = ansiStyles;
 
 // node_modules/ora/node_modules/chalk/source/vendor/supports-color/index.js
 var import_node_process2 = __toESM(require("node:process"), 1);
-var import_node_os = __toESM(require("node:os"), 1);
+var import_node_os2 = __toESM(require("node:os"), 1);
 var import_node_tty = __toESM(require("node:tty"), 1);
 function hasFlag(flag, argv = globalThis.Deno ? globalThis.Deno.args : import_node_process2.default.argv) {
   const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
@@ -48755,7 +48867,7 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return min;
   }
   if (import_node_process2.default.platform === "win32") {
-    const osRelease = import_node_os.default.release().split(".");
+    const osRelease = import_node_os2.default.release().split(".");
     if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
       return Number(osRelease[2]) >= 14931 ? 3 : 2;
     }
@@ -48777,6 +48889,12 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return 3;
   }
   if (env.TERM === "xterm-kitty") {
+    return 3;
+  }
+  if (env.TERM === "xterm-ghostty") {
+    return 3;
+  }
+  if (env.TERM === "wezterm") {
     return 3;
   }
   if ("TERM_PROGRAM" in env) {
@@ -49305,7 +49423,7 @@ var ansi_styles_default2 = ansiStyles2;
 
 // node_modules/log-symbols/node_modules/chalk/source/vendor/supports-color/index.js
 var import_node_process5 = __toESM(require("node:process"), 1);
-var import_node_os2 = __toESM(require("node:os"), 1);
+var import_node_os3 = __toESM(require("node:os"), 1);
 var import_node_tty2 = __toESM(require("node:tty"), 1);
 function hasFlag2(flag, argv = globalThis.Deno ? globalThis.Deno.args : import_node_process5.default.argv) {
   const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
@@ -49370,7 +49488,7 @@ function _supportsColor2(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return min;
   }
   if (import_node_process5.default.platform === "win32") {
-    const osRelease = import_node_os2.default.release().split(".");
+    const osRelease = import_node_os3.default.release().split(".");
     if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
       return Number(osRelease[2]) >= 14931 ? 3 : 2;
     }
@@ -49392,6 +49510,12 @@ function _supportsColor2(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return 3;
   }
   if (env2.TERM === "xterm-kitty") {
+    return 3;
+  }
+  if (env2.TERM === "xterm-ghostty") {
+    return 3;
+  }
+  if (env2.TERM === "wezterm") {
     return 3;
   }
   if ("TERM_PROGRAM" in env2) {
@@ -49634,10 +49758,9 @@ var log_symbols_default = logSymbols;
 // node_modules/ansi-regex/index.js
 function ansiRegex({ onlyFirst = false } = {}) {
   const ST = "(?:\\u0007|\\u001B\\u005C|\\u009C)";
-  const pattern = [
-    `[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?${ST})`,
-    "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))"
-  ].join("|");
+  const osc = `(?:\\u001B\\][\\s\\S]*?${ST})`;
+  const csi = "[\\u001B\\u009B][[\\]()#;?]*(?:\\d{1,4}(?:[;:]\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]";
+  const pattern = `${osc}|${csi}`;
   return new RegExp(pattern, onlyFirst ? void 0 : "g");
 }
 
@@ -49658,7 +49781,7 @@ function isFullWidth(x) {
   return x === 12288 || x >= 65281 && x <= 65376 || x >= 65504 && x <= 65510;
 }
 function isWide(x) {
-  return x >= 4352 && x <= 4447 || x === 8986 || x === 8987 || x === 9001 || x === 9002 || x >= 9193 && x <= 9196 || x === 9200 || x === 9203 || x === 9725 || x === 9726 || x === 9748 || x === 9749 || x >= 9776 && x <= 9783 || x >= 9800 && x <= 9811 || x === 9855 || x >= 9866 && x <= 9871 || x === 9875 || x === 9889 || x === 9898 || x === 9899 || x === 9917 || x === 9918 || x === 9924 || x === 9925 || x === 9934 || x === 9940 || x === 9962 || x === 9970 || x === 9971 || x === 9973 || x === 9978 || x === 9981 || x === 9989 || x === 9994 || x === 9995 || x === 10024 || x === 10060 || x === 10062 || x >= 10067 && x <= 10069 || x === 10071 || x >= 10133 && x <= 10135 || x === 10160 || x === 10175 || x === 11035 || x === 11036 || x === 11088 || x === 11093 || x >= 11904 && x <= 11929 || x >= 11931 && x <= 12019 || x >= 12032 && x <= 12245 || x >= 12272 && x <= 12287 || x >= 12289 && x <= 12350 || x >= 12353 && x <= 12438 || x >= 12441 && x <= 12543 || x >= 12549 && x <= 12591 || x >= 12593 && x <= 12686 || x >= 12688 && x <= 12773 || x >= 12783 && x <= 12830 || x >= 12832 && x <= 12871 || x >= 12880 && x <= 42124 || x >= 42128 && x <= 42182 || x >= 43360 && x <= 43388 || x >= 44032 && x <= 55203 || x >= 63744 && x <= 64255 || x >= 65040 && x <= 65049 || x >= 65072 && x <= 65106 || x >= 65108 && x <= 65126 || x >= 65128 && x <= 65131 || x >= 94176 && x <= 94180 || x === 94192 || x === 94193 || x >= 94208 && x <= 100343 || x >= 100352 && x <= 101589 || x >= 101631 && x <= 101640 || x >= 110576 && x <= 110579 || x >= 110581 && x <= 110587 || x === 110589 || x === 110590 || x >= 110592 && x <= 110882 || x === 110898 || x >= 110928 && x <= 110930 || x === 110933 || x >= 110948 && x <= 110951 || x >= 110960 && x <= 111355 || x >= 119552 && x <= 119638 || x >= 119648 && x <= 119670 || x === 126980 || x === 127183 || x === 127374 || x >= 127377 && x <= 127386 || x >= 127488 && x <= 127490 || x >= 127504 && x <= 127547 || x >= 127552 && x <= 127560 || x === 127568 || x === 127569 || x >= 127584 && x <= 127589 || x >= 127744 && x <= 127776 || x >= 127789 && x <= 127797 || x >= 127799 && x <= 127868 || x >= 127870 && x <= 127891 || x >= 127904 && x <= 127946 || x >= 127951 && x <= 127955 || x >= 127968 && x <= 127984 || x === 127988 || x >= 127992 && x <= 128062 || x === 128064 || x >= 128066 && x <= 128252 || x >= 128255 && x <= 128317 || x >= 128331 && x <= 128334 || x >= 128336 && x <= 128359 || x === 128378 || x === 128405 || x === 128406 || x === 128420 || x >= 128507 && x <= 128591 || x >= 128640 && x <= 128709 || x === 128716 || x >= 128720 && x <= 128722 || x >= 128725 && x <= 128727 || x >= 128732 && x <= 128735 || x === 128747 || x === 128748 || x >= 128756 && x <= 128764 || x >= 128992 && x <= 129003 || x === 129008 || x >= 129292 && x <= 129338 || x >= 129340 && x <= 129349 || x >= 129351 && x <= 129535 || x >= 129648 && x <= 129660 || x >= 129664 && x <= 129673 || x >= 129679 && x <= 129734 || x >= 129742 && x <= 129756 || x >= 129759 && x <= 129769 || x >= 129776 && x <= 129784 || x >= 131072 && x <= 196605 || x >= 196608 && x <= 262141;
+  return x >= 4352 && x <= 4447 || x === 8986 || x === 8987 || x === 9001 || x === 9002 || x >= 9193 && x <= 9196 || x === 9200 || x === 9203 || x === 9725 || x === 9726 || x === 9748 || x === 9749 || x >= 9776 && x <= 9783 || x >= 9800 && x <= 9811 || x === 9855 || x >= 9866 && x <= 9871 || x === 9875 || x === 9889 || x === 9898 || x === 9899 || x === 9917 || x === 9918 || x === 9924 || x === 9925 || x === 9934 || x === 9940 || x === 9962 || x === 9970 || x === 9971 || x === 9973 || x === 9978 || x === 9981 || x === 9989 || x === 9994 || x === 9995 || x === 10024 || x === 10060 || x === 10062 || x >= 10067 && x <= 10069 || x === 10071 || x >= 10133 && x <= 10135 || x === 10160 || x === 10175 || x === 11035 || x === 11036 || x === 11088 || x === 11093 || x >= 11904 && x <= 11929 || x >= 11931 && x <= 12019 || x >= 12032 && x <= 12245 || x >= 12272 && x <= 12287 || x >= 12289 && x <= 12350 || x >= 12353 && x <= 12438 || x >= 12441 && x <= 12543 || x >= 12549 && x <= 12591 || x >= 12593 && x <= 12686 || x >= 12688 && x <= 12773 || x >= 12783 && x <= 12830 || x >= 12832 && x <= 12871 || x >= 12880 && x <= 42124 || x >= 42128 && x <= 42182 || x >= 43360 && x <= 43388 || x >= 44032 && x <= 55203 || x >= 63744 && x <= 64255 || x >= 65040 && x <= 65049 || x >= 65072 && x <= 65106 || x >= 65108 && x <= 65126 || x >= 65128 && x <= 65131 || x >= 94176 && x <= 94180 || x >= 94192 && x <= 94198 || x >= 94208 && x <= 101589 || x >= 101631 && x <= 101662 || x >= 101760 && x <= 101874 || x >= 110576 && x <= 110579 || x >= 110581 && x <= 110587 || x === 110589 || x === 110590 || x >= 110592 && x <= 110882 || x === 110898 || x >= 110928 && x <= 110930 || x === 110933 || x >= 110948 && x <= 110951 || x >= 110960 && x <= 111355 || x >= 119552 && x <= 119638 || x >= 119648 && x <= 119670 || x === 126980 || x === 127183 || x === 127374 || x >= 127377 && x <= 127386 || x >= 127488 && x <= 127490 || x >= 127504 && x <= 127547 || x >= 127552 && x <= 127560 || x === 127568 || x === 127569 || x >= 127584 && x <= 127589 || x >= 127744 && x <= 127776 || x >= 127789 && x <= 127797 || x >= 127799 && x <= 127868 || x >= 127870 && x <= 127891 || x >= 127904 && x <= 127946 || x >= 127951 && x <= 127955 || x >= 127968 && x <= 127984 || x === 127988 || x >= 127992 && x <= 128062 || x === 128064 || x >= 128066 && x <= 128252 || x >= 128255 && x <= 128317 || x >= 128331 && x <= 128334 || x >= 128336 && x <= 128359 || x === 128378 || x === 128405 || x === 128406 || x === 128420 || x >= 128507 && x <= 128591 || x >= 128640 && x <= 128709 || x === 128716 || x >= 128720 && x <= 128722 || x >= 128725 && x <= 128728 || x >= 128732 && x <= 128735 || x === 128747 || x === 128748 || x >= 128756 && x <= 128764 || x >= 128992 && x <= 129003 || x === 129008 || x >= 129292 && x <= 129338 || x >= 129340 && x <= 129349 || x >= 129351 && x <= 129535 || x >= 129648 && x <= 129660 || x >= 129664 && x <= 129674 || x >= 129678 && x <= 129734 || x === 129736 || x >= 129741 && x <= 129756 || x >= 129759 && x <= 129770 || x >= 129775 && x <= 129784 || x >= 131072 && x <= 196605 || x >= 196608 && x <= 262141;
 }
 
 // node_modules/get-east-asian-width/index.js
@@ -50106,8 +50229,8 @@ function getLatestVersion(npmName) {
 }
 
 // src/core/cli/createTemplateByOptions.ts
-var import_node_os3 = require("node:os");
-var import_node_path = __toESM(require("node:path"));
+var import_node_os4 = require("node:os");
+var import_node_path2 = __toESM(require("node:path"));
 var TEMP_HOME = ".happy-cli";
 var ADD_TEMPLATE = [
   {
@@ -50143,7 +50266,7 @@ var ADD_TEMPLATE = [
   }
 ];
 function makeTargetPath() {
-  return import_node_path.default.resolve(`${(0, import_node_os3.homedir)()}/${TEMP_HOME}`, "addTemplate");
+  return import_node_path2.default.resolve(`${(0, import_node_os4.homedir)()}/${TEMP_HOME}`, "addTemplate");
 }
 async function createTemplateByOptions({
   name,
@@ -50166,13 +50289,13 @@ async function createTemplateByOptions({
 }
 
 // src/core/cli/downloadTemplate.ts
-var import_node_path7 = __toESM(require("node:path"));
+var import_node_path8 = __toESM(require("node:path"));
 
 // node_modules/path-exists/index.js
 var import_node_fs = __toESM(require("node:fs"), 1);
-function pathExistsSync(path15) {
+function pathExistsSync(path16) {
   try {
-    import_node_fs.default.accessSync(path15);
+    import_node_fs.default.accessSync(path16);
     return true;
   } catch {
     return false;
@@ -50180,7 +50303,7 @@ function pathExistsSync(path15) {
 }
 
 // src/core/cli/downloadTemplate.ts
-var import_fs_extra = __toESM(require_lib5());
+var import_fs_extra = __toESM(require_lib6());
 
 // node_modules/is-plain-obj/index.js
 function isPlainObject3(value) {
@@ -50811,8 +50934,10 @@ var format = (open, close) => {
     }
     let result = openCode;
     let lastIndex = 0;
+    const reopenOnNestedClose = close === 22;
+    const replaceCode = (reopenOnNestedClose ? closeCode : "") + openCode;
     while (index !== -1) {
-      result += string.slice(lastIndex, index) + openCode;
+      result += string.slice(lastIndex, index) + replaceCode;
       lastIndex = index + closeCode.length;
       index = string.indexOf(closeCode, lastIndex);
     }
@@ -51013,13 +51138,13 @@ var handleCommand = (filePath, rawArguments, rawOptions) => {
 };
 
 // node_modules/execa/lib/arguments/options.js
-var import_node_path6 = __toESM(require("node:path"), 1);
+var import_node_path7 = __toESM(require("node:path"), 1);
 var import_node_process16 = __toESM(require("node:process"), 1);
 var import_cross_spawn = __toESM(require_cross_spawn(), 1);
 
 // node_modules/npm-run-path/index.js
 var import_node_process13 = __toESM(require("node:process"), 1);
-var import_node_path3 = __toESM(require("node:path"), 1);
+var import_node_path4 = __toESM(require("node:path"), 1);
 
 // node_modules/npm-run-path/node_modules/path-key/index.js
 function pathKey(options = {}) {
@@ -51036,7 +51161,7 @@ function pathKey(options = {}) {
 // node_modules/unicorn-magic/node.js
 var import_node_util5 = require("node:util");
 var import_node_child_process2 = require("node:child_process");
-var import_node_path2 = __toESM(require("node:path"), 1);
+var import_node_path3 = __toESM(require("node:path"), 1);
 var import_node_url2 = require("node:url");
 var execFileOriginal = (0, import_node_util5.promisify)(import_node_child_process2.execFile);
 function toPath(urlOrPath) {
@@ -51045,12 +51170,12 @@ function toPath(urlOrPath) {
 function traversePathUp(startPath) {
   return {
     *[Symbol.iterator]() {
-      let currentPath = import_node_path2.default.resolve(toPath(startPath));
+      let currentPath = import_node_path3.default.resolve(toPath(startPath));
       let previousPath;
       while (previousPath !== currentPath) {
         yield currentPath;
         previousPath = currentPath;
-        currentPath = import_node_path2.default.resolve(currentPath, "..");
+        currentPath = import_node_path3.default.resolve(currentPath, "..");
       }
     }
   };
@@ -51065,27 +51190,27 @@ var npmRunPath = ({
   execPath: execPath2 = import_node_process13.default.execPath,
   addExecPath = true
 } = {}) => {
-  const cwdPath = import_node_path3.default.resolve(toPath(cwd));
+  const cwdPath = import_node_path4.default.resolve(toPath(cwd));
   const result = [];
-  const pathParts = pathOption.split(import_node_path3.default.delimiter);
+  const pathParts = pathOption.split(import_node_path4.default.delimiter);
   if (preferLocal) {
     applyPreferLocal(result, pathParts, cwdPath);
   }
   if (addExecPath) {
     applyExecPath(result, pathParts, execPath2, cwdPath);
   }
-  return pathOption === "" || pathOption === import_node_path3.default.delimiter ? `${result.join(import_node_path3.default.delimiter)}${pathOption}` : [...result, pathOption].join(import_node_path3.default.delimiter);
+  return pathOption === "" || pathOption === import_node_path4.default.delimiter ? `${result.join(import_node_path4.default.delimiter)}${pathOption}` : [...result, pathOption].join(import_node_path4.default.delimiter);
 };
 var applyPreferLocal = (result, pathParts, cwdPath) => {
   for (const directory of traversePathUp(cwdPath)) {
-    const pathPart = import_node_path3.default.join(directory, "node_modules/.bin");
+    const pathPart = import_node_path4.default.join(directory, "node_modules/.bin");
     if (!pathParts.includes(pathPart)) {
       result.push(pathPart);
     }
   }
 };
 var applyExecPath = (result, pathParts, execPath2, cwdPath) => {
-  const pathPart = import_node_path3.default.resolve(cwdPath, toPath(execPath2), "..");
+  const pathPart = import_node_path4.default.resolve(cwdPath, toPath(execPath2), "..");
   if (!pathParts.includes(pathPart)) {
     result.push(pathPart);
   }
@@ -51134,10 +51259,10 @@ var ExecaSyncError = class extends Error {
 setErrorName(ExecaSyncError, ExecaSyncError.name);
 
 // node_modules/execa/lib/terminate/signal.js
-var import_node_os6 = require("node:os");
+var import_node_os7 = require("node:os");
 
 // node_modules/human-signals/build/src/main.js
-var import_node_os5 = require("node:os");
+var import_node_os6 = require("node:os");
 
 // node_modules/human-signals/build/src/realtime.js
 var getRealtimeSignals = () => {
@@ -51155,7 +51280,7 @@ var SIGRTMIN = 34;
 var SIGRTMAX = 64;
 
 // node_modules/human-signals/build/src/signals.js
-var import_node_os4 = require("node:os");
+var import_node_os5 = require("node:os");
 
 // node_modules/human-signals/build/src/core.js
 var SIGNALS = [
@@ -51446,7 +51571,7 @@ var normalizeSignal = ({
 }) => {
   const {
     signals: { [name]: constantSignal }
-  } = import_node_os4.constants;
+  } = import_node_os5.constants;
   const supported = constantSignal !== void 0;
   const number = supported ? constantSignal : defaultNumber;
   return { name, number, description, supported, action, forced, standard };
@@ -51495,7 +51620,7 @@ var getSignalByNumber = (number, signals2) => {
   };
 };
 var findSignalByNumber = (number, signals2) => {
-  const signal = signals2.find(({ name }) => import_node_os5.constants.signals[name] === number);
+  const signal = signals2.find(({ name }) => import_node_os6.constants.signals[name] === number);
   if (signal !== void 0) {
     return signal;
   }
@@ -51529,13 +51654,13 @@ var normalizeSignalInteger = (signalInteger, optionName) => {
   throw new TypeError(`Invalid ${optionName} ${signalInteger}: this signal integer does not exist.
 ${getAvailableSignals()}`);
 };
-var getSignalsIntegerToName = () => new Map(Object.entries(import_node_os6.constants.signals).reverse().map(([signalName, signalInteger]) => [signalInteger, signalName]));
+var getSignalsIntegerToName = () => new Map(Object.entries(import_node_os7.constants.signals).reverse().map(([signalName, signalInteger]) => [signalInteger, signalName]));
 var signalsIntegerToName = getSignalsIntegerToName();
 var normalizeSignalName = (signalName, optionName) => {
-  if (signalName in import_node_os6.constants.signals) {
+  if (signalName in import_node_os7.constants.signals) {
     return signalName;
   }
-  if (signalName.toUpperCase() in import_node_os6.constants.signals) {
+  if (signalName.toUpperCase() in import_node_os7.constants.signals) {
     throw new TypeError(`Invalid ${optionName} '${signalName}': please rename it to '${signalName.toUpperCase()}'.`);
   }
   throw new TypeError(`Invalid ${optionName} '${signalName}': this signal name does not exist.
@@ -51543,8 +51668,8 @@ ${getAvailableSignals()}`);
 };
 var getAvailableSignals = () => `Available signal names: ${getAvailableSignalNames()}.
 Available signal numbers: ${getAvailableSignalIntegers()}.`;
-var getAvailableSignalNames = () => Object.keys(import_node_os6.constants.signals).sort().map((signalName) => `'${signalName}'`).join(", ");
-var getAvailableSignalIntegers = () => [...new Set(Object.values(import_node_os6.constants.signals).sort((signalInteger, signalIntegerTwo) => signalInteger - signalIntegerTwo))].join(", ");
+var getAvailableSignalNames = () => Object.keys(import_node_os7.constants.signals).sort().map((signalName) => `'${signalName}'`).join(", ");
+var getAvailableSignalIntegers = () => [...new Set(Object.values(import_node_os7.constants.signals).sort((signalInteger, signalIntegerTwo) => signalInteger - signalIntegerTwo))].join(", ");
 var getSignalDescription = (signal) => signalsByName[signal].description;
 
 // node_modules/execa/lib/terminate/kill.js
@@ -52240,7 +52365,7 @@ var killAfterTimeout = async (subprocess, timeout, context, { signal }) => {
 
 // node_modules/execa/lib/methods/node.js
 var import_node_process14 = require("node:process");
-var import_node_path4 = __toESM(require("node:path"), 1);
+var import_node_path5 = __toESM(require("node:path"), 1);
 var mapNode = ({ options }) => {
   if (options.node === false) {
     throw new TypeError('The "node" option cannot be false with `execaNode()`.');
@@ -52259,7 +52384,7 @@ var handleNodeOption = (file, commandArguments, {
     throw new TypeError('The "execPath" option has been removed. Please use the "nodePath" option instead.');
   }
   const normalizedNodePath = safeNormalizeFileUrl(nodePath, 'The "nodePath" option');
-  const resolvedNodePath = import_node_path4.default.resolve(cwd, normalizedNodePath);
+  const resolvedNodePath = import_node_path5.default.resolve(cwd, normalizedNodePath);
   const newOptions = {
     ...options,
     nodePath: resolvedNodePath,
@@ -52269,7 +52394,7 @@ var handleNodeOption = (file, commandArguments, {
   if (!shouldHandleNode) {
     return [file, commandArguments, newOptions];
   }
-  if (import_node_path4.default.basename(file, ".exe") === "node") {
+  if (import_node_path5.default.basename(file, ".exe") === "node") {
     throw new TypeError('When the "node" option is true, the first argument does not need to be "node".');
   }
   return [
@@ -52359,11 +52484,11 @@ var serializeEncoding = (encoding) => typeof encoding === "string" ? `"${encodin
 
 // node_modules/execa/lib/arguments/cwd.js
 var import_node_fs2 = require("node:fs");
-var import_node_path5 = __toESM(require("node:path"), 1);
+var import_node_path6 = __toESM(require("node:path"), 1);
 var import_node_process15 = __toESM(require("node:process"), 1);
 var normalizeCwd = (cwd = getDefaultCwd()) => {
   const cwdString = safeNormalizeFileUrl(cwd, 'The "cwd" option');
-  return import_node_path5.default.resolve(cwdString);
+  return import_node_path6.default.resolve(cwdString);
 };
 var getDefaultCwd = () => {
   try {
@@ -52410,7 +52535,7 @@ var normalizeOptions = (filePath, rawArguments, rawOptions) => {
   options.killSignal = normalizeKillSignal(options.killSignal);
   options.forceKillAfterDelay = normalizeForceKillAfterDelay(options.forceKillAfterDelay);
   options.lines = options.lines.map((lines, fdNumber) => lines && !BINARY_ENCODINGS.has(options.encoding) && options.buffer[fdNumber]);
-  if (import_node_process16.default.platform === "win32" && import_node_path6.default.basename(file, ".exe") === "cmd") {
+  if (import_node_process16.default.platform === "win32" && import_node_path7.default.basename(file, ".exe") === "cmd") {
     commandArguments.unshift("/q");
   }
   return { file, commandArguments, options };
@@ -53305,7 +53430,7 @@ function prettyMilliseconds(milliseconds, options) {
   }
   add(Number(parsed.minutes), "minute", "m");
   if (!options.hideSeconds) {
-    if (options.separateMilliseconds || options.formatSubMilliseconds || !options.colonNotation && milliseconds < 1e3) {
+    if (options.separateMilliseconds || options.formatSubMilliseconds || !options.colonNotation && milliseconds < 1e3 && !options.subSecondsAsDecimals) {
       const seconds = Number(parsed.seconds);
       const milliseconds2 = Number(parsed.milliseconds);
       const microseconds = Number(parsed.microseconds);
@@ -54550,13 +54675,13 @@ var logOutputSync = ({ serializedResult, fdNumber, state, verboseInfo, encoding,
   }
 };
 var writeToFiles = (serializedResult, stdioItems, outputFiles) => {
-  for (const { path: path15, append: append2 } of stdioItems.filter(({ type }) => FILE_TYPES.has(type))) {
-    const pathString = typeof path15 === "string" ? path15 : path15.toString();
+  for (const { path: path16, append: append2 } of stdioItems.filter(({ type }) => FILE_TYPES.has(type))) {
+    const pathString = typeof path16 === "string" ? path16 : path16.toString();
     if (append2 || outputFiles.has(pathString)) {
-      (0, import_node_fs5.appendFileSync)(path15, serializedResult);
+      (0, import_node_fs5.appendFileSync)(path16, serializedResult);
     } else {
       outputFiles.add(pathString);
-      (0, import_node_fs5.writeFileSync)(path15, serializedResult);
+      (0, import_node_fs5.writeFileSync)(path16, serializedResult);
     }
   }
 };
@@ -56693,7 +56818,7 @@ var {
 
 // src/core/cli/downloadTemplate.ts
 function getCacheDir(targetPath) {
-  return import_node_path7.default.resolve(targetPath, "node_modules");
+  return import_node_path8.default.resolve(targetPath, "node_modules");
 }
 function makeCacheDir(targetPath) {
   const cacheDir = getCacheDir(targetPath);
@@ -56719,8 +56844,8 @@ async function downloadTemplate(selectedTemplate) {
 }
 
 // src/core/cli/installTemplate.ts
-var import_fs_extra2 = __toESM(require_lib5());
-var import_node_path9 = __toESM(require("node:path"));
+var import_fs_extra2 = __toESM(require_lib6());
+var import_node_path10 = __toESM(require("node:path"));
 var import_ejs = __toESM(require_ejs());
 
 // node_modules/@isaacs/balanced-match/dist/esm/index.js
@@ -57602,11 +57727,11 @@ var qmarksTestNoExtDot = ([$0]) => {
   return (f) => f.length === len && f !== "." && f !== "..";
 };
 var defaultPlatform = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-var path10 = {
+var path11 = {
   win32: { sep: "\\" },
   posix: { sep: "/" }
 };
-var sep = defaultPlatform === "win32" ? path10.win32.sep : path10.posix.sep;
+var sep = defaultPlatform === "win32" ? path11.win32.sep : path11.posix.sep;
 minimatch.sep = sep;
 var GLOBSTAR = Symbol("globstar **");
 minimatch.GLOBSTAR = GLOBSTAR;
@@ -58265,7 +58390,7 @@ minimatch.unescape = unescape2;
 var import_node_url4 = require("node:url");
 
 // node_modules/path-scurry/node_modules/lru-cache/dist/esm/index.js
-var perf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
+var defaultPerf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
 var warned = /* @__PURE__ */ new Set();
 var PROCESS = typeof process === "object" && !!process ? process : {};
 var emitWarning = (msg, type, code, fn) => {
@@ -58354,6 +58479,13 @@ var LRUCache = class _LRUCache {
   #disposeAfter;
   #fetchMethod;
   #memoMethod;
+  #perf;
+  /**
+   * {@link LRUCache.OptionsBase.perf}
+   */
+  get perf() {
+    return this.#perf;
+  }
   /**
    * {@link LRUCache.OptionsBase.ttl}
    */
@@ -58522,7 +58654,13 @@ var LRUCache = class _LRUCache {
     return this.#disposeAfter;
   }
   constructor(options) {
-    const { max = 0, ttl, ttlResolution = 1, ttlAutopurge, updateAgeOnGet, updateAgeOnHas, allowStale, dispose, onInsert, disposeAfter, noDisposeOnSet, noUpdateTTL, maxSize = 0, maxEntrySize = 0, sizeCalculation, fetchMethod, memoMethod, noDeleteOnFetchRejection, noDeleteOnStaleGet, allowStaleOnFetchRejection, allowStaleOnFetchAbort, ignoreFetchAbort } = options;
+    const { max = 0, ttl, ttlResolution = 1, ttlAutopurge, updateAgeOnGet, updateAgeOnHas, allowStale, dispose, onInsert, disposeAfter, noDisposeOnSet, noUpdateTTL, maxSize = 0, maxEntrySize = 0, sizeCalculation, fetchMethod, memoMethod, noDeleteOnFetchRejection, noDeleteOnStaleGet, allowStaleOnFetchRejection, allowStaleOnFetchAbort, ignoreFetchAbort, perf } = options;
+    if (perf !== void 0) {
+      if (typeof perf?.now !== "function") {
+        throw new TypeError("perf option must have a now() method if specified");
+      }
+    }
+    this.#perf = perf ?? defaultPerf;
     if (max !== 0 && !isPosInt(max)) {
       throw new TypeError("max option must be a nonnegative integer");
     }
@@ -58631,7 +58769,7 @@ var LRUCache = class _LRUCache {
     const starts = new ZeroArray(this.#max);
     this.#ttls = ttls;
     this.#starts = starts;
-    this.#setItemTTL = (index, ttl, start = perf.now()) => {
+    this.#setItemTTL = (index, ttl, start = this.#perf.now()) => {
       starts[index] = ttl !== 0 ? start : 0;
       ttls[index] = ttl;
       if (ttl !== 0 && this.ttlAutopurge) {
@@ -58646,7 +58784,7 @@ var LRUCache = class _LRUCache {
       }
     };
     this.#updateItemAge = (index) => {
-      starts[index] = ttls[index] !== 0 ? perf.now() : 0;
+      starts[index] = ttls[index] !== 0 ? this.#perf.now() : 0;
     };
     this.#statusTTL = (status, index) => {
       if (ttls[index]) {
@@ -58663,7 +58801,7 @@ var LRUCache = class _LRUCache {
     };
     let cachedNow = 0;
     const getNow = () => {
-      const n2 = perf.now();
+      const n2 = this.#perf.now();
       if (this.ttlResolution > 0) {
         cachedNow = n2;
         const t = setTimeout(() => cachedNow = 0, this.ttlResolution);
@@ -58966,7 +59104,7 @@ var LRUCache = class _LRUCache {
       const ttl = this.#ttls[i2];
       const start = this.#starts[i2];
       if (ttl && start) {
-        const remain = ttl - (perf.now() - start);
+        const remain = ttl - (this.#perf.now() - start);
         entry.ttl = remain;
         entry.start = Date.now();
       }
@@ -59000,7 +59138,7 @@ var LRUCache = class _LRUCache {
       const entry = { value };
       if (this.#ttls && this.#starts) {
         entry.ttl = this.#ttls[i2];
-        const age = perf.now() - this.#starts[i2];
+        const age = this.#perf.now() - this.#starts[i2];
         entry.start = Math.floor(Date.now() - age);
       }
       if (this.#sizes) {
@@ -59024,7 +59162,7 @@ var LRUCache = class _LRUCache {
     for (const [key, entry] of arr) {
       if (entry.start) {
         const age = Date.now() - entry.start;
-        entry.start = perf.now() - age;
+        entry.start = this.#perf.now() - age;
       }
       this.set(key, entry.value, entry);
     }
@@ -59297,9 +59435,10 @@ var LRUCache = class _LRUCache {
         return fetchFail(ac.signal.reason);
       }
       const bf2 = p;
-      if (this.#valList[index] === p) {
+      const vl = this.#valList[index];
+      if (vl === p || ignoreAbort && updateCache && vl === void 0) {
         if (v2 === void 0) {
-          if (bf2.__staleWhileFetching) {
+          if (bf2.__staleWhileFetching !== void 0) {
             this.#valList[index] = bf2.__staleWhileFetching;
           } else {
             this.#delete(k, "fetch");
@@ -59652,9 +59791,9 @@ var LRUCache = class _LRUCache {
 };
 
 // node_modules/path-scurry/dist/esm/index.js
-var import_node_path8 = require("node:path");
+var import_node_path9 = require("node:path");
 var import_node_url3 = require("node:url");
-var import_fs = require("fs");
+var import_fs2 = require("fs");
 var actualFS = __toESM(require("node:fs"), 1);
 var import_promises12 = require("node:fs/promises");
 
@@ -60537,12 +60676,12 @@ var Minipass = class extends import_node_events15.EventEmitter {
 };
 
 // node_modules/path-scurry/dist/esm/index.js
-var realpathSync = import_fs.realpathSync.native;
+var realpathSync = import_fs2.realpathSync.native;
 var defaultFS = {
-  lstatSync: import_fs.lstatSync,
-  readdir: import_fs.readdir,
-  readdirSync: import_fs.readdirSync,
-  readlinkSync: import_fs.readlinkSync,
+  lstatSync: import_fs2.lstatSync,
+  readdir: import_fs2.readdir,
+  readdirSync: import_fs2.readdirSync,
+  readlinkSync: import_fs2.readlinkSync,
   realpathSync,
   promises: {
     lstat: import_promises12.lstat,
@@ -60801,12 +60940,12 @@ var PathBase = class {
   /**
    * Get the Path object referenced by the string path, resolved from this Path
    */
-  resolve(path15) {
-    if (!path15) {
+  resolve(path16) {
+    if (!path16) {
       return this;
     }
-    const rootPath = this.getRootString(path15);
-    const dir = path15.substring(rootPath.length);
+    const rootPath = this.getRootString(path16);
+    const dir = path16.substring(rootPath.length);
     const dirParts = dir.split(this.splitSep);
     const result = rootPath ? this.getRoot(rootPath).#resolveParts(dirParts) : this.#resolveParts(dirParts);
     return result;
@@ -61558,8 +61697,8 @@ var PathWin32 = class _PathWin32 extends PathBase {
   /**
    * @internal
    */
-  getRootString(path15) {
-    return import_node_path8.win32.parse(path15).root;
+  getRootString(path16) {
+    return import_node_path9.win32.parse(path16).root;
   }
   /**
    * @internal
@@ -61605,8 +61744,8 @@ var PathPosix = class _PathPosix extends PathBase {
   /**
    * @internal
    */
-  getRootString(path15) {
-    return path15.startsWith("/") ? "/" : "";
+  getRootString(path16) {
+    return path16.startsWith("/") ? "/" : "";
   }
   /**
    * @internal
@@ -61695,11 +61834,11 @@ var PathScurryBase = class {
   /**
    * Get the depth of a provided path, string, or the cwd
    */
-  depth(path15 = this.cwd) {
-    if (typeof path15 === "string") {
-      path15 = this.cwd.resolve(path15);
+  depth(path16 = this.cwd) {
+    if (typeof path16 === "string") {
+      path16 = this.cwd.resolve(path16);
     }
-    return path15.depth();
+    return path16.depth();
   }
   /**
    * Return the cache of child entries.  Exposed so subclasses can create
@@ -62186,9 +62325,9 @@ var PathScurryBase = class {
     process18();
     return results;
   }
-  chdir(path15 = this.cwd) {
+  chdir(path16 = this.cwd) {
     const oldCwd = this.cwd;
-    this.cwd = typeof path15 === "string" ? this.cwd.resolve(path15) : path15;
+    this.cwd = typeof path16 === "string" ? this.cwd.resolve(path16) : path16;
     this.cwd[setAsCwd](oldCwd);
   }
 };
@@ -62199,7 +62338,7 @@ var PathScurryWin32 = class extends PathScurryBase {
   sep = "\\";
   constructor(cwd = process.cwd(), opts = {}) {
     const { nocase = true } = opts;
-    super(cwd, import_node_path8.win32, "\\", { ...opts, nocase });
+    super(cwd, import_node_path9.win32, "\\", { ...opts, nocase });
     this.nocase = nocase;
     for (let p = this.cwd; p; p = p.parent) {
       p.nocase = this.nocase;
@@ -62209,7 +62348,7 @@ var PathScurryWin32 = class extends PathScurryBase {
    * @internal
    */
   parseRootPath(dir) {
-    return import_node_path8.win32.parse(dir).root.toUpperCase();
+    return import_node_path9.win32.parse(dir).root.toUpperCase();
   }
   /**
    * @internal
@@ -62231,7 +62370,7 @@ var PathScurryPosix = class extends PathScurryBase {
   sep = "/";
   constructor(cwd = process.cwd(), opts = {}) {
     const { nocase = false } = opts;
-    super(cwd, import_node_path8.posix, "/", { ...opts, nocase });
+    super(cwd, import_node_path9.posix, "/", { ...opts, nocase });
     this.nocase = nocase;
   }
   /**
@@ -62544,8 +62683,8 @@ var MatchRecord = class {
   }
   // match, absolute, ifdir
   entries() {
-    return [...this.store.entries()].map(([path15, n2]) => [
-      path15,
+    return [...this.store.entries()].map(([path16, n2]) => [
+      path16,
       !!(n2 & 2),
       !!(n2 & 1)
     ]);
@@ -62750,9 +62889,9 @@ var GlobUtil = class {
   signal;
   maxDepth;
   includeChildMatches;
-  constructor(patterns, path15, opts) {
+  constructor(patterns, path16, opts) {
     this.patterns = patterns;
-    this.path = path15;
+    this.path = path16;
     this.opts = opts;
     this.#sep = !opts.posix && opts.platform === "win32" ? "\\" : "/";
     this.includeChildMatches = opts.includeChildMatches !== false;
@@ -62771,11 +62910,11 @@ var GlobUtil = class {
       });
     }
   }
-  #ignored(path15) {
-    return this.seen.has(path15) || !!this.#ignore?.ignored?.(path15);
+  #ignored(path16) {
+    return this.seen.has(path16) || !!this.#ignore?.ignored?.(path16);
   }
-  #childrenIgnored(path15) {
-    return !!this.#ignore?.childrenIgnored?.(path15);
+  #childrenIgnored(path16) {
+    return !!this.#ignore?.childrenIgnored?.(path16);
   }
   // backpressure mechanism
   pause() {
@@ -62990,8 +63129,8 @@ var GlobUtil = class {
 };
 var GlobWalker = class extends GlobUtil {
   matches = /* @__PURE__ */ new Set();
-  constructor(patterns, path15, opts) {
-    super(patterns, path15, opts);
+  constructor(patterns, path16, opts) {
+    super(patterns, path16, opts);
   }
   matchEmit(e) {
     this.matches.add(e);
@@ -63028,8 +63167,8 @@ var GlobWalker = class extends GlobUtil {
 };
 var GlobStream = class extends GlobUtil {
   results;
-  constructor(patterns, path15, opts) {
-    super(patterns, path15, opts);
+  constructor(patterns, path16, opts) {
+    super(patterns, path16, opts);
     this.results = new Minipass({
       signal: this.signal,
       objectMode: true
@@ -63324,7 +63463,7 @@ glob.glob = glob;
 
 // src/core/cli/installTemplate.ts
 function getCacheFilePath(targetPath, template) {
-  return import_node_path9.default.resolve(targetPath, "node_modules", template.npmName, "template");
+  return import_node_path10.default.resolve(targetPath, "node_modules", template.npmName, "template");
 }
 function copyFile(targetPath, template, installDir) {
   const originFile = getCacheFilePath(targetPath, template);
@@ -63337,7 +63476,7 @@ async function installTemplate(selectedTemplate, baseDir) {
   const force = true;
   const { targetPath, name, template } = selectedTemplate;
   import_fs_extra2.default.ensureDirSync(targetPath);
-  const installDir = import_node_path9.default.resolve(`${baseDir}/${name}`);
+  const installDir = import_node_path10.default.resolve(`${baseDir}/${name}`);
   if (pathExistsSync(installDir)) {
     if (!force) {
       console.error(`\u5F53\u524D\u76EE\u5F55\u4E0B\u5DF2\u7ECF\u5B58\u5728${installDir}\u6587\u4EF6\u5939`);
@@ -63451,25 +63590,25 @@ CliController = __decorateClass([
 ], CliController);
 
 // src/controller/script.controller.ts
-var import_child_process4 = require("child_process");
+var import_child_process5 = require("child_process");
 var vscode8 = __toESM(require("vscode"));
-var path14 = __toESM(require("path"));
+var path15 = __toESM(require("path"));
 
 // src/utils/playwrightInstall.ts
 var vscode7 = __toESM(require("vscode"));
-var import_child_process3 = require("child_process");
-var path13 = __toESM(require("path"));
+var import_child_process4 = require("child_process");
+var path14 = __toESM(require("path"));
 var fs2 = __toESM(require("fs"));
 async function ensurePlaywrightInstalled() {
   let globalExists = false;
   try {
     const globalRoot = await new Promise((resolve, reject) => {
-      (0, import_child_process3.exec)("npm root -g", (err, stdout) => {
+      (0, import_child_process4.exec)("npm root -g", (err, stdout) => {
         if (err) reject(err);
         else resolve(stdout.trim());
       });
     });
-    const globalPlaywrightPath = path13.join(globalRoot, "@playwright", "test");
+    const globalPlaywrightPath = path14.join(globalRoot, "@playwright", "test");
     console.log("globalPlaywrightPath :>> ", globalPlaywrightPath);
     globalExists = fs2.existsSync(globalPlaywrightPath);
   } catch {
@@ -63497,25 +63636,46 @@ function installPlaywright() {
 }
 
 // src/controller/script.controller.ts
+function getGlobalNpmBin() {
+  try {
+    return (0, import_child_process5.execSync)("npm bin -g").toString().trim();
+  } catch {
+    return "";
+  }
+}
+function getGlobalNodeModules() {
+  try {
+    return (0, import_child_process5.execSync)("npm root -g").toString().trim();
+  } catch {
+    return "";
+  }
+}
 var PlaywrightController = class {
   resultStream(_2) {
   }
   async runMerge(account) {
     const ctx = ContextService.getContext();
-    const cwd = ctx.extensionPath;
-    const configPath = path14.join(cwd, "playwright.config.ts");
+    const extensionPath = ctx.extensionPath;
+    const configPath = path15.join(extensionPath, "playwright.config.ts");
+    const globalNpmBin = getGlobalNpmBin();
+    const globalNodeModules = getGlobalNodeModules();
+    console.log("global npm bin:", getGlobalNpmBin());
+    console.log("global node_modules:", getGlobalNodeModules());
     const env3 = {
       ...process.env,
+      PATH: `${globalNpmBin}:${process.env.PATH}`,
+      NODE_PATH: `${globalNodeModules}:${process.env.NODE_PATH || ""}`,
       TEST_USER: account.name,
       TEST_PSD: account.psd
     };
+    console.log("env :>> ", env3);
     try {
       return await new Promise(
         (resolve) => {
-          (0, import_child_process4.exec)(
-            `npx playwright test "script/tests/bilibiliBanner.spec.ts" --config="${configPath}" --ui`,
+          (0, import_child_process5.exec)(
+            `npx playwright test "script/tests/bilibiliBanner.spec.ts" --config="${configPath}"`,
             {
-              cwd,
+              cwd: extensionPath,
               shell: true,
               env: env3,
               timeout: 1e3 * 60 * 10
@@ -63524,6 +63684,7 @@ var PlaywrightController = class {
             (err, stdout, stderr) => {
               if (err) {
                 const output = stderr || stdout || String(err);
+                console.log("output :>> ", output);
                 this.resultStream({ success: false, output });
                 vscode8.window.showErrorMessage(
                   "Playwright \u6267\u884C\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u65E5\u5FD7\u3002"
@@ -63609,15 +63770,6 @@ mime-types/index.js:
    * mime-types
    * Copyright(c) 2014 Jonathan Ong
    * Copyright(c) 2015 Douglas Christopher Wilson
-   * MIT Licensed
-   *)
-
-tmp/lib/tmp.js:
-  (*!
-   * Tmp
-   *
-   * Copyright (c) 2011-2017 KARASZI Istvan <github@spam.raszi.hu>
-   *
    * MIT Licensed
    *)
 
